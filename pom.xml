@@ -5,6 +5,12 @@
     <packaging>pom</packaging>
     <modules>
         <module>security-service</module>
+        <module>user-service</module>
+        <module>product-service</module>
+        <module>search-service</module>
+        <module>message-service</module>
+        <module>core-service</module>
+        <module>web</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -20,7 +26,13 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <core.service.version>0.0.1-SNAPSHOT</core.service.version>
         <security.service.version>0.0.1-SNAPSHOT</security.service.version>
+        <user.service.version>0.0.1-SNAPSHOT</user.service.version>
+        <message.service.version>0.0.1-SNAPSHOT</message.service.version>
+        <product.service.version>0.0.1-SNAPSHOT</product.service.version>
+        <search.service.version>0.0.1-SNAPSHOT</search.service.version>
+        <web.version>0.0.1-SNAPSHOT</web.version>
     </properties>
 
     <dependencies>
@@ -49,14 +61,54 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.6.1</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.uuhnaut69</groupId>
+                <artifactId>core-service</artifactId>
+                <version>${core.service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.uuhnaut69</groupId>
                 <artifactId>security-service</artifactId>
                 <version>${security.service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.uuhnaut69</groupId>
+                <artifactId>product-service</artifactId>
+                <version>${product.service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.uuhnaut69</groupId>
+                <artifactId>user-service</artifactId>
+                <version>${user.service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.uuhnaut69</groupId>
+                <artifactId>message-service</artifactId>
+                <version>${message.service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.uuhnaut69</groupId>
+                <artifactId>search-service</artifactId>
+                <version>${search.service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.uuhnaut69</groupId>
+                <artifactId>web</artifactId>
+                <version>${web.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
