@@ -3,6 +3,10 @@ package com.uuhnaut69.mall.core.utils;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/**
+ * @author uuhnaut
+ * @project mall
+ */
 public final class TimeUtils {
 
     private TimeUtils() {

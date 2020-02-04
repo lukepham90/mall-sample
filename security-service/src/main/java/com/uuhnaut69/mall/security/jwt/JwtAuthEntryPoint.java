@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * @author uuhnaut
+ * @project mall
+ */
 @Slf4j
 @Component
 public class JwtAuthEntryPoint implements AuthenticationEntryPoint {

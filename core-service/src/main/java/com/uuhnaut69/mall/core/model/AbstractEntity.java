@@ -15,6 +15,10 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.UUID;
 
+/**
+ * @author uuhnaut
+ * @project mall
+ */
 @Getter
 @Setter
 @MappedSuperclass

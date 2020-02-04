@@ -2,6 +2,10 @@ package com.uuhnaut69.mall.file.service;
 
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * @author uuhnaut
+ * @project mall
+ */
 public interface FileService {
 
     /**
