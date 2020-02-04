@@ -4,6 +4,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+/**
+ * @author uuhnaut
+ * @project mall
+ */
 public final class PagingUtils {
 
     private PagingUtils() {

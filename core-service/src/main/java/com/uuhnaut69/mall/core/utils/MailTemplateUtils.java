@@ -1,5 +1,9 @@
 package com.uuhnaut69.mall.core.utils;
 
+/**
+ * @author uuhnaut
+ * @project mall
+ */
 public final class MailTemplateUtils {
 
     private MailTemplateUtils() {
