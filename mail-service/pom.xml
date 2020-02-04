@@ -19,7 +19,7 @@
         </dependency>
         <dependency>
             <groupId>com.uuhnaut69</groupId>
-            <artifactId>user-service</artifactId>
+            <artifactId>product-service</artifactId>
         </dependency>
     </dependencies>
 </project>
