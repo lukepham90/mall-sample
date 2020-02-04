@@ -12,5 +12,23 @@
     <artifactId>message-service</artifactId>
     <packaging>jar</packaging>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.uuhnaut69</groupId>
+            <artifactId>mail-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.uuhnaut69</groupId>
+            <artifactId>product-service</artifactId>
+        </dependency>
+    </dependencies>
 </project>
