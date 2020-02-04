@@ -44,5 +44,9 @@
             <artifactId>spring-boot-starter-data-jest</artifactId>
             <version>3.3.0.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>com.uuhnaut69</groupId>
+            <artifactId>core-service</artifactId>
+        </dependency>
     </dependencies>
 </project>
