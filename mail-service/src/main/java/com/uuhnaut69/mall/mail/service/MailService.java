@@ -1,6 +1,6 @@
 package com.uuhnaut69.mall.mail.service;
 
-import com.uuhnaut69.mall.user.domain.User;
+import com.uuhnaut69.mall.product.domain.model.User;
 
 /**
  * @author uuhnaut
