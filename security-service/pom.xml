@@ -31,6 +31,10 @@
             <artifactId>jjwt</artifactId>
             <version>${jwt.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.uuhnaut69</groupId>
+            <artifactId>mall-service</artifactId>
+        </dependency>
     </dependencies>
 
 

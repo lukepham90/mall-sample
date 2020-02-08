@@ -9,17 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mail-service</artifactId>
+    <artifactId>mall-service</artifactId>
     <packaging>jar</packaging>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.uuhnaut69</groupId>
-            <artifactId>mall-service</artifactId>
-        </dependency>
-    </dependencies>
 </project>
