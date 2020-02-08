@@ -35,6 +35,10 @@
             <groupId>com.uuhnaut69</groupId>
             <artifactId>mall-service</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.uuhnaut69</groupId>
+            <artifactId>message-service</artifactId>
+        </dependency>
     </dependencies>
 
 

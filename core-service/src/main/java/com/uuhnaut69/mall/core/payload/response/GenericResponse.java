@@ -23,4 +23,7 @@ public class GenericResponse {
     @ApiModelProperty(value = "Payload")
     private Object data;
 
+    @ApiModelProperty(value = "HTTP status code")
+    private static final Integer CODE = 200;
+
 }

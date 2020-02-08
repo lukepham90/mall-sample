@@ -61,9 +61,6 @@ public class ProductEs extends AbstractDocument {
     @Field(type = FieldType.Text)
     private String discountPrice;
 
-    @Field(type = FieldType.Boolean)
-    private Boolean isActive;
-
     @Field(type = FieldType.Nested)
     private CatalogEs catalogEs;
 

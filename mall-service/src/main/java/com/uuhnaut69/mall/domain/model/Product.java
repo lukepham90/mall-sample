@@ -80,10 +80,6 @@ public class Product extends AbstractEntity {
     @ApiModelProperty(value = "Product's discount price")
     private BigDecimal discountPrice;
 
-    @Column(nullable = false)
-    @ApiModelProperty(value = "Product's status active or not")
-    private boolean isActive;
-
     @ApiModelProperty(value = "Catalog's id")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "catalog_id")
