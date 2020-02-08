@@ -11,4 +11,11 @@
 
     <artifactId>mall-service</artifactId>
     <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.uuhnaut69</groupId>
+            <artifactId>core-service</artifactId>
+        </dependency>
+    </dependencies>
 </project>
