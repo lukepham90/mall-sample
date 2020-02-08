@@ -5,7 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>security-service</module>
-        <module>product-service</module>
+        <module>mall-service</module>
         <module>search-service</module>
         <module>message-service</module>
         <module>core-service</module>
@@ -32,7 +32,7 @@
         <core.service.version>0.0.1-SNAPSHOT</core.service.version>
         <security.service.version>0.0.1-SNAPSHOT</security.service.version>
         <message.service.version>0.0.1-SNAPSHOT</message.service.version>
-        <product.service.version>0.0.1-SNAPSHOT</product.service.version>
+        <mall.service.version>0.0.1-SNAPSHOT</mall.service.version>
         <search.service.version>0.0.1-SNAPSHOT</search.service.version>
         <payment.service.version>0.0.1-SNAPSHOT</payment.service.version>
         <mail.service.version>0.0.1-SNAPSHOT</mail.service.version>
@@ -108,8 +108,8 @@
             </dependency>
             <dependency>
                 <groupId>com.uuhnaut69</groupId>
-                <artifactId>product-service</artifactId>
-                <version>${product.service.version}</version>
+                <artifactId>mall-service</artifactId>
+                <version>${mall.service.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.uuhnaut69</groupId>

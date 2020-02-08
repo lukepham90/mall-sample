@@ -28,7 +28,7 @@
         </dependency>
         <dependency>
             <groupId>com.uuhnaut69</groupId>
-            <artifactId>product-service</artifactId>
+            <artifactId>mall-service</artifactId>
         </dependency>
     </dependencies>
 </project>
