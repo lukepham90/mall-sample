@@ -6,6 +6,7 @@ import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.uuhnaut69.mall.core.utils.TimeUtils;
 import com.uuhnaut69.mall.file.service.FileService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,19 +24,14 @@ import java.util.Objects;
  */
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class FileServiceImpl implements FileService {
 
     private final String amazonS3EndPoint;
 
     private final String amazonS3BucketName;
 
-    private AmazonS3 amazonS3Client;
-
-    public FileServiceImpl(String amazonS3EndPoint, String amazonS3BucketName, AmazonS3 amazonS3Client) {
-        this.amazonS3EndPoint = amazonS3EndPoint;
-        this.amazonS3BucketName = amazonS3BucketName;
-        this.amazonS3Client = amazonS3Client;
-    }
+    private final AmazonS3 amazonS3Client;
 
     @Override
     public String uploadToAwsS3(MultipartFile multipartFile) throws Exception {

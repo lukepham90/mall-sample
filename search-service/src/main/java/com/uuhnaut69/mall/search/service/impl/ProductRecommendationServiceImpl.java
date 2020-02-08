@@ -38,32 +38,31 @@ public class ProductRecommendationServiceImpl implements ProductRecommendationSe
         String[] excludeProductIds = userEs.getProductIds().toArray(new String[userEs.getProductIds().size()]);
         return productEsRepository
                 .search(new NativeSearchQueryBuilder()
-                        .withQuery(QueryBuilders.boolQuery().filter(QueryBuilders.matchQuery("isActive", true))
-                                .must(QueryBuilders
-                                        .functionScoreQuery(QueryBuilders.matchAllQuery(),
-                                                new FunctionScoreQueryBuilder.FilterFunctionBuilder[]{
-                                                        /*
-                                                          If user's list seen product id doesn't match in list result
-                                                          product id => score 8
-                                                        */
-                                                        new FunctionScoreQueryBuilder.FilterFunctionBuilder(
-                                                                QueryBuilders.boolQuery()
-                                                                        .mustNot(QueryBuilders.idsQuery()
-                                                                                .addIds(excludeProductIds)),
-                                                                ScoreFunctionBuilders.weightFactorFunction(8)),
-                                                        /*
-                                                          If user's tags match in product's tags => score 4
-                                                        */
-                                                        new FunctionScoreQueryBuilder.FilterFunctionBuilder(
-                                                                QueryBuilders.termsQuery("tags", userEs.getTags()),
-                                                                ScoreFunctionBuilders.weightFactorFunction(4)),
-                                                        /*
-                                                          If product is marked important => score 2
-                                                        */
-                                                        new FunctionScoreQueryBuilder.FilterFunctionBuilder(
-                                                                QueryBuilders.matchQuery("important", true),
-                                                                ScoreFunctionBuilders.weightFactorFunction(2))})
-                                        .boostMode(CombineFunction.REPLACE).scoreMode(FunctionScoreQuery.ScoreMode.SUM)))
+                        .withQuery(QueryBuilders.boolQuery().must(QueryBuilders
+                                .functionScoreQuery(QueryBuilders.matchAllQuery(),
+                                        new FunctionScoreQueryBuilder.FilterFunctionBuilder[]{
+                                                /*
+                                                  If user's list seen product id doesn't match in list result
+                                                  product id => score 8
+                                                */
+                                                new FunctionScoreQueryBuilder.FilterFunctionBuilder(
+                                                        QueryBuilders.boolQuery()
+                                                                .mustNot(QueryBuilders.idsQuery()
+                                                                        .addIds(excludeProductIds)),
+                                                        ScoreFunctionBuilders.weightFactorFunction(8)),
+                                                /*
+                                                  If user's tags match in product's tags => score 4
+                                                */
+                                                new FunctionScoreQueryBuilder.FilterFunctionBuilder(
+                                                        QueryBuilders.termsQuery("tags", userEs.getTags()),
+                                                        ScoreFunctionBuilders.weightFactorFunction(4)),
+                                                /*
+                                                  If product is marked important => score 2
+                                                */
+                                                new FunctionScoreQueryBuilder.FilterFunctionBuilder(
+                                                        QueryBuilders.matchQuery("important", true),
+                                                        ScoreFunctionBuilders.weightFactorFunction(2))})
+                                .boostMode(CombineFunction.REPLACE).scoreMode(FunctionScoreQuery.ScoreMode.SUM)))
                         .withPageable(pageable).withSort(SortBuilders.scoreSort().order(SortOrder.DESC)).build());
     }
 
