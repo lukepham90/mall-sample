@@ -1,8 +1,8 @@
 package com.uuhnaut69.mall.search.service;
 
-import com.uuhnaut69.mall.core.utils.Operation;
 import com.uuhnaut69.mall.search.document.TagEs;
 import com.uuhnaut69.mall.search.document.UserEs;
+import com.uuhnaut69.mall.search.utils.Operation;
 
 import java.util.Map;
 

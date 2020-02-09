@@ -9,23 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>payment-service</artifactId>
+    <artifactId>message-queue-service</artifactId>
     <packaging>jar</packaging>
-
-    <properties>
-        <stripe.version>15.5.0</stripe.version>
-    </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.uuhnaut69</groupId>
             <artifactId>mall-service</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.stripe</groupId>
-            <artifactId>stripe-java</artifactId>
-            <version>${stripe.version}</version>
-        </dependency>
     </dependencies>
-
 </project>

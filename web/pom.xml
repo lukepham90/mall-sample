@@ -20,24 +20,12 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.uuhnaut69</groupId>
             <artifactId>core-service</artifactId>
         </dependency>
         <dependency>
             <groupId>com.uuhnaut69</groupId>
-            <artifactId>security-service</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.uuhnaut69</groupId>
             <artifactId>mall-service</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.uuhnaut69</groupId>
-            <artifactId>message-service</artifactId>
         </dependency>
         <dependency>
             <groupId>com.uuhnaut69</groupId>
@@ -46,10 +34,6 @@
         <dependency>
             <groupId>com.uuhnaut69</groupId>
             <artifactId>payment-service</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.uuhnaut69</groupId>
-            <artifactId>mail-service</artifactId>
         </dependency>
         <dependency>
             <groupId>com.uuhnaut69</groupId>

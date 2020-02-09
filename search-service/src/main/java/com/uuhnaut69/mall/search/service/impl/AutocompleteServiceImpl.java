@@ -3,6 +3,7 @@ package com.uuhnaut69.mall.search.service.impl;
 import com.uuhnaut69.mall.search.constant.EsConstants;
 import com.uuhnaut69.mall.search.payload.response.AutocompleteResponse;
 import com.uuhnaut69.mall.search.service.AutocompleteService;
+import lombok.RequiredArgsConstructor;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -24,13 +25,10 @@ import java.util.List;
  * @project mall
  */
 @Service
+@RequiredArgsConstructor
 public class AutocompleteServiceImpl implements AutocompleteService {
 
     private final RestHighLevelClient restClient;
-
-    public AutocompleteServiceImpl(RestHighLevelClient restClient) {
-        this.restClient = restClient;
-    }
 
     @Override
     public List<AutocompleteResponse> autocomplete(String text, int size) throws Exception {

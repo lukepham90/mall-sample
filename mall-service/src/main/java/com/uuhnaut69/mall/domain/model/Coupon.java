@@ -9,8 +9,6 @@ import org.dom4j.tree.AbstractEntity;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import java.sql.Timestamp;
 import java.util.UUID;
 
@@ -43,8 +41,6 @@ public class Coupon extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private CouponStatus couponStatus;
 
-    @Min(0)
-    @Max(100)
     @Column(nullable = false)
     @ApiModelProperty(value = "Coupon's discount")
     private Integer discountPercent;
