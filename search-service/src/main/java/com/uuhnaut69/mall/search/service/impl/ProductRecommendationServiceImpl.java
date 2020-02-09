@@ -5,6 +5,7 @@ import com.uuhnaut69.mall.search.document.UserEs;
 import com.uuhnaut69.mall.search.repository.ProductEsRepository;
 import com.uuhnaut69.mall.search.service.ProductRecommendationService;
 import com.uuhnaut69.mall.search.service.UserEsService;
+import lombok.RequiredArgsConstructor;
 import org.elasticsearch.common.lucene.search.function.CombineFunction;
 import org.elasticsearch.common.lucene.search.function.FunctionScoreQuery;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -22,15 +23,11 @@ import org.springframework.stereotype.Service;
  * @project mall
  */
 @Service
+@RequiredArgsConstructor
 public class ProductRecommendationServiceImpl implements ProductRecommendationService {
 
     private final UserEsService userEsService;
     private final ProductEsRepository productEsRepository;
-
-    public ProductRecommendationServiceImpl(UserEsService userEsService, ProductEsRepository productEsRepository) {
-        this.userEsService = userEsService;
-        this.productEsRepository = productEsRepository;
-    }
 
     @Override
     public Page<ProductEs> recommendation(String userId, Pageable pageable) throws Exception {
