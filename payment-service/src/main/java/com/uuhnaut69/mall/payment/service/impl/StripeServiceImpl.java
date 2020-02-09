@@ -1,6 +1,5 @@
 package com.uuhnaut69.mall.payment.service.impl;
 
-import com.stripe.Stripe;
 import com.stripe.model.Charge;
 import com.stripe.model.Customer;
 import com.stripe.model.Token;
@@ -12,12 +11,11 @@ import com.uuhnaut69.mall.payment.service.StripeService;
 import com.uuhnaut69.mall.repository.CartRepository;
 import com.uuhnaut69.mall.security.user.UserPrinciple;
 import com.uuhnaut69.mall.service.user.UserService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,22 +26,11 @@ import java.util.Map;
 @Slf4j
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class StripeServiceImpl implements StripeService {
 
     private final CartRepository cartRepository;
     private final UserService userService;
-    @Value("${STRIPE_SECRET_KEY}")
-    private String secretKey;
-
-    public StripeServiceImpl(CartRepository cartRepository, UserService userService) {
-        this.cartRepository = cartRepository;
-        this.userService = userService;
-    }
-
-    @PostConstruct
-    public void init() {
-        Stripe.apiKey = secretKey;
-    }
 
     @Override
     public void charge(CreditCard creditCard, Cart cart, UserPrinciple userPrinciple) throws Exception {
@@ -91,7 +78,7 @@ public class StripeServiceImpl implements StripeService {
         log.info(charge.getStatus());
         if (charge.getStatus().equals("succeeded")) {
             cart.setPaymentStatus(PaymentStatus.SUCCEED);
-            cart.getOrderItems().stream().forEach(e -> {
+            cart.getOrderItems().forEach(e -> {
                 e.getProduct().setStocks(e.getProduct().getStocks() - e.getQuantity());
                 e.getProduct().setSoldsCnt(e.getProduct().getSoldsCnt() + e.getQuantity());
             });
