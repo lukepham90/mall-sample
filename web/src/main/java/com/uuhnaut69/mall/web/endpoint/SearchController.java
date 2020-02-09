@@ -65,7 +65,7 @@ public class SearchController {
     @ApiOperation(value = "Search Endpoint", notes = "Public endpoint")
     @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.SEARCH_URL)
     public GenericResponse search(@RequestParam(value = "text", defaultValue = "") String text,
-                                  @RequestParam(value = "sort", defaultValue = "id") String sortBy,
+                                  @RequestParam(value = "sort", defaultValue = "createdDate") String sortBy,
                                   @RequestParam(value = "order", defaultValue = "desc") String order,
                                   @RequestParam(value = "page", defaultValue = "1") int page,
                                   @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) throws Exception {

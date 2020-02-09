@@ -4,9 +4,9 @@ import com.uuhnaut69.mall.core.constant.UrlConstants;
 import com.uuhnaut69.mall.core.payload.response.GenericResponse;
 import com.uuhnaut69.mall.payload.request.SignInRequest;
 import com.uuhnaut69.mall.payload.request.SignUpRequest;
+import com.uuhnaut69.mall.payload.response.JwtResponse;
 import com.uuhnaut69.mall.payload.response.MessageResponse;
-import com.uuhnaut69.mall.security.payload.response.JwtResponse;
-import com.uuhnaut69.mall.security.service.auth.AuthService;
+import com.uuhnaut69.mall.service.auth.AuthService;
 import com.uuhnaut69.mall.service.token.TokenService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,7 +27,7 @@ import javax.validation.Valid;
 @RequestMapping(path = UrlConstants.BASE_VERSION_API + UrlConstants.PUBLIC_URL)
 public class AuthController {
 
-    private final AuthService autheService;
+    private final AuthService authService;
 
     private final TokenService tokenService;
 
@@ -41,7 +41,7 @@ public class AuthController {
     @ApiOperation(value = "SignIn Endpoint")
     @PostMapping(path = UrlConstants.AUTH_URL + "/signin")
     public GenericResponse signIn(@RequestBody @Valid SignInRequest signInRequest) throws Exception {
-        JwtResponse jwtResponse = autheService.signIn(signInRequest);
+        JwtResponse jwtResponse = authService.signIn(signInRequest);
         log.info("Generate token {}", jwtResponse);
         return GenericResponse.builder().data(jwtResponse).build();
     }
@@ -57,7 +57,7 @@ public class AuthController {
     @PostMapping(path = UrlConstants.AUTH_URL + "/signup")
     public GenericResponse signUp(@RequestBody @Valid SignUpRequest signUpRequest) throws Exception {
         log.info("Sign up user with {}", signUpRequest);
-        MessageResponse messageResponse = autheService.signUp(signUpRequest);
+        MessageResponse messageResponse = authService.signUp(signUpRequest);
         return GenericResponse.builder().data(messageResponse).build();
     }
 

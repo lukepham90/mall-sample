@@ -1,11 +1,11 @@
 package com.uuhnaut69.mall.search.service.impl;
 
-import com.uuhnaut69.mall.core.utils.Operation;
 import com.uuhnaut69.mall.search.document.ProductEs;
 import com.uuhnaut69.mall.search.document.UserEs;
 import com.uuhnaut69.mall.search.service.ProductEsService;
 import com.uuhnaut69.mall.search.service.UserEsService;
 import com.uuhnaut69.mall.search.service.UserProductEsService;
+import com.uuhnaut69.mall.search.utils.Operation;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
