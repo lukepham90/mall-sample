@@ -1,5 +1,6 @@
 # Mall
 ![Java CI](https://github.com/uuhnaut69/mall/workflows/Java%20CI/badge.svg)
+![Travis CI](https://travis-ci.com/uuhnaut69/mall-sample.svg?branch=master)
 
 Sample mall project with Spring boot 2.x
 
