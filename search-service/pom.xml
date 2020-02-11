@@ -14,10 +14,11 @@
 
     <properties>
         <debezium.version>0.10.0.Final</debezium.version>
+        <spring.data.version>3.2.0.RELEASE</spring.data.version>
+        <spring.data.jest.version>3.3.0.RELEASE</spring.data.jest.version>
     </properties>
 
     <dependencies>
-        <!-- Debezium dependencies -->
         <dependency>
             <groupId>io.debezium</groupId>
             <artifactId>debezium-embedded</artifactId>
@@ -37,12 +38,12 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-elasticsearch</artifactId>
-            <version>3.2.0.RELEASE</version>
+            <version>${spring.data.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.vanroy</groupId>
             <artifactId>spring-boot-starter-data-jest</artifactId>
-            <version>3.3.0.RELEASE</version>
+            <version>${spring.data.jest.version}</version>
         </dependency>
         <dependency>
             <groupId>com.uuhnaut69</groupId>
