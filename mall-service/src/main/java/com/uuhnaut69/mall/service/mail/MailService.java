@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.service.service;
+package com.uuhnaut69.mall.service.mail;
 
 import com.uuhnaut69.mall.domain.model.User;
 

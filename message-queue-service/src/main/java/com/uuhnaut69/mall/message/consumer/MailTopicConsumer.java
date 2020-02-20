@@ -2,7 +2,7 @@ package com.uuhnaut69.mall.message.consumer;
 
 import com.uuhnaut69.mall.constant.RabbitMqConstant;
 import com.uuhnaut69.mall.domain.model.User;
-import com.uuhnaut69.mall.service.service.MailService;
+import com.uuhnaut69.mall.service.mail.MailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
