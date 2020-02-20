@@ -32,8 +32,6 @@ public class UrlConstants {
     /**
      * Features url
      */
-    public static final String IMPORT = "/import";
-    public static final String EXPORT = "/export";
     public static final String CHECKOUT = "/checkout";
 
     private UrlConstants() {
