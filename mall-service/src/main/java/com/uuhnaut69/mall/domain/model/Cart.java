@@ -1,5 +1,6 @@
 package com.uuhnaut69.mall.domain.model;
 
+import com.uuhnaut69.mall.core.model.AbstractEntity;
 import com.uuhnaut69.mall.domain.enums.Currency;
 import com.uuhnaut69.mall.domain.enums.PaymentMethod;
 import com.uuhnaut69.mall.domain.enums.PaymentStatus;
@@ -8,7 +9,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.dom4j.tree.AbstractEntity;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;

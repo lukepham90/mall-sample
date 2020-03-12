@@ -1,10 +1,10 @@
 package com.uuhnaut69.mall.domain.model;
 
+import com.uuhnaut69.mall.core.model.AbstractEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.dom4j.tree.AbstractEntity;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;

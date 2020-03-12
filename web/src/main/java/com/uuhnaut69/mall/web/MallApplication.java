@@ -13,9 +13,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * @author uuhnaut
  * @project mall
  */
-@ComponentScan(basePackages = {"com.uuhnaut69.mall.*"})
-@EntityScan(basePackages = {"com.uuhnaut69.mall.*"})
-@EnableJpaRepositories(basePackages = {"com.uuhnaut69.mall.*"})
+@ComponentScan(basePackages = {"com.uuhnaut69.*"})
+@EntityScan(basePackages = {"com.uuhnaut69.*"})
+@EnableJpaRepositories(basePackages = {"com.uuhnaut69.*"})
 @EnableElasticsearchRepositories(basePackages = {"com.uuhnaut69.mall.search.*"})
 @SpringBootApplication(exclude = {ElasticsearchAutoConfiguration.class, ElasticsearchDataAutoConfiguration.class})
 public class MallApplication {

@@ -66,7 +66,7 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public void deleteAll(List<UUID> idList) throws Exception {
+    public void deleteAll(List<UUID> idList) {
         List<Brand> brands = brandRepository.findByIdIn(idList);
         brandRepository.deleteAll(brands);
     }
@@ -87,9 +87,8 @@ public class BrandServiceImpl implements BrandService {
      * Check brand name valid or not
      *
      * @param brandName
-     * @throws Exception
      */
-    private void checkBrandNameValid(String brandName) throws Exception {
+    private void checkBrandNameValid(String brandName) {
         if (brandRepository.existsByBrandName(brandName)) {
             throw new BadRequestException(MessageConstant.BRAND_ALREADY_EXIST);
         }
