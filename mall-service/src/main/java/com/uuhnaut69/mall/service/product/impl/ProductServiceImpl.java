@@ -100,7 +100,7 @@ public class ProductServiceImpl implements ProductService {
      * @throws Exception
      */
     private Product save(ProductRequest productRequest, Product product) throws Exception {
-        product = productMapper.toProductEntity(productRequest, product.getId());
+        productMapper.toProductEntity(productRequest, product);
         Brand brand = brandService.findById(productRequest.getBrandId());
         Catalog catalog = catalogService.findById(productRequest.getCatalogId());
         Set<Tag> tags = tagService.findListTagInListIds(productRequest.getUuidTags());

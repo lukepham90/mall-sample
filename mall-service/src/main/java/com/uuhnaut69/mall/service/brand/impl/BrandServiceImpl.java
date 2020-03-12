@@ -79,7 +79,7 @@ public class BrandServiceImpl implements BrandService {
      * @return Brand
      */
     private Brand save(BrandRequest brandRequest, Brand brand) {
-        brand = brandMapper.toBrandEntity(brandRequest, brand.getId());
+        brandMapper.toBrandEntity(brandRequest, brand);
         return brandRepository.save(brand);
     }
 

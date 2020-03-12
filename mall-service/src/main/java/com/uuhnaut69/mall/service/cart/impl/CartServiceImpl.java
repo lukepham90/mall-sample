@@ -92,7 +92,7 @@ public class CartServiceImpl implements CartService {
      */
     private Cart save(CartRequest cartRequest, Cart cart, UUID userId) throws Exception {
         Set<CartItem> cartItems = new HashSet<>();
-        cart = cartMapper.toCartEntity(cartRequest, cart.getId());
+        cartMapper.toCartEntity(cartRequest, cart);
         cartRequest.getOrderItems().forEach(item -> {
             try {
                 Product product = productService.findById(item.getProductId());

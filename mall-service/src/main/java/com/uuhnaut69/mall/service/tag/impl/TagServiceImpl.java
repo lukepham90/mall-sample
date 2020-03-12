@@ -77,7 +77,7 @@ public class TagServiceImpl implements TagService {
      * @return Tag
      */
     private Tag save(TagRequest tagRequest, Tag tag) {
-        tag = tagMapper.toTagEntity(tagRequest, tag.getId());
+        tagMapper.toTagEntity(tagRequest, tag);
         return tagRepository.save(tag);
     }
 

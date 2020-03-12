@@ -63,5 +63,5 @@ public interface CouponService {
      * @param ids
      * @throws Exception
      */
-    void deteleAll(List<UUID> ids) throws Exception;
+    void deleteAll(List<UUID> ids) throws Exception;
 }
