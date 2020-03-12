@@ -1,7 +1,7 @@
 package com.uuhnaut69.mall.search.listener;
 
 import com.uuhnaut69.mall.search.constant.CDCTableConstants;
-import com.uuhnaut69.mall.search.service.*;
+import com.uuhnaut69.mall.search.service.index.*;
 import com.uuhnaut69.mall.search.utils.Operation;
 import io.debezium.config.Configuration;
 import io.debezium.embedded.EmbeddedEngine;

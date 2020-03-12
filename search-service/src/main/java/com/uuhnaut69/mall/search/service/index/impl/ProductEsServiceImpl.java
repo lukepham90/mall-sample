@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.search.service.impl;
+package com.uuhnaut69.mall.search.service.index.impl;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,9 +10,9 @@ import com.uuhnaut69.mall.search.document.CatalogEs;
 import com.uuhnaut69.mall.search.document.ProductEs;
 import com.uuhnaut69.mall.search.document.TagEs;
 import com.uuhnaut69.mall.search.repository.ProductEsRepository;
-import com.uuhnaut69.mall.search.service.BrandEsService;
-import com.uuhnaut69.mall.search.service.CatalogEsService;
-import com.uuhnaut69.mall.search.service.ProductEsService;
+import com.uuhnaut69.mall.search.service.index.BrandEsService;
+import com.uuhnaut69.mall.search.service.index.CatalogEsService;
+import com.uuhnaut69.mall.search.service.index.ProductEsService;
 import com.uuhnaut69.mall.search.utils.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.index.query.QueryBuilders;

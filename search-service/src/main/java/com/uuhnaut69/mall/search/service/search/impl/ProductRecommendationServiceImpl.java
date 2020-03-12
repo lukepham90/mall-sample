@@ -1,10 +1,10 @@
-package com.uuhnaut69.mall.search.service.impl;
+package com.uuhnaut69.mall.search.service.search.impl;
 
 import com.uuhnaut69.mall.search.document.ProductEs;
 import com.uuhnaut69.mall.search.document.UserEs;
 import com.uuhnaut69.mall.search.repository.ProductEsRepository;
-import com.uuhnaut69.mall.search.service.ProductRecommendationService;
-import com.uuhnaut69.mall.search.service.UserEsService;
+import com.uuhnaut69.mall.search.service.index.UserEsService;
+import com.uuhnaut69.mall.search.service.search.ProductRecommendationService;
 import lombok.RequiredArgsConstructor;
 import org.elasticsearch.common.lucene.search.function.CombineFunction;
 import org.elasticsearch.common.lucene.search.function.FunctionScoreQuery;

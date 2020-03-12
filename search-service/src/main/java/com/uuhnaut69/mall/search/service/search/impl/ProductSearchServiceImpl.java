@@ -1,8 +1,8 @@
-package com.uuhnaut69.mall.search.service.impl;
+package com.uuhnaut69.mall.search.service.search.impl;
 
 import com.uuhnaut69.mall.search.document.ProductEs;
 import com.uuhnaut69.mall.search.repository.ProductEsRepository;
-import com.uuhnaut69.mall.search.service.SearchService;
+import com.uuhnaut69.mall.search.service.search.ProductSearchService;
 import lombok.RequiredArgsConstructor;
 import org.apache.lucene.search.join.ScoreMode;
 import org.elasticsearch.common.unit.Fuzziness;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class SearchServiceImpl implements SearchService {
+public class ProductSearchServiceImpl implements ProductSearchService {
 
     private final ProductEsRepository productEsRepository;
 
@@ -30,15 +30,12 @@ public class SearchServiceImpl implements SearchService {
                                 .should(QueryBuilders.multiMatchQuery(text, "description", "originalPrice", "productName")
                                         .fuzziness(Fuzziness.AUTO))
                                 .should(QueryBuilders.nestedQuery("catalogEs",
-                                        QueryBuilders.matchQuery("catalogEs.catalogName", text)
-                                                .fuzziness(Fuzziness.AUTO),
+                                        QueryBuilders.termQuery("catalogEs.catalogName", text),
                                         ScoreMode.None))
                                 .should(QueryBuilders.nestedQuery("brandEs",
-                                        QueryBuilders.matchQuery("brandEs.brandName", text)
-                                                .fuzziness(Fuzziness.AUTO),
+                                        QueryBuilders.termQuery("brandEs.brandName", text),
                                         ScoreMode.None))
-                                .should(QueryBuilders.matchPhrasePrefixQuery("tags", text).slop(2))))
+                                .should(QueryBuilders.termQuery("tags", text))))
                 .withPageable(pageable).build());
     }
-
 }

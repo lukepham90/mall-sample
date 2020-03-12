@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.search.service;
+package com.uuhnaut69.mall.search.service.search;
 
 import com.uuhnaut69.mall.search.document.ProductEs;
 import org.springframework.data.domain.Page;

@@ -1,8 +1,8 @@
-package com.uuhnaut69.mall.search.service.impl;
+package com.uuhnaut69.mall.search.service.search.impl;
 
 import com.uuhnaut69.mall.search.constant.EsConstants;
 import com.uuhnaut69.mall.search.payload.response.AutocompleteResponse;
-import com.uuhnaut69.mall.search.service.AutocompleteService;
+import com.uuhnaut69.mall.search.service.search.AutocompleteService;
 import lombok.RequiredArgsConstructor;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;

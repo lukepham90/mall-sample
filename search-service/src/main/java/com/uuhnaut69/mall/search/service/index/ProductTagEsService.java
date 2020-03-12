@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.search.service;
+package com.uuhnaut69.mall.search.service.index;
 
 import com.uuhnaut69.mall.search.utils.Operation;
 
