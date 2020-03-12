@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.web.config;
+package com.uuhnaut69.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

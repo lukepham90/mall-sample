@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.security.user;
+package com.uuhnaut69.security.user;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 

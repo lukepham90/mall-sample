@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.service.auth.impl;
+package com.uuhnaut69.security.auth.impl;
 
 import com.uuhnaut69.mall.constant.RabbitMqConstant;
 import com.uuhnaut69.mall.core.constant.MessageConstant;
@@ -10,8 +10,8 @@ import com.uuhnaut69.mall.payload.request.SignUpRequest;
 import com.uuhnaut69.mall.payload.response.JwtResponse;
 import com.uuhnaut69.mall.payload.response.MessageResponse;
 import com.uuhnaut69.mall.repository.UserRepository;
-import com.uuhnaut69.mall.security.jwt.JwtProvider;
-import com.uuhnaut69.mall.service.auth.AuthService;
+import com.uuhnaut69.security.auth.AuthService;
+import com.uuhnaut69.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

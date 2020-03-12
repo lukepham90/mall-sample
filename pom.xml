@@ -11,6 +11,7 @@
         <module>payment-service</module>
         <module>file-service</module>
         <module>message-queue-service</module>
+        <module>security</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -34,6 +35,7 @@
         <file.service.version>0.0.1-SNAPSHOT</file.service.version>
         <message-queue-service.version>0.0.1-SNAPSHOT</message-queue-service.version>
         <web.version>0.0.1-SNAPSHOT</web.version>
+        <security.version>0.0.1-SNAPSHOT</security.version>
     </properties>
 
     <dependencies>
@@ -129,6 +131,11 @@
                 <groupId>com.uuhnaut69</groupId>
                 <artifactId>message-queue-service</artifactId>
                 <version>${message-queue-service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.uuhnaut69</groupId>
+                <artifactId>security</artifactId>
+                <version>${security.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

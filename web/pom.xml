@@ -39,8 +39,11 @@
             <groupId>com.uuhnaut69</groupId>
             <artifactId>file-service</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.uuhnaut69</groupId>
+            <artifactId>security</artifactId>
+        </dependency>
     </dependencies>
-
 
     <build>
         <plugins>

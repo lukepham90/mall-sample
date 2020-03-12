@@ -1,8 +1,8 @@
-package com.uuhnaut69.mall.security.config;
+package com.uuhnaut69.security.config;
 
-import com.uuhnaut69.mall.security.jwt.JwtAuthEntryPoint;
-import com.uuhnaut69.mall.security.jwt.JwtAuthTokenFilter;
-import com.uuhnaut69.mall.security.user.UserDetailsServiceImpl;
+import com.uuhnaut69.security.jwt.JwtAuthEntryPoint;
+import com.uuhnaut69.security.jwt.JwtAuthTokenFilter;
+import com.uuhnaut69.security.user.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

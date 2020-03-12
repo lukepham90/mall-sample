@@ -1,6 +1,6 @@
-package com.uuhnaut69.mall.security.jwt;
+package com.uuhnaut69.security.jwt;
 
-import com.uuhnaut69.mall.security.user.UserDetailsServiceImpl;
+import com.uuhnaut69.security.user.UserDetailsServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

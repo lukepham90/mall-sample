@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.service.auth;
+package com.uuhnaut69.security.auth;
 
 import com.uuhnaut69.mall.payload.request.SignInRequest;
 import com.uuhnaut69.mall.payload.request.SignUpRequest;
