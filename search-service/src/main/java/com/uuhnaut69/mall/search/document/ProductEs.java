@@ -37,17 +37,17 @@ public class ProductEs extends AbstractDocument {
     @Field(type = FieldType.Text)
     private String description;
 
-    @Field(type = FieldType.Text)
-    private String reviewsCnt;
+    @Field(type = FieldType.Integer)
+    private Integer reviewsCnt;
 
-    @Field(type = FieldType.Text)
-    private String likesCnt;
+    @Field(type = FieldType.Integer)
+    private Integer likesCnt;
 
-    @Field(type = FieldType.Text)
-    private String stocks;
+    @Field(type = FieldType.Integer)
+    private Integer stocks;
 
-    @Field(type = FieldType.Text)
-    private String soldsCnt;
+    @Field(type = FieldType.Integer)
+    private Integer soldsCnt;
 
     @Field(type = FieldType.Text)
     private String imageUrls;
@@ -55,11 +55,11 @@ public class ProductEs extends AbstractDocument {
     @Field(type = FieldType.Text)
     private String thumbNail;
 
-    @Field(type = FieldType.Text)
-    private String originalPrice;
+    @Field(type = FieldType.Double)
+    private Double originalPrice;
 
-    @Field(type = FieldType.Text)
-    private String discountPrice;
+    @Field(type = FieldType.Double)
+    private Double discountPrice;
 
     @Field(type = FieldType.Nested)
     private CatalogEs catalogEs;
