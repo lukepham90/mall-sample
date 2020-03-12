@@ -4,10 +4,9 @@ import com.uuhnaut69.mall.domain.model.Catalog;
 import com.uuhnaut69.mall.payload.request.CatalogRequest;
 import com.uuhnaut69.mall.payload.response.CatalogResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author uuhnaut
@@ -20,11 +19,9 @@ public interface CatalogMapper {
      * Mapper code generator from catalog request to catalog entity
      *
      * @param catalogRequest
-     * @param id
-     * @return Catalog
+     * @param catalog
      */
-    @Mapping(source = "id", target = "id")
-    Catalog toCatalogEntity(CatalogRequest catalogRequest, UUID id);
+    void toCatalogEntity(CatalogRequest catalogRequest, @MappingTarget Catalog catalog);
 
     /**
      * Mapper code generator from catalog entity to catalog response

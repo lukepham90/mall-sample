@@ -11,6 +11,7 @@ import com.uuhnaut69.mall.payload.response.CatalogResponse;
 import com.uuhnaut69.mall.service.catalog.CatalogService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -24,17 +25,13 @@ import java.util.UUID;
  * @project mall
  */
 @RestController
+@RequiredArgsConstructor
 @RequestMapping(path = UrlConstants.BASE_VERSION_API)
 @Api(tags = "Catalog", value = "Catalog Endpoint")
 public class CatalogController {
 
     private final CatalogMapper catalogMapper;
     private final CatalogService catalogService;
-
-    public CatalogController(CatalogMapper catalogMapper, CatalogService catalogService) {
-        this.catalogMapper = catalogMapper;
-        this.catalogService = catalogService;
-    }
 
     /**
      * Get catalog page

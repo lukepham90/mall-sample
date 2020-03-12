@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.security.user;
+package com.uuhnaut69.security.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.uuhnaut69.mall.domain.model.User;

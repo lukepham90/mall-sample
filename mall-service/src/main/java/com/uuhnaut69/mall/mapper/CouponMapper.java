@@ -4,10 +4,9 @@ import com.uuhnaut69.mall.domain.model.Coupon;
 import com.uuhnaut69.mall.payload.request.CouponRequest;
 import com.uuhnaut69.mall.payload.response.CouponResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author uuhnaut
@@ -20,11 +19,9 @@ public interface CouponMapper {
      * Mapper code generator from coupon request to coupon entity
      *
      * @param couponRequest
-     * @param id
-     * @return coupon
+     * @param coupon
      */
-    @Mapping(source = "id", target = "id")
-    Coupon toCouponEntity(CouponRequest couponRequest, UUID id);
+    void toCouponEntity(CouponRequest couponRequest, @MappingTarget Coupon coupon);
 
     /**
      * Mapper code generator from coupon entity to coupon response

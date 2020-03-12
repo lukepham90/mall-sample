@@ -5,9 +5,9 @@ import com.uuhnaut69.mall.payload.request.CartRequest;
 import com.uuhnaut69.mall.payload.response.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author uuhnaut
@@ -20,10 +20,9 @@ public interface CartMapper {
      * Mapper code generator from cart request to cart entity
      *
      * @param cartRequest
-     * @param id
-     * @return Cart
+     * @param cart
      */
-    Cart toCartEntity(CartRequest cartRequest, UUID id);
+    void toCartEntity(CartRequest cartRequest, @MappingTarget Cart cart);
 
     /**
      * Mapper code generator from cart entity to cart response

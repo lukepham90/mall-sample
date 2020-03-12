@@ -1,12 +1,12 @@
 package com.uuhnaut69.mall.domain.model;
 
+import com.uuhnaut69.mall.core.model.AbstractEntity;
 import com.uuhnaut69.mall.domain.enums.RoleName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.dom4j.tree.AbstractEntity;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.envers.Audited;
 

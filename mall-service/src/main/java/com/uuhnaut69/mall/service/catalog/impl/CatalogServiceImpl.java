@@ -90,7 +90,7 @@ public class CatalogServiceImpl implements CatalogService {
      * @return Catalog
      */
     private Catalog save(CatalogRequest catalogRequest, Catalog catalog) {
-        catalog = catalogMapper.toCatalogEntity(catalogRequest, catalog.getId());
+        catalogMapper.toCatalogEntity(catalogRequest, catalog);
         return catalogRepository.save(catalog);
     }
 }

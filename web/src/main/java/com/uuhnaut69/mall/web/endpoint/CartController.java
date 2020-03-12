@@ -7,11 +7,12 @@ import com.uuhnaut69.mall.domain.model.Cart;
 import com.uuhnaut69.mall.mapper.CartMapper;
 import com.uuhnaut69.mall.payload.request.CartRequest;
 import com.uuhnaut69.mall.payload.response.CartResponse;
-import com.uuhnaut69.mall.security.user.CurrentUser;
-import com.uuhnaut69.mall.security.user.UserPrinciple;
 import com.uuhnaut69.mall.service.cart.CartService;
+import com.uuhnaut69.security.user.CurrentUser;
+import com.uuhnaut69.security.user.UserPrinciple;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -24,17 +25,13 @@ import java.util.UUID;
  * @project mall
  */
 @RestController
+@RequiredArgsConstructor
 @RequestMapping(path = UrlConstants.BASE_VERSION_API)
 @Api(tags = "Cart", value = "Endpoint Brand")
 public class CartController {
 
     private final CartService cartService;
     private final CartMapper cartMapper;
-
-    public CartController(CartService cartService, CartMapper cartMapper) {
-        this.cartService = cartService;
-        this.cartMapper = cartMapper;
-    }
 
     /**
      * Get cart page with admin role

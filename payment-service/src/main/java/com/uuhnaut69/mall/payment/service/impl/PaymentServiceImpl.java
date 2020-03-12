@@ -8,7 +8,6 @@ import com.uuhnaut69.mall.domain.model.Cart;
 import com.uuhnaut69.mall.payment.payload.request.CreditCard;
 import com.uuhnaut69.mall.payment.service.PaymentService;
 import com.uuhnaut69.mall.payment.service.StripeService;
-import com.uuhnaut69.mall.security.user.UserPrinciple;
 import com.uuhnaut69.mall.service.cart.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,12 +29,12 @@ public class PaymentServiceImpl implements PaymentService {
     private final StripeService stripeService;
 
     @Override
-    public void checkout(UUID cartId, UUID userId, CreditCard creditCard, UserPrinciple userPrinciple)
+    public void checkout(UUID cartId, UUID userId, CreditCard creditCard)
             throws Exception {
         Cart cart = cartService.findByIdAndUserId(cartId, userId);
         if (cart.getPaymentMethod().name().equals(PaymentMethod.STRIPE.name())) {
             if (!cart.getPaymentStatus().name().equals(PaymentStatus.SUCCEED.name())) {
-                stripeService.charge(creditCard, cart, userPrinciple);
+                stripeService.charge(creditCard, cart, userId);
             } else {
                 throw new BadRequestException(MessageConstant.PAID_CART);
             }

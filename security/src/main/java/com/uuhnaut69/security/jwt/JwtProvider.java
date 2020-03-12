@@ -1,6 +1,6 @@
-package com.uuhnaut69.mall.security.jwt;
+package com.uuhnaut69.security.jwt;
 
-import com.uuhnaut69.mall.security.user.UserPrinciple;
+import com.uuhnaut69.security.user.UserPrinciple;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

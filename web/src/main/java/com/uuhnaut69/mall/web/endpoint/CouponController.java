@@ -122,7 +122,7 @@ public class CouponController {
     @ApiOperation(value = "Delete Coupons Endpoint", notes = "Admin endpoint")
     @DeleteMapping(path = UrlConstants.COUPON_URL)
     public GenericResponse deleteAll(@RequestBody IdsRequest idsRequest) throws Exception {
-        couponService.deteleAll(idsRequest.getIds());
+        couponService.deleteAll(idsRequest.getIds());
         return new GenericResponse();
     }
 }

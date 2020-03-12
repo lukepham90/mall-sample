@@ -2,7 +2,8 @@ package com.uuhnaut69.mall.payment.service;
 
 import com.uuhnaut69.mall.domain.model.Cart;
 import com.uuhnaut69.mall.payment.payload.request.CreditCard;
-import com.uuhnaut69.mall.security.user.UserPrinciple;
+
+import java.util.UUID;
 
 /**
  * @author uuhnaut
@@ -14,9 +15,9 @@ public interface StripeService {
      *
      * @param creditCard
      * @param cart
-     * @param userPrinciple
+     * @param userId
      * @throws Exception
      */
-    void charge(CreditCard creditCard, Cart cart, UserPrinciple userPrinciple) throws Exception;
+    void charge(CreditCard creditCard, Cart cart, UUID userId) throws Exception;
 
 }

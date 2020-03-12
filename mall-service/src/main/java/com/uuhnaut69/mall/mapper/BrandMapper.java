@@ -4,10 +4,9 @@ import com.uuhnaut69.mall.domain.model.Brand;
 import com.uuhnaut69.mall.payload.request.BrandRequest;
 import com.uuhnaut69.mall.payload.response.BrandResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author uuhnaut
@@ -20,11 +19,9 @@ public interface BrandMapper {
      * Mapper code generator from brand request to brand entity
      *
      * @param brandRequest
-     * @param id
-     * @return Brand
+     * @param brand
      */
-    @Mapping(source = "id", target = "id")
-    Brand toBrandEntity(BrandRequest brandRequest, UUID id);
+    void toBrandEntity(BrandRequest brandRequest, @MappingTarget Brand brand);
 
     /**
      * Mapper code generator from brand entity to brand response

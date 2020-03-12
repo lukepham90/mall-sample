@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.security.jwt;
+package com.uuhnaut69.security.jwt;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;

@@ -1,6 +1,5 @@
-package com.uuhnaut69.mall.service.auth.impl;
+package com.uuhnaut69.security.auth.impl;
 
-import com.uuhnaut69.mall.constant.RabbitMqConstant;
 import com.uuhnaut69.mall.core.constant.MessageConstant;
 import com.uuhnaut69.mall.core.exception.BadRequestException;
 import com.uuhnaut69.mall.domain.enums.RoleName;
@@ -10,11 +9,11 @@ import com.uuhnaut69.mall.payload.request.SignUpRequest;
 import com.uuhnaut69.mall.payload.response.JwtResponse;
 import com.uuhnaut69.mall.payload.response.MessageResponse;
 import com.uuhnaut69.mall.repository.UserRepository;
-import com.uuhnaut69.mall.security.jwt.JwtProvider;
-import com.uuhnaut69.mall.service.auth.AuthService;
+import com.uuhnaut69.mall.service.mail.MailService;
+import com.uuhnaut69.security.auth.AuthService;
+import com.uuhnaut69.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -41,7 +40,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final JwtProvider jwtProvider;
 
-    private final RabbitTemplate rabbitTemplate;
+    private final MailService mailService;
 
     @Override
     public JwtResponse signIn(SignInRequest signInRequest) throws Exception {
@@ -64,7 +63,7 @@ public class AuthServiceImpl implements AuthService {
         user.setRole(RoleName.ROLE_USER);
 
         userRepository.save(user);
-        rabbitTemplate.convertAndSend(RabbitMqConstant.SEND_ACTIVATE_MAIL_TOPIC, user);
+        mailService.sendMail(user);
         return new MessageResponse(MessageConstant.ACTIVATE_YOUR_ACCOUNT);
     }
 

@@ -66,7 +66,7 @@ public class CouponServiceImpl implements CouponService {
     }
 
     @Override
-    public void deteleAll(List<UUID> ids) throws Exception {
+    public void deleteAll(List<UUID> ids) throws Exception {
         List<Coupon> coupons = couponRepository.findByIdIn(ids);
         couponRepository.deleteAll(coupons);
     }
@@ -91,7 +91,7 @@ public class CouponServiceImpl implements CouponService {
      * @return Coupon
      */
     private Coupon save(CouponRequest couponRequest, Coupon coupon) {
-        coupon = couponMapper.toCouponEntity(couponRequest, coupon.getId());
+        couponMapper.toCouponEntity(couponRequest, coupon);
         return couponRepository.save(coupon);
     }
 

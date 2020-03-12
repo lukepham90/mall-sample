@@ -9,7 +9,6 @@ import com.uuhnaut69.mall.domain.model.User;
 import com.uuhnaut69.mall.payment.payload.request.CreditCard;
 import com.uuhnaut69.mall.payment.service.StripeService;
 import com.uuhnaut69.mall.repository.CartRepository;
-import com.uuhnaut69.mall.security.user.UserPrinciple;
 import com.uuhnaut69.mall.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * @author uuhnaut
@@ -33,12 +33,12 @@ public class StripeServiceImpl implements StripeService {
     private final UserService userService;
 
     @Override
-    public void charge(CreditCard creditCard, Cart cart, UserPrinciple userPrinciple) throws Exception {
+    public void charge(CreditCard creditCard, Cart cart, UUID userId) throws Exception {
         String stripeToken = createTokenToCharge(creditCard);
-        User user = userService.findById(userPrinciple.getId());
+        User user = userService.findById(userId);
         log.info("User has id {} is being process payemnt !!!", user.getId());
         if (user.getCustomerStripeId() == null) {
-            Customer customer = createCustomer(stripeToken, userPrinciple.getEmail());
+            Customer customer = createCustomer(stripeToken, user.getEmail());
             user.setCustomerStripeId(customer.getId());
             userService.save(user);
         }

@@ -62,8 +62,7 @@ public interface BrandService {
      * Delete brands by list id
      *
      * @param idList
-     * @throws Exception
      */
-    void deleteAll(List<UUID> idList) throws Exception;
+    void deleteAll(List<UUID> idList);
 
 }

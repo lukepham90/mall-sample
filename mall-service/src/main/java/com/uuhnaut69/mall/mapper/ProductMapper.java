@@ -6,11 +6,10 @@ import com.uuhnaut69.mall.payload.request.ProductRequest;
 import com.uuhnaut69.mall.payload.response.ProductResponse;
 import com.uuhnaut69.mall.payload.response.TagResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 /**
  * @author uuhnaut
@@ -23,11 +22,9 @@ public interface ProductMapper {
      * Mapper code generator from product request to product entity
      *
      * @param productRequest
-     * @param id
-     * @return Product
+     * @param product
      */
-    @Mapping(source = "id", target = "id")
-    Product toProductEntity(ProductRequest productRequest, UUID id);
+    void toProductEntity(ProductRequest productRequest, @MappingTarget Product product);
 
     /**
      * Mapper code generator from product entity to product response
