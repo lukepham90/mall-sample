@@ -27,6 +27,6 @@ public class TagEs extends AbstractDocument {
     @Id
     private String id;
 
-    @Field(type = FieldType.Text)
+    @Field(type = FieldType.Keyword)
     private String tagName;
 }

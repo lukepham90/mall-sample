@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.search.service;
+package com.uuhnaut69.mall.search.service.search;
 
 import com.uuhnaut69.mall.search.payload.response.AutocompleteResponse;
 

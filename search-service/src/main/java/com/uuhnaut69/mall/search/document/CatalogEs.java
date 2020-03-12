@@ -27,7 +27,7 @@ public class CatalogEs extends AbstractDocument {
     @Id
     private String id;
 
-    @Field(type = FieldType.Text)
+    @Field(type = FieldType.Keyword)
     private String catalogName;
 
 }

@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.search.service.impl;
+package com.uuhnaut69.mall.search.service.index.impl;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,7 +8,7 @@ import com.uuhnaut69.mall.core.exception.NotFoundException;
 import com.uuhnaut69.mall.search.document.TagEs;
 import com.uuhnaut69.mall.search.document.UserEs;
 import com.uuhnaut69.mall.search.repository.UserEsRepository;
-import com.uuhnaut69.mall.search.service.UserEsService;
+import com.uuhnaut69.mall.search.service.index.UserEsService;
 import com.uuhnaut69.mall.search.utils.Operation;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;

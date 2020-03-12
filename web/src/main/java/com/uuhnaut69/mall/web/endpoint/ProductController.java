@@ -9,7 +9,7 @@ import com.uuhnaut69.mall.payload.request.IdsRequest;
 import com.uuhnaut69.mall.payload.request.ProductRequest;
 import com.uuhnaut69.mall.payload.response.ProductResponse;
 import com.uuhnaut69.mall.search.document.ProductEs;
-import com.uuhnaut69.mall.search.service.ProductRecommendationService;
+import com.uuhnaut69.mall.search.service.search.ProductRecommendationService;
 import com.uuhnaut69.mall.service.product.ProductService;
 import com.uuhnaut69.mall.service.user.UserService;
 import com.uuhnaut69.security.user.CurrentUser;

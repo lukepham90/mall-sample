@@ -1,10 +1,10 @@
-package com.uuhnaut69.mall.search.service.impl;
+package com.uuhnaut69.mall.search.service.index.impl;
 
 import com.uuhnaut69.mall.search.document.TagEs;
 import com.uuhnaut69.mall.search.document.UserEs;
-import com.uuhnaut69.mall.search.service.TagEsService;
-import com.uuhnaut69.mall.search.service.UserEsService;
-import com.uuhnaut69.mall.search.service.UserTagEsService;
+import com.uuhnaut69.mall.search.service.index.TagEsService;
+import com.uuhnaut69.mall.search.service.index.UserEsService;
+import com.uuhnaut69.mall.search.service.index.UserTagEsService;
 import com.uuhnaut69.mall.search.utils.Operation;
 import org.springframework.stereotype.Service;
 

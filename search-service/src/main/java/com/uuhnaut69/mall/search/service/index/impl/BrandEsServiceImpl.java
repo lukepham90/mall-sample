@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.search.service.impl;
+package com.uuhnaut69.mall.search.service.index.impl;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,7 +9,7 @@ import com.uuhnaut69.mall.search.document.BrandEs;
 import com.uuhnaut69.mall.search.document.ProductEs;
 import com.uuhnaut69.mall.search.repository.BrandEsRepository;
 import com.uuhnaut69.mall.search.repository.ProductEsRepository;
-import com.uuhnaut69.mall.search.service.BrandEsService;
+import com.uuhnaut69.mall.search.service.index.BrandEsService;
 import com.uuhnaut69.mall.search.utils.Operation;
 import org.apache.lucene.search.join.ScoreMode;
 import org.elasticsearch.index.query.QueryBuilders;

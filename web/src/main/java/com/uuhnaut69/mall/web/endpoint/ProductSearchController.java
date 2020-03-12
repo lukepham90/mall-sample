@@ -5,8 +5,8 @@ import com.uuhnaut69.mall.core.payload.response.GenericResponse;
 import com.uuhnaut69.mall.core.utils.PagingUtils;
 import com.uuhnaut69.mall.search.document.ProductEs;
 import com.uuhnaut69.mall.search.payload.response.AutocompleteResponse;
-import com.uuhnaut69.mall.search.service.AutocompleteService;
-import com.uuhnaut69.mall.search.service.SearchService;
+import com.uuhnaut69.mall.search.service.search.AutocompleteService;
+import com.uuhnaut69.mall.search.service.search.ProductSearchService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -29,10 +29,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @Api(tags = "Search", value = "Search Endpoint")
 @RequestMapping(path = UrlConstants.BASE_VERSION_API)
-public class SearchController {
+public class ProductSearchController {
 
     private final AutocompleteService autocompleteService;
-    private final SearchService searchService;
+    private final ProductSearchService productSearchService;
 
     /**
      * Complete suggestions product
@@ -71,7 +71,7 @@ public class SearchController {
                                   @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) throws Exception {
         log.info("Search product with text => {}", text);
         Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
-        Page<ProductEs> products = searchService.search(text, pageable);
+        Page<ProductEs> products = productSearchService.search(text, pageable);
         return GenericResponse.builder().data(products.getContent()).build();
     }
 
