@@ -64,9 +64,6 @@ public class ProductEs extends AbstractDocument {
     @Field(type = FieldType.Boolean)
     private Boolean important;
 
-    /**
-     * Declare field used for auto complete suggestion
-     */
     private Completion productSuggest;
 
 }
