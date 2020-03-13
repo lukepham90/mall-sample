@@ -1,5 +1,6 @@
 package com.uuhnaut69.security.user;
 
+import com.uuhnaut69.mall.core.exception.NotFoundException;
 import com.uuhnaut69.mall.domain.model.User;
 import com.uuhnaut69.mall.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws NotFoundException {
 
         User user = userRepository.findByUsernameAndIsEnabled(username, true).orElseThrow(
                 () -> new UsernameNotFoundException("User Not Found with -> username or email : " + username));

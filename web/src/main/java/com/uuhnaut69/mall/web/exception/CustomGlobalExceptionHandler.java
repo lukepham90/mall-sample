@@ -64,16 +64,15 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
      */
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ErrorResponse> customNotFound(Exception ex, WebRequest request) {
-        log.info(ex.getClass().getName());
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setError(ex.getMessage());
-        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        return getErrorResponseResponseEntity(ex);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> customGeneralException(Exception ex, WebRequest request) {
+        return getErrorResponseResponseEntity(ex);
+    }
+
+    private ResponseEntity<ErrorResponse> getErrorResponseResponseEntity(Exception ex) {
         log.info(ex.getClass().getName());
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());

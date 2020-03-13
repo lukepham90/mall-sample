@@ -33,14 +33,11 @@ public class UserProductEsServiceImpl implements UserProductEsService {
         UserEs userEs = userEsService.findById(userId);
         ProductEs productEs = productEsService.findById(productId);
 
-        if (Operation.DELETE.name().equals(operation.name())) {
-            updateSeenProductIds(userEs, productEs.getId());
-            userEsService.save(userEs);
-        } else {
-            updateSeenProductIds(userEs, productEs.getId());
+        updateSeenProductIds(userEs, productEs.getId());
+        if (!Operation.DELETE.name().equals(operation.name())) {
             userEs.getProductIds().add(productEs.getId());
-            userEsService.save(userEs);
         }
+        userEsService.save(userEs);
     }
 
     /**

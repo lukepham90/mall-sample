@@ -39,14 +39,11 @@ public class ProductTagEsServiceImpl implements ProductTagEsService {
             tagEsBefore = tagEsService.findById(tagIdBefore);
         }
 
-        if (Operation.DELETE.name().equals(operation.name())) {
-            updateTagInProduct(productEs, tagEsBefore.getTagName());
-            productEsService.save(productEs);
-        } else {
-            updateTagInProduct(productEs, tagEsBefore.getTagName());
+        updateTagInProduct(productEs, tagEsBefore.getTagName());
+        if (!Operation.DELETE.name().equals(operation.name())) {
             productEs.getTags().add(tagEs.getTagName());
-            productEsService.save(productEs);
         }
+        productEsService.save(productEs);
     }
 
     /**

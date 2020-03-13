@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.Tuple;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 /**
  * @author uuhnaut
@@ -49,13 +48,13 @@ public class RatingProductServiceImpl implements RatingProductService {
     }
 
     @Override
-    public ProductResponse getRatingAggregationOfProduct(ProductResponse productResponse) {
-        return extractResultSet(productResponse);
+    public void getRatingAggregationOfProduct(ProductResponse productResponse) {
+        extractResultSet(productResponse);
     }
 
     @Override
-    public List<ProductResponse> getRatingAggregationOfProducts(List<ProductResponse> productResponses) {
-        return productResponses.stream().map(this::extractResultSet).collect(Collectors.toList());
+    public void getRatingAggregationOfProducts(List<ProductResponse> productResponses) {
+        productResponses.stream().forEach(this::extractResultSet);
     }
 
     /**
@@ -64,7 +63,7 @@ public class RatingProductServiceImpl implements RatingProductService {
      * @param productResponse
      * @return ProductResponse
      */
-    private ProductResponse extractResultSet(ProductResponse productResponse) {
+    private void extractResultSet(ProductResponse productResponse) {
         List<Tuple> ratingAggregationResult = ratingProductRepository.ratingProductAggregation(productResponse.getId());
         if (ratingAggregationResult.isEmpty()) {
             productResponse.setRatingAverage((double) 0);
@@ -73,6 +72,5 @@ public class RatingProductServiceImpl implements RatingProductService {
             productResponse.setRatingAverage((double) ratingAggregationResult.get(0).get(RATING_AVERAGE));
             productResponse.setRatingAmount((long) ratingAggregationResult.get(0).get(RATING_AMOUNT));
         }
-        return productResponse;
     }
 }

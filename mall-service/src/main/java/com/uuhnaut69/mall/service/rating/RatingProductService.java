@@ -26,16 +26,14 @@ public interface RatingProductService {
      * Get rating aggregation of product
      *
      * @param productResponse
-     * @return ProductResponse
      */
-    ProductResponse getRatingAggregationOfProduct(ProductResponse productResponse);
+    void getRatingAggregationOfProduct(ProductResponse productResponse);
 
     /**
      * Get rating aggregation of products
      *
      * @param productResponses
-     * @return List {@link ProductResponse}
      */
-    List<ProductResponse> getRatingAggregationOfProducts(List<ProductResponse> productResponses);
+    void getRatingAggregationOfProducts(List<ProductResponse> productResponses);
 
 }
