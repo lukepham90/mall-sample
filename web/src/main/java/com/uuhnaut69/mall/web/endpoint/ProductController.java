@@ -11,6 +11,7 @@ import com.uuhnaut69.mall.payload.response.ProductResponse;
 import com.uuhnaut69.mall.search.document.ProductEs;
 import com.uuhnaut69.mall.search.service.search.ProductRecommendationService;
 import com.uuhnaut69.mall.service.product.ProductService;
+import com.uuhnaut69.mall.service.rating.RatingProductService;
 import com.uuhnaut69.mall.service.user.UserService;
 import com.uuhnaut69.security.user.CurrentUser;
 import com.uuhnaut69.security.user.UserPrinciple;
@@ -39,9 +40,14 @@ import java.util.UUID;
 public class ProductController {
 
     private final ProductService productService;
+
     private final ProductMapper productMapper;
+
     private final UserService userService;
+
     private final ProductRecommendationService productRecommendationService;
+
+    private final RatingProductService ratingProductService;
 
     /**
      * Find product page
@@ -69,10 +75,11 @@ public class ProductController {
                     pageable);
             return GenericResponse.builder().data(products.getContent()).build();
         }
-        log.info("Get list pulbic product");
+        log.info("Get list public product");
         Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
         Page<Product> products = productService.findAll(pageable);
         List<ProductResponse> list = productMapper.toListProductResponse(products.getContent());
+        ratingProductService.getRatingAggregationOfProducts(list);
         return GenericResponse.builder().data(list).build();
     }
 
@@ -96,6 +103,7 @@ public class ProductController {
         Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
         Page<Product> products = productService.findAllByCatalogId(pageable, catalogId);
         List<ProductResponse> list = productMapper.toListProductResponse(products.getContent());
+        ratingProductService.getRatingAggregationOfProducts(list);
         return GenericResponse.builder().data(list).build();
     }
 
@@ -119,6 +127,7 @@ public class ProductController {
         Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
         Page<Product> products = productService.findAllByBrandId(pageable, brandId);
         List<ProductResponse> list = productMapper.toListProductResponse(products.getContent());
+        ratingProductService.getRatingAggregationOfProducts(list);
         return GenericResponse.builder().data(list).build();
     }
 
@@ -138,6 +147,7 @@ public class ProductController {
         if (userPrinciple != null) {
             userService.markAsReadProduct(userPrinciple.getId(), product.getId());
         }
+        ratingProductService.getRatingAggregationOfProduct(productResponse);
         return GenericResponse.builder().data(productResponse).build();
     }
 
@@ -159,6 +169,7 @@ public class ProductController {
         Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
         Page<Product> products = productService.findAll(pageable);
         List<ProductResponse> list = productMapper.toListProductResponse(products.getContent());
+        ratingProductService.getRatingAggregationOfProducts(list);
         return GenericResponse.builder().data(list).build();
     }
 
@@ -174,6 +185,7 @@ public class ProductController {
     public GenericResponse getProductDetail(@PathVariable UUID id) throws Exception {
         Product product = productService.findById(id);
         ProductResponse productResponse = productMapper.toProductResponse(product);
+        ratingProductService.getRatingAggregationOfProduct(productResponse);
         return GenericResponse.builder().data(productResponse).build();
     }
 
@@ -235,6 +247,20 @@ public class ProductController {
     public GenericResponse deleteAll(@RequestBody IdsRequest idsRequest) throws Exception {
         productService.deleteAll(idsRequest.getIds());
         return new GenericResponse();
+    }
+
+    /**
+     * Rating a product
+     *
+     * @param userPrinciple
+     * @param id
+     * @param rating
+     * @return GenericResponse
+     * @throws Exception
+     */
+    @PostMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.PRODUCT_URL + "/{id}" + "/{rating}")
+    public GenericResponse ratingProduct(@CurrentUser UserPrinciple userPrinciple, @PathVariable UUID id, @PathVariable int rating) throws Exception {
+        return GenericResponse.builder().data(ratingProductService.ratingProduct(id, userPrinciple.getId(), rating)).build();
     }
 
 }

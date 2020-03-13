@@ -47,23 +47,12 @@ public class Product extends AbstractEntity {
 
     @Min(0)
     @Column(nullable = false)
-    @ApiModelProperty(value = "Product's review count")
-    private Integer reviewsCnt = 0;
-
-    @Min(0)
-    @Column(nullable = false)
-    @ApiModelProperty(value = "Product's like count")
-    private Integer likesCnt = 0;
-
-    @Min(0)
-    @Column(nullable = false)
     @ApiModelProperty(value = "Product's stock count")
     private Integer stocks = 0;
 
     @Min(0)
-    @Column(nullable = false)
     @ApiModelProperty(value = "Product's sold count")
-    private Integer soldsCnt = 0;
+    private int soldCount;
 
     @ApiModelProperty(value = "Product's image url")
     private String imageUrls;
