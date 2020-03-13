@@ -12,6 +12,7 @@ import com.uuhnaut69.mall.search.document.ProductEs;
 import com.uuhnaut69.mall.search.service.search.ProductRecommendationService;
 import com.uuhnaut69.mall.service.product.ProductService;
 import com.uuhnaut69.mall.service.rating.RatingProductService;
+import com.uuhnaut69.mall.service.review.ReviewProductService;
 import com.uuhnaut69.mall.service.user.UserService;
 import com.uuhnaut69.security.user.CurrentUser;
 import com.uuhnaut69.security.user.UserPrinciple;
@@ -49,6 +50,8 @@ public class ProductController {
 
     private final RatingProductService ratingProductService;
 
+    private final ReviewProductService reviewProductService;
+
     /**
      * Find product page
      *
@@ -80,6 +83,7 @@ public class ProductController {
         Page<Product> products = productService.findAll(pageable);
         List<ProductResponse> list = productMapper.toListProductResponse(products.getContent());
         ratingProductService.getRatingAggregationOfProducts(list);
+        reviewProductService.countReviewsOfListProduct(list);
         return GenericResponse.builder().data(list).build();
     }
 
@@ -104,6 +108,7 @@ public class ProductController {
         Page<Product> products = productService.findAllByCatalogId(pageable, catalogId);
         List<ProductResponse> list = productMapper.toListProductResponse(products.getContent());
         ratingProductService.getRatingAggregationOfProducts(list);
+        reviewProductService.countReviewsOfListProduct(list);
         return GenericResponse.builder().data(list).build();
     }
 
@@ -128,6 +133,7 @@ public class ProductController {
         Page<Product> products = productService.findAllByBrandId(pageable, brandId);
         List<ProductResponse> list = productMapper.toListProductResponse(products.getContent());
         ratingProductService.getRatingAggregationOfProducts(list);
+        reviewProductService.countReviewsOfListProduct(list);
         return GenericResponse.builder().data(list).build();
     }
 
@@ -148,6 +154,7 @@ public class ProductController {
             userService.markAsReadProduct(userPrinciple.getId(), product.getId());
         }
         ratingProductService.getRatingAggregationOfProduct(productResponse);
+        reviewProductService.countReviewsOfAProduct(productResponse);
         return GenericResponse.builder().data(productResponse).build();
     }
 
@@ -170,6 +177,7 @@ public class ProductController {
         Page<Product> products = productService.findAll(pageable);
         List<ProductResponse> list = productMapper.toListProductResponse(products.getContent());
         ratingProductService.getRatingAggregationOfProducts(list);
+        reviewProductService.countReviewsOfListProduct(list);
         return GenericResponse.builder().data(list).build();
     }
 
@@ -186,6 +194,7 @@ public class ProductController {
         Product product = productService.findById(id);
         ProductResponse productResponse = productMapper.toProductResponse(product);
         ratingProductService.getRatingAggregationOfProduct(productResponse);
+        reviewProductService.countReviewsOfAProduct(productResponse);
         return GenericResponse.builder().data(productResponse).build();
     }
 

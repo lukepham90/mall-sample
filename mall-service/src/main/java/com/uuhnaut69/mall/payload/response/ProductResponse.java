@@ -27,6 +27,8 @@ public class ProductResponse {
 
     private Integer stocks;
 
+    private Long reviewCount;
+
     private String imageUrls;
 
     private String thumbNail;
