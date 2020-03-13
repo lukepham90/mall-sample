@@ -8,7 +8,7 @@ import com.uuhnaut69.mall.domain.model.Product;
 import com.uuhnaut69.mall.domain.model.Tag;
 import com.uuhnaut69.mall.mapper.ProductMapper;
 import com.uuhnaut69.mall.payload.request.ProductRequest;
-import com.uuhnaut69.mall.repository.ProductRepository;
+import com.uuhnaut69.mall.repository.product.ProductRepository;
 import com.uuhnaut69.mall.service.brand.BrandService;
 import com.uuhnaut69.mall.service.catalog.CatalogService;
 import com.uuhnaut69.mall.service.product.ProductService;

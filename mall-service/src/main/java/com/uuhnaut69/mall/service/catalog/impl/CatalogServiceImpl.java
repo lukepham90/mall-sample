@@ -6,7 +6,7 @@ import com.uuhnaut69.mall.core.exception.NotFoundException;
 import com.uuhnaut69.mall.domain.model.Catalog;
 import com.uuhnaut69.mall.mapper.CatalogMapper;
 import com.uuhnaut69.mall.payload.request.CatalogRequest;
-import com.uuhnaut69.mall.repository.CatalogRepository;
+import com.uuhnaut69.mall.repository.catalog.CatalogRepository;
 import com.uuhnaut69.mall.service.catalog.CatalogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

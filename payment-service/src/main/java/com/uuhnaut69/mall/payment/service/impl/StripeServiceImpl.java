@@ -8,7 +8,7 @@ import com.uuhnaut69.mall.domain.model.Cart;
 import com.uuhnaut69.mall.domain.model.User;
 import com.uuhnaut69.mall.payment.payload.request.CreditCard;
 import com.uuhnaut69.mall.payment.service.StripeService;
-import com.uuhnaut69.mall.repository.CartRepository;
+import com.uuhnaut69.mall.repository.cart.CartRepository;
 import com.uuhnaut69.mall.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

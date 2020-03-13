@@ -6,7 +6,7 @@ import com.uuhnaut69.mall.core.exception.NotFoundException;
 import com.uuhnaut69.mall.domain.model.Tag;
 import com.uuhnaut69.mall.mapper.TagMapper;
 import com.uuhnaut69.mall.payload.request.TagRequest;
-import com.uuhnaut69.mall.repository.TagRepository;
+import com.uuhnaut69.mall.repository.tag.TagRepository;
 import com.uuhnaut69.mall.service.tag.TagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

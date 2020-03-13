@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.repository;
+package com.uuhnaut69.mall.repository.cart;
 
 import com.uuhnaut69.mall.domain.model.Cart;
 import org.springframework.data.domain.Page;

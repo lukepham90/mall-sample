@@ -1,7 +1,7 @@
 package com.uuhnaut69.security.user;
 
 import com.uuhnaut69.mall.domain.model.User;
-import com.uuhnaut69.mall.repository.UserRepository;
+import com.uuhnaut69.mall.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

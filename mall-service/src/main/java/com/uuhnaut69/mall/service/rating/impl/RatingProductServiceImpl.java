@@ -5,7 +5,7 @@ import com.uuhnaut69.mall.domain.model.Product;
 import com.uuhnaut69.mall.domain.model.RatingProduct;
 import com.uuhnaut69.mall.domain.model.User;
 import com.uuhnaut69.mall.payload.response.ProductResponse;
-import com.uuhnaut69.mall.repository.RatingProductRepository;
+import com.uuhnaut69.mall.repository.rating.RatingProductRepository;
 import com.uuhnaut69.mall.service.product.ProductService;
 import com.uuhnaut69.mall.service.rating.RatingProductService;
 import com.uuhnaut69.mall.service.user.UserService;

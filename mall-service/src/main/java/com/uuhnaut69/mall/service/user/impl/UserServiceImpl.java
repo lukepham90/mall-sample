@@ -6,7 +6,7 @@ import com.uuhnaut69.mall.domain.model.Product;
 import com.uuhnaut69.mall.domain.model.Tag;
 import com.uuhnaut69.mall.domain.model.User;
 import com.uuhnaut69.mall.payload.request.UserBaseContent;
-import com.uuhnaut69.mall.repository.UserRepository;
+import com.uuhnaut69.mall.repository.user.UserRepository;
 import com.uuhnaut69.mall.service.product.ProductService;
 import com.uuhnaut69.mall.service.tag.TagService;
 import com.uuhnaut69.mall.service.user.UserService;
