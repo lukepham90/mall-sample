@@ -1,5 +1,6 @@
 package com.uuhnaut69.mall.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.uuhnaut69.mall.core.model.AbstractEntity;
 import com.uuhnaut69.mall.domain.enums.RoleName;
 import io.swagger.annotations.ApiModel;
@@ -56,6 +57,7 @@ public class User extends AbstractEntity {
     @ApiModelProperty(value = "User's email")
     private String email;
 
+    @JsonIgnore
     @ApiModelProperty(value = "User's password")
     @Column(nullable = false)
     @Size(min = 6, max = 100)
@@ -72,6 +74,7 @@ public class User extends AbstractEntity {
     @ApiModelProperty(value = "User's avatar")
     private String avatar = "https://cdn.steemitimages.com/DQmbQGsqqhgTgZK2Wh4o3o9pALrNqPVryT3AH17J4WExoqS/no-image-available-grid.jpg";
 
+    @JsonIgnore
     @ApiModelProperty(value = "User's stripe customer id")
     private String customerStripeId;
 
