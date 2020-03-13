@@ -21,13 +21,11 @@ public class ProductResponse {
 
     private String description;
 
-    private Integer reviewsCnt;
+    private Double ratingAverage;
 
-    private Integer likesCnt;
+    private Long ratingAmount;
 
     private Integer stocks;
-
-    private Integer soldsCnt;
 
     private String imageUrls;
 
@@ -37,7 +35,7 @@ public class ProductResponse {
 
     private BigDecimal discountPrice;
 
-    private Boolean isActive;
+    private boolean isActive;
 
     private CatalogResponse catalog;
 
@@ -45,5 +43,5 @@ public class ProductResponse {
 
     private Set<TagResponse> tags;
 
-    private Boolean important;
+    private boolean important;
 }

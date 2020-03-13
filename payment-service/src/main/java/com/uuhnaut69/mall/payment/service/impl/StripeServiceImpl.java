@@ -80,7 +80,7 @@ public class StripeServiceImpl implements StripeService {
             cart.setPaymentStatus(PaymentStatus.SUCCEED);
             cart.getOrderItems().forEach(e -> {
                 e.getProduct().setStocks(e.getProduct().getStocks() - e.getQuantity());
-                e.getProduct().setSoldsCnt(e.getProduct().getSoldsCnt() + e.getQuantity());
+                e.getProduct().setSoldCount(e.getProduct().getSoldCount() + e.getQuantity());
             });
             cartRepository.save(cart);
         } else if (charge.getStatus().equals("failed")) {

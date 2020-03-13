@@ -38,16 +38,7 @@ public class ProductEs extends AbstractDocument {
     private String description;
 
     @Field(type = FieldType.Integer)
-    private Integer reviewsCnt;
-
-    @Field(type = FieldType.Integer)
-    private Integer likesCnt;
-
-    @Field(type = FieldType.Integer)
     private Integer stocks;
-
-    @Field(type = FieldType.Integer)
-    private Integer soldsCnt;
 
     @Field(type = FieldType.Text)
     private String imageUrls;
