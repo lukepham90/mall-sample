@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.repository;
+package com.uuhnaut69.mall.repository.user;
 
 import com.uuhnaut69.mall.domain.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

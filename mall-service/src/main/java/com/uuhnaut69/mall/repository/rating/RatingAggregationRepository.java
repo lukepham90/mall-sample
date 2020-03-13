@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.service.rating;
+package com.uuhnaut69.mall.repository.rating;
 
 import javax.persistence.Tuple;
 import java.util.List;

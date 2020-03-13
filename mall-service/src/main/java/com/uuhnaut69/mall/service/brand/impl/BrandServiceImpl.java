@@ -6,7 +6,7 @@ import com.uuhnaut69.mall.core.exception.NotFoundException;
 import com.uuhnaut69.mall.domain.model.Brand;
 import com.uuhnaut69.mall.mapper.BrandMapper;
 import com.uuhnaut69.mall.payload.request.BrandRequest;
-import com.uuhnaut69.mall.repository.BrandRepository;
+import com.uuhnaut69.mall.repository.brand.BrandRepository;
 import com.uuhnaut69.mall.service.brand.BrandService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

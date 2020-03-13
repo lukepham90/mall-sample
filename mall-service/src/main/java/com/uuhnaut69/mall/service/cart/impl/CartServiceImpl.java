@@ -10,7 +10,7 @@ import com.uuhnaut69.mall.mapper.BillingMapper;
 import com.uuhnaut69.mall.mapper.CartMapper;
 import com.uuhnaut69.mall.mapper.ShippingMapper;
 import com.uuhnaut69.mall.payload.request.CartRequest;
-import com.uuhnaut69.mall.repository.CartRepository;
+import com.uuhnaut69.mall.repository.cart.CartRepository;
 import com.uuhnaut69.mall.service.cart.CartService;
 import com.uuhnaut69.mall.service.coupon.CouponService;
 import com.uuhnaut69.mall.service.product.ProductService;

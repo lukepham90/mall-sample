@@ -1,6 +1,6 @@
-package com.uuhnaut69.mall.service.rating.impl;
+package com.uuhnaut69.mall.repository.rating.impl;
 
-import com.uuhnaut69.mall.service.rating.RatingAggregationRepository;
+import com.uuhnaut69.mall.repository.rating.RatingAggregationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

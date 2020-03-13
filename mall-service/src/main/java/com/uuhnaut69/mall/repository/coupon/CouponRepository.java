@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.repository;
+package com.uuhnaut69.mall.repository.coupon;
 
 import com.uuhnaut69.mall.domain.enums.CouponStatus;
 import com.uuhnaut69.mall.domain.model.Coupon;

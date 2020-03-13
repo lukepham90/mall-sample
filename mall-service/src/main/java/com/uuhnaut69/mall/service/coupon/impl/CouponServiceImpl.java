@@ -6,7 +6,7 @@ import com.uuhnaut69.mall.core.exception.NotFoundException;
 import com.uuhnaut69.mall.domain.model.Coupon;
 import com.uuhnaut69.mall.mapper.CouponMapper;
 import com.uuhnaut69.mall.payload.request.CouponRequest;
-import com.uuhnaut69.mall.repository.CouponRepository;
+import com.uuhnaut69.mall.repository.coupon.CouponRepository;
 import com.uuhnaut69.mall.service.coupon.CouponService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

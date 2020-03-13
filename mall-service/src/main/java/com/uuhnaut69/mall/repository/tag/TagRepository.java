@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.repository;
+package com.uuhnaut69.mall.repository.tag;
 
 import com.uuhnaut69.mall.domain.model.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
