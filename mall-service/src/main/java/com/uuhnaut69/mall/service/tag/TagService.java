@@ -26,9 +26,8 @@ public interface TagService {
      *
      * @param id
      * @return Tag
-     * @throws Exception
      */
-    Tag findById(UUID id) throws Exception;
+    Tag findById(UUID id);
 
     /**
      * Create a new tag
@@ -62,7 +61,6 @@ public interface TagService {
      *
      * @param uuids
      * @return Set tag
-     * @throws Exception
      */
-    Set<Tag> findListTagInListIds(Set<UUID> uuids) throws Exception;
+    Set<Tag> findListTagInListIds(Set<UUID> uuids);
 }

@@ -36,7 +36,7 @@ public class BrandEsServiceImpl implements BrandEsService {
     }
 
     @Override
-    public void maintainReadModel(Map<String, Object> brandData, Operation operation) throws Exception {
+    public void maintainReadModel(Map<String, Object> brandData, Operation operation) {
         final ObjectMapper mapper = new ObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
@@ -45,21 +45,17 @@ public class BrandEsServiceImpl implements BrandEsService {
         Optional<BrandEs> optional = brandEsRepository.findById(brandEs.getId());
 
         if (Operation.DELETE.name().equals(operation.name())) {
-            if (optional.isPresent()) {
-                updateBrandInProducts(optional.get().getId(), null);
-            }
+            optional.ifPresent(es -> updateBrandInProducts(es.getId(), null));
             brandEsRepository.deleteById(brandEs.getId());
         } else {
-            if (optional.isPresent()) {
-                updateBrandInProducts(optional.get().getId(), brandEs);
-            }
+            optional.ifPresent(es -> updateBrandInProducts(es.getId(), brandEs));
             brandEsRepository.save(brandEs);
         }
 
     }
 
     @Override
-    public BrandEs findById(String id) throws Exception {
+    public BrandEs findById(String id) {
         Optional<BrandEs> optional = brandEsRepository.findById(id);
         return optional.orElseThrow(() -> new NotFoundException(MessageConstant.BRAND_NOT_FOUND));
     }
@@ -69,14 +65,13 @@ public class BrandEsServiceImpl implements BrandEsService {
      *
      * @param brandId
      * @param brandEs
-     * @throws Exception
      */
-    private void updateBrandInProducts(String brandId, BrandEs brandEs) throws Exception {
+    private void updateBrandInProducts(String brandId, BrandEs brandEs) {
         List<ProductEs> list = productEsRepository.search(new NativeSearchQueryBuilder().withQuery(
                 QueryBuilders.nestedQuery("brandEs", QueryBuilders.matchQuery("brandEs.id", brandId), ScoreMode.None))
                 .build()).getContent();
         if (!list.isEmpty()) {
-            list.stream().forEach(e -> e.setBrandEs(brandEs));
+            list.forEach(e -> e.setBrandEs(brandEs));
             productEsRepository.saveAll(list);
         }
     }

@@ -27,7 +27,7 @@ public class UserTagEsServiceImpl implements UserTagEsService {
 
     @Override
     public void maintainReadModel(Map<String, Object> userTagData, Map<String, Object> userTagDataBefore,
-                                  Operation operation) throws Exception {
+                                  Operation operation) {
         String userId = userTagData.get("user_id").toString();
         String tagId = userTagData.get("tag_id").toString();
         UserEs userEs = userEsService.findById(userId);

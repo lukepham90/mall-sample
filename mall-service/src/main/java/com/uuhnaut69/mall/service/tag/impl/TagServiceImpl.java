@@ -39,7 +39,7 @@ public class TagServiceImpl implements TagService {
 
     @Override
     @Transactional(readOnly = true)
-    public Tag findById(UUID id) throws Exception {
+    public Tag findById(UUID id) {
         Optional<Tag> tag = tagRepository.findById(id);
         return tag.orElseThrow(() -> new NotFoundException(MessageConstant.TAG_NOT_FOUND));
     }
@@ -67,7 +67,7 @@ public class TagServiceImpl implements TagService {
 
     @Override
     @Transactional(readOnly = true)
-    public Set<Tag> findListTagInListIds(Set<UUID> uuids) throws Exception {
+    public Set<Tag> findListTagInListIds(Set<UUID> uuids) {
         return tagRepository.findByIdIn(uuids);
     }
 
@@ -85,9 +85,8 @@ public class TagServiceImpl implements TagService {
      * Check tag name valid or not
      *
      * @param tagName
-     * @throws Exception
      */
-    private void checkTagNameValid(String tagName) throws Exception {
+    private void checkTagNameValid(String tagName) {
         if (tagRepository.existsByTagName(tagName)) {
             throw new BadRequestException(MessageConstant.TAG_ALREADY_EXIST);
         }

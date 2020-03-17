@@ -16,16 +16,14 @@ public interface TagEsService {
      *
      * @param tagData
      * @param operation
-     * @throws Exception
      */
-    void maintainReadModel(Map<String, Object> tagData, Operation operation) throws Exception;
+    void maintainReadModel(Map<String, Object> tagData, Operation operation);
 
     /**
      * Find by id
      *
      * @param id
      * @return TagEs
-     * @throws Exception
      */
-    TagEs findById(String id) throws Exception;
+    TagEs findById(String id);
 }

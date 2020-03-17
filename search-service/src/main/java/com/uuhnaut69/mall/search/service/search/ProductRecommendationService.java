@@ -16,7 +16,6 @@ public interface ProductRecommendationService {
      * @param userId
      * @param pageable
      * @return Page product
-     * @throws Exception
      */
-    Page<ProductEs> recommendation(String userId, Pageable pageable) throws Exception;
+    Page<ProductEs> recommendation(String userId, Pageable pageable);
 }

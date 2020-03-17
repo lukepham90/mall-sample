@@ -34,7 +34,7 @@ public class FileServiceImpl implements FileService {
     private final AmazonS3 amazonS3Client;
 
     @Override
-    public String uploadToAwsS3(MultipartFile multipartFile) throws Exception {
+    public String uploadToAwsS3(MultipartFile multipartFile) {
         String fileUrl = "";
         try {
             File file = convertMultiPartToFile(multipartFile);
@@ -49,7 +49,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public void deleteFileInAwsS3(String s3Path) throws Exception {
+    public void deleteFileInAwsS3(String s3Path) {
         String fileName = s3Path.substring(s3Path.lastIndexOf('/') + 1);
         amazonS3Client.deleteObject(new DeleteObjectRequest(amazonS3BucketName, fileName));
     }
@@ -93,6 +93,6 @@ public class FileServiceImpl implements FileService {
      * @return file name
      */
     private String generateFileName(MultipartFile multiPart) {
-        return TimeUtils.getCurrentTimestamp() + "-" + multiPart.getOriginalFilename().replace(" ", "_");
+        return TimeUtils.getCurrentTimestamp() + "-" + Objects.requireNonNull(multiPart.getOriginalFilename()).replace(" ", "_");
     }
 }

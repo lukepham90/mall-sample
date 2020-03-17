@@ -16,17 +16,15 @@ public interface BrandEsService {
      *
      * @param brandData
      * @param operation
-     * @throws Exception
      */
-    void maintainReadModel(Map<String, Object> brandData, Operation operation) throws Exception;
+    void maintainReadModel(Map<String, Object> brandData, Operation operation);
 
     /**
      * Find brand by id
      *
      * @param id
      * @return BrandEs
-     * @throws Exception
      */
-    BrandEs findById(String id) throws Exception;
+    BrandEs findById(String id);
 
 }

@@ -19,20 +19,20 @@ public class UserPrinciple implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
-    private UUID id;
+    private final UUID id;
 
-    private String name;
+    private final String name;
 
-    private String username;
+    private final String username;
 
-    private String email;
+    private final String email;
 
     @JsonIgnore
-    private String password;
+    private final String password;
 
-    private boolean isEnabled;
+    private final boolean isEnabled;
 
-    private Collection<? extends GrantedAuthority> authorities;
+    private final Collection<? extends GrantedAuthority> authorities;
 
     public UserPrinciple(UUID id, String name, String username, String email, String password,
                          Collection<? extends GrantedAuthority> authorities, boolean isEnabled) {

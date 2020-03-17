@@ -43,7 +43,7 @@ public class AuthServiceImpl implements AuthService {
     private final MailService mailService;
 
     @Override
-    public JwtResponse signIn(SignInRequest signInRequest) throws Exception {
+    public JwtResponse signIn(SignInRequest signInRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(signInRequest.getUsername(), signInRequest.getPassword()));
 

@@ -32,7 +32,7 @@ public class UserEsServceImpl implements UserEsService {
     }
 
     @Override
-    public void maintainReadModel(Map<String, Object> userData, Operation operation) throws Exception {
+    public void maintainReadModel(Map<String, Object> userData, Operation operation) {
         final ObjectMapper mapper = new ObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
@@ -52,13 +52,13 @@ public class UserEsServceImpl implements UserEsService {
     }
 
     @Override
-    public UserEs findById(String id) throws Exception {
+    public UserEs findById(String id) {
         Optional<UserEs> userEs = userEsRepository.findById(id);
         return userEs.orElseThrow(() -> new NotFoundException(MessageConstant.USER_NOT_FOUND));
     }
 
     @Override
-    public void save(UserEs userEs) throws Exception {
+    public void save(UserEs userEs) {
         userEsRepository.save(userEs);
     }
 

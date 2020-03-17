@@ -24,11 +24,10 @@ public class FileController {
     /**
      * @param multipartfile
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "File Endpoint", notes = "Admin endpoint")
     @PostMapping(path = UrlConstants.ADMIN_URL + UrlConstants.FILE_URL)
-    public GenericResponse upload(@RequestPart(value = "file") MultipartFile multipartfile) throws Exception {
+    public GenericResponse upload(@RequestPart(value = "file") MultipartFile multipartfile) {
         fileService.uploadToAwsS3(multipartfile);
         return GenericResponse.builder().data(fileService.uploadToAwsS3(multipartfile)).build();
     }
@@ -36,11 +35,10 @@ public class FileController {
     /**
      * @param s3Path
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "File Endpoint", notes = "Admin endpoint")
     @DeleteMapping(path = UrlConstants.ADMIN_URL + UrlConstants.FILE_URL)
-    public GenericResponse delete(@RequestPart(value = "s3Path") String s3Path) throws Exception {
+    public GenericResponse delete(@RequestPart(value = "s3Path") String s3Path) {
         fileService.deleteFileInAwsS3(s3Path);
         return new GenericResponse();
     }

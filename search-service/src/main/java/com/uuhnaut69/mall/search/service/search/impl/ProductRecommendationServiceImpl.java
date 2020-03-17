@@ -30,7 +30,7 @@ public class ProductRecommendationServiceImpl implements ProductRecommendationSe
     private final ProductEsRepository productEsRepository;
 
     @Override
-    public Page<ProductEs> recommendation(String userId, Pageable pageable) throws Exception {
+    public Page<ProductEs> recommendation(String userId, Pageable pageable) {
         UserEs userEs = userEsService.findById(userId);
         String[] excludeProductIds = userEs.getProductIds().toArray(new String[userEs.getProductIds().size()]);
         return productEsRepository

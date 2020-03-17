@@ -13,15 +13,13 @@ public interface FileService {
      *
      * @param multipartFile
      * @return file path in s3
-     * @throws Exception
      */
-    String uploadToAwsS3(MultipartFile multipartFile) throws Exception;
+    String uploadToAwsS3(MultipartFile multipartFile);
 
     /**
      * Delete file in amazon S3
      *
      * @param s3Path
-     * @throws Exception
      */
-    void deleteFileInAwsS3(String s3Path) throws Exception;
+    void deleteFileInAwsS3(String s3Path);
 }

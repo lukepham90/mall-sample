@@ -15,9 +15,8 @@ public interface AuthService {
      *
      * @param signInRequest
      * @return JwtResponse
-     * @throws Exception
      */
-    JwtResponse signIn(SignInRequest signInRequest) throws Exception;
+    JwtResponse signIn(SignInRequest signInRequest);
 
     /**
      * Sign Up

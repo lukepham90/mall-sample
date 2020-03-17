@@ -35,13 +35,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public User findById(UUID id) throws Exception {
+    public User findById(UUID id) {
         Optional<User> user = userRepository.findById(id);
         return user.orElseThrow(() -> new BadRequestException(MessageConstant.USER_NOT_FOUND));
     }
 
     @Override
-    public void save(User user) throws Exception {
+    public void save(User user) {
         userRepository.save(user);
     }
 

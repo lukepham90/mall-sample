@@ -17,9 +17,8 @@ public interface ProductEsService {
      *
      * @param productData
      * @param operation
-     * @throws Exception
      */
-    void maintainReadModel(Map<String, Object> productData, Operation operation) throws Exception;
+    void maintainReadModel(Map<String, Object> productData, Operation operation);
 
     /**
      * Update tag in list product
@@ -34,15 +33,13 @@ public interface ProductEsService {
      *
      * @param id
      * @return ProductEs
-     * @throws Exception
      */
-    ProductEs findById(String id) throws Exception;
+    ProductEs findById(String id);
 
     /**
      * Save product
      *
      * @param productEs
-     * @throws Exception
      */
-    void save(ProductEs productEs) throws Exception;
+    void save(ProductEs productEs);
 }

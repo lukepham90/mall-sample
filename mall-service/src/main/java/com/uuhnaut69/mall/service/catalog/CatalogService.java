@@ -26,18 +26,16 @@ public interface CatalogService {
      *
      * @param id
      * @return Catalog
-     * @throws Exception
      */
-    Catalog findById(UUID id) throws Exception;
+    Catalog findById(UUID id);
 
     /**
      * Create a catalog
      *
      * @param catalogRequest
      * @return Catalog
-     * @throws Exception
      */
-    Catalog create(CatalogRequest catalogRequest) throws Exception;
+    Catalog create(CatalogRequest catalogRequest);
 
     /**
      * Update Catalog
@@ -61,7 +59,6 @@ public interface CatalogService {
      * Delete catalogs by list id
      *
      * @param ids
-     * @throws Exception
      */
-    void deleteAll(List<UUID> ids) throws Exception;
+    void deleteAll(List<UUID> ids);
 }

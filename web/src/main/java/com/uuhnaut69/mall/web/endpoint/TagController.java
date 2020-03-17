@@ -42,14 +42,13 @@ public class TagController {
      * @param page
      * @param pageSize
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Get Tags Endpoint", notes = "Public endpoint")
     @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.TAG_URL)
     public GenericResponse getTagPage(@RequestParam(value = "sort", defaultValue = "id") String sortBy,
                                       @RequestParam(value = "order", defaultValue = "desc") String order,
                                       @RequestParam(value = "page", defaultValue = "1") int page,
-                                      @RequestParam(value = "pageSize", defaultValue = "30") int pageSize) throws Exception {
+                                      @RequestParam(value = "pageSize", defaultValue = "30") int pageSize) {
         log.info("Get tag page");
         Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
         Page<Tag> tags = tagService.findAll(pageable);

@@ -63,7 +63,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional(readOnly = true)
-    public Product findById(UUID id) throws Exception {
+    public Product findById(UUID id) {
         Optional<Product> product = productRepository.findById(id);
         return product.orElseThrow(() -> new NotFoundException(MessageConstant.PRODUCT_NOT_FOUND));
     }
@@ -86,7 +86,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteAll(List<UUID> ids) throws Exception {
+    public void deleteAll(List<UUID> ids) {
         List<Product> list = productRepository.findByIdIn(ids);
         productRepository.deleteAll(list);
     }

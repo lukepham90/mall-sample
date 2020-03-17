@@ -4,6 +4,7 @@ import com.uuhnaut69.mall.core.model.AbstractEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
 
@@ -21,6 +22,7 @@ import java.util.UUID;
 @Entity
 @Audited
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "Shipping Model", description = "Shipping payment's info")
 public class Shipping extends AbstractEntity {
 
