@@ -50,7 +50,7 @@ public class CatalogServiceImpl implements CatalogService {
     }
 
     @Override
-    public Catalog update(UUID id, CatalogRequest catalogRequest) throws Exception {
+    public Catalog update(UUID id, CatalogRequest catalogRequest) {
         Catalog catalog = findById(id);
         if (!catalog.getCatalogName().equals(catalogRequest.getCatalogName())) {
             checkCatalogNameValid(catalogRequest.getCatalogName());
@@ -59,7 +59,7 @@ public class CatalogServiceImpl implements CatalogService {
     }
 
     @Override
-    public void delete(UUID id) throws Exception {
+    public void delete(UUID id) {
         Catalog catalog = findById(id);
         catalogRepository.delete(catalog);
     }

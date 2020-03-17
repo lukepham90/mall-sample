@@ -52,16 +52,14 @@ public interface CartService {
      * @param cartRequest
      * @param userId
      * @return Cart
-     * @throws Exception
      */
-    Cart create(CartRequest cartRequest, UUID userId) throws Exception;
+    Cart create(CartRequest cartRequest, UUID userId);
 
     /**
      * Delete cart
      *
      * @param id
      * @param userId
-     * @throws Exception
      */
-    void delete(UUID id, UUID userId) throws Exception;
+    void delete(UUID id, UUID userId);
 }

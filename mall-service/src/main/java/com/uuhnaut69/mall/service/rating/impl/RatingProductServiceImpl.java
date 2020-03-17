@@ -33,7 +33,7 @@ public class RatingProductServiceImpl implements RatingProductService {
     private final RatingProductRepository ratingProductRepository;
 
     @Override
-    public Integer ratingProduct(UUID productId, UUID userId, int rating) throws Exception {
+    public Integer ratingProduct(UUID productId, UUID userId, int rating) {
         Product product = productService.findById(productId);
         User user = userService.findById(userId);
         RatingProduct ratingProduct = new RatingProduct();

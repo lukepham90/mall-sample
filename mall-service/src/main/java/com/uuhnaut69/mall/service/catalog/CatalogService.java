@@ -43,17 +43,15 @@ public interface CatalogService {
      * @param id
      * @param catalogRequest
      * @return Catalog
-     * @throws Exception
      */
-    Catalog update(UUID id, CatalogRequest catalogRequest) throws Exception;
+    Catalog update(UUID id, CatalogRequest catalogRequest);
 
     /**
      * Delete catalog by id
      *
      * @param id
-     * @throws Exception
      */
-    void delete(UUID id) throws Exception;
+    void delete(UUID id);
 
     /**
      * Delete catalogs by list id

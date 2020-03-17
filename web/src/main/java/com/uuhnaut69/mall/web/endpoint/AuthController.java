@@ -65,12 +65,10 @@ public class AuthController {
      *
      * @param token
      * @return status code 200
-     * @throws Exception
      */
     @ApiOperation(value = "Confirmation Endpoint")
     @GetMapping(path = UrlConstants.AUTH_URL + "/confirm")
-    public GenericResponse confirmation(@RequestParam(value = "token", defaultValue = "") String token)
-            throws Exception {
+    public GenericResponse confirmation(@RequestParam(value = "token", defaultValue = "") String token) {
         tokenService.confirmVerifyToken(token);
         log.info("Generate a verify token {}", token);
         return GenericResponse.builder().build();

@@ -34,9 +34,8 @@ public interface TagService {
      *
      * @param tagRequest
      * @return Tag
-     * @throws Exception
      */
-    Tag create(TagRequest tagRequest) throws Exception;
+    Tag create(TagRequest tagRequest);
 
     /**
      * Update a tag
@@ -44,17 +43,15 @@ public interface TagService {
      * @param id
      * @param tagRequest
      * @return Tag
-     * @throws Exception
      */
-    Tag update(UUID id, TagRequest tagRequest) throws Exception;
+    Tag update(UUID id, TagRequest tagRequest);
 
     /**
      * Delete a tag
      *
      * @param id
-     * @throws Exception
      */
-    void delete(UUID id) throws Exception;
+    void delete(UUID id);
 
     /**
      * Get list tag that user wanna see

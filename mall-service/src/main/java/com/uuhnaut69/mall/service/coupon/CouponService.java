@@ -34,9 +34,8 @@ public interface CouponService {
      *
      * @param couponRequest
      * @return Coupon
-     * @throws Exception
      */
-    Coupon create(CouponRequest couponRequest) throws Exception;
+    Coupon create(CouponRequest couponRequest);
 
     /**
      * Update coupon
@@ -44,17 +43,15 @@ public interface CouponService {
      * @param id
      * @param couponRequest
      * @return Coupon
-     * @throws Exception
      */
-    Coupon update(UUID id, CouponRequest couponRequest) throws Exception;
+    Coupon update(UUID id, CouponRequest couponRequest);
 
     /**
      * Delete coupon
      *
      * @param id
-     * @throws Exception
      */
-    void delete(UUID id) throws Exception;
+    void delete(UUID id);
 
     /**
      * Delete coupons

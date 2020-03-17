@@ -45,13 +45,13 @@ public class CouponServiceImpl implements CouponService {
     }
 
     @Override
-    public Coupon create(CouponRequest couponRequest) throws Exception {
+    public Coupon create(CouponRequest couponRequest) {
         checkCouponCodeValid(couponRequest.getCode());
         return save(couponRequest, new Coupon());
     }
 
     @Override
-    public Coupon update(UUID id, CouponRequest couponRequest) throws Exception {
+    public Coupon update(UUID id, CouponRequest couponRequest) {
         Coupon coupon = findById(id);
         if (!coupon.getCode().equals(couponRequest.getCode())) {
             checkCouponCodeValid(couponRequest.getCode());
@@ -60,7 +60,7 @@ public class CouponServiceImpl implements CouponService {
     }
 
     @Override
-    public void delete(UUID id) throws Exception {
+    public void delete(UUID id) {
         Coupon coupon = findById(id);
         couponRepository.delete(coupon);
     }

@@ -63,12 +63,12 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Cart create(CartRequest cartRequest, UUID userId) throws Exception {
+    public Cart create(CartRequest cartRequest, UUID userId) {
         return save(cartRequest, new Cart(), userId);
     }
 
     @Override
-    public void delete(UUID id, UUID userId) throws Exception {
+    public void delete(UUID id, UUID userId) {
         Cart cart = findByIdAndUserId(id, userId);
         checkIsSucceed(cart);
         cartRepository.delete(cart);
@@ -88,9 +88,8 @@ public class CartServiceImpl implements CartService {
      * @param cart
      * @param userId
      * @return Cart
-     * @throws Exception
      */
-    private Cart save(CartRequest cartRequest, Cart cart, UUID userId) throws Exception {
+    private Cart save(CartRequest cartRequest, Cart cart, UUID userId) {
         Set<CartItem> cartItems = new HashSet<>();
         cartMapper.toCartEntity(cartRequest, cart);
         cartRequest.getOrderItems().forEach(item -> {
@@ -118,9 +117,8 @@ public class CartServiceImpl implements CartService {
      *
      * @param cartRequest
      * @param cart
-     * @throws Exception
      */
-    private void calculatePrice(CartRequest cartRequest, Cart cart) throws Exception {
+    private void calculatePrice(CartRequest cartRequest, Cart cart) {
         List<Integer> listPrice = new ArrayList<>();
 
         cartRequest.getOrderItems().stream().filter(e -> !e.getQuantity().equals(0)).forEach(e -> {

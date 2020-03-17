@@ -53,9 +53,8 @@ public interface ProductService {
      *
      * @param productRequest
      * @return Product
-     * @throws Exception
      */
-    Product create(ProductRequest productRequest) throws Exception;
+    Product create(ProductRequest productRequest);
 
     /**
      * Update product
@@ -63,17 +62,15 @@ public interface ProductService {
      * @param id
      * @param productRequest
      * @return Product
-     * @throws Exception
      */
-    Product update(UUID id, ProductRequest productRequest) throws Exception;
+    Product update(UUID id, ProductRequest productRequest);
 
     /**
      * Delete product
      *
      * @param id
-     * @throws Exception
      */
-    void delete(UUID id) throws Exception;
+    void delete(UUID id);
 
     /**
      * Delete products by given list ids

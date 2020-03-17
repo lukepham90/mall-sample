@@ -51,7 +51,7 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public Brand update(UUID id, BrandRequest brandRequest) throws Exception {
+    public Brand update(UUID id, BrandRequest brandRequest) {
         Brand brand = findById(id);
         if (!brand.getBrandName().equals(brandRequest.getBrandName())) {
             checkBrandNameValid(brandRequest.getBrandName());
@@ -60,7 +60,7 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public void delete(UUID id) throws Exception {
+    public void delete(UUID id) {
         Brand brand = findById(id);
         brandRepository.delete(brand);
     }

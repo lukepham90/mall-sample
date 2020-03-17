@@ -45,13 +45,13 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public Tag create(TagRequest tagRequest) throws Exception {
+    public Tag create(TagRequest tagRequest) {
         checkTagNameValid(tagRequest.getTagName());
         return save(tagRequest, new Tag());
     }
 
     @Override
-    public Tag update(UUID id, TagRequest tagRequest) throws Exception {
+    public Tag update(UUID id, TagRequest tagRequest) {
         Tag tag = findById(id);
         if (!tag.getTagName().equals(tagRequest.getTagName())) {
             checkTagNameValid(tagRequest.getTagName());
@@ -60,7 +60,7 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public void delete(UUID id) throws Exception {
+    public void delete(UUID id) {
         Tag tag = findById(id);
         tagRepository.delete(tag);
     }

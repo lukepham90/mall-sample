@@ -30,16 +30,14 @@ public interface UserService {
      *
      * @param id
      * @param userBaseContent
-     * @throws Exception
      */
-    void initBaseContent(UUID id, UserBaseContent userBaseContent) throws Exception;
+    void initBaseContent(UUID id, UserBaseContent userBaseContent);
 
     /**
      * Save uuid product that user has seen
      *
      * @param userId
      * @param productId
-     * @throws Exception
      */
-    void markAsReadProduct(UUID userId, UUID productId) throws Exception;
+    void markAsReadProduct(UUID userId, UUID productId);
 }

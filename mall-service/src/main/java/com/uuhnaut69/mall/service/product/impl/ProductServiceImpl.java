@@ -69,18 +69,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product create(ProductRequest productRequest) throws Exception {
+    public Product create(ProductRequest productRequest) {
         return save(productRequest, new Product());
     }
 
     @Override
-    public Product update(UUID id, ProductRequest productRequest) throws Exception {
+    public Product update(UUID id, ProductRequest productRequest) {
         Product product = findById(id);
         return save(productRequest, product);
     }
 
     @Override
-    public void delete(UUID id) throws Exception {
+    public void delete(UUID id) {
         Product product = findById(id);
         productRepository.delete(product);
     }
@@ -97,9 +97,8 @@ public class ProductServiceImpl implements ProductService {
      * @param productRequest
      * @param product
      * @return Product
-     * @throws Exception
      */
-    private Product save(ProductRequest productRequest, Product product) throws Exception {
+    private Product save(ProductRequest productRequest, Product product) {
         productMapper.toProductEntity(productRequest, product);
         Brand brand = brandService.findById(productRequest.getBrandId());
         Catalog catalog = catalogService.findById(productRequest.getCatalogId());

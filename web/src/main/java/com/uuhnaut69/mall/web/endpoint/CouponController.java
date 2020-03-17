@@ -72,11 +72,10 @@ public class CouponController {
      *
      * @param couponRequest
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Create A Coupon Endpoint", notes = "Admin endpoint")
     @PostMapping(path = UrlConstants.COUPON_URL)
-    public GenericResponse create(@RequestBody @Valid CouponRequest couponRequest) throws Exception {
+    public GenericResponse create(@RequestBody @Valid CouponRequest couponRequest) {
         Coupon coupon = couponService.create(couponRequest);
         return GenericResponse.builder().data(couponMapper.toCouponResponse(coupon)).build();
     }
@@ -87,12 +86,10 @@ public class CouponController {
      * @param id
      * @param couponRequest
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Update A Coupon Endpoint", notes = "Admin endpoint")
     @PutMapping(path = UrlConstants.COUPON_URL + "/{id}")
-    public GenericResponse update(@PathVariable UUID id, @RequestBody @Valid CouponRequest couponRequest)
-            throws Exception {
+    public GenericResponse update(@PathVariable UUID id, @RequestBody @Valid CouponRequest couponRequest) {
         Coupon coupon = couponService.update(id, couponRequest);
         return GenericResponse.builder().data(couponMapper.toCouponResponse(coupon)).build();
     }
@@ -102,11 +99,10 @@ public class CouponController {
      *
      * @param id
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Delete A Coupon Endpoint", notes = "Admin endpoint")
     @DeleteMapping(path = UrlConstants.COUPON_URL + "/{id}")
-    public GenericResponse delete(@PathVariable UUID id) throws Exception {
+    public GenericResponse delete(@PathVariable UUID id) {
         couponService.delete(id);
         return new GenericResponse();
     }

@@ -73,12 +73,10 @@ public class CatalogController {
      * @param id
      * @param catalogRequest
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Update A Catalog Endpoint", notes = "Admin endpoint")
     @PutMapping(path = UrlConstants.ADMIN_URL + UrlConstants.CATALOG_URL + "/{id}")
-    public GenericResponse update(@PathVariable UUID id, @RequestBody @Valid CatalogRequest catalogRequest)
-            throws Exception {
+    public GenericResponse update(@PathVariable UUID id, @RequestBody @Valid CatalogRequest catalogRequest) {
         CatalogResponse catalogResponse = catalogMapper.toCatalogResponse(catalogService.update(id, catalogRequest));
         return GenericResponse.builder().data(catalogResponse).build();
     }
@@ -88,11 +86,10 @@ public class CatalogController {
      *
      * @param id
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Delete A Catalog Endpoint", notes = "Admin endpoint")
     @DeleteMapping(path = UrlConstants.ADMIN_URL + UrlConstants.CATALOG_URL + "/{id}")
-    public GenericResponse delete(@PathVariable UUID id) throws Exception {
+    public GenericResponse delete(@PathVariable UUID id) {
         catalogService.delete(id);
         return new GenericResponse();
     }
