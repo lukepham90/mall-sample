@@ -20,7 +20,7 @@ Sample mall project with Spring boot 2.x
 
 <h3>Environment Installation</h3>
 
-1. Pull docker image:
+1. Run command:
 
   ``` bash
   
