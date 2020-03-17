@@ -46,14 +46,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void initBaseContent(UUID id, UserBaseContent userBaseContent) throws Exception {
+    public void initBaseContent(UUID id, UserBaseContent userBaseContent) {
         User user = findById(id);
         Set<Tag> tags = tagService.findListTagInListIds(userBaseContent.getUuidTags());
         user.setTags(tags);
     }
 
     @Override
-    public void markAsReadProduct(UUID userId, UUID productId) throws Exception {
+    public void markAsReadProduct(UUID userId, UUID productId) {
         User user = findById(userId);
         Product product = productService.findById(productId);
 

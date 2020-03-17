@@ -18,9 +18,8 @@ public interface RatingProductService {
      * @param userId
      * @param rating
      * @return int
-     * @throws Exception
      */
-    Integer ratingProduct(UUID productId, UUID userId, int rating) throws Exception;
+    Integer ratingProduct(UUID productId, UUID userId, int rating);
 
     /**
      * Get rating aggregation of product

@@ -40,7 +40,7 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public void confirmVerifyToken(String token) throws Exception {
+    public void confirmVerifyToken(String token) {
         VerifyToken verifyToken = findByToken(token);
         User user = userService.findById(verifyToken.getUser().getId());
         user.setEnabled(true);

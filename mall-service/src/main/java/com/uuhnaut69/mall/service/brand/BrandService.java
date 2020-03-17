@@ -44,17 +44,15 @@ public interface BrandService {
      * @param id
      * @param brandRequest
      * @return Brand
-     * @throws Exception
      */
-    Brand update(UUID id, BrandRequest brandRequest) throws Exception;
+    Brand update(UUID id, BrandRequest brandRequest);
 
     /**
      * Delete brand by id
      *
      * @param id
-     * @throws Exception
      */
-    void delete(UUID id) throws Exception;
+    void delete(UUID id);
 
     /**
      * Delete brands by list id

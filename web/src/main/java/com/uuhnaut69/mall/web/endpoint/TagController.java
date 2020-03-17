@@ -61,11 +61,10 @@ public class TagController {
      *
      * @param tagRequest
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Create Tag Endpoint", notes = "Admin endpoint")
     @PostMapping(path = UrlConstants.ADMIN_URL + UrlConstants.TAG_URL)
-    public GenericResponse create(@RequestBody @Valid TagRequest tagRequest) throws Exception {
+    public GenericResponse create(@RequestBody @Valid TagRequest tagRequest) {
         log.debug("Insert new brand {} into database", tagRequest);
         Tag tag = tagService.create(tagRequest);
         return GenericResponse.builder().data(tag).build();
@@ -77,11 +76,10 @@ public class TagController {
      * @param id
      * @param tagRequest
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Update Tag Endpoint", notes = "Admin endpoint")
     @PutMapping(path = UrlConstants.ADMIN_URL + UrlConstants.TAG_URL + "/{id}")
-    public GenericResponse update(@PathVariable UUID id, @RequestBody @Valid TagRequest tagRequest) throws Exception {
+    public GenericResponse update(@PathVariable UUID id, @RequestBody @Valid TagRequest tagRequest) {
         log.info("Update tag {} with {} into database", id, tagRequest);
         Tag tag = tagService.update(id, tagRequest);
         return GenericResponse.builder().data(tagMapper.toTagResponse(tag)).build();
@@ -92,11 +90,10 @@ public class TagController {
      *
      * @param id
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Delete Tag Endpoint", notes = "Admin endpoint")
     @DeleteMapping(path = UrlConstants.ADMIN_URL + UrlConstants.TAG_URL + "/{id}")
-    public GenericResponse delete(@PathVariable UUID id) throws Exception {
+    public GenericResponse delete(@PathVariable UUID id) {
         log.debug("Delete a tag {} from database", id);
         tagService.delete(id);
         return new GenericResponse();

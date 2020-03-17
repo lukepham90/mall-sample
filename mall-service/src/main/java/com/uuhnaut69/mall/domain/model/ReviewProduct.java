@@ -18,7 +18,7 @@ import java.util.UUID;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode()
+@EqualsAndHashCode(callSuper = true)
 public class ReviewProduct extends AbstractEntity {
 
     @Id

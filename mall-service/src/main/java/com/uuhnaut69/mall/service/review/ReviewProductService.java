@@ -40,9 +40,8 @@ public interface ReviewProductService {
      * @param userId
      * @param reviewRequest
      * @return ReviewResponse
-     * @throws Exception
      */
-    ReviewResponse create(UUID productId, UUID userId, ReviewRequest reviewRequest) throws Exception;
+    ReviewResponse create(UUID productId, UUID userId, ReviewRequest reviewRequest);
 
     /**
      * Update review

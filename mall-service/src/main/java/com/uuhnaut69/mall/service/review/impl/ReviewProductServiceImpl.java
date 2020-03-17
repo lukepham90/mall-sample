@@ -56,7 +56,7 @@ public class ReviewProductServiceImpl implements ReviewProductService {
     }
 
     @Override
-    public ReviewResponse create(UUID productId, UUID userId, ReviewRequest reviewRequest) throws Exception {
+    public ReviewResponse create(UUID productId, UUID userId, ReviewRequest reviewRequest) {
         Product product = productService.findById(productId);
         User user = userService.findById(userId);
         ReviewProduct reviewProduct = new ReviewProduct();

@@ -112,12 +112,10 @@ public class CartController {
      * @param cartRequest
      * @param userPrinciple
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Create New Card Endpoint", notes = "Admin endpoint")
     @PostMapping(path = UrlConstants.CART_URL)
-    public GenericResponse create(@RequestBody CartRequest cartRequest, @CurrentUser UserPrinciple userPrinciple)
-            throws Exception {
+    public GenericResponse create(@RequestBody CartRequest cartRequest, @CurrentUser UserPrinciple userPrinciple) {
         Cart cart = cartService.create(cartRequest, userPrinciple.getId());
         CartResponse cartResponse = cartMapper.toCartResponse(cart);
         return GenericResponse.builder().data(cartResponse).build();
@@ -129,12 +127,10 @@ public class CartController {
      * @param cartId
      * @param userPrinciple
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Delete Card Endpoint", notes = "Admin endpoint")
     @DeleteMapping(path = UrlConstants.CART_URL + "/{cartId}")
-    public GenericResponse delete(@PathVariable UUID cartId, @CurrentUser UserPrinciple userPrinciple)
-            throws Exception {
+    public GenericResponse delete(@PathVariable UUID cartId, @CurrentUser UserPrinciple userPrinciple) {
         cartService.delete(cartId, userPrinciple.getId());
         return new GenericResponse();
     }

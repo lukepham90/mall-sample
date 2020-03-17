@@ -104,9 +104,8 @@ public class CDCListener {
      * tables that were configured.
      *
      * @param sourceRecord
-     * @throws Exception
      */
-    private void handleEvent(SourceRecord sourceRecord) throws Exception {
+    private void handleEvent(SourceRecord sourceRecord) {
         Struct sourceRecordValue = (Struct) sourceRecord.value();
 
         if (sourceRecordValue != null) {

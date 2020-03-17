@@ -141,12 +141,10 @@ public class ProductController {
      *
      * @param id
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Get Product Detail Endpoint", notes = "Public endpoint")
     @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.PRODUCT_URL + "/{id}")
-    public GenericResponse getProductDetail(@CurrentUser UserPrinciple userPrinciple, @PathVariable UUID id)
-            throws Exception {
+    public GenericResponse getProductDetail(@CurrentUser UserPrinciple userPrinciple, @PathVariable UUID id) {
         Product product = productService.findById(id);
         ProductResponse productResponse = productMapper.toProductResponse(product);
         if (userPrinciple != null) {
@@ -201,11 +199,10 @@ public class ProductController {
      *
      * @param productRequest
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Create A Product Endpoint", notes = "Admin endpoint")
     @PostMapping(path = UrlConstants.ADMIN_URL + UrlConstants.PRODUCT_URL)
-    public GenericResponse create(@RequestBody @Valid ProductRequest productRequest) throws Exception {
+    public GenericResponse create(@RequestBody @Valid ProductRequest productRequest) {
         Product product = productService.create(productRequest);
         ProductResponse productResponse = productMapper.toProductResponse(product);
         return GenericResponse.builder().data(productResponse).build();
@@ -217,12 +214,10 @@ public class ProductController {
      * @param id
      * @param productRequest
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Update A Product Endpoint", notes = "Admin endpoint")
     @PutMapping(path = UrlConstants.ADMIN_URL + UrlConstants.PRODUCT_URL + "/{id}")
-    public GenericResponse update(@PathVariable UUID id, @RequestBody @Valid ProductRequest productRequest)
-            throws Exception {
+    public GenericResponse update(@PathVariable UUID id, @RequestBody @Valid ProductRequest productRequest) {
         Product product = productService.update(id, productRequest);
         ProductResponse productResponse = productMapper.toProductResponse(product);
         return GenericResponse.builder().data(productResponse).build();
@@ -233,11 +228,10 @@ public class ProductController {
      *
      * @param id
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Delete A Product Endpoint", notes = "Admin endpoint")
     @DeleteMapping(path = UrlConstants.ADMIN_URL + UrlConstants.PRODUCT_URL + "/{id}")
-    public GenericResponse delete(@PathVariable UUID id) throws Exception {
+    public GenericResponse delete(@PathVariable UUID id) {
         productService.delete(id);
         return new GenericResponse();
     }
@@ -262,10 +256,9 @@ public class ProductController {
      * @param id
      * @param rating
      * @return GenericResponse
-     * @throws Exception
      */
     @PostMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.PRODUCT_URL + "/{id}" + "/{rating}")
-    public GenericResponse ratingProduct(@CurrentUser UserPrinciple userPrinciple, @PathVariable UUID id, @PathVariable int rating) throws Exception {
+    public GenericResponse ratingProduct(@CurrentUser UserPrinciple userPrinciple, @PathVariable UUID id, @PathVariable int rating) {
         return GenericResponse.builder().data(ratingProductService.ratingProduct(id, userPrinciple.getId(), rating)).build();
     }
 

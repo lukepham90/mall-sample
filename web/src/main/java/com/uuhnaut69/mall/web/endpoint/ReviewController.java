@@ -82,11 +82,10 @@ public class ReviewController {
      * @param productId
      * @param reviewRequest
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Create review of product Endpoint", notes = "User endpoint")
     @PostMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.PRODUCT_URL + "/{productId}" + UrlConstants.REVIEW_URL)
-    public GenericResponse createReview(@CurrentUser UserPrinciple userPrinciple, @PathVariable UUID productId, @RequestBody @Valid ReviewRequest reviewRequest) throws Exception {
+    public GenericResponse createReview(@CurrentUser UserPrinciple userPrinciple, @PathVariable UUID productId, @RequestBody @Valid ReviewRequest reviewRequest) {
         return GenericResponse.builder().data(reviewProductService.create(productId, userPrinciple.getId(), reviewRequest)).build();
     }
 

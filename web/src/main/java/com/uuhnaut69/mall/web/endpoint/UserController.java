@@ -34,12 +34,11 @@ public class UserController {
      * @param userPrinciple
      * @param userBaseContent
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Init User Content Endpoint", notes = "User endpoint")
     @PostMapping(path = UrlConstants.USER_URL)
     public GenericResponse initBaseContent(@CurrentUser UserPrinciple userPrinciple,
-                                           @RequestBody UserBaseContent userBaseContent) throws Exception {
+                                           @RequestBody UserBaseContent userBaseContent) {
         log.info("Setup user content");
         userService.initBaseContent(userPrinciple.getId(), userBaseContent);
         return new GenericResponse();

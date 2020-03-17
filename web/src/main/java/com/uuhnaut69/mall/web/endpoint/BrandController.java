@@ -75,11 +75,10 @@ public class BrandController {
      * @param id
      * @param brandRequest
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Update Brand Endpoint", notes = "Admin endpoint")
     @PutMapping(path = UrlConstants.ADMIN_URL + UrlConstants.BRAND_URL + "/{id}")
-    public GenericResponse update(@PathVariable UUID id, @RequestBody BrandRequest brandRequest) throws Exception {
+    public GenericResponse update(@PathVariable UUID id, @RequestBody BrandRequest brandRequest) {
         log.info("Update brand {} with {} into database", id, brandRequest);
         Brand brand = brandService.update(id, brandRequest);
         return GenericResponse.builder().data(brandMapper.toBrandResponse(brand)).build();
@@ -90,11 +89,10 @@ public class BrandController {
      *
      * @param id
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Delete Brand Endpoint", notes = "Admin endpoint")
     @DeleteMapping(path = UrlConstants.ADMIN_URL + UrlConstants.BRAND_URL + "/{id}")
-    public GenericResponse delete(@PathVariable UUID id) throws Exception {
+    public GenericResponse delete(@PathVariable UUID id) {
         log.debug("Delete a brand {} from database", id);
         brandService.delete(id);
         return new GenericResponse();

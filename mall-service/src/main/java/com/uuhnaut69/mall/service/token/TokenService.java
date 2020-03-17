@@ -19,7 +19,6 @@ public interface TokenService {
      * Confirm verify token
      *
      * @param token
-     * @throws Exception
      */
-    void confirmVerifyToken(String token) throws Exception;
+    void confirmVerifyToken(String token);
 }
