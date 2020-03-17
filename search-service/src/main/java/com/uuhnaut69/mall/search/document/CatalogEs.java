@@ -15,7 +15,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @Document(indexName = EsConstants.CATALOG_INDEX, type = EsConstants.CATALOG_INDEX_TYPE, shards = 1, replicas = 0, refreshInterval = "-1")
 public class CatalogEs extends AbstractDocument {
 

@@ -82,11 +82,10 @@ public class CartController {
      *
      * @param cartId
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Get Cart's Detail", notes = "Admin endpoint")
     @GetMapping(path = UrlConstants.ADMIN_URL + UrlConstants.CART_URL + "/{cartId}")
-    public GenericResponse getCartById(@PathVariable UUID cartId) throws Exception {
+    public GenericResponse getCartById(@PathVariable UUID cartId) {
         Cart cart = cartService.findById(cartId);
         CartResponse cartResponse = cartMapper.toCartResponse(cart);
         return GenericResponse.builder().data(cartResponse).build();
@@ -98,12 +97,10 @@ public class CartController {
      * @param cartId
      * @param userPrinciple
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Get Cart's Detail", notes = "User endpoint")
     @GetMapping(path = UrlConstants.CART_URL + "/cartId")
-    public GenericResponse getCartByIdWithUserRole(@PathVariable UUID cartId, @CurrentUser UserPrinciple userPrinciple)
-            throws Exception {
+    public GenericResponse getCartByIdWithUserRole(@PathVariable UUID cartId, @CurrentUser UserPrinciple userPrinciple) {
         Cart cart = cartService.findByIdAndUserId(cartId, userPrinciple.getId());
         CartResponse cartResponse = cartMapper.toCartResponse(cart);
         return GenericResponse.builder().data(cartResponse).build();

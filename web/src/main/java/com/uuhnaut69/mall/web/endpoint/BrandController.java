@@ -60,11 +60,10 @@ public class BrandController {
      *
      * @param brandRequest
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Create Brand Endpoint", notes = "Admin endpoint")
     @PostMapping(path = UrlConstants.ADMIN_URL + UrlConstants.BRAND_URL)
-    public GenericResponse create(@RequestBody BrandRequest brandRequest) throws Exception {
+    public GenericResponse create(@RequestBody BrandRequest brandRequest) {
         log.debug("Insert new brand {} into database", brandRequest);
         Brand brand = brandService.create(brandRequest);
         return GenericResponse.builder().data(brandMapper.toBrandResponse(brand)).build();
@@ -106,11 +105,10 @@ public class BrandController {
      *
      * @param idsRequest
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Delete Brands Endpoint", notes = "Admin endpoint")
     @DeleteMapping(path = UrlConstants.ADMIN_URL + UrlConstants.BRAND_URL)
-    public GenericResponse deleteAll(@RequestBody IdsRequest idsRequest) throws Exception {
+    public GenericResponse deleteAll(@RequestBody IdsRequest idsRequest) {
         log.debug("Delete brands {} from database", idsRequest.getIds());
         brandService.deleteAll(idsRequest.getIds());
         return new GenericResponse();

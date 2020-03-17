@@ -15,17 +15,15 @@ public interface UserService {
      *
      * @param id
      * @return User
-     * @throws Exception
      */
-    User findById(UUID id) throws Exception;
+    User findById(UUID id);
 
     /**
      * Save
      *
      * @param user
-     * @throws Exception
      */
-    void save(User user) throws Exception;
+    void save(User user);
 
     /**
      * Init content user wanna see

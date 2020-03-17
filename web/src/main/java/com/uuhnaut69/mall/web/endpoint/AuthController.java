@@ -36,11 +36,10 @@ public class AuthController {
      *
      * @param signInRequest
      * @return GenericResponse // status code 200
-     * @throws Exception
      */
     @ApiOperation(value = "SignIn Endpoint")
     @PostMapping(path = UrlConstants.AUTH_URL + "/signin")
-    public GenericResponse signIn(@RequestBody @Valid SignInRequest signInRequest) throws Exception {
+    public GenericResponse signIn(@RequestBody @Valid SignInRequest signInRequest) {
         JwtResponse jwtResponse = authService.signIn(signInRequest);
         log.info("Generate token {}", jwtResponse);
         return GenericResponse.builder().data(jwtResponse).build();

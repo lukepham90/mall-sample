@@ -27,18 +27,16 @@ public interface BrandService {
      *
      * @param id
      * @return Brand
-     * @throws Exception
      */
-    Brand findById(UUID id) throws Exception;
+    Brand findById(UUID id);
 
     /**
      * Create a new brand
      *
      * @param brandRequest
      * @return Brand
-     * @throws Exception
      */
-    Brand create(BrandRequest brandRequest) throws Exception;
+    Brand create(BrandRequest brandRequest);
 
     /**
      * Update brand

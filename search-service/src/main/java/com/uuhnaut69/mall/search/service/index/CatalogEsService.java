@@ -16,16 +16,14 @@ public interface CatalogEsService {
      *
      * @param catalogData
      * @param operation
-     * @throws Exception
      */
-    void maintainReadModel(Map<String, Object> catalogData, Operation operation) throws Exception;
+    void maintainReadModel(Map<String, Object> catalogData, Operation operation);
 
     /**
      * Find catalog by id
      *
      * @param id
      * @return CatalogEs
-     * @throws Exception
      */
-    CatalogEs findById(String id) throws Exception;
+    CatalogEs findById(String id);
 }

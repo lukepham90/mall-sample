@@ -12,9 +12,8 @@ public interface TokenService {
      *
      * @param user
      * @return
-     * @throws Exception
      */
-    String generateToken(User user) throws Exception;
+    String generateToken(User user);
 
     /**
      * Confirm verify token

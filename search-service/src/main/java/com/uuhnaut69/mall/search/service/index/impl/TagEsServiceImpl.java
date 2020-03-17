@@ -35,7 +35,7 @@ public class TagEsServiceImpl implements TagEsService {
     }
 
     @Override
-    public void maintainReadModel(Map<String, Object> tagData, Operation operation) throws Exception {
+    public void maintainReadModel(Map<String, Object> tagData, Operation operation) {
         final ObjectMapper mapper = new ObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
@@ -55,7 +55,7 @@ public class TagEsServiceImpl implements TagEsService {
     }
 
     @Override
-    public TagEs findById(String id) throws Exception {
+    public TagEs findById(String id) {
         Optional<TagEs> tagEs = tagEsRepository.findById(id);
         return tagEs.orElseThrow(() -> new NotFoundException(MessageConstant.TAG_NOT_FOUND));
     }

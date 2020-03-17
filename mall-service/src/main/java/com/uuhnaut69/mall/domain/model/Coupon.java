@@ -5,6 +5,7 @@ import com.uuhnaut69.mall.domain.enums.CouponStatus;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
 
@@ -20,6 +21,7 @@ import java.util.UUID;
 @Entity
 @Audited
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "Coupon Model", description = "Coupon info")
 public class Coupon extends AbstractEntity {
 

@@ -57,7 +57,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     @Transactional(readOnly = true)
-    public Cart findById(UUID id) throws Exception {
+    public Cart findById(UUID id) {
         Optional<Cart> cart = cartRepository.findById(id);
         return cart.orElseThrow(() -> new NotFoundException(MessageConstant.CART_NOT_FOUND));
     }
@@ -76,7 +76,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     @Transactional(readOnly = true)
-    public Cart findByIdAndUserId(UUID id, UUID userId) throws Exception {
+    public Cart findByIdAndUserId(UUID id, UUID userId) {
         Optional<Cart> cart = cartRepository.findByIdAndUserId(id, userId);
         return cart.orElseThrow(() -> new NotFoundException(MessageConstant.CART_NOT_FOUND));
     }
@@ -118,10 +118,9 @@ public class CartServiceImpl implements CartService {
      *
      * @param cartRequest
      * @param cart
-     * @return Cart
      * @throws Exception
      */
-    private Cart calculatePrice(CartRequest cartRequest, Cart cart) throws Exception {
+    private void calculatePrice(CartRequest cartRequest, Cart cart) throws Exception {
         List<Integer> listPrice = new ArrayList<>();
 
         cartRequest.getOrderItems().stream().filter(e -> !e.getQuantity().equals(0)).forEach(e -> {
@@ -146,7 +145,6 @@ public class CartServiceImpl implements CartService {
             calculateTaxPrice(cart, originalTotalPrice);
         }
 
-        return cart;
     }
 
     /**

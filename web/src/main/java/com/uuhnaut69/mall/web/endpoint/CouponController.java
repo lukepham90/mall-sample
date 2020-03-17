@@ -59,11 +59,10 @@ public class CouponController {
      *
      * @param code
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Get Coupon Endpoint", notes = "Public endpoint")
     @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.COUPON_URL + "/{code}")
-    public GenericResponse getCouponByCode(@PathVariable String code) throws Exception {
+    public GenericResponse getCouponByCode(@PathVariable String code) {
         Coupon coupon = couponService.findByCode(code);
         return GenericResponse.builder().data(couponMapper.toCouponResponse(coupon)).build();
     }
@@ -117,11 +116,10 @@ public class CouponController {
      *
      * @param idsRequest
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Delete Coupons Endpoint", notes = "Admin endpoint")
     @DeleteMapping(path = UrlConstants.COUPON_URL)
-    public GenericResponse deleteAll(@RequestBody IdsRequest idsRequest) throws Exception {
+    public GenericResponse deleteAll(@RequestBody IdsRequest idsRequest) {
         couponService.deleteAll(idsRequest.getIds());
         return new GenericResponse();
     }

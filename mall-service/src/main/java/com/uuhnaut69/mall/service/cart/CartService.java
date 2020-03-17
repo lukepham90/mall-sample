@@ -34,9 +34,8 @@ public interface CartService {
      *
      * @param id
      * @return Cart
-     * @throws Exception
      */
-    Cart findById(UUID id) throws Exception;
+    Cart findById(UUID id);
 
     /**
      * Get cart detail with user role
@@ -44,9 +43,8 @@ public interface CartService {
      * @param id
      * @param userId
      * @return Cart
-     * @throws Exception
      */
-    Cart findByIdAndUserId(UUID id, UUID userId) throws Exception;
+    Cart findByIdAndUserId(UUID id, UUID userId);
 
     /**
      * Create cart

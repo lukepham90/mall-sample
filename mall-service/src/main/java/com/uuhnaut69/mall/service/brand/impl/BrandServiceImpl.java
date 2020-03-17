@@ -39,13 +39,13 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     @Transactional(readOnly = true)
-    public Brand findById(UUID id) throws Exception {
+    public Brand findById(UUID id) {
         Optional<Brand> brand = brandRepository.findById(id);
         return brand.orElseThrow(() -> new NotFoundException(MessageConstant.BRAND_NOT_FOUND));
     }
 
     @Override
-    public Brand create(BrandRequest brandRequest) throws Exception {
+    public Brand create(BrandRequest brandRequest) {
         checkBrandNameValid(brandRequest.getBrandName());
         return save(brandRequest, new Brand());
     }

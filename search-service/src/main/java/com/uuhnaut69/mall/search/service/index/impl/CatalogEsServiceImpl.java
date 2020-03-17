@@ -36,7 +36,7 @@ public class CatalogEsServiceImpl implements CatalogEsService {
     }
 
     @Override
-    public void maintainReadModel(Map<String, Object> catalogData, Operation operation) throws Exception {
+    public void maintainReadModel(Map<String, Object> catalogData, Operation operation) {
         final ObjectMapper mapper = new ObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
@@ -45,21 +45,17 @@ public class CatalogEsServiceImpl implements CatalogEsService {
         Optional<CatalogEs> optional = catalogEsRepository.findById(catalogEs.getId());
 
         if (Operation.DELETE.name().equals(operation.name())) {
-            if (optional.isPresent()) {
-                updateCatalogInProducts(optional.get().getId(), null);
-            }
+            optional.ifPresent(es -> updateCatalogInProducts(es.getId(), null));
             catalogEsRepository.deleteById(catalogEs.getId());
         } else {
-            if (optional.isPresent()) {
-                updateCatalogInProducts(optional.get().getId(), catalogEs);
-            }
+            optional.ifPresent(es -> updateCatalogInProducts(es.getId(), catalogEs));
             catalogEsRepository.save(catalogEs);
         }
 
     }
 
     @Override
-    public CatalogEs findById(String id) throws Exception {
+    public CatalogEs findById(String id) {
         Optional<CatalogEs> optional = catalogEsRepository.findById(id);
         return optional.orElseThrow(() -> new NotFoundException(MessageConstant.CATALOG_NOT_FOUND));
     }
@@ -69,9 +65,8 @@ public class CatalogEsServiceImpl implements CatalogEsService {
      *
      * @param catalogId
      * @param catalogEs
-     * @throws Exception
      */
-    private void updateCatalogInProducts(String catalogId, CatalogEs catalogEs) throws Exception {
+    private void updateCatalogInProducts(String catalogId, CatalogEs catalogEs) {
         List<ProductEs> list = productEsRepository.search(new NativeSearchQueryBuilder().withQuery(QueryBuilders
                 .nestedQuery("catalogEs", QueryBuilders.matchQuery("catalogEs.id", catalogId), ScoreMode.None)).build())
                 .getContent();

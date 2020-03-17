@@ -44,7 +44,7 @@ public class ProductEsServiceImpl implements ProductEsService {
     }
 
     @Override
-    public void maintainReadModel(Map<String, Object> productData, Operation operation) throws Exception {
+    public void maintainReadModel(Map<String, Object> productData, Operation operation) {
         final ObjectMapper mapper = new ObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
@@ -85,13 +85,13 @@ public class ProductEsServiceImpl implements ProductEsService {
     }
 
     @Override
-    public ProductEs findById(String id) throws Exception {
+    public ProductEs findById(String id) {
         Optional<ProductEs> productEs = productEsRepository.findById(id);
         return productEs.orElseThrow(() -> new NotFoundException(MessageConstant.PRODUCT_NOT_FOUND));
     }
 
     @Override
-    public void save(ProductEs productEs) throws Exception {
+    public void save(ProductEs productEs) {
         productEsRepository.save(productEs);
     }
 

@@ -26,9 +26,8 @@ public interface CouponService {
      *
      * @param code
      * @return Coupon
-     * @throws Exception
      */
-    Coupon findByCode(String code) throws Exception;
+    Coupon findByCode(String code);
 
     /**
      * Create coupon
@@ -61,7 +60,6 @@ public interface CouponService {
      * Delete coupons
      *
      * @param ids
-     * @throws Exception
      */
-    void deleteAll(List<UUID> ids) throws Exception;
+    void deleteAll(List<UUID> ids);
 }

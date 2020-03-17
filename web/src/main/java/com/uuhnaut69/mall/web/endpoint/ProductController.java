@@ -61,7 +61,6 @@ public class ProductController {
      * @param pageSize
      * @param userPrinciple
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Get Products Endpoint", notes = "Public endpoint")
     @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.PRODUCT_URL)
@@ -70,7 +69,7 @@ public class ProductController {
             @RequestParam(value = "order", defaultValue = "desc") String order,
             @RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-            @CurrentUser UserPrinciple userPrinciple) throws Exception {
+            @CurrentUser UserPrinciple userPrinciple) {
         if (userPrinciple != null) {
             log.info("Get list recommendation product for {}", userPrinciple.getName());
             Pageable pageable = PageRequest.of(page - 1, pageSize);
@@ -186,11 +185,10 @@ public class ProductController {
      *
      * @param id
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Get Product Detail Endpoint", notes = "Admin endpoint")
     @GetMapping(path = UrlConstants.ADMIN_URL + UrlConstants.PRODUCT_URL + "/{id}")
-    public GenericResponse getProductDetail(@PathVariable UUID id) throws Exception {
+    public GenericResponse getProductDetail(@PathVariable UUID id) {
         Product product = productService.findById(id);
         ProductResponse productResponse = productMapper.toProductResponse(product);
         ratingProductService.getRatingAggregationOfProduct(productResponse);
@@ -249,11 +247,10 @@ public class ProductController {
      *
      * @param idsRequest
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Delete Products Endpoint", notes = "Admin endpoint")
     @DeleteMapping(path = UrlConstants.ADMIN_URL + UrlConstants.PRODUCT_URL)
-    public GenericResponse deleteAll(@RequestBody IdsRequest idsRequest) throws Exception {
+    public GenericResponse deleteAll(@RequestBody IdsRequest idsRequest) {
         productService.deleteAll(idsRequest.getIds());
         return new GenericResponse();
     }

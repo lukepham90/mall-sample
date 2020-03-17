@@ -27,7 +27,7 @@ public class ProductTagEsServiceImpl implements ProductTagEsService {
 
     @Override
     public void maintainReadModel(Map<String, Object> productTagData, Map<String, Object> productTagDataBefore,
-                                  Operation operation) throws Exception {
+                                  Operation operation) {
         String productId = productTagData.get("product_id").toString();
         String tagId = productTagData.get("tag_id").toString();
         ProductEs productEs = productEsService.findById(productId);

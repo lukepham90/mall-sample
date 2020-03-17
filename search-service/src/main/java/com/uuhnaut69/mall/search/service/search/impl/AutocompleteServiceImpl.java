@@ -65,7 +65,7 @@ public class AutocompleteServiceImpl implements AutocompleteService {
     private List<AutocompleteResponse> extractResponse(SearchResponse searchResponse) {
         List<AutocompleteResponse> list = new ArrayList<>();
         Suggestion<Entry<Option>> suggestion = searchResponse.getSuggest().getSuggestion(EsConstants.PRODUCT_SUGGEST);
-        suggestion.getEntries().forEach(entry -> entry.getOptions().stream()
+        suggestion.getEntries().forEach(entry -> entry.getOptions()
                 .forEach(option -> list.add(new AutocompleteResponse(option.getText().toString()))));
         return list;
     }

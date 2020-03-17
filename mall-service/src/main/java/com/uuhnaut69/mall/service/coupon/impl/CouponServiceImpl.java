@@ -39,7 +39,7 @@ public class CouponServiceImpl implements CouponService {
 
     @Override
     @Transactional(readOnly = true)
-    public Coupon findByCode(String code) throws Exception {
+    public Coupon findByCode(String code) {
         Optional<Coupon> coupon = couponRepository.findByCode(code);
         return coupon.orElseThrow(() -> new NotFoundException(MessageConstant.COUPON_NOT_FOUND));
     }
@@ -66,7 +66,7 @@ public class CouponServiceImpl implements CouponService {
     }
 
     @Override
-    public void deleteAll(List<UUID> ids) throws Exception {
+    public void deleteAll(List<UUID> ids) {
         List<Coupon> coupons = couponRepository.findByIdIn(ids);
         couponRepository.deleteAll(coupons);
     }
@@ -76,9 +76,8 @@ public class CouponServiceImpl implements CouponService {
      *
      * @param id
      * @return Coupon
-     * @throws Exception
      */
-    private Coupon findById(UUID id) throws Exception {
+    private Coupon findById(UUID id) {
         Optional<Coupon> coupon = couponRepository.findById(id);
         return coupon.orElseThrow(() -> new NotFoundException(MessageConstant.COUPON_NOT_FOUND));
     }
@@ -99,9 +98,8 @@ public class CouponServiceImpl implements CouponService {
      * Check coupon code valid or not
      *
      * @param code
-     * @throws Exception
      */
-    private void checkCouponCodeValid(String code) throws Exception {
+    private void checkCouponCodeValid(String code) {
         if (couponRepository.existsByCode(code)) {
             throw new BadRequestException(MessageConstant.COUPON_ALREADY_EXIST);
         }

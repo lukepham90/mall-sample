@@ -15,7 +15,6 @@ public interface UserProductEsService {
      *
      * @param userProductData
      * @param operation
-     * @throws Exception
      */
-    void maintainReadModel(Map<String, Object> userProductData, Operation operation) throws Exception;
+    void maintainReadModel(Map<String, Object> userProductData, Operation operation);
 }

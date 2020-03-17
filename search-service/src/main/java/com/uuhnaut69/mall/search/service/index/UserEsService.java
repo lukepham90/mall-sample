@@ -17,26 +17,23 @@ public interface UserEsService {
      *
      * @param userData
      * @param operation
-     * @throws Exception
      */
-    void maintainReadModel(Map<String, Object> userData, Operation operation) throws Exception;
+    void maintainReadModel(Map<String, Object> userData, Operation operation);
 
     /**
      * Find by user id
      *
      * @param id
      * @return
-     * @throws Exception
      */
-    UserEs findById(String id) throws Exception;
+    UserEs findById(String id);
 
     /**
      * Save user
      *
      * @param userEs
-     * @throws Exception
      */
-    void save(UserEs userEs) throws Exception;
+    void save(UserEs userEs);
 
     /**
      * Update tag in list user

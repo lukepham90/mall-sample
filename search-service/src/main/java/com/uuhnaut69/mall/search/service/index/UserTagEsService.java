@@ -16,8 +16,7 @@ public interface UserTagEsService {
      * @param userTagData
      * @param userTagDataBefore
      * @param operation
-     * @throws Exception
      */
     void maintainReadModel(Map<String, Object> userTagData, Map<String, Object> userTagDataBefore, Operation operation)
-            throws Exception;
+    ;
 }

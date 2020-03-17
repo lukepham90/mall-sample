@@ -39,13 +39,13 @@ public class CatalogServiceImpl implements CatalogService {
 
     @Override
     @Transactional(readOnly = true)
-    public Catalog findById(UUID id) throws Exception {
+    public Catalog findById(UUID id) {
         Optional<Catalog> catalog = catalogRepository.findById(id);
         return catalog.orElseThrow(() -> new NotFoundException(MessageConstant.CATALOG_NOT_FOUND));
     }
 
     @Override
-    public Catalog create(CatalogRequest catalogRequest) throws Exception {
+    public Catalog create(CatalogRequest catalogRequest) {
         return save(catalogRequest, new Catalog());
     }
 
@@ -65,7 +65,7 @@ public class CatalogServiceImpl implements CatalogService {
     }
 
     @Override
-    public void deleteAll(List<UUID> ids) throws Exception {
+    public void deleteAll(List<UUID> ids) {
         List<Catalog> catalogs = catalogRepository.findByIdIn(ids);
         catalogRepository.deleteAll(catalogs);
     }
@@ -74,9 +74,8 @@ public class CatalogServiceImpl implements CatalogService {
      * Check catalog name valid or not
      *
      * @param catalogName
-     * @throws Exception
      */
-    private void checkCatalogNameValid(String catalogName) throws Exception {
+    private void checkCatalogNameValid(String catalogName) {
         if (catalogRepository.existsByCatalogName(catalogName)) {
             throw new BadRequestException(MessageConstant.CATALOG_ALREADY_EXIST);
         }

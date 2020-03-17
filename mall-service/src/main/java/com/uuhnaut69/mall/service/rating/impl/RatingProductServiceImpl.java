@@ -54,7 +54,7 @@ public class RatingProductServiceImpl implements RatingProductService {
 
     @Override
     public void getRatingAggregationOfProducts(List<ProductResponse> productResponses) {
-        productResponses.stream().forEach(this::extractResultSet);
+        productResponses.forEach(this::extractResultSet);
     }
 
     /**

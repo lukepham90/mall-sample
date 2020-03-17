@@ -15,7 +15,7 @@ import javax.validation.constraints.Min;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode()
 public class RatingProduct extends AbstractEntity {
 
     @EmbeddedId

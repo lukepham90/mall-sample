@@ -16,8 +16,7 @@ public interface ProductTagEsService {
      * @param productTagData
      * @param productTagDataBefore
      * @param operation
-     * @throws Exception
      */
     void maintainReadModel(Map<String, Object> productTagData, Map<String, Object> productTagDataBefore,
-                           Operation operation) throws Exception;
+                           Operation operation);
 }

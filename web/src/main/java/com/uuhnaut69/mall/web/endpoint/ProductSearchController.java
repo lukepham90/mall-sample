@@ -60,7 +60,6 @@ public class ProductSearchController {
      * @param page
      * @param pageSize
      * @return GenericResponse
-     * @throws Exception
      */
     @ApiOperation(value = "Search Endpoint", notes = "Public endpoint")
     @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.SEARCH_URL)
@@ -68,7 +67,7 @@ public class ProductSearchController {
                                   @RequestParam(value = "sort", defaultValue = "createdDate") String sortBy,
                                   @RequestParam(value = "order", defaultValue = "desc") String order,
                                   @RequestParam(value = "page", defaultValue = "1") int page,
-                                  @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) throws Exception {
+                                  @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
         log.info("Search product with text => {}", text);
         Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
         Page<ProductEs> products = productSearchService.search(text, pageable);

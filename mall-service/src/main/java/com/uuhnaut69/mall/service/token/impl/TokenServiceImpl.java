@@ -31,7 +31,7 @@ public class TokenServiceImpl implements TokenService {
     private final VerifyTokenRepository verifyTokenRepository;
 
     @Override
-    public String generateToken(User user) throws Exception {
+    public String generateToken(User user) {
         VerifyToken verifyToken = new VerifyToken();
         verifyToken.setToken(RandomUtils.generateActivationKey());
         verifyToken.setUser(user);
@@ -53,9 +53,8 @@ public class TokenServiceImpl implements TokenService {
      *
      * @param token
      * @return VerifyToken
-     * @throws Exception
      */
-    private VerifyToken findByToken(String token) throws Exception {
+    private VerifyToken findByToken(String token) {
         Optional<VerifyToken> verifyToken = verifyTokenRepository.findByToken(token);
         return verifyToken.orElseThrow(() -> new BadRequestException(MessageConstant.TOKEN_NOT_FOUND));
     }

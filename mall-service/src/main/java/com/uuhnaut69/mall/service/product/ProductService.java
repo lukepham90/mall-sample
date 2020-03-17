@@ -45,9 +45,8 @@ public interface ProductService {
      *
      * @param id
      * @return Product
-     * @throws Exception
      */
-    Product findById(UUID id) throws Exception;
+    Product findById(UUID id);
 
     /**
      * Create a product
@@ -80,8 +79,7 @@ public interface ProductService {
      * Delete products by given list ids
      *
      * @param ids
-     * @throws Exception
      */
-    void deleteAll(List<UUID> ids) throws Exception;
+    void deleteAll(List<UUID> ids);
 
 }
