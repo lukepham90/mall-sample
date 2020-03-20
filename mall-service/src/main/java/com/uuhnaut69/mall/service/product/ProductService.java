@@ -17,7 +17,7 @@ public interface ProductService {
     /**
      * Find page products
      *
-     * @param pageable
+     * @param pageable {@link Pageable}
      * @return page product
      */
     Page<Product> findAll(Pageable pageable);
@@ -25,8 +25,8 @@ public interface ProductService {
     /**
      * Find page products by brand id
      *
-     * @param pageable
-     * @param brandId
+     * @param pageable {@link Pageable}
+     * @param brandId  {@link UUID}
      * @return page product
      */
     Page<Product> findAllByBrandId(Pageable pageable, UUID brandId);
@@ -34,8 +34,8 @@ public interface ProductService {
     /**
      * Find page products by catalog id
      *
-     * @param pageable
-     * @param catalogId
+     * @param pageable  {@link Pageable}
+     * @param catalogId {@link UUID}
      * @return page product
      */
     Page<Product> findAllByCatalogId(Pageable pageable, UUID catalogId);
@@ -43,7 +43,7 @@ public interface ProductService {
     /**
      * Get detail of product
      *
-     * @param id
+     * @param id {@link UUID}
      * @return Product
      */
     Product findById(UUID id);
@@ -51,7 +51,7 @@ public interface ProductService {
     /**
      * Create a product
      *
-     * @param productRequest
+     * @param productRequest {@link ProductRequest}
      * @return Product
      */
     Product create(ProductRequest productRequest);
@@ -59,8 +59,8 @@ public interface ProductService {
     /**
      * Update product
      *
-     * @param id
-     * @param productRequest
+     * @param id             {@link UUID}
+     * @param productRequest {@link ProductRequest}
      * @return Product
      */
     Product update(UUID id, ProductRequest productRequest);
@@ -68,14 +68,14 @@ public interface ProductService {
     /**
      * Delete product
      *
-     * @param id
+     * @param id {@link UUID}
      */
     void delete(UUID id);
 
     /**
      * Delete products by given list ids
      *
-     * @param ids
+     * @param ids List {@link UUID}
      */
     void deleteAll(List<UUID> ids);
 

@@ -36,10 +36,10 @@ public class CatalogController {
     /**
      * Get catalog page
      *
-     * @param sortBy
-     * @param order
-     * @param page
-     * @param pageSize
+     * @param sortBy   Sorted field
+     * @param order    Ordered field
+     * @param page     Page number
+     * @param pageSize Page size
      * @return GenericResponse
      */
     @ApiOperation(value = "Get Catalogs Endpoint", notes = "Public endpoint")
@@ -57,7 +57,7 @@ public class CatalogController {
     /**
      * Create new catalog
      *
-     * @param catalogRequest
+     * @param catalogRequest {@link CatalogRequest}
      * @return GenericResponse
      */
     @ApiOperation(value = "Create A Catalog Endpoint", notes = "Admin endpoint")
@@ -70,8 +70,8 @@ public class CatalogController {
     /**
      * Update catalog
      *
-     * @param id
-     * @param catalogRequest
+     * @param id             Catalog Id
+     * @param catalogRequest {@link CatalogRequest}
      * @return GenericResponse
      */
     @ApiOperation(value = "Update A Catalog Endpoint", notes = "Admin endpoint")
@@ -84,7 +84,7 @@ public class CatalogController {
     /**
      * Delete catalog
      *
-     * @param id
+     * @param id Catalog Id
      * @return GenericResponse
      */
     @ApiOperation(value = "Delete A Catalog Endpoint", notes = "Admin endpoint")
@@ -97,7 +97,7 @@ public class CatalogController {
     /**
      * Delete catalogs by given ids
      *
-     * @param idsRequest
+     * @param idsRequest List id request
      * @return GenericResponse
      */
     @ApiOperation(value = "Delete Catalogs Endpoint", notes = "Admin endpoint")

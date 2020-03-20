@@ -31,8 +31,8 @@ public class UserController {
     /**
      * Init content what user interests
      *
-     * @param userPrinciple
-     * @param userBaseContent
+     * @param userPrinciple   Current User
+     * @param userBaseContent {@link UserBaseContent}
      * @return GenericResponse
      */
     @ApiOperation(value = "Init User Content Endpoint", notes = "User endpoint")

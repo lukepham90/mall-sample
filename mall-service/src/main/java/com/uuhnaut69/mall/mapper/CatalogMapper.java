@@ -18,15 +18,15 @@ public interface CatalogMapper {
     /**
      * Mapper code generator from catalog request to catalog entity
      *
-     * @param catalogRequest
-     * @param catalog
+     * @param catalogRequest {@link CatalogRequest}
+     * @param catalog        {@link Catalog}
      */
     void toCatalogEntity(CatalogRequest catalogRequest, @MappingTarget Catalog catalog);
 
     /**
      * Mapper code generator from catalog entity to catalog response
      *
-     * @param catalog
+     * @param catalog {@link Catalog}
      * @return CatalogResponse
      */
     CatalogResponse toCatalogResponse(Catalog catalog);
@@ -34,7 +34,7 @@ public interface CatalogMapper {
     /**
      * Mapper code generator from list catalog entity to list catalog response
      *
-     * @param catalogs
+     * @param catalogs List {@link Catalog}
      * @return List CatalogResponse
      */
     List<CatalogResponse> toListCatalogResponse(List<Catalog> catalogs);

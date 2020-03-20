@@ -18,15 +18,15 @@ public interface BrandMapper {
     /**
      * Mapper code generator from brand request to brand entity
      *
-     * @param brandRequest
-     * @param brand
+     * @param brandRequest {@link BrandRequest}
+     * @param brand        {@link Brand}
      */
     void toBrandEntity(BrandRequest brandRequest, @MappingTarget Brand brand);
 
     /**
      * Mapper code generator from brand entity to brand response
      *
-     * @param brand
+     * @param brand {@link Brand}
      * @return BrandResponse
      */
     BrandResponse toBrandResponse(Brand brand);
@@ -34,7 +34,7 @@ public interface BrandMapper {
     /**
      * Mapper code generator from list brand entity to list brand response
      *
-     * @param brands
+     * @param brands List {@link Brand}
      * @return List BrandResponse
      */
     List<BrandResponse> toListBrandResponse(List<Brand> brands);

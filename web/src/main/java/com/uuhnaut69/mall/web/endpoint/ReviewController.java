@@ -34,11 +34,11 @@ public class ReviewController {
     /**
      * Get reviews of product (1st hierarchy)
      *
-     * @param productId
-     * @param sortBy
-     * @param order
-     * @param page
-     * @param pageSize
+     * @param productId Product Id
+     * @param sortBy    Sorted field
+     * @param order     Ordered field
+     * @param page      Page number
+     * @param pageSize  Page size
      * @return GenericResponse
      */
     @ApiOperation(value = "Get reviews of product ENDPOINT", notes = "Public endpoint")
@@ -55,12 +55,12 @@ public class ReviewController {
     /**
      * Get replies of review
      *
-     * @param productId
-     * @param reviewId
-     * @param sortBy
-     * @param order
-     * @param page
-     * @param pageSize
+     * @param productId Product Id
+     * @param reviewId  Review Id
+     * @param sortBy    Sorted field
+     * @param order     Ordered field
+     * @param page      Page number
+     * @param pageSize  Page size
      * @return GenericResponse
      */
     @ApiOperation(value = "Get replies of review ENDPOINT", notes = "Public endpoint")
@@ -78,9 +78,9 @@ public class ReviewController {
     /**
      * Create a review
      *
-     * @param userPrinciple
-     * @param productId
-     * @param reviewRequest
+     * @param userPrinciple Current User
+     * @param productId     Product Id
+     * @param reviewRequest {@link ReviewRequest}
      * @return GenericResponse
      */
     @ApiOperation(value = "Create review of product Endpoint", notes = "User endpoint")
@@ -92,10 +92,10 @@ public class ReviewController {
     /**
      * Update a review
      *
-     * @param userPrinciple
-     * @param productId
-     * @param reviewId
-     * @param reviewRequest
+     * @param userPrinciple Current User
+     * @param productId     Product Id
+     * @param reviewId      Review Id
+     * @param reviewRequest {@link ReviewRequest}
      * @return GenericResponse
      */
     @ApiOperation(value = "Update review of product Endpoint", notes = "User endpoint")

@@ -12,9 +12,9 @@ public interface PaymentService {
     /**
      * Check out
      *
-     * @param cartId
-     * @param userId
-     * @param creditCard
+     * @param cartId     {@link UUID}
+     * @param userId     {@link UUID}
+     * @param creditCard {@link CreditCard}
      * @throws Exception
      */
     void checkout(UUID cartId, UUID userId, CreditCard creditCard) throws Exception;

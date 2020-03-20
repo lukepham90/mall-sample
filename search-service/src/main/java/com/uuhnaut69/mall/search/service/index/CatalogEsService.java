@@ -14,8 +14,8 @@ public interface CatalogEsService {
     /**
      * Updates/Inserts/Delete catalog data.
      *
-     * @param catalogData
-     * @param operation
+     * @param catalogData Catalog capture data change
+     * @param operation   {@link Operation}
      */
     void maintainReadModel(Map<String, Object> catalogData, Operation operation);
 

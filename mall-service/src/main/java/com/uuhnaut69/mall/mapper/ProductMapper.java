@@ -21,15 +21,15 @@ public interface ProductMapper {
     /**
      * Mapper code generator from product request to product entity
      *
-     * @param productRequest
-     * @param product
+     * @param productRequest {@link ProductRequest}
+     * @param product        {@link Product}
      */
     void toProductEntity(ProductRequest productRequest, @MappingTarget Product product);
 
     /**
      * Mapper code generator from product entity to product response
      *
-     * @param product
+     * @param product {@link Product}
      * @return ProductResponse
      */
     ProductResponse toProductResponse(Product product);
@@ -37,7 +37,7 @@ public interface ProductMapper {
     /**
      * Mapper code generator from list product entity to list product response
      *
-     * @param products
+     * @param products List {@link Product}
      * @return List ProductResponse
      */
     List<ProductResponse> toListProductResponse(List<Product> products);
@@ -45,7 +45,7 @@ public interface ProductMapper {
     /**
      * Mapper code generator from set tag entity to set tag response
      *
-     * @param tags
+     * @param tags Set {@link Tag}
      * @return Set TagResponse
      */
     Set<TagResponse> toSetTagResponse(Set<Tag> tags);

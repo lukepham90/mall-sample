@@ -14,15 +14,15 @@ public interface TagEsService {
     /**
      * Updates/Inserts/Delete tag data.
      *
-     * @param tagData
-     * @param operation
+     * @param tagData   Tag capture data change
+     * @param operation {@link Operation}
      */
     void maintainReadModel(Map<String, Object> tagData, Operation operation);
 
     /**
      * Find by id
      *
-     * @param id
+     * @param id Tag Id
      * @return TagEs
      */
     TagEs findById(String id);

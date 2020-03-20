@@ -31,15 +31,16 @@ import java.util.UUID;
 public class CartController {
 
     private final CartService cartService;
+
     private final CartMapper cartMapper;
 
     /**
      * Get cart page with admin role
      *
-     * @param sortBy
-     * @param order
-     * @param page
-     * @param pageSize
+     * @param sortBy   Sorted field
+     * @param order    Ordered field
+     * @param page     Page number
+     * @param pageSize Page size
      * @return GenericResponse
      */
     @ApiOperation(value = "Get Carts Endpoint", notes = "Admin endpoint")
@@ -57,11 +58,11 @@ public class CartController {
     /**
      * Get cart page with user role
      *
-     * @param sortBy
-     * @param order
-     * @param page
-     * @param pageSize
-     * @param userPrinciple
+     * @param sortBy        Sorted field
+     * @param order         Ordered field
+     * @param page          Page number
+     * @param pageSize      Page size
+     * @param userPrinciple Current user
      * @return GenericResponse
      */
     @GetMapping(path = UrlConstants.CART_URL)
@@ -80,7 +81,7 @@ public class CartController {
     /**
      * Get cart detail with admin role
      *
-     * @param cartId
+     * @param cartId Cart Id
      * @return GenericResponse
      */
     @ApiOperation(value = "Get Cart's Detail", notes = "Admin endpoint")
@@ -94,8 +95,8 @@ public class CartController {
     /**
      * Get cart detail with user role
      *
-     * @param cartId
-     * @param userPrinciple
+     * @param cartId        Cart Id
+     * @param userPrinciple Current User
      * @return GenericResponse
      */
     @ApiOperation(value = "Get Cart's Detail", notes = "User endpoint")
@@ -109,8 +110,8 @@ public class CartController {
     /**
      * Create new cart
      *
-     * @param cartRequest
-     * @param userPrinciple
+     * @param cartRequest   {@link CartRequest}
+     * @param userPrinciple Current User
      * @return GenericResponse
      */
     @ApiOperation(value = "Create New Card Endpoint", notes = "Admin endpoint")
@@ -124,8 +125,8 @@ public class CartController {
     /**
      * Delete cart
      *
-     * @param cartId
-     * @param userPrinciple
+     * @param cartId        Cart Id
+     * @param userPrinciple Current User
      * @return GenericResponse
      */
     @ApiOperation(value = "Delete Card Endpoint", notes = "Admin endpoint")

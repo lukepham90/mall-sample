@@ -13,7 +13,7 @@ public interface UserService {
     /**
      * Find user by id
      *
-     * @param id
+     * @param id {@link UUID}
      * @return User
      */
     User findById(UUID id);
@@ -21,23 +21,23 @@ public interface UserService {
     /**
      * Save
      *
-     * @param user
+     * @param user {@link User}
      */
     void save(User user);
 
     /**
      * Init content user wanna see
      *
-     * @param id
-     * @param userBaseContent
+     * @param id              {@link UUID}
+     * @param userBaseContent {@link UserBaseContent}
      */
     void initBaseContent(UUID id, UserBaseContent userBaseContent);
 
     /**
      * Save uuid product that user has seen
      *
-     * @param userId
-     * @param productId
+     * @param userId    {@link UUID}
+     * @param productId {@link UUID}
      */
     void markAsReadProduct(UUID userId, UUID productId);
 }

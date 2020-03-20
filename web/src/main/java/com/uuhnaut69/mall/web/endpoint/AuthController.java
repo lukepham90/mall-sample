@@ -34,7 +34,7 @@ public class AuthController {
     /**
      * Sign in
      *
-     * @param signInRequest
+     * @param signInRequest {@link SignInRequest}
      * @return GenericResponse // status code 200
      */
     @ApiOperation(value = "SignIn Endpoint")
@@ -48,9 +48,9 @@ public class AuthController {
     /**
      * Sign Up
      *
-     * @param signUpRequest
+     * @param signUpRequest {@link SignUpRequest}
      * @return GenericResponse // status code 200
-     * @throws Exception
+     * @throws Exception Exception error
      */
     @ApiOperation(value = "SignUp Endpoint")
     @PostMapping(path = UrlConstants.AUTH_URL + "/signup")
@@ -63,7 +63,7 @@ public class AuthController {
     /**
      * Confirm to activate account
      *
-     * @param token
+     * @param token Token
      * @return status code 200
      */
     @ApiOperation(value = "Confirmation Endpoint")

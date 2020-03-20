@@ -37,10 +37,10 @@ public class BrandController {
     /**
      * Get brand page
      *
-     * @param sortBy
-     * @param order
-     * @param page
-     * @param pageSize
+     * @param sortBy   Sorted field
+     * @param order    Ordered field
+     * @param page     Page number
+     * @param pageSize Page size
      * @return GenericResponse
      */
     @ApiOperation(value = "Get Brands Endpoint", notes = "Public endpoint")
@@ -58,7 +58,7 @@ public class BrandController {
     /**
      * Create new brand
      *
-     * @param brandRequest
+     * @param brandRequest {@link BrandRequest}
      * @return GenericResponse
      */
     @ApiOperation(value = "Create Brand Endpoint", notes = "Admin endpoint")
@@ -72,8 +72,8 @@ public class BrandController {
     /**
      * Update brand
      *
-     * @param id
-     * @param brandRequest
+     * @param id           Brand Id
+     * @param brandRequest {@link BrandRequest}
      * @return GenericResponse
      */
     @ApiOperation(value = "Update Brand Endpoint", notes = "Admin endpoint")
@@ -87,7 +87,7 @@ public class BrandController {
     /**
      * Delete a brand
      *
-     * @param id
+     * @param id Brand Id
      * @return GenericResponse
      */
     @ApiOperation(value = "Delete Brand Endpoint", notes = "Admin endpoint")
@@ -101,7 +101,7 @@ public class BrandController {
     /**
      * Delete brands by given ids
      *
-     * @param idsRequest
+     * @param idsRequest List id request
      * @return GenericResponse
      */
     @ApiOperation(value = "Delete Brands Endpoint", notes = "Admin endpoint")

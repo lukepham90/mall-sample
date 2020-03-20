@@ -16,7 +16,7 @@ public interface TagService {
     /**
      * Find tag page
      *
-     * @param pageable
+     * @param pageable {@link Pageable}
      * @return Page {@link Tag}
      */
     Page<Tag> findAll(Pageable pageable);
@@ -24,7 +24,7 @@ public interface TagService {
     /**
      * Find by id
      *
-     * @param id
+     * @param id {@link UUID}
      * @return Tag
      */
     Tag findById(UUID id);
@@ -32,7 +32,7 @@ public interface TagService {
     /**
      * Create a new tag
      *
-     * @param tagRequest
+     * @param tagRequest {@link TagRequest}
      * @return Tag
      */
     Tag create(TagRequest tagRequest);
@@ -40,8 +40,8 @@ public interface TagService {
     /**
      * Update a tag
      *
-     * @param id
-     * @param tagRequest
+     * @param id         {@link UUID}
+     * @param tagRequest {@link TagRequest}
      * @return Tag
      */
     Tag update(UUID id, TagRequest tagRequest);
@@ -49,14 +49,14 @@ public interface TagService {
     /**
      * Delete a tag
      *
-     * @param id
+     * @param id {@link UUID}
      */
     void delete(UUID id);
 
     /**
      * Get list tag that user wanna see
      *
-     * @param uuids
+     * @param uuids Set {@link UUID}
      * @return Set tag
      */
     Set<Tag> findListTagInListIds(Set<UUID> uuids);

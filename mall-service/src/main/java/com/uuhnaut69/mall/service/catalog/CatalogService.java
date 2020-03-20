@@ -16,7 +16,7 @@ public interface CatalogService {
     /**
      * find catalog pages
      *
-     * @param pageable
+     * @param pageable {@link Pageable}
      * @return Catalog page
      */
     Page<Catalog> findAll(Pageable pageable);
@@ -24,7 +24,7 @@ public interface CatalogService {
     /**
      * find catalog by id
      *
-     * @param id
+     * @param id {@link UUID}
      * @return Catalog
      */
     Catalog findById(UUID id);
@@ -32,7 +32,7 @@ public interface CatalogService {
     /**
      * Create a catalog
      *
-     * @param catalogRequest
+     * @param catalogRequest {@link CatalogRequest}
      * @return Catalog
      */
     Catalog create(CatalogRequest catalogRequest);
@@ -40,8 +40,8 @@ public interface CatalogService {
     /**
      * Update Catalog
      *
-     * @param id
-     * @param catalogRequest
+     * @param id             {@link UUID}
+     * @param catalogRequest {@link CatalogRequest}
      * @return Catalog
      */
     Catalog update(UUID id, CatalogRequest catalogRequest);
@@ -49,14 +49,14 @@ public interface CatalogService {
     /**
      * Delete catalog by id
      *
-     * @param id
+     * @param id {@link UUID}
      */
     void delete(UUID id);
 
     /**
      * Delete catalogs by list id
      *
-     * @param ids
+     * @param ids List {@link UUID}
      */
     void deleteAll(List<UUID> ids);
 }

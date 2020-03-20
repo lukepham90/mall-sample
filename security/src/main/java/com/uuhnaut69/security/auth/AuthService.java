@@ -13,7 +13,7 @@ public interface AuthService {
     /**
      * Sign In
      *
-     * @param signInRequest
+     * @param signInRequest {@link SignInRequest}
      * @return JwtResponse
      */
     JwtResponse signIn(SignInRequest signInRequest);
@@ -21,7 +21,7 @@ public interface AuthService {
     /**
      * Sign Up
      *
-     * @param signUpRequest
+     * @param signUpRequest {@link SignInRequest}
      * @return MessageResponse
      * @throws Exception
      */

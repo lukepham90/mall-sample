@@ -55,11 +55,11 @@ public class ProductController {
     /**
      * Find product page
      *
-     * @param sortBy
-     * @param order
-     * @param page
-     * @param pageSize
-     * @param userPrinciple
+     * @param sortBy        Sorted field
+     * @param order         Ordered field
+     * @param page          Page number
+     * @param pageSize      Page size
+     * @param userPrinciple Current User
      * @return GenericResponse
      */
     @ApiOperation(value = "Get Products Endpoint", notes = "Public endpoint")
@@ -78,22 +78,17 @@ public class ProductController {
             return GenericResponse.builder().data(products.getContent()).build();
         }
         log.info("Get list public product");
-        Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
-        Page<Product> products = productService.findAll(pageable);
-        List<ProductResponse> list = productMapper.toListProductResponse(products.getContent());
-        ratingProductService.getRatingAggregationOfProducts(list);
-        reviewProductService.countReviewsOfListProduct(list);
-        return GenericResponse.builder().data(list).build();
+        return getGenericResponse(sortBy, order, page, pageSize);
     }
 
     /**
      * Find product page by catalog id
      *
-     * @param catalogId
-     * @param sortBy
-     * @param order
-     * @param page
-     * @param pageSize
+     * @param catalogId Catalog Id
+     * @param sortBy    Sorted field
+     * @param order     Ordered field
+     * @param page      Page number
+     * @param pageSize  Page size
      * @return GenericResponse
      */
     @ApiOperation(value = "Get Products By Catalog Id Endpoint", notes = "Public endpoint")
@@ -114,11 +109,11 @@ public class ProductController {
     /**
      * Find  product page by brand id
      *
-     * @param brandId
-     * @param sortBy
-     * @param order
-     * @param page
-     * @param pageSize
+     * @param brandId  Brand Id
+     * @param sortBy   Sorted field
+     * @param order    Ordered field
+     * @param page     Page number
+     * @param pageSize Page size
      * @return GenericResponse
      */
     @ApiOperation(value = "Get Products By Brand Id Endpoint", notes = "Public endpoint")
@@ -139,7 +134,7 @@ public class ProductController {
     /**
      * Get product detail
      *
-     * @param id
+     * @param id Product Id
      * @return GenericResponse
      */
     @ApiOperation(value = "Get Product Detail Endpoint", notes = "Public endpoint")
@@ -158,10 +153,10 @@ public class ProductController {
     /**
      * Get product page
      *
-     * @param sortBy
-     * @param order
-     * @param page
-     * @param pageSize
+     * @param sortBy   Sorted field
+     * @param order    Ordered field
+     * @param page     Page number
+     * @param pageSize Page size
      * @return GenericResponse
      */
     @ApiOperation(value = "Get Products Endpoint", notes = "Admin endpoint")
@@ -170,6 +165,10 @@ public class ProductController {
                                           @RequestParam(value = "order", defaultValue = "desc") String order,
                                           @RequestParam(value = "page", defaultValue = "1") int page,
                                           @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
+        return getGenericResponse(sortBy, order, page, pageSize);
+    }
+
+    private GenericResponse getGenericResponse(String sortBy, String order, int page, int pageSize) {
         Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
         Page<Product> products = productService.findAll(pageable);
         List<ProductResponse> list = productMapper.toListProductResponse(products.getContent());
@@ -181,7 +180,7 @@ public class ProductController {
     /**
      * Get product detail
      *
-     * @param id
+     * @param id Product Id
      * @return GenericResponse
      */
     @ApiOperation(value = "Get Product Detail Endpoint", notes = "Admin endpoint")
@@ -197,7 +196,7 @@ public class ProductController {
     /**
      * Create product
      *
-     * @param productRequest
+     * @param productRequest {@link ProductRequest}
      * @return GenericResponse
      */
     @ApiOperation(value = "Create A Product Endpoint", notes = "Admin endpoint")
@@ -211,8 +210,8 @@ public class ProductController {
     /**
      * Update product
      *
-     * @param id
-     * @param productRequest
+     * @param id             Product Id
+     * @param productRequest {@link ProductRequest}
      * @return GenericResponse
      */
     @ApiOperation(value = "Update A Product Endpoint", notes = "Admin endpoint")
@@ -226,7 +225,7 @@ public class ProductController {
     /**
      * Delete product
      *
-     * @param id
+     * @param id Product Id
      * @return GenericResponse
      */
     @ApiOperation(value = "Delete A Product Endpoint", notes = "Admin endpoint")
@@ -239,7 +238,7 @@ public class ProductController {
     /**
      * Delete all product
      *
-     * @param idsRequest
+     * @param idsRequest List Product Id
      * @return GenericResponse
      */
     @ApiOperation(value = "Delete Products Endpoint", notes = "Admin endpoint")
@@ -252,9 +251,9 @@ public class ProductController {
     /**
      * Rating a product
      *
-     * @param userPrinciple
-     * @param id
-     * @param rating
+     * @param userPrinciple Current User
+     * @param id            Product Id
+     * @param rating        Rating number
      * @return GenericResponse
      */
     @PostMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.PRODUCT_URL + "/{id}" + "/{rating}")

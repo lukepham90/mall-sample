@@ -15,31 +15,31 @@ public interface UserEsService {
     /**
      * Updates/Inserts/Delete user data.
      *
-     * @param userData
-     * @param operation
+     * @param userData  User capture data change
+     * @param operation {@link Operation}
      */
     void maintainReadModel(Map<String, Object> userData, Operation operation);
 
     /**
      * Find by user id
      *
-     * @param id
-     * @return
+     * @param id User Id
+     * @return UserEs
      */
     UserEs findById(String id);
 
     /**
      * Save user
      *
-     * @param userEs
+     * @param userEs {@link UserEs}
      */
     void save(UserEs userEs);
 
     /**
      * Update tag in list user
      *
-     * @param tagNameBefore
-     * @param tagEs
+     * @param tagNameBefore Tag name before
+     * @param tagEs         {@link TagEs}
      */
     void findByTagAndUpdate(String tagNameBefore, TagEs tagEs);
 }

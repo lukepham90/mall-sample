@@ -23,15 +23,6 @@ public final class RandomUtils {
     }
 
     /**
-     * Generate a password.
-     *
-     * @return the generated password.
-     */
-    public static String generatePassword() {
-        return generateRandomAlphanumericString();
-    }
-
-    /**
      * Generate an activation key.
      *
      * @return the generated activation key.
@@ -40,12 +31,4 @@ public final class RandomUtils {
         return generateRandomAlphanumericString();
     }
 
-    /**
-     * Generate a reset key.
-     *
-     * @return the generated reset key.
-     */
-    public static String generateResetKey() {
-        return generateRandomAlphanumericString();
-    }
 }

@@ -36,10 +36,10 @@ public class CouponController {
     /**
      * Get coupon page
      *
-     * @param sortBy
-     * @param order
-     * @param page
-     * @param pageSize
+     * @param sortBy   Sorted field
+     * @param order    Ordered field
+     * @param page     Page number
+     * @param pageSize Page size
      * @return GenericResponse
      */
     @ApiOperation(value = "Get Catalogs Endpoint", notes = "Admin endpoint")
@@ -57,7 +57,7 @@ public class CouponController {
     /**
      * Get public coupon by code
      *
-     * @param code
+     * @param code Coupon code
      * @return GenericResponse
      */
     @ApiOperation(value = "Get Coupon Endpoint", notes = "Public endpoint")
@@ -70,7 +70,7 @@ public class CouponController {
     /**
      * Create coupon
      *
-     * @param couponRequest
+     * @param couponRequest {@link CouponRequest}
      * @return GenericResponse
      */
     @ApiOperation(value = "Create A Coupon Endpoint", notes = "Admin endpoint")
@@ -83,8 +83,8 @@ public class CouponController {
     /**
      * Update coupon
      *
-     * @param id
-     * @param couponRequest
+     * @param id            Coupon Id
+     * @param couponRequest {@link CouponRequest}
      * @return GenericResponse
      */
     @ApiOperation(value = "Update A Coupon Endpoint", notes = "Admin endpoint")
@@ -97,7 +97,7 @@ public class CouponController {
     /**
      * Delete coupon
      *
-     * @param id
+     * @param id Coupon Id
      * @return GenericResponse
      */
     @ApiOperation(value = "Delete A Coupon Endpoint", notes = "Admin endpoint")
@@ -110,7 +110,7 @@ public class CouponController {
     /**
      * Delete coupons
      *
-     * @param idsRequest
+     * @param idsRequest List coupon id
      * @return GenericResponse
      */
     @ApiOperation(value = "Delete Coupons Endpoint", notes = "Admin endpoint")

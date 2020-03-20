@@ -28,11 +28,11 @@ public class PaymentController {
     /**
      * Payment
      *
-     * @param cartId
-     * @param creditCard
-     * @param userPrinciple
+     * @param cartId        Cart Id
+     * @param creditCard    {@link CreditCard}
+     * @param userPrinciple Current User
      * @return GenericResponse
-     * @throws Exception
+     * @throws Exception Exception error
      */
     @ApiOperation(value = "Payment Endpoint", notes = "User endpoint")
     @PostMapping(path = UrlConstants.CART_URL + "/{cartId}" + UrlConstants.CHECKOUT)

@@ -13,9 +13,9 @@ public interface StripeService {
     /**
      * Charge via stripe
      *
-     * @param creditCard
-     * @param cart
-     * @param userId
+     * @param creditCard {@link CreditCard}
+     * @param cart       {@link Cart}
+     * @param userId     {@link UUID}
      * @throws Exception
      */
     void charge(CreditCard creditCard, Cart cart, UUID userId) throws Exception;

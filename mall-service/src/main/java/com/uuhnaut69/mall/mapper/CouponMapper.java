@@ -18,15 +18,15 @@ public interface CouponMapper {
     /**
      * Mapper code generator from coupon request to coupon entity
      *
-     * @param couponRequest
-     * @param coupon
+     * @param couponRequest {@link CouponRequest}
+     * @param coupon        {@link Coupon}
      */
     void toCouponEntity(CouponRequest couponRequest, @MappingTarget Coupon coupon);
 
     /**
      * Mapper code generator from coupon entity to coupon response
      *
-     * @param coupon
+     * @param coupon {@link Coupon}
      * @return CouponResponse
      */
     CouponResponse toCouponResponse(Coupon coupon);
@@ -34,7 +34,7 @@ public interface CouponMapper {
     /**
      * Mapper code generator from list coupon entity to list coupon response
      *
-     * @param coupons
+     * @param coupons List {@link Coupon}
      * @return List CouponResponse
      */
     List<CouponResponse> toListCouponResponse(List<Coupon> coupons);
