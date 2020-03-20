@@ -37,10 +37,10 @@ public class ProductSearchController {
     /**
      * Complete suggestions product
      *
-     * @param text
-     * @param size
+     * @param text Search content
+     * @param size Result size
      * @return GenericResponse
-     * @throws Exception
+     * @throws Exception Exception error
      */
     @ApiOperation(value = "Autocomplete Endpoint", notes = "Public endpoint")
     @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.AUTOCOMPLETE_URL)
@@ -54,11 +54,11 @@ public class ProductSearchController {
     /**
      * Search product
      *
-     * @param text
-     * @param sortBy
-     * @param order
-     * @param page
-     * @param pageSize
+     * @param text     Search content
+     * @param sortBy   Sorted field
+     * @param order    Ordered field
+     * @param page     Page number
+     * @param pageSize Page size
      * @return GenericResponse
      */
     @ApiOperation(value = "Search Endpoint", notes = "Public endpoint")

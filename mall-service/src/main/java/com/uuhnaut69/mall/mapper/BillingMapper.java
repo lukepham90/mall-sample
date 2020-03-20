@@ -14,7 +14,7 @@ public interface BillingMapper {
     /**
      * Mapper code generator from billing request to billing entity
      *
-     * @param billingRequest
+     * @param billingRequest {@link BillingRequest}
      * @return Billing
      */
     Billing toBillingEntity(BillingRequest billingRequest);

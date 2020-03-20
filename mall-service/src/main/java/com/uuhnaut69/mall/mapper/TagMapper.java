@@ -18,15 +18,15 @@ public interface TagMapper {
     /**
      * Mapper code generator from tag request to tag entity
      *
-     * @param tagRequest
-     * @param tag        o
+     * @param tagRequest {@link TagRequest}
+     * @param tag        {@link Tag}
      */
     void toTagEntity(TagRequest tagRequest, @MappingTarget Tag tag);
 
     /**
      * Mapper code generator from tag entity to tag response
      *
-     * @param tag
+     * @param tag {@link Tag}
      * @return TagResponse
      */
     TagResponse toTagResponse(Tag tag);
@@ -34,7 +34,7 @@ public interface TagMapper {
     /**
      * Mapper code generator from list tag entity to list tag response
      *
-     * @param tags
+     * @param tags List {@link Tag}
      * @return List TagResponse
      */
     List<TagResponse> toListTagResponse(List<Tag> tags);

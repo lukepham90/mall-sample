@@ -16,7 +16,7 @@ public interface CouponService {
     /**
      * Find all coupons
      *
-     * @param pageable
+     * @param pageable {@link Pageable}
      * @return Page coupon
      */
     Page<Coupon> findAll(Pageable pageable);
@@ -24,7 +24,7 @@ public interface CouponService {
     /**
      * Find coupon by code
      *
-     * @param code
+     * @param code Coupon code
      * @return Coupon
      */
     Coupon findByCode(String code);
@@ -32,7 +32,7 @@ public interface CouponService {
     /**
      * Create coupon
      *
-     * @param couponRequest
+     * @param couponRequest {@link CouponRequest}
      * @return Coupon
      */
     Coupon create(CouponRequest couponRequest);
@@ -40,8 +40,8 @@ public interface CouponService {
     /**
      * Update coupon
      *
-     * @param id
-     * @param couponRequest
+     * @param id            {@link UUID}
+     * @param couponRequest {@link CouponRequest}
      * @return Coupon
      */
     Coupon update(UUID id, CouponRequest couponRequest);
@@ -49,14 +49,14 @@ public interface CouponService {
     /**
      * Delete coupon
      *
-     * @param id
+     * @param id {@link UUID}
      */
     void delete(UUID id);
 
     /**
      * Delete coupons
      *
-     * @param ids
+     * @param ids List {@link UUID}
      */
     void deleteAll(List<UUID> ids);
 }

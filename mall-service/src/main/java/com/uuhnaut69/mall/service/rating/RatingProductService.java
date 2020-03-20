@@ -14,9 +14,9 @@ public interface RatingProductService {
     /**
      * Rating a product
      *
-     * @param productId
-     * @param userId
-     * @param rating
+     * @param productId {@link UUID}
+     * @param userId    {@link UUID}
+     * @param rating    Rating
      * @return int
      */
     Integer ratingProduct(UUID productId, UUID userId, int rating);
@@ -24,14 +24,14 @@ public interface RatingProductService {
     /**
      * Get rating aggregation of product
      *
-     * @param productResponse
+     * @param productResponse {@link ProductResponse}
      */
     void getRatingAggregationOfProduct(ProductResponse productResponse);
 
     /**
      * Get rating aggregation of products
      *
-     * @param productResponses
+     * @param productResponses List {@link ProductResponse}
      */
     void getRatingAggregationOfProducts(List<ProductResponse> productResponses);
 

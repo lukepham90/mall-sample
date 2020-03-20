@@ -15,23 +15,23 @@ public interface ProductEsService {
     /**
      * Updates/Inserts/Delete product data.
      *
-     * @param productData
-     * @param operation
+     * @param productData Product capture data change
+     * @param operation   {@link Operation}
      */
     void maintainReadModel(Map<String, Object> productData, Operation operation);
 
     /**
      * Update tag in list product
      *
-     * @param tagNameBefore
-     * @param tagEs
+     * @param tagNameBefore Tag name of product before
+     * @param tagEs         {@link TagEs}
      */
     void findByTagAndUpdate(String tagNameBefore, TagEs tagEs);
 
     /**
      * Find by product id
      *
-     * @param id
+     * @param id Product Id
      * @return ProductEs
      */
     ProductEs findById(String id);
@@ -39,7 +39,7 @@ public interface ProductEsService {
     /**
      * Save product
      *
-     * @param productEs
+     * @param productEs {@link ProductEs}
      */
     void save(ProductEs productEs);
 }

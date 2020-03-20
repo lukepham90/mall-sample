@@ -17,7 +17,7 @@ public interface BrandService {
     /**
      * Find brand pages
      *
-     * @param pageable
+     * @param pageable {@link Pageable}
      * @return brand pages
      */
     Page<Brand> findAll(Pageable pageable);
@@ -25,7 +25,7 @@ public interface BrandService {
     /**
      * Find brand by id
      *
-     * @param id
+     * @param id {@link UUID}
      * @return Brand
      */
     Brand findById(UUID id);
@@ -33,7 +33,7 @@ public interface BrandService {
     /**
      * Create a new brand
      *
-     * @param brandRequest
+     * @param brandRequest {@link BrandRequest}
      * @return Brand
      */
     Brand create(BrandRequest brandRequest);
@@ -41,8 +41,8 @@ public interface BrandService {
     /**
      * Update brand
      *
-     * @param id
-     * @param brandRequest
+     * @param id           {@link UUID}
+     * @param brandRequest {@link BrandRequest}
      * @return Brand
      */
     Brand update(UUID id, BrandRequest brandRequest);
@@ -50,14 +50,14 @@ public interface BrandService {
     /**
      * Delete brand by id
      *
-     * @param id
+     * @param id {@link UUID}
      */
     void delete(UUID id);
 
     /**
      * Delete brands by list id
      *
-     * @param idList
+     * @param idList List {@link UUID}
      */
     void deleteAll(List<UUID> idList);
 

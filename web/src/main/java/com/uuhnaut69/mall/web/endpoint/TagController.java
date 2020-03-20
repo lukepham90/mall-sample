@@ -32,15 +32,16 @@ import java.util.UUID;
 public class TagController {
 
     private final TagMapper tagMapper;
+
     private final TagService tagService;
 
     /**
      * Get tag page
      *
-     * @param sortBy
-     * @param order
-     * @param page
-     * @param pageSize
+     * @param sortBy   Sorted field
+     * @param order    Ordered field
+     * @param page     Page number
+     * @param pageSize Page size
      * @return GenericResponse
      */
     @ApiOperation(value = "Get Tags Endpoint", notes = "Public endpoint")
@@ -59,7 +60,7 @@ public class TagController {
     /**
      * Create a new tag
      *
-     * @param tagRequest
+     * @param tagRequest {@link TagRequest}
      * @return GenericResponse
      */
     @ApiOperation(value = "Create Tag Endpoint", notes = "Admin endpoint")
@@ -73,8 +74,8 @@ public class TagController {
     /**
      * Update a tag
      *
-     * @param id
-     * @param tagRequest
+     * @param id         Tag Id
+     * @param tagRequest {@link TagRequest}
      * @return GenericResponse
      */
     @ApiOperation(value = "Update Tag Endpoint", notes = "Admin endpoint")
@@ -88,7 +89,7 @@ public class TagController {
     /**
      * Delete a tag
      *
-     * @param id
+     * @param id Tag Id
      * @return GenericResponse
      */
     @ApiOperation(value = "Delete Tag Endpoint", notes = "Admin endpoint")

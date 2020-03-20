@@ -17,7 +17,7 @@ public interface ReviewProductMapper {
     /**
      * Mapper code generator from review entity to review response
      *
-     * @param reviewProduct
+     * @param reviewProduct {@link ReviewProduct}
      * @return ReviewResponse
      */
     @Mapping(source = "reviewProduct.user.id", target = "userId")
@@ -29,7 +29,7 @@ public interface ReviewProductMapper {
     /**
      * Mapper code generator from list brand entity to list brand response
      *
-     * @param reviewProductList
+     * @param reviewProductList List {@link ReviewProduct}
      * @return List {@link ReviewResponse}
      */
     List<ReviewResponse> toListReviewResponse(List<ReviewProduct> reviewProductList);

@@ -13,9 +13,9 @@ public interface ProductTagEsService {
     /**
      * Updates/Inserts/Delete product tag data.
      *
-     * @param productTagData
-     * @param productTagDataBefore
-     * @param operation
+     * @param productTagData       Product capture data change
+     * @param productTagDataBefore Product data before
+     * @param operation            {@link Operation}
      */
     void maintainReadModel(Map<String, Object> productTagData, Map<String, Object> productTagDataBefore,
                            Operation operation);

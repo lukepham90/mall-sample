@@ -32,7 +32,7 @@ public class ProductRecommendationServiceImpl implements ProductRecommendationSe
     @Override
     public Page<ProductEs> recommendation(String userId, Pageable pageable) {
         UserEs userEs = userEsService.findById(userId);
-        String[] excludeProductIds = userEs.getProductIds().toArray(new String[userEs.getProductIds().size()]);
+        String[] excludeProductIds = userEs.getProductIds().toArray(new String[0]);
         return productEsRepository
                 .search(new NativeSearchQueryBuilder()
                         .withQuery(QueryBuilders.boolQuery().must(QueryBuilders

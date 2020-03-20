@@ -11,7 +11,7 @@ public interface FileService {
     /**
      * Upload file to amazon s3
      *
-     * @param multipartFile
+     * @param multipartFile {@link MultipartFile}
      * @return file path in s3
      */
     String uploadToAwsS3(MultipartFile multipartFile);
@@ -19,7 +19,7 @@ public interface FileService {
     /**
      * Delete file in amazon S3
      *
-     * @param s3Path
+     * @param s3Path Url file on S3 bucket
      */
     void deleteFileInAwsS3(String s3Path);
 }

@@ -15,7 +15,7 @@ public interface CartService {
     /**
      * Get cart page with admin role
      *
-     * @param pageable
+     * @param pageable {@link Pageable}
      * @return Cart page
      */
     Page<Cart> findAll(Pageable pageable);
@@ -23,8 +23,8 @@ public interface CartService {
     /**
      * Get cart page with user role
      *
-     * @param pageable
-     * @param userId
+     * @param pageable {@link Pageable}
+     * @param userId   {@link UUID}
      * @return Cart page
      */
     Page<Cart> findAllByUserId(Pageable pageable, UUID userId);
@@ -32,7 +32,7 @@ public interface CartService {
     /**
      * Get cart detail with admin role
      *
-     * @param id
+     * @param id {@link UUID}
      * @return Cart
      */
     Cart findById(UUID id);
@@ -40,8 +40,8 @@ public interface CartService {
     /**
      * Get cart detail with user role
      *
-     * @param id
-     * @param userId
+     * @param id     {@link UUID}
+     * @param userId {@link UUID}
      * @return Cart
      */
     Cart findByIdAndUserId(UUID id, UUID userId);
@@ -49,8 +49,8 @@ public interface CartService {
     /**
      * Create cart
      *
-     * @param cartRequest
-     * @param userId
+     * @param cartRequest {@link CartRequest}
+     * @param userId      {@link UUID}
      * @return Cart
      */
     Cart create(CartRequest cartRequest, UUID userId);
@@ -58,8 +58,8 @@ public interface CartService {
     /**
      * Delete cart
      *
-     * @param id
-     * @param userId
+     * @param id     {@link UUID}
+     * @param userId {@link UUID}
      */
     void delete(UUID id, UUID userId);
 }

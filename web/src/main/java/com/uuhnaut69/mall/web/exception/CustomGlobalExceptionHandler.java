@@ -24,8 +24,8 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     /**
      * Custom unAuth exception handler
      *
-     * @param ex
-     * @param request
+     * @param ex      {@link Exception}
+     * @param request {@link WebRequest}
      * @return ErrorResponse
      */
     @ExceptionHandler(AuthorizeException.class)
@@ -35,14 +35,15 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         errorResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setError(ex.getMessage());
+        errorResponse.setContextPath(request.getContextPath());
         return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
     }
 
     /**
      * Custom bad request exception handler
      *
-     * @param ex
-     * @param request
+     * @param ex      {@link Exception}
+     * @param request {@link WebRequest}
      * @return ErrorResponse
      */
     @ExceptionHandler(BadRequestException.class)
@@ -52,32 +53,43 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setError(ex.getMessage());
+        errorResponse.setContextPath(request.getContextPath());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     /**
      * Custom not found exception handler
      *
-     * @param ex
-     * @param request
+     * @param ex      {@link Exception}
+     * @param request {@link WebRequest}
      * @return ErrorResponse
      */
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ErrorResponse> customNotFound(Exception ex, WebRequest request) {
-        return getErrorResponseResponseEntity(ex);
+        log.info(ex.getClass().getName());
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setStatus(HttpStatus.NOT_FOUND.value());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setError(ex.getMessage());
+        errorResponse.setContextPath(request.getContextPath());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Custom general exception
+     *
+     * @param ex      {@link Exception}
+     * @param request {@link WebRequest}
+     * @return ErrorResponse
+     */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> customGeneralException(Exception ex, WebRequest request) {
-        return getErrorResponseResponseEntity(ex);
-    }
-
-    private ResponseEntity<ErrorResponse> getErrorResponseResponseEntity(Exception ex) {
         log.info(ex.getClass().getName());
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setError(ex.getMessage());
+        errorResponse.setContextPath(request.getContextPath());
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

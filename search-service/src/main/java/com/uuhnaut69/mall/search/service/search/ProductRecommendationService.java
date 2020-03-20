@@ -13,8 +13,8 @@ public interface ProductRecommendationService {
     /**
      * Recommendation products for specific user
      *
-     * @param userId
-     * @param pageable
+     * @param userId   {@link java.util.UUID}
+     * @param pageable {@link Pageable}
      * @return Page product
      */
     Page<ProductEs> recommendation(String userId, Pageable pageable);

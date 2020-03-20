@@ -14,7 +14,7 @@ public interface ShippingMapper {
     /**
      * Mapper code generator from shipping request to shipping entity
      *
-     * @param shippingRequest
+     * @param shippingRequest {@link ShippingRequest}
      * @return Shipping
      */
     Shipping toShippingEntity(ShippingRequest shippingRequest);

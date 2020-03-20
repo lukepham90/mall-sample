@@ -11,7 +11,7 @@ public interface MailService {
     /**
      * Send mail to activate account
      *
-     * @param user
+     * @param user {@link User}
      * @throws Exception
      */
     void sendMail(User user) throws Exception;

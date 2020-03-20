@@ -14,15 +14,15 @@ public interface BrandEsService {
     /**
      * Updates/Inserts/Delete brand data.
      *
-     * @param brandData
-     * @param operation
+     * @param brandData Brand capture data change
+     * @param operation {@link Operation}
      */
     void maintainReadModel(Map<String, Object> brandData, Operation operation);
 
     /**
      * Find brand by id
      *
-     * @param id
+     * @param id Brand id
      * @return BrandEs
      */
     BrandEs findById(String id);

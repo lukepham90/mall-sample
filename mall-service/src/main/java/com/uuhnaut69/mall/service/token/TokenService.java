@@ -10,15 +10,15 @@ public interface TokenService {
     /**
      * Generate token
      *
-     * @param user
-     * @return
+     * @param user {@link User}
+     * @return Token
      */
     String generateToken(User user);
 
     /**
      * Confirm verify token
      *
-     * @param token
+     * @param token Confirm token
      */
     void confirmVerifyToken(String token);
 }
