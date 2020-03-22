@@ -27,6 +27,7 @@ import org.springframework.stereotype.Service;
 public class ProductRecommendationServiceImpl implements ProductRecommendationService {
 
     private final UserEsService userEsService;
+
     private final ProductEsRepository productEsRepository;
 
     @Override
@@ -57,7 +58,7 @@ public class ProductRecommendationServiceImpl implements ProductRecommendationSe
                                                   If product is marked important => score 2
                                                 */
                                                 new FunctionScoreQueryBuilder.FilterFunctionBuilder(
-                                                        QueryBuilders.matchQuery("important", true),
+                                                        QueryBuilders.matchQuery("trending", true),
                                                         ScoreFunctionBuilders.weightFactorFunction(2))})
                                 .boostMode(CombineFunction.REPLACE).scoreMode(FunctionScoreQuery.ScoreMode.SUM)))
                         .withPageable(pageable).withSort(SortBuilders.scoreSort().order(SortOrder.DESC)).build());

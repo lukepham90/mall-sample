@@ -70,7 +70,7 @@ public class AuthServiceImpl implements AuthService {
     /**
      * Check user name valid or not
      *
-     * @param userName
+     * @param userName User's name
      */
     private void checkUserNameValid(String userName) {
         if (userRepository.existsByUsername(userName)) {
@@ -81,7 +81,7 @@ public class AuthServiceImpl implements AuthService {
     /**
      * Check email valid or not
      *
-     * @param email
+     * @param email User's email
      */
     private void checkEmailValid(String email) {
         if (userRepository.existsByEmail(email)) {

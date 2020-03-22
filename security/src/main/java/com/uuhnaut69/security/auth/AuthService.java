@@ -23,7 +23,7 @@ public interface AuthService {
      *
      * @param signUpRequest {@link SignInRequest}
      * @return MessageResponse
-     * @throws Exception
+     * @throws Exception {@link Exception}
      */
     MessageResponse signUp(SignUpRequest signUpRequest) throws Exception;
 }

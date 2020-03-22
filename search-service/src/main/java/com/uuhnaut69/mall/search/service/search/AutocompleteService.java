@@ -16,7 +16,7 @@ public interface AutocompleteService {
      * @param text Search content {@link String}
      * @param size Result size {@link Integer}
      * @return List {@link AutocompleteResponse}
-     * @throws Exception
+     * @throws Exception {@link Exception}
      */
     List<AutocompleteResponse> autocomplete(String text, int size) throws Exception;
 
