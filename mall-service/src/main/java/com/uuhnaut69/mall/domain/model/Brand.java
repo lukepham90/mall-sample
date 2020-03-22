@@ -40,9 +40,4 @@ public class Brand extends AbstractEntity {
     @ApiModelProperty(value = "Brand's logo")
     private String logo;
 
-    public Brand(String brandName, String logo) {
-        this.brandName = brandName;
-        this.logo = logo;
-    }
-
 }

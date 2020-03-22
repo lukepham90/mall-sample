@@ -62,7 +62,7 @@ public class ProductEs extends AbstractDocument {
     private Set<String> tags = new HashSet<>();
 
     @Field(type = FieldType.Boolean)
-    private Boolean important;
+    private Boolean trending;
 
     private Completion productSuggest;
 

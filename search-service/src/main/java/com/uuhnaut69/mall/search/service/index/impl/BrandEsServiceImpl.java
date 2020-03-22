@@ -63,8 +63,8 @@ public class BrandEsServiceImpl implements BrandEsService {
     /**
      * Update brand in products
      *
-     * @param brandId
-     * @param brandEs
+     * @param brandId Brand Id
+     * @param brandEs Brand Document
      */
     private void updateBrandInProducts(String brandId, BrandEs brandEs) {
         List<ProductEs> list = productEsRepository.search(new NativeSearchQueryBuilder().withQuery(

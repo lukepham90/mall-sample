@@ -74,8 +74,8 @@ public class BrandServiceImpl implements BrandService {
     /**
      * Save brand entity
      *
-     * @param brandRequest
-     * @param brand
+     * @param brandRequest {@link BrandRequest}
+     * @param brand        {@link Brand}
      * @return Brand
      */
     private Brand save(BrandRequest brandRequest, Brand brand) {
@@ -86,7 +86,7 @@ public class BrandServiceImpl implements BrandService {
     /**
      * Check brand name valid or not
      *
-     * @param brandName
+     * @param brandName Brand's Name
      */
     private void checkBrandNameValid(String brandName) {
         if (brandRepository.existsByBrandName(brandName)) {

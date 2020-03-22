@@ -45,5 +45,5 @@ public class ProductResponse {
 
     private Set<TagResponse> tags;
 
-    private boolean important;
+    private boolean trending;
 }

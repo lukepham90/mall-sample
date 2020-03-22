@@ -86,5 +86,5 @@ public class Product extends AbstractEntity {
     private Set<Tag> tags = new HashSet<>();
 
     @ApiModelProperty(value = "Mark product is hot")
-    private boolean important;
+    private boolean trending;
 }

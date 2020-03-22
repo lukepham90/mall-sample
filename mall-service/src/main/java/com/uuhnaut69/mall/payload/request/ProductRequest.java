@@ -36,6 +36,6 @@ public class ProductRequest {
 
     private Set<UUID> uuidTags;
 
-    private Boolean important;
+    private Boolean trending;
 
 }

@@ -40,8 +40,8 @@ public class AutocompleteServiceImpl implements AutocompleteService {
     /**
      * Make autocompletion request
      *
-     * @param text
-     * @param size
+     * @param text Search content
+     * @param size Result size
      * @return SearchRequest
      */
     private SearchRequest makeAutocompletionRequest(String text, int size) {
@@ -59,7 +59,7 @@ public class AutocompleteServiceImpl implements AutocompleteService {
     /**
      * Extract data from responses
      *
-     * @param searchResponse
+     * @param searchResponse Search response
      * @return list
      */
     private List<AutocompleteResponse> extractResponse(SearchResponse searchResponse) {
