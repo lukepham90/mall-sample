@@ -18,6 +18,38 @@ Sample mall project with Spring boot 2.x
 
 - [x] Web Service - Endpoint for user interaction
 
+<details>
+ <summary> List technology stacks used in this project </summary> 
+ <p>
+  
+   - Spring Boot Framework 2.x (JPA, Security, ...)
+   
+   - Postgres 10
+
+   - Mapstruct (Bean mapping)
+
+   - Lombok
+
+   - Java stripe (Payment method)
+
+   - Jwt
+
+   - Spring boot mail
+
+   - CDC Embedded Debezium Postgres
+
+   - Elasticsearch (Jest client + ES v6.8.1)
+
+   - Spring cache caffeine
+   
+   - AWS S3
+   
+   - Swagger 2
+   
+   ------ Updating -------
+ </p>
+</details> 
+
 <h3>Run Environment</h3>
 
 1. Run command:
