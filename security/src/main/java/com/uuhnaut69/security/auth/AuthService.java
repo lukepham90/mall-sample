@@ -25,5 +25,5 @@ public interface AuthService {
      * @return MessageResponse
      * @throws Exception {@link Exception}
      */
-    MessageResponse signUp(SignUpRequest signUpRequest) throws Exception;
+    MessageResponse signUp(SignUpRequest signUpRequest);
 }
