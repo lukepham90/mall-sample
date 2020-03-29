@@ -51,8 +51,8 @@ public class UserTagEsServiceImpl implements UserTagEsService {
     /**
      * Update tag in user
      *
-     * @param userEs
-     * @param tagName
+     * @param userEs  User document
+     * @param tagName Tag name
      */
     private void updateTagInUser(UserEs userEs, String tagName) {
         userEs.getTags().removeIf(tag -> tag.equals(tagName));

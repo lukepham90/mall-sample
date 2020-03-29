@@ -17,7 +17,7 @@ public interface VerifyTokenRepository extends JpaRepository<VerifyToken, UUID> 
     /**
      * Find by token
      *
-     * @param token
+     * @param token Token
      * @return Optional VerifyToken
      */
     Optional<VerifyToken> findByToken(String token);
