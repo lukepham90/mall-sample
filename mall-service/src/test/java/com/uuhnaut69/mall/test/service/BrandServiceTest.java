@@ -1,10 +1,18 @@
 package com.uuhnaut69.mall.test.service;
 
-import com.uuhnaut69.mall.service.brand.BrandService;
+import com.uuhnaut69.mall.core.constant.MessageConstant;
+import com.uuhnaut69.mall.core.exception.NotFoundException;
+import com.uuhnaut69.mall.domain.model.Brand;
+import com.uuhnaut69.mall.repository.brand.BrandRepository;
+import com.uuhnaut69.mall.service.brand.impl.BrandServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.UUID;
+
+import static org.mockito.Mockito.*;
 
 /**
  * @author uuhnaut
@@ -13,36 +21,26 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class BrandServiceTest {
 
-    @Mock
-    private BrandService brandService;
+    @MockBean
+    private BrandServiceImpl brandService;
+
+    @MockBean
+    private BrandRepository brandRepository;
 
     @Test
-    public void createBrandSuccessful() {
-
+    public void deleteBrandSuccessful() {
+        UUID id = UUID.randomUUID();
+        Brand brand = new Brand();
+        brand.setBrandName("Nike");
+        brand.setLogo("Nike");
+        when(brandService.findById(id)).thenReturn(brand);
+        brandService.delete(id);
+        verify(brandService, times(1)).delete(any());
     }
 
     @Test
-    public void createBrandFailure() {
-
-    }
-
-    @Test
-    public void updateBrandSuccessful() {
-
-    }
-
-    @Test
-    public void updateBrandFailure() {
-
-    }
-
-    @Test
-    public void deleteByIdSuccessful() {
-
-    }
-
-    @Test
-    public void deleteByIdFailure() {
-
+    public void deleteBrandFailure() {
+        when(brandService.findById(UUID.randomUUID())).thenThrow(new NotFoundException(MessageConstant.BRAND_NOT_FOUND));
+        verify(brandRepository, never()).delete(any());
     }
 }
