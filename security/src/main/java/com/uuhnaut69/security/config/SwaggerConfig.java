@@ -26,7 +26,9 @@ public class SwaggerConfig {
     }
 
     private ApiInfo buildApiInf() {
-        return new ApiInfoBuilder().title("Swagger 2").description("Restful API Mall Web App")
+        return new ApiInfoBuilder()
+                .title("Swagger 2")
+                .description("Restful API Mall Web App")
                 .version("0.0.1-SNAPSHOT").build();
     }
 }
