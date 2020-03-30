@@ -5,7 +5,7 @@ dist: trusty
 branches:
   only:
   - master
-  - develop
+  
 script:
 - mvn clean package
 - mvn cobertura:cobertura
