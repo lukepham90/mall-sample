@@ -1,6 +1,6 @@
 package com.uuhnaut69.security.auth.impl;
 
-import com.uuhnaut69.mall.constant.KafkaConstant;
+import com.uuhnaut69.mall.constant.RabbitMqConstant;
 import com.uuhnaut69.mall.core.constant.MessageConstant;
 import com.uuhnaut69.mall.core.exception.BadRequestException;
 import com.uuhnaut69.mall.domain.enums.RoleName;
@@ -14,7 +14,7 @@ import com.uuhnaut69.security.auth.AuthService;
 import com.uuhnaut69.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -37,7 +37,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
 
-    private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final RabbitTemplate rabbitTemplate;
 
     private final PasswordEncoder encoder;
 
@@ -64,7 +64,7 @@ public class AuthServiceImpl implements AuthService {
         user.setRole(RoleName.ROLE_USER);
 
         userRepository.save(user);
-        kafkaTemplate.send(KafkaConstant.MAILING_QUEUE_ACTIVE_ACCOUNT, user);
+        rabbitTemplate.convertAndSend(RabbitMqConstant.SEND_ACTIVATE_MAIL_TOPIC, user);
         return new MessageResponse(MessageConstant.ACTIVATE_YOUR_ACCOUNT);
     }
 
