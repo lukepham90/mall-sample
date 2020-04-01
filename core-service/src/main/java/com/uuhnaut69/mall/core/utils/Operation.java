@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.search.utils;
+package com.uuhnaut69.mall.core.utils;
 
 /**
  * @author uuhnaut

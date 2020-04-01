@@ -1,4 +1,4 @@
-package com.uuhnaut69.mall.search.config.debezium;
+package com.uuhnaut69.mall.cdc.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * @project mall
  */
 @Configuration
-public class DebeziumConnectorConfig {
+public class DebeziumConfig {
 
     @Value("${offsetDir}")
     private String offsetDir;
@@ -44,4 +44,5 @@ public class DebeziumConnectorConfig {
                         "public.brand,public.product,public.catalog,public.user_product,public.user_tag,public.users,public.product_tag,public.tag")
                 .build();
     }
+
 }

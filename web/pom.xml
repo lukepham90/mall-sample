@@ -29,7 +29,7 @@
         </dependency>
         <dependency>
             <groupId>com.uuhnaut69</groupId>
-            <artifactId>search-service</artifactId>
+            <artifactId>cdc-service</artifactId>
         </dependency>
         <dependency>
             <groupId>com.uuhnaut69</groupId>

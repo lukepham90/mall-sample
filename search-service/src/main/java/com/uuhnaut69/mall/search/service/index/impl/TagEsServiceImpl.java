@@ -5,12 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.uuhnaut69.mall.core.constant.MessageConstant;
 import com.uuhnaut69.mall.core.exception.NotFoundException;
+import com.uuhnaut69.mall.core.utils.Operation;
 import com.uuhnaut69.mall.search.document.TagEs;
 import com.uuhnaut69.mall.search.repository.TagEsRepository;
 import com.uuhnaut69.mall.search.service.index.ProductEsService;
 import com.uuhnaut69.mall.search.service.index.TagEsService;
 import com.uuhnaut69.mall.search.service.index.UserEsService;
-import com.uuhnaut69.mall.search.utils.Operation;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

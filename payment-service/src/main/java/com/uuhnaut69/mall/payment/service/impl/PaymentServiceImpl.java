@@ -29,8 +29,7 @@ public class PaymentServiceImpl implements PaymentService {
     private final StripeService stripeService;
 
     @Override
-    public void checkout(UUID cartId, UUID userId, CreditCard creditCard)
-            throws Exception {
+    public void checkout(UUID cartId, UUID userId, CreditCard creditCard) throws Exception {
         Cart cart = cartService.findByIdAndUserId(cartId, userId);
         if (cart.getPaymentMethod().name().equals(PaymentMethod.STRIPE.name())) {
             if (!cart.getPaymentStatus().name().equals(PaymentStatus.SUCCEED.name())) {
@@ -38,7 +37,6 @@ public class PaymentServiceImpl implements PaymentService {
             } else {
                 throw new BadRequestException(MessageConstant.PAID_CART);
             }
-
         } else {
             throw new BadRequestException(MessageConstant.PAYMENT_METHOD_IS_NOT_STRIPE);
         }

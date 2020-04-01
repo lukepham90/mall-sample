@@ -1,10 +1,10 @@
-package com.uuhnaut69.mall.search.constant;
+package com.uuhnaut69.mall.cdc.constant;
 
 /**
  * @author uuhnaut
  * @project mall
  */
-public class CDCTableConstants {
+public class CDCTableConstant {
     public static final String BRAND_TABLE = "brand";
 
     public static final String CATALOG_TABLE = "catalog";
@@ -21,7 +21,7 @@ public class CDCTableConstants {
 
     public static final String TAG_TABLE = "tag";
 
-    private CDCTableConstants() {
+    private CDCTableConstant() {
 
     }
 }
