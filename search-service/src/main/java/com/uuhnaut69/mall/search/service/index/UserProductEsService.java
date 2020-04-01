@@ -1,6 +1,6 @@
 package com.uuhnaut69.mall.search.service.index;
 
-import com.uuhnaut69.mall.search.utils.Operation;
+import com.uuhnaut69.mall.core.utils.Operation;
 
 import java.util.Map;
 

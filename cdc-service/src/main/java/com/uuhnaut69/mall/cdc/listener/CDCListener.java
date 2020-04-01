@@ -1,8 +1,8 @@
-package com.uuhnaut69.mall.search.listener;
+package com.uuhnaut69.mall.cdc.listener;
 
-import com.uuhnaut69.mall.search.constant.CDCTableConstants;
+import com.uuhnaut69.mall.cdc.constant.CDCTableConstant;
+import com.uuhnaut69.mall.core.utils.Operation;
 import com.uuhnaut69.mall.search.service.index.*;
-import com.uuhnaut69.mall.search.utils.Operation;
 import io.debezium.config.Configuration;
 import io.debezium.embedded.EmbeddedEngine;
 import lombok.extern.slf4j.Slf4j;
@@ -131,44 +131,44 @@ public class CDCListener {
 
                 // Call the service to handle the data change.
                 switch (tableChange) {
-                    case CDCTableConstants.BRAND_TABLE:
+                    case CDCTableConstant.BRAND_TABLE:
                         this.brandEsService.maintainReadModel(message, operation);
                         log.info("Brand Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
-                    case CDCTableConstants.CATALOG_TABLE:
+                    case CDCTableConstant.CATALOG_TABLE:
                         this.catalogEsService.maintainReadModel(message, operation);
                         log.info("Catalog Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
-                    case CDCTableConstants.PRODUCT_TABLE:
+                    case CDCTableConstant.PRODUCT_TABLE:
                         this.productEsService.maintainReadModel(message, operation);
                         log.info("Product Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
-                    case CDCTableConstants.PRODUCT_TAG_TABLE:
+                    case CDCTableConstant.PRODUCT_TAG_TABLE:
                         messageBefore = getMessage(sourceRecordValue, BEFORE);
                         this.productTagEsService.maintainReadModel(message, messageBefore, operation);
                         log.info("Product Tag Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
-                    case CDCTableConstants.USER_TABLE:
+                    case CDCTableConstant.USER_TABLE:
                         this.userEsService.maintainReadModel(message, operation);
                         log.info("User Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
-                    case CDCTableConstants.USER_PRODUCT_TABLE:
+                    case CDCTableConstant.USER_PRODUCT_TABLE:
                         this.userProductEsService.maintainReadModel(message, operation);
                         log.info("User Product Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
-                    case CDCTableConstants.USER_TAG_TABLE:
+                    case CDCTableConstant.USER_TAG_TABLE:
                         messageBefore = getMessage(sourceRecordValue, BEFORE);
                         this.userTagEsService.maintainReadModel(message, messageBefore, operation);
                         log.info("User Tag Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
-                    case CDCTableConstants.TAG_TABLE:
+                    case CDCTableConstant.TAG_TABLE:
                         this.tagEsService.maintainReadModel(message, operation);
                         log.info("Tag Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
                         break;

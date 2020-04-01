@@ -15,6 +15,7 @@ public final class MessageConstant {
     public static final String CATALOG_ALREADY_EXIST = "Catalog name's already existed !!!";
     public static final String COUPON_ALREADY_EXIST = "Coupon already existed !!!";
     public static final String TAG_ALREADY_EXIST = "Tag already existed !!!";
+
     /**
      * Not found exception messages
      */
