@@ -71,14 +71,14 @@ public class FileServiceImpl implements FileService {
      * @return File
      */
     private File convertMultiPartToFile(MultipartFile file) {
-        File convFile = new File(Objects.requireNonNull(file.getOriginalFilename()));
-        try (FileOutputStream fos = new FileOutputStream(convFile)) {
+        File convertFile = new File(Objects.requireNonNull(file.getOriginalFilename()));
+        try (FileOutputStream fos = new FileOutputStream(convertFile)) {
             fos.write(file.getBytes());
         } catch (Exception e) {
             log.error(e.getMessage());
         }
 
-        return convFile;
+        return convertFile;
     }
 
     /**

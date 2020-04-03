@@ -17,6 +17,7 @@ import org.elasticsearch.search.suggest.SuggestBuilder;
 import org.elasticsearch.search.suggest.completion.CompletionSuggestionBuilder;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class AutocompleteServiceImpl implements AutocompleteService {
     private final RestHighLevelClient restClient;
 
     @Override
-    public List<AutocompleteResponse> autocomplete(String text, int size) throws Exception {
+    public List<AutocompleteResponse> autocomplete(String text, int size) throws IOException {
         SearchRequest searchRequest = makeAutocompletionRequest(text, size);
         SearchResponse searchResponse = restClient.search(searchRequest, RequestOptions.DEFAULT);
         return extractResponse(searchResponse);
@@ -60,7 +61,7 @@ public class AutocompleteServiceImpl implements AutocompleteService {
      * Extract data from responses
      *
      * @param searchResponse Search response
-     * @return list
+     * @return Lis {@link AutocompleteResponse}
      */
     private List<AutocompleteResponse> extractResponse(SearchResponse searchResponse) {
         List<AutocompleteResponse> list = new ArrayList<>();

@@ -2,6 +2,7 @@ package com.uuhnaut69.mall.search.service.search;
 
 import com.uuhnaut69.mall.search.payload.response.AutocompleteResponse;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -16,8 +17,8 @@ public interface AutocompleteService {
      * @param text Search content {@link String}
      * @param size Result size {@link Integer}
      * @return List {@link AutocompleteResponse}
-     * @throws Exception {@link Exception}
+     * @throws IOException {@link IOException}
      */
-    List<AutocompleteResponse> autocomplete(String text, int size) throws Exception;
+    List<AutocompleteResponse> autocomplete(String text, int size) throws IOException;
 
 }

@@ -50,11 +50,10 @@ public class AuthController {
      *
      * @param signUpRequest {@link SignUpRequest}
      * @return GenericResponse // status code 200
-     * @throws Exception Exception error
      */
     @ApiOperation(value = "SignUp Endpoint")
     @PostMapping(path = UrlConstants.AUTH_URL + "/signup")
-    public GenericResponse signUp(@RequestBody @Valid SignUpRequest signUpRequest) throws Exception {
+    public GenericResponse signUp(@RequestBody @Valid SignUpRequest signUpRequest) {
         log.info("Sign up user with {}", signUpRequest);
         MessageResponse messageResponse = authService.signUp(signUpRequest);
         return GenericResponse.builder().data(messageResponse).build();
