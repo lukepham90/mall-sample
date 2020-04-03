@@ -46,6 +46,8 @@ Sample mall project with Spring boot 2.x
    
    - Swagger 2
    
+   - Rabbitmq
+   
    ------ Updating -------
  </p>
 </details> 

@@ -19,10 +19,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RestClientElasticConfig {
 
-    @Value("${elasticHost}")
+    @Value("${elasticsearch.host}")
     private String elasticHost;
 
-    @Value("${elasticPort}")
+    @Value("${elasticsearch.port}")
     private int elasticPort;
 
     @Value("${username}")

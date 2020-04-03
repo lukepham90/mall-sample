@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -40,12 +41,12 @@ public class ProductSearchController {
      * @param text Search content
      * @param size Result size
      * @return GenericResponse
-     * @throws Exception Exception error
+     * @throws IOException IOException error
      */
     @ApiOperation(value = "Autocomplete Endpoint", notes = "Public endpoint")
     @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.AUTOCOMPLETE_URL)
     public GenericResponse autocomplete(@RequestParam(value = "text", defaultValue = "") String text,
-                                        @RequestParam(value = "size", defaultValue = "25") int size) throws Exception {
+                                        @RequestParam(value = "size", defaultValue = "25") int size) throws IOException {
         log.info("Autocomplete product with text => {}", text);
         List<AutocompleteResponse> list = autocompleteService.autocomplete(text, size);
         return GenericResponse.builder().data(list).build();

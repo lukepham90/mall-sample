@@ -31,5 +31,5 @@ public class ErrorResponse implements Serializable {
 
     private String error;
 
-    private String contextPath;
+    private String requestUrl;
 }
