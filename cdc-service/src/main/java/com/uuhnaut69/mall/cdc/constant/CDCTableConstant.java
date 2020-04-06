@@ -5,9 +5,6 @@ package com.uuhnaut69.mall.cdc.constant;
  * @project mall
  */
 public class CDCTableConstant {
-    public static final String BRAND_TABLE = "brand";
-
-    public static final String CATALOG_TABLE = "catalog";
 
     public static final String PRODUCT_TABLE = "product";
 

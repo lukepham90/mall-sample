@@ -23,24 +23,6 @@ public interface ProductService {
     Page<Product> findAll(Pageable pageable);
 
     /**
-     * Find page products by brand id
-     *
-     * @param pageable {@link Pageable}
-     * @param brandId  {@link UUID}
-     * @return page product
-     */
-    Page<Product> findAllByBrandId(Pageable pageable, UUID brandId);
-
-    /**
-     * Find page products by catalog id
-     *
-     * @param pageable  {@link Pageable}
-     * @param catalogId {@link UUID}
-     * @return page product
-     */
-    Page<Product> findAllByCatalogId(Pageable pageable, UUID catalogId);
-
-    /**
      * Get detail of product
      *
      * @param id {@link UUID}

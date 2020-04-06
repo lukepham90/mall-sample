@@ -2,7 +2,6 @@ package com.uuhnaut69.mall.payload.request;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Set;
 import java.util.UUID;
@@ -27,12 +26,6 @@ public class ProductRequest {
     private BigDecimal originalPrice;
 
     private BigDecimal discountPrice;
-
-    @NotNull
-    private UUID catalogId;
-
-    @NotNull
-    private UUID brandId;
 
     private Set<UUID> uuidTags;
 

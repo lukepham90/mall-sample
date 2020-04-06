@@ -82,56 +82,6 @@ public class ProductController {
     }
 
     /**
-     * Find product page by catalog id
-     *
-     * @param catalogId Catalog Id
-     * @param sortBy    Sorted field
-     * @param order     Ordered field
-     * @param page      Page number
-     * @param pageSize  Page size
-     * @return GenericResponse
-     */
-    @ApiOperation(value = "Get Products By Catalog Id Endpoint", notes = "Public endpoint")
-    @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.CATALOG_URL + "/{catalogId}" + UrlConstants.PRODUCT_URL)
-    public GenericResponse getProductPageByCatalog(@PathVariable UUID catalogId,
-                                                   @RequestParam(value = "sort", defaultValue = "id") String sortBy,
-                                                   @RequestParam(value = "order", defaultValue = "desc") String order,
-                                                   @RequestParam(value = "page", defaultValue = "1") int page,
-                                                   @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
-        Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
-        Page<Product> products = productService.findAllByCatalogId(pageable, catalogId);
-        List<ProductResponse> list = productMapper.toListProductResponse(products.getContent());
-        ratingProductService.getRatingAggregationOfProducts(list);
-        reviewProductService.countReviewsOfListProduct(list);
-        return GenericResponse.builder().data(list).build();
-    }
-
-    /**
-     * Find  product page by brand id
-     *
-     * @param brandId  Brand Id
-     * @param sortBy   Sorted field
-     * @param order    Ordered field
-     * @param page     Page number
-     * @param pageSize Page size
-     * @return GenericResponse
-     */
-    @ApiOperation(value = "Get Products By Brand Id Endpoint", notes = "Public endpoint")
-    @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.BRAND_URL + "/{brandId}" + UrlConstants.PRODUCT_URL)
-    public GenericResponse getProductPageByBrand(@PathVariable UUID brandId,
-                                                 @RequestParam(value = "sort", defaultValue = "id") String sortBy,
-                                                 @RequestParam(value = "order", defaultValue = "desc") String order,
-                                                 @RequestParam(value = "page", defaultValue = "1") int page,
-                                                 @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
-        Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
-        Page<Product> products = productService.findAllByBrandId(pageable, brandId);
-        List<ProductResponse> list = productMapper.toListProductResponse(products.getContent());
-        ratingProductService.getRatingAggregationOfProducts(list);
-        reviewProductService.countReviewsOfListProduct(list);
-        return GenericResponse.builder().data(list).build();
-    }
-
-    /**
      * Get product detail
      *
      * @param id Product Id

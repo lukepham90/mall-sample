@@ -52,12 +52,6 @@ public class ProductEs extends AbstractDocument {
     @Field(type = FieldType.Double)
     private Double discountPrice;
 
-    @Field(type = FieldType.Nested)
-    private CatalogEs catalogEs;
-
-    @Field(type = FieldType.Nested)
-    private BrandEs brandEs;
-
     @Field(type = FieldType.Keyword)
     private Set<String> tags = new HashSet<>();
 

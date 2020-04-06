@@ -27,7 +27,7 @@ public interface ReviewProductMapper {
     ReviewResponse toReviewResponse(ReviewProduct reviewProduct);
 
     /**
-     * Mapper code generator from list brand entity to list brand response
+     * Mapper code generator from list review entity to list review response
      *
      * @param reviewProductList List {@link ReviewProduct}
      * @return List {@link ReviewResponse}

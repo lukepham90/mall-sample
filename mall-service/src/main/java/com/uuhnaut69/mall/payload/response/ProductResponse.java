@@ -39,10 +39,6 @@ public class ProductResponse {
 
     private boolean isActive;
 
-    private CatalogResponse catalog;
-
-    private BrandResponse brand;
-
     private Set<TagResponse> tags;
 
     private boolean trending;

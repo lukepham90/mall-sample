@@ -6,14 +6,11 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.uuhnaut69.mall.core.constant.MessageConstant;
 import com.uuhnaut69.mall.core.exception.NotFoundException;
 import com.uuhnaut69.mall.core.utils.Operation;
-import com.uuhnaut69.mall.search.document.BrandEs;
-import com.uuhnaut69.mall.search.document.CatalogEs;
 import com.uuhnaut69.mall.search.document.ProductEs;
 import com.uuhnaut69.mall.search.document.TagEs;
 import com.uuhnaut69.mall.search.repository.ProductEsRepository;
-import com.uuhnaut69.mall.search.service.index.BrandEsService;
-import com.uuhnaut69.mall.search.service.index.CatalogEsService;
 import com.uuhnaut69.mall.search.service.index.ProductEsService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.data.elasticsearch.core.completion.Completion;
@@ -30,18 +27,10 @@ import java.util.Optional;
  */
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class ProductEsServiceImpl implements ProductEsService {
 
     private final ProductEsRepository productEsRepository;
-    private final CatalogEsService catalogEsService;
-    private final BrandEsService brandEsService;
-
-    public ProductEsServiceImpl(ProductEsRepository productEsRepository, CatalogEsService catalogEsService,
-                                BrandEsService brandEsService) {
-        this.productEsRepository = productEsRepository;
-        this.catalogEsService = catalogEsService;
-        this.brandEsService = brandEsService;
-    }
 
     @Override
     public void maintainReadModel(Map<String, Object> productData, Operation operation) {
@@ -54,16 +43,6 @@ public class ProductEsServiceImpl implements ProductEsService {
         if (Operation.DELETE.name().equals(operation.name())) {
             productEsRepository.deleteById(productEs.getId());
         } else {
-            String brandId = productData.get("brand_id").toString();
-            String catalogId = productData.get("catalog_id").toString();
-            try {
-                BrandEs brandEs = brandEsService.findById(brandId);
-                CatalogEs catalogEs = catalogEsService.findById(catalogId);
-                productEs.setBrandEs(brandEs);
-                productEs.setCatalogEs(catalogEs);
-            } catch (Exception e) {
-                log.error(e.getMessage());
-            }
             Optional<ProductEs> optional = productEsRepository.findById(productEs.getId());
             optional.ifPresent(es -> productEs.setTags(es.getTags()));
             productEsRepository.save(productEs);

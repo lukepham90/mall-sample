@@ -48,7 +48,7 @@ public class DebeziumConfig {
                 .with(PostgresConnectorConfig.PASSWORD, dbPassword)
                 .with(PostgresConnectorConfig.DATABASE_NAME, dbName)
                 .with(PostgresConnectorConfig.TABLE_WHITELIST,
-                        "public.brand,public.product,public.catalog,public.user_product,public.user_tag,public.users,public.product_tag,public.tag")
+                        "public.product,public.user_product,public.user_tag,public.users,public.product_tag,public.tag")
                 .build();
     }
 

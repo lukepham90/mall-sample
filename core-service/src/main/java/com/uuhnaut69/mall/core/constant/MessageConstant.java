@@ -11,8 +11,6 @@ public final class MessageConstant {
      */
     public static final String USER_NAME_ALREADY_EXIST = "User name's already existed !!!";
     public static final String USER_EMAIL_ALREADY_EXIST = "User email's already existed !!!";
-    public static final String BRAND_ALREADY_EXIST = "Brand name's already existed !!!";
-    public static final String CATALOG_ALREADY_EXIST = "Catalog name's already existed !!!";
     public static final String COUPON_ALREADY_EXIST = "Coupon already existed !!!";
     public static final String TAG_ALREADY_EXIST = "Tag already existed !!!";
 
@@ -21,8 +19,6 @@ public final class MessageConstant {
      */
     public static final String USER_NOT_FOUND = "User doesn't exists !!!";
     public static final String TOKEN_NOT_FOUND = "Token doesn't exists !!!";
-    public static final String BRAND_NOT_FOUND = "Brand doesn't exists !!!";
-    public static final String CATALOG_NOT_FOUND = "Catalog doesn't exists !!!";
     public static final String PRODUCT_NOT_FOUND = "Product doesn't exists !!!";
     public static final String COUPON_NOT_FOUND = "Coupon doesn't exists !!!";
     public static final String CART_NOT_FOUND = "Cart doesn't exists !!!";
