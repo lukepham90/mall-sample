@@ -43,10 +43,6 @@ public class CDCListener {
      */
     private final EmbeddedEngine engine;
 
-    private final BrandEsService brandEsService;
-
-    private final CatalogEsService catalogEsService;
-
     private final ProductEsService productEsService;
 
     private final ProductTagEsService productTagEsService;
@@ -59,8 +55,7 @@ public class CDCListener {
 
     private final TagEsService tagEsService;
 
-    public CDCListener(Configuration connector, BrandEsService brandEsService, CatalogEsService catalogEsService,
-                       ProductEsService productEsService, ProductTagEsService productTagEsService, UserEsService userEsService,
+    public CDCListener(Configuration connector, ProductEsService productEsService, ProductTagEsService productTagEsService, UserEsService userEsService,
                        UserProductEsService userProductEsService, UserTagEsService userTagEsService, TagEsService tagEsService) {
         this.engine = EmbeddedEngine.create().using(connector).notifying(t -> {
             try {
@@ -69,8 +64,6 @@ public class CDCListener {
                 log.error(e.getMessage());
             }
         }).build();
-        this.brandEsService = brandEsService;
-        this.catalogEsService = catalogEsService;
         this.productEsService = productEsService;
         this.productTagEsService = productTagEsService;
         this.userEsService = userEsService;
@@ -131,16 +124,7 @@ public class CDCListener {
 
                 // Call the service to handle the data change.
                 switch (tableChange) {
-                    case CDCTableConstant.BRAND_TABLE:
-                        this.brandEsService.maintainReadModel(message, operation);
-                        log.info("Brand Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
-                        break;
-                    case CDCTableConstant.CATALOG_TABLE:
-                        this.catalogEsService.maintainReadModel(message, operation);
-                        log.info("Catalog Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
-
-                        break;
                     case CDCTableConstant.PRODUCT_TABLE:
                         this.productEsService.maintainReadModel(message, operation);
                         log.info("Product Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());

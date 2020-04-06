@@ -66,7 +66,7 @@ public class TagController {
     @ApiOperation(value = "Create Tag Endpoint", notes = "Admin endpoint")
     @PostMapping(path = UrlConstants.ADMIN_URL + UrlConstants.TAG_URL)
     public GenericResponse create(@RequestBody @Valid TagRequest tagRequest) {
-        log.debug("Insert new brand {} into database", tagRequest);
+        log.debug("Insert new tag {} into database", tagRequest);
         Tag tag = tagService.create(tagRequest);
         return GenericResponse.builder().data(tag).build();
     }

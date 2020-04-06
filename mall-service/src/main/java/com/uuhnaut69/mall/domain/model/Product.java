@@ -71,16 +71,6 @@ public class Product extends AbstractEntity {
     @ApiModelProperty(value = "Product's discount price")
     private BigDecimal discountPrice;
 
-    @ApiModelProperty(value = "Catalog's id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "catalog_id")
-    private Catalog catalog;
-
-    @ApiModelProperty(value = "Brand's id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "brand_id")
-    private Brand brand;
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "product_tag", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags = new HashSet<>();

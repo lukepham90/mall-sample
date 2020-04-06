@@ -20,18 +20,6 @@ public final class EsConstants {
     public static final String TAG_INDEX_TYPE = "tag";
 
     /**
-     * Tag
-     */
-    public static final String BRAND_INDEX = "brand-index";
-    public static final String BRAND_INDEX_TYPE = "brand";
-
-    /**
-     * Catalog
-     */
-    public static final String CATALOG_INDEX = "catalog-index";
-    public static final String CATALOG_INDEX_TYPE = "catalog";
-
-    /**
      * User
      */
     public static final String USER_INDEX = "user-index";

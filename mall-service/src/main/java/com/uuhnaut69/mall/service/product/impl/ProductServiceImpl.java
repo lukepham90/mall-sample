@@ -2,15 +2,11 @@ package com.uuhnaut69.mall.service.product.impl;
 
 import com.uuhnaut69.mall.core.constant.MessageConstant;
 import com.uuhnaut69.mall.core.exception.NotFoundException;
-import com.uuhnaut69.mall.domain.model.Brand;
-import com.uuhnaut69.mall.domain.model.Catalog;
 import com.uuhnaut69.mall.domain.model.Product;
 import com.uuhnaut69.mall.domain.model.Tag;
 import com.uuhnaut69.mall.mapper.ProductMapper;
 import com.uuhnaut69.mall.payload.request.ProductRequest;
 import com.uuhnaut69.mall.repository.product.ProductRepository;
-import com.uuhnaut69.mall.service.brand.BrandService;
-import com.uuhnaut69.mall.service.catalog.CatalogService;
 import com.uuhnaut69.mall.service.product.ProductService;
 import com.uuhnaut69.mall.service.tag.TagService;
 import lombok.RequiredArgsConstructor;
@@ -40,10 +36,6 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
-    private final BrandService brandService;
-
-    private final CatalogService catalogService;
-
     private final ProductMapper productMapper;
 
     private final TagService tagService;
@@ -52,18 +44,6 @@ public class ProductServiceImpl implements ProductService {
     @Transactional(readOnly = true)
     public Page<Product> findAll(Pageable pageable) {
         return productRepository.findAll(pageable);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Product> findAllByBrandId(Pageable pageable, UUID brandId) {
-        return productRepository.findAllByBrandId(pageable, brandId);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Product> findAllByCatalogId(Pageable pageable, UUID catalogId) {
-        return productRepository.findAllByCatalogId(pageable, catalogId);
     }
 
     @Override
@@ -109,12 +89,8 @@ public class ProductServiceImpl implements ProductService {
      */
     private Product save(ProductRequest productRequest, Product product) {
         productMapper.toProductEntity(productRequest, product);
-        Brand brand = brandService.findById(productRequest.getBrandId());
-        Catalog catalog = catalogService.findById(productRequest.getCatalogId());
         Set<Tag> tags = tagService.findListTagInListIds(productRequest.getUuidTags());
         product.setTags(tags);
-        product.setBrand(brand);
-        product.setCatalog(catalog);
         return productRepository.save(product);
     }
 }

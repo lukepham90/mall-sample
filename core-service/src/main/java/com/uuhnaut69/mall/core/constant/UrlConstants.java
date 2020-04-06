@@ -17,8 +17,6 @@ public class UrlConstants {
     /**
      * Modules url
      */
-    public static final String BRAND_URL = "/brands";
-    public static final String CATALOG_URL = "/catalogs";
     public static final String PRODUCT_URL = "/products";
     public static final String COUPON_URL = "/coupons";
     public static final String CART_URL = "/carts";
