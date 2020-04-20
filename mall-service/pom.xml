@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.uuhnaut69</groupId>
-            <artifactId>core-service</artifactId>
+            <artifactId>common-service</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

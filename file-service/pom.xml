@@ -24,7 +24,7 @@
         </dependency>
         <dependency>
             <groupId>com.uuhnaut69</groupId>
-            <artifactId>core-service</artifactId>
+            <artifactId>common-service</artifactId>
         </dependency>
     </dependencies>
 </project>
