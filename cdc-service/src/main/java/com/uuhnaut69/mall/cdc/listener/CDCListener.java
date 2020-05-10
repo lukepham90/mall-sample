@@ -57,13 +57,7 @@ public class CDCListener {
 
     public CDCListener(Configuration connector, ProductEsService productEsService, ProductTagEsService productTagEsService, UserEsService userEsService,
                        UserProductEsService userProductEsService, UserTagEsService userTagEsService, TagEsService tagEsService) {
-        this.engine = EmbeddedEngine.create().using(connector).notifying(t -> {
-            try {
-                handleEvent(t);
-            } catch (Exception e) {
-                log.error(e.getMessage());
-            }
-        }).build();
+        this.engine = EmbeddedEngine.create().using(connector).notifying(this::handleEvent).build();
         this.productEsService = productEsService;
         this.productTagEsService = productTagEsService;
         this.userEsService = userEsService;
