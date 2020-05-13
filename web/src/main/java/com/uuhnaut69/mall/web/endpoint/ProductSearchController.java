@@ -35,14 +35,6 @@ public class ProductSearchController {
     private final AutocompleteService autocompleteService;
     private final ProductSearchService productSearchService;
 
-    /**
-     * Complete suggestions product
-     *
-     * @param text Search content
-     * @param size Result size
-     * @return GenericResponse
-     * @throws IOException IOException error
-     */
     @ApiOperation(value = "Autocomplete Endpoint", notes = "Public endpoint")
     @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.AUTOCOMPLETE_URL)
     public GenericResponse autocomplete(@RequestParam(value = "text", defaultValue = "") String text,
@@ -52,16 +44,6 @@ public class ProductSearchController {
         return GenericResponse.builder().data(list).build();
     }
 
-    /**
-     * Search product
-     *
-     * @param text     Search content
-     * @param sortBy   Sorted field
-     * @param order    Ordered field
-     * @param page     Page number
-     * @param pageSize Page size
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Search Endpoint", notes = "Public endpoint")
     @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.SEARCH_URL)
     public GenericResponse search(@RequestParam(value = "text", defaultValue = "") String text,

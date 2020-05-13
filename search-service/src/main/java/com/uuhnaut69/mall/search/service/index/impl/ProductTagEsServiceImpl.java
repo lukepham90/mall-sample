@@ -26,7 +26,7 @@ public class ProductTagEsServiceImpl implements ProductTagEsService {
     }
 
     @Override
-    public void maintainReadModel(Map<String, Object> productTagData, Map<String, Object> productTagDataBefore,
+    public void handleCdcEvent(Map<String, Object> productTagData, Map<String, Object> productTagDataBefore,
                                   Operation operation) {
         String productId = productTagData.get("product_id").toString();
         String tagId = productTagData.get("tag_id").toString();

@@ -10,14 +10,7 @@ import java.util.UUID;
  * @project mall
  */
 public interface StripeService {
-    /**
-     * Charge via stripe
-     *
-     * @param creditCard {@link CreditCard}
-     * @param cart       {@link Cart}
-     * @param userId     {@link UUID}
-     * @throws Exception
-     */
+
     void charge(CreditCard creditCard, Cart cart, UUID userId) throws Exception;
 
 }

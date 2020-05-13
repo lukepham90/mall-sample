@@ -21,12 +21,6 @@ public class FileController {
 
     private final FileService fileService;
 
-    /**
-     * Upload file
-     *
-     * @param multipartFile {@link MultipartFile}
-     * @return GenericResponse
-     */
     @ApiOperation(value = "File Endpoint", notes = "Admin endpoint")
     @PostMapping(path = UrlConstants.ADMIN_URL + UrlConstants.FILE_URL)
     public GenericResponse upload(@RequestPart(value = "file") MultipartFile multipartFile) {
@@ -34,12 +28,6 @@ public class FileController {
         return GenericResponse.builder().data(fileService.uploadToAwsS3(multipartFile)).build();
     }
 
-    /**
-     * Delete file
-     *
-     * @param s3Path Url file on s3 bucket
-     * @return GenericResponse
-     */
     @ApiOperation(value = "File Endpoint", notes = "Admin endpoint")
     @DeleteMapping(path = UrlConstants.ADMIN_URL + UrlConstants.FILE_URL)
     public GenericResponse delete(@RequestPart(value = "s3Path") String s3Path) {

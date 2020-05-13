@@ -35,7 +35,7 @@ public class TagEsServiceImpl implements TagEsService {
     }
 
     @Override
-    public void maintainReadModel(Map<String, Object> tagData, Operation operation) {
+    public void handleCdcEvent(Map<String, Object> tagData, Operation operation) {
         final ObjectMapper mapper = new ObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);

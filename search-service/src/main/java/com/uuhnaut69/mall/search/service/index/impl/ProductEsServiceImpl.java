@@ -33,7 +33,7 @@ public class ProductEsServiceImpl implements ProductEsService {
     private final ProductEsRepository productEsRepository;
 
     @Override
-    public void maintainReadModel(Map<String, Object> productData, Operation operation) {
+    public void handleCdcEvent(Map<String, Object> productData, Operation operation) {
         final ObjectMapper mapper = new ObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);

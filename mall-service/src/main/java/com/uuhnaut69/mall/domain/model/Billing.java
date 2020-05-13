@@ -1,8 +1,6 @@
 package com.uuhnaut69.mall.domain.model;
 
 import com.uuhnaut69.mall.core.model.AbstractEntity;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -23,7 +21,6 @@ import java.util.UUID;
 @Audited
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "Billing Model", description = "Billing payment's info")
 public class Billing extends AbstractEntity {
     /**
      *
@@ -32,18 +29,13 @@ public class Billing extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @ApiModelProperty(value = "Billing's id")
     private UUID id;
 
-    @ApiModelProperty(value = "Country's name")
     private String billingCountry;
 
-    @ApiModelProperty(value = "City's name")
     private String billingCity;
 
-    @ApiModelProperty(value = "Billing's address")
     private String billingAddress;
 
-    @ApiModelProperty(value = "Post code")
     private Integer billingPostcode;
 }

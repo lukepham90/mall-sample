@@ -1,7 +1,6 @@
 package com.uuhnaut69.mall.domain.model;
 
 import com.uuhnaut69.mall.core.model.AbstractEntity;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,7 +22,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "Verify Token Model", description = "Verify Token For Active User Account")
 public class VerifyToken extends AbstractEntity {
 
     /**
@@ -33,18 +31,15 @@ public class VerifyToken extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @ApiModelProperty(value = "VerifyToken's id")
     private UUID id;
 
     @ApiModelProperty(value = "Token")
     private String token;
 
-    @ApiModelProperty(value = "User's id")
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
 
-    @ApiModelProperty(value = "VerifyToken's date expired")
     private Date expiryDate;
 
 }

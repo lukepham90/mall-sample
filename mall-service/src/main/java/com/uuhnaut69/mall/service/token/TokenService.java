@@ -7,18 +7,8 @@ import com.uuhnaut69.mall.domain.model.User;
  * @project mall
  */
 public interface TokenService {
-    /**
-     * Generate token
-     *
-     * @param user {@link User}
-     * @return Token
-     */
+
     String generateToken(User user);
 
-    /**
-     * Confirm verify token
-     *
-     * @param token Confirm token
-     */
     void confirmVerifyToken(String token);
 }

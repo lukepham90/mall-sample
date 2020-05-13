@@ -13,50 +13,16 @@ import java.util.UUID;
  * @project mall
  */
 public interface CouponService {
-    /**
-     * Find all coupons
-     *
-     * @param pageable {@link Pageable}
-     * @return Page coupon
-     */
+
     Page<Coupon> findAll(Pageable pageable);
 
-    /**
-     * Find coupon by code
-     *
-     * @param code Coupon code
-     * @return Coupon
-     */
     Coupon findByCode(String code);
 
-    /**
-     * Create coupon
-     *
-     * @param couponRequest {@link CouponRequest}
-     * @return Coupon
-     */
     Coupon create(CouponRequest couponRequest);
 
-    /**
-     * Update coupon
-     *
-     * @param id            {@link UUID}
-     * @param couponRequest {@link CouponRequest}
-     * @return Coupon
-     */
     Coupon update(UUID id, CouponRequest couponRequest);
 
-    /**
-     * Delete coupon
-     *
-     * @param id {@link UUID}
-     */
     void delete(UUID id);
 
-    /**
-     * Delete coupons
-     *
-     * @param ids List {@link UUID}
-     */
     void deleteAll(List<UUID> ids);
 }

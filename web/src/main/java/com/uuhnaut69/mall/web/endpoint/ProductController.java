@@ -52,16 +52,6 @@ public class ProductController {
 
     private final ReviewProductService reviewProductService;
 
-    /**
-     * Find product page
-     *
-     * @param sortBy        Sorted field
-     * @param order         Ordered field
-     * @param page          Page number
-     * @param pageSize      Page size
-     * @param userPrinciple Current User
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Get Products Endpoint", notes = "Public endpoint")
     @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.PRODUCT_URL)
     public GenericResponse getProductPage(
@@ -81,12 +71,6 @@ public class ProductController {
         return getGenericResponse(sortBy, order, page, pageSize);
     }
 
-    /**
-     * Get product detail
-     *
-     * @param id Product Id
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Get Product Detail Endpoint", notes = "Public endpoint")
     @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.PRODUCT_URL + "/{id}")
     public GenericResponse getProductDetail(@CurrentUser UserPrinciple userPrinciple, @PathVariable UUID id) {
@@ -100,15 +84,6 @@ public class ProductController {
         return GenericResponse.builder().data(productResponse).build();
     }
 
-    /**
-     * Get product page
-     *
-     * @param sortBy   Sorted field
-     * @param order    Ordered field
-     * @param page     Page number
-     * @param pageSize Page size
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Get Products Endpoint", notes = "Admin endpoint")
     @GetMapping(path = UrlConstants.ADMIN_URL + UrlConstants.PRODUCT_URL)
     public GenericResponse getProductPage(@RequestParam(value = "sort", defaultValue = "id") String sortBy,
@@ -127,12 +102,6 @@ public class ProductController {
         return GenericResponse.builder().data(list).build();
     }
 
-    /**
-     * Get product detail
-     *
-     * @param id Product Id
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Get Product Detail Endpoint", notes = "Admin endpoint")
     @GetMapping(path = UrlConstants.ADMIN_URL + UrlConstants.PRODUCT_URL + "/{id}")
     public GenericResponse getProductDetail(@PathVariable UUID id) {
@@ -143,12 +112,6 @@ public class ProductController {
         return GenericResponse.builder().data(productResponse).build();
     }
 
-    /**
-     * Create product
-     *
-     * @param productRequest {@link ProductRequest}
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Create A Product Endpoint", notes = "Admin endpoint")
     @PostMapping(path = UrlConstants.ADMIN_URL + UrlConstants.PRODUCT_URL)
     public GenericResponse create(@RequestBody @Valid ProductRequest productRequest) {
@@ -157,13 +120,6 @@ public class ProductController {
         return GenericResponse.builder().data(productResponse).build();
     }
 
-    /**
-     * Update product
-     *
-     * @param id             Product Id
-     * @param productRequest {@link ProductRequest}
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Update A Product Endpoint", notes = "Admin endpoint")
     @PutMapping(path = UrlConstants.ADMIN_URL + UrlConstants.PRODUCT_URL + "/{id}")
     public GenericResponse update(@PathVariable UUID id, @RequestBody @Valid ProductRequest productRequest) {
@@ -172,12 +128,6 @@ public class ProductController {
         return GenericResponse.builder().data(productResponse).build();
     }
 
-    /**
-     * Delete product
-     *
-     * @param id Product Id
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Delete A Product Endpoint", notes = "Admin endpoint")
     @DeleteMapping(path = UrlConstants.ADMIN_URL + UrlConstants.PRODUCT_URL + "/{id}")
     public GenericResponse delete(@PathVariable UUID id) {
@@ -185,12 +135,6 @@ public class ProductController {
         return new GenericResponse();
     }
 
-    /**
-     * Delete all product
-     *
-     * @param idsRequest List Product Id
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Delete Products Endpoint", notes = "Admin endpoint")
     @DeleteMapping(path = UrlConstants.ADMIN_URL + UrlConstants.PRODUCT_URL)
     public GenericResponse deleteAll(@RequestBody IdsRequest idsRequest) {
@@ -198,14 +142,6 @@ public class ProductController {
         return new GenericResponse();
     }
 
-    /**
-     * Rating a product
-     *
-     * @param userPrinciple Current User
-     * @param id            Product Id
-     * @param rating        Rating number
-     * @return GenericResponse
-     */
     @PostMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.PRODUCT_URL + "/{id}" + "/{rating}")
     public GenericResponse ratingProduct(@CurrentUser UserPrinciple userPrinciple, @PathVariable UUID id, @PathVariable int rating) {
         return GenericResponse.builder().data(ratingProductService.ratingProduct(id, userPrinciple.getId(), rating)).build();

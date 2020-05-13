@@ -28,13 +28,6 @@ public class UserController {
 
     private final UserService userService;
 
-    /**
-     * Init content what user interests
-     *
-     * @param userPrinciple   Current User
-     * @param userBaseContent {@link UserBaseContent}
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Init User Content Endpoint", notes = "User endpoint")
     @PostMapping(path = UrlConstants.USER_URL)
     public GenericResponse initBaseContent(@CurrentUser UserPrinciple userPrinciple,

@@ -34,15 +34,6 @@ public class CartController {
 
     private final CartMapper cartMapper;
 
-    /**
-     * Get cart page with admin role
-     *
-     * @param sortBy   Sorted field
-     * @param order    Ordered field
-     * @param page     Page number
-     * @param pageSize Page size
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Get Carts Endpoint", notes = "Admin endpoint")
     @GetMapping(path = UrlConstants.ADMIN_URL + UrlConstants.CART_URL)
     public GenericResponse getCartPageWithAdminRole(@RequestParam(value = "sort", defaultValue = "id") String sortBy,
@@ -55,16 +46,6 @@ public class CartController {
         return GenericResponse.builder().data(list).build();
     }
 
-    /**
-     * Get cart page with user role
-     *
-     * @param sortBy        Sorted field
-     * @param order         Ordered field
-     * @param page          Page number
-     * @param pageSize      Page size
-     * @param userPrinciple Current user
-     * @return GenericResponse
-     */
     @GetMapping(path = UrlConstants.CART_URL)
     @ApiOperation(value = "Get Carts Endpoint", notes = "User endpoint")
     public GenericResponse getCartPageWithUserRole(@RequestParam(value = "sort", defaultValue = "id") String sortBy,
@@ -78,12 +59,6 @@ public class CartController {
         return GenericResponse.builder().data(list).build();
     }
 
-    /**
-     * Get cart detail with admin role
-     *
-     * @param cartId Cart Id
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Get Cart's Detail", notes = "Admin endpoint")
     @GetMapping(path = UrlConstants.ADMIN_URL + UrlConstants.CART_URL + "/{cartId}")
     public GenericResponse getCartById(@PathVariable UUID cartId) {
@@ -92,13 +67,6 @@ public class CartController {
         return GenericResponse.builder().data(cartResponse).build();
     }
 
-    /**
-     * Get cart detail with user role
-     *
-     * @param cartId        Cart Id
-     * @param userPrinciple Current User
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Get Cart's Detail", notes = "User endpoint")
     @GetMapping(path = UrlConstants.CART_URL + "/cartId")
     public GenericResponse getCartByIdWithUserRole(@PathVariable UUID cartId, @CurrentUser UserPrinciple userPrinciple) {
@@ -107,13 +75,6 @@ public class CartController {
         return GenericResponse.builder().data(cartResponse).build();
     }
 
-    /**
-     * Create new cart
-     *
-     * @param cartRequest   {@link CartRequest}
-     * @param userPrinciple Current User
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Create New Card Endpoint", notes = "Admin endpoint")
     @PostMapping(path = UrlConstants.CART_URL)
     public GenericResponse create(@RequestBody CartRequest cartRequest, @CurrentUser UserPrinciple userPrinciple) {
@@ -122,13 +83,6 @@ public class CartController {
         return GenericResponse.builder().data(cartResponse).build();
     }
 
-    /**
-     * Delete cart
-     *
-     * @param cartId        Cart Id
-     * @param userPrinciple Current User
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Delete Card Endpoint", notes = "Admin endpoint")
     @DeleteMapping(path = UrlConstants.CART_URL + "/{cartId}")
     public GenericResponse delete(@PathVariable UUID cartId, @CurrentUser UserPrinciple userPrinciple) {

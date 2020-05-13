@@ -10,12 +10,5 @@ import java.util.Map;
  */
 public interface UserTagEsService {
 
-    /**
-     * Updates/Inserts/Delete user tag data.
-     *
-     * @param userTagData       User Tag capture data change
-     * @param userTagDataBefore User Tag data before
-     * @param operation         {@link Operation}
-     */
-    void maintainReadModel(Map<String, Object> userTagData, Map<String, Object> userTagDataBefore, Operation operation);
+    void handleCdcEvent(Map<String, Object> userTagData, Map<String, Object> userTagDataBefore, Operation operation);
 }

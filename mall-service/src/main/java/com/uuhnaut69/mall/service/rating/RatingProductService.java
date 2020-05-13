@@ -11,28 +11,10 @@ import java.util.UUID;
  */
 public interface RatingProductService {
 
-    /**
-     * Rating a product
-     *
-     * @param productId {@link UUID}
-     * @param userId    {@link UUID}
-     * @param rating    Rating
-     * @return int
-     */
     Integer ratingProduct(UUID productId, UUID userId, int rating);
 
-    /**
-     * Get rating aggregation of product
-     *
-     * @param productResponse {@link ProductResponse}
-     */
     void getRatingAggregationOfProduct(ProductResponse productResponse);
 
-    /**
-     * Get rating aggregation of products
-     *
-     * @param productResponses List {@link ProductResponse}
-     */
     void getRatingAggregationOfProducts(List<ProductResponse> productResponses);
 
 }

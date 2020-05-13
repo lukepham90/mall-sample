@@ -28,7 +28,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "Cart Model", description = "Cart's info")
 public class Cart extends AbstractEntity {
 
     /**
@@ -38,39 +37,32 @@ public class Cart extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @ApiModelProperty(value = "Cart's id")
     private UUID id;
 
     @Enumerated(EnumType.STRING)
-    @ApiModelProperty(value = "Cart's payment method")
     private PaymentMethod paymentMethod;
 
     @Enumerated(EnumType.STRING)
-    @ApiModelProperty(value = "Cart's payment status")
     private PaymentStatus paymentStatus;
 
     @Enumerated(EnumType.STRING)
-    @ApiModelProperty(value = "Cart's currency")
     private Currency currency;
 
-    @ApiModelProperty(value = "Cart's original total price")
     private BigDecimal originalTotalPrice;
 
-    @ApiModelProperty(value = "Tax")
     private BigDecimal taxPrice;
 
-    @ApiModelProperty(value = "Cart's price that user have to pay")
     private BigDecimal priceToPay;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cart_id", nullable = false)
     private Set<CartItem> orderItems = new HashSet<>();
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "ship_id", nullable = false)
     private Shipping shipping;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "billing_id", nullable = false)
     private Billing billing;
 

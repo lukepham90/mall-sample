@@ -1,8 +1,6 @@
 package com.uuhnaut69.mall.domain.model;
 
 import com.uuhnaut69.mall.core.model.AbstractEntity;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -20,7 +18,6 @@ import java.util.UUID;
 @Audited
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "Cart's Item Model", description = "Cart item's info")
 public class CartItem extends AbstractEntity {
 
     /**
@@ -30,13 +27,10 @@ public class CartItem extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @ApiModelProperty(value = "Cart item 's id")
     private UUID id;
 
-    @ApiModelProperty(value = "Cart item 's quantity")
     private Integer quantity;
 
-    @ApiModelProperty(value = "Product's id")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
