@@ -4,8 +4,6 @@ import com.uuhnaut69.mall.core.model.AbstractEntity;
 import com.uuhnaut69.mall.domain.enums.Currency;
 import com.uuhnaut69.mall.domain.enums.PaymentMethod;
 import com.uuhnaut69.mall.domain.enums.PaymentStatus;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
