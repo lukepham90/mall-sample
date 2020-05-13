@@ -5,9 +5,11 @@ import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.stream.Collectors;
 
 
 /**
@@ -18,6 +20,7 @@ import java.util.Date;
 @Component
 public class JwtProvider {
 
+    private static final String AUTHORITIES_KEY = "auth";
 
     @Value("${ecommerce.jwtSecret}")
     private String jwtSecret;
@@ -32,10 +35,12 @@ public class JwtProvider {
      * @return String
      */
     public String generateJwtToken(Authentication authentication) {
-
         UserPrinciple userPrincipal = (UserPrinciple) authentication.getPrincipal();
+        String authorities = userPrincipal.getAuthorities().stream().map(GrantedAuthority::getAuthority)
+                .collect(Collectors.joining(","));
 
         return Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())
+                .claim(AUTHORITIES_KEY, authorities)
                 .setExpiration(new Date((new Date()).getTime() + jwtExpiration))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret).compact();
     }

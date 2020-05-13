@@ -23,11 +23,11 @@ import java.util.Optional;
  * @project mall
  */
 @Service
-public class UserEsServceImpl implements UserEsService {
+public class UserEsServiceImpl implements UserEsService {
 
     private final UserEsRepository userEsRepository;
 
-    public UserEsServceImpl(UserEsRepository userEsRepository) {
+    public UserEsServiceImpl(UserEsRepository userEsRepository) {
         this.userEsRepository = userEsRepository;
     }
 

@@ -27,6 +27,7 @@ public class UrlConstants {
     public static final String SEARCH_URL = "/search";
     public static final String REVIEW_URL = "/reviews";
     public static final String FILE_URL = "/files";
+    public static final String CDC_URL = "/cdc";
     /**
      * Features url
      */

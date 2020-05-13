@@ -11,14 +11,6 @@ import java.util.List;
  */
 public interface AutocompleteService {
 
-    /**
-     * Autocomplete product
-     *
-     * @param text Search content {@link String}
-     * @param size Result size {@link Integer}
-     * @return List {@link AutocompleteResponse}
-     * @throws IOException {@link IOException}
-     */
     List<AutocompleteResponse> autocomplete(String text, int size) throws IOException;
 
 }

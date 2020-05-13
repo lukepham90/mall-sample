@@ -13,13 +13,13 @@
     <packaging>jar</packaging>
 
     <properties>
-        <debezium.version>0.10.0.Final</debezium.version>
+        <debezium.version>1.1.1.Final</debezium.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>io.debezium</groupId>
-            <artifactId>debezium-embedded</artifactId>
+            <artifactId>debezium-api</artifactId>
             <version>${debezium.version}</version>
             <exclusions>
                 <exclusion>
@@ -27,6 +27,11 @@
                     <artifactId>slf4j-log4j12</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.debezium</groupId>
+            <artifactId>debezium-embedded</artifactId>
+            <version>${debezium.version}</version>
         </dependency>
         <dependency>
             <groupId>io.debezium</groupId>

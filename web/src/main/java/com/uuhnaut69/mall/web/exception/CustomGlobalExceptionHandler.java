@@ -22,52 +22,24 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    /**
-     * Custom unAuth exception handler
-     *
-     * @param ex      {@link Exception}
-     * @param request {@link HttpServletRequest}
-     * @return ErrorResponse
-     */
     @ExceptionHandler(AuthorizeException.class)
     public ResponseEntity<ErrorResponse> unAuth(Exception ex, HttpServletRequest request) {
         ErrorResponse errorResponse = getErrorMessages(ex, request, HttpStatus.UNAUTHORIZED);
         return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
     }
 
-    /**
-     * Custom bad request exception handler
-     *
-     * @param ex      {@link Exception}
-     * @param request {@link WebRequest}
-     * @return ErrorResponse
-     */
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ErrorResponse> badRequest(Exception ex, HttpServletRequest request) {
         ErrorResponse errorResponse = getErrorMessages(ex, request, HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
-    /**
-     * Custom not found exception handler
-     *
-     * @param ex      {@link Exception}
-     * @param request {@link HttpServletRequest}
-     * @return ErrorResponse
-     */
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ErrorResponse> customNotFound(Exception ex, HttpServletRequest request) {
         ErrorResponse errorResponse = getErrorMessages(ex, request, HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    /**
-     * Custom general exception
-     *
-     * @param ex      {@link Exception}
-     * @param request {@link HttpServletRequest}
-     * @return ErrorResponse
-     */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> customGeneralException(Exception ex, HttpServletRequest request) {
         ErrorResponse errorResponse = getErrorMessages(ex, request, HttpStatus.INTERNAL_SERVER_ERROR);

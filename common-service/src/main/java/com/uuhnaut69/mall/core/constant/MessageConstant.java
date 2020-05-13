@@ -30,6 +30,9 @@ public final class MessageConstant {
      */
     public static final String ACTIVATE_YOUR_ACCOUNT = "An email has been sent to your email. Please check it out to activate your account !!!";
     public static final String ACTIVATE_YOUR_ACCOUNT_MAIL_CONTENT = "One step last to register successfully, click button below to activate your account !!!";
+    public static final String START_SUCCESSFULLY = "START SUCCESSFULLY !!!";
+    public static final String STOP_SUCCESSFULLY = "STOP SUCCESSFULLY !!!";
+
     /**
      * Payment messages
      */

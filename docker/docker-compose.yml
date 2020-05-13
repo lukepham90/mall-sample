@@ -26,6 +26,12 @@ services:
     ports:
       - 5601:5601
 
+  logtash:
+    container_name: mall-logtash
+    image: docker.elastic.co/logstash/logstash:6.8.7
+    ports:
+      - 9600:9600
+
   rabbitmq:
     container_name: mall-rabbitmq
     image: rabbitmq:management

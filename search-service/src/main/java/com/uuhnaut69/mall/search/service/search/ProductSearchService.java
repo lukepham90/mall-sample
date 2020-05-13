@@ -10,13 +10,6 @@ import org.springframework.data.domain.Pageable;
  */
 public interface ProductSearchService {
 
-    /**
-     * Search product
-     *
-     * @param text     Search content
-     * @param pageable {@link Pageable}
-     * @return Page product
-     */
     Page<ProductEs> search(String text, Pageable pageable);
 
 }

@@ -1,10 +1,11 @@
 package com.uuhnaut69.mall.cdc.listener;
 
 import com.uuhnaut69.mall.cdc.constant.CDCTableConstant;
+import com.uuhnaut69.mall.cdc.util.CreateConnectorUtil;
 import com.uuhnaut69.mall.core.utils.Operation;
 import com.uuhnaut69.mall.search.service.index.*;
-import io.debezium.config.Configuration;
-import io.debezium.embedded.EmbeddedEngine;
+import io.debezium.embedded.Connect;
+import io.debezium.engine.DebeziumEngine;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.kafka.connect.data.Field;
@@ -12,8 +13,9 @@ import org.apache.kafka.connect.data.Struct;
 import org.apache.kafka.connect.source.SourceRecord;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -32,16 +34,9 @@ import static java.util.stream.Collectors.toMap;
 @Component
 public class CDCListener {
 
-    /**
-     * Single thread pool which will run the Debezium engine asynchronously.
-     */
     private final Executor executor = Executors.newSingleThreadExecutor();
 
-    /**
-     * The Debezium engine which needs to be loaded with the configurations, Started
-     * and Stopped - for the CDC to work.
-     */
-    private final EmbeddedEngine engine;
+    private DebeziumEngine<SourceRecord> engine;
 
     private final ProductEsService productEsService;
 
@@ -55,9 +50,8 @@ public class CDCListener {
 
     private final TagEsService tagEsService;
 
-    public CDCListener(Configuration connector, ProductEsService productEsService, ProductTagEsService productTagEsService, UserEsService userEsService,
+    public CDCListener(ProductEsService productEsService, ProductTagEsService productTagEsService, UserEsService userEsService,
                        UserProductEsService userProductEsService, UserTagEsService userTagEsService, TagEsService tagEsService) {
-        this.engine = EmbeddedEngine.create().using(connector).notifying(this::handleEvent).build();
         this.productEsService = productEsService;
         this.productTagEsService = productTagEsService;
         this.userEsService = userEsService;
@@ -66,32 +60,18 @@ public class CDCListener {
         this.tagEsService = tagEsService;
     }
 
-    /**
-     * The method is called after the Debezium engine is initialized and started
-     * asynchronously using the Executor.
-     */
-    @PostConstruct
-    private void start() {
+    public void start(Timestamp fromCheckpointTime) {
+        this.engine = DebeziumEngine.create(Connect.class).using(CreateConnectorUtil.createConnector(null)).notifying(this::handleEvent).build();
         this.executor.execute(engine);
     }
 
-    /**
-     * This method is called when the container is being destroyed. This stops the
-     * debezium, merging the Executor.
-     */
     @PreDestroy
-    private void stop() {
+    public void stop() throws IOException {
         if (this.engine != null) {
-            this.engine.stop();
+            this.engine.close();
         }
     }
 
-    /**
-     * This method is invoked when a transactional action is performed on any of the
-     * tables that were configured.
-     *
-     * @param sourceRecord
-     */
     private void handleEvent(SourceRecord sourceRecord) {
         Struct sourceRecordValue = (Struct) sourceRecord.value();
 
@@ -100,7 +80,6 @@ public class CDCListener {
             Operation operation = Operation.forCode((String) sourceRecordValue.get(OPERATION));
             log.info("{}", sourceRecordValue);
 
-            // Only if this is a transactional operation.
             if (operation != Operation.READ) {
 
                 String record = AFTER; // For Update & Insert operations.
@@ -157,13 +136,6 @@ public class CDCListener {
         }
     }
 
-    /**
-     * Get message event from postgres
-     *
-     * @param sourceRecordValue
-     * @param status
-     * @return Map
-     */
     private Map<String, Object> getMessage(Struct sourceRecordValue, String status) {
         Struct struct = (Struct) sourceRecordValue.get(status);
         Map<String, Object> message = new HashMap<>();
