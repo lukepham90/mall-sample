@@ -2,8 +2,6 @@ package com.uuhnaut69.mall.domain.model;
 
 import com.uuhnaut69.mall.core.model.AbstractEntity;
 import com.uuhnaut69.mall.domain.enums.CouponStatus;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -22,7 +20,6 @@ import java.util.UUID;
 @Audited
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "Coupon Model", description = "Coupon info")
 public class Coupon extends AbstractEntity {
 
     /**
@@ -32,24 +29,18 @@ public class Coupon extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @ApiModelProperty(value = "Coupon's id")
     private UUID id;
 
-    @ApiModelProperty(value = "Coupon's code")
     @Column(nullable = false, unique = true)
     private String code;
 
-    @ApiModelProperty(value = "Coupon's status")
     @Enumerated(EnumType.STRING)
     private CouponStatus couponStatus;
 
     @Column(nullable = false)
-    @ApiModelProperty(value = "Coupon's discount")
     private Integer discountPercent;
 
-    @ApiModelProperty(value = "Coupon's starting date")
     private Timestamp startingDate;
 
-    @ApiModelProperty(value = "Coupon's ending date")
     private Timestamp endingDate;
 }

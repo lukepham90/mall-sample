@@ -31,12 +31,6 @@ public class AuthController {
 
     private final TokenService tokenService;
 
-    /**
-     * Sign in
-     *
-     * @param signInRequest {@link SignInRequest}
-     * @return GenericResponse // status code 200
-     */
     @ApiOperation(value = "SignIn Endpoint")
     @PostMapping(path = UrlConstants.AUTH_URL + "/signin")
     public GenericResponse signIn(@RequestBody @Valid SignInRequest signInRequest) {
@@ -45,12 +39,6 @@ public class AuthController {
         return GenericResponse.builder().data(jwtResponse).build();
     }
 
-    /**
-     * Sign Up
-     *
-     * @param signUpRequest {@link SignUpRequest}
-     * @return GenericResponse // status code 200
-     */
     @ApiOperation(value = "SignUp Endpoint")
     @PostMapping(path = UrlConstants.AUTH_URL + "/signup")
     public GenericResponse signUp(@RequestBody @Valid SignUpRequest signUpRequest) {
@@ -59,12 +47,6 @@ public class AuthController {
         return GenericResponse.builder().data(messageResponse).build();
     }
 
-    /**
-     * Confirm to activate account
-     *
-     * @param token Token
-     * @return status code 200
-     */
     @ApiOperation(value = "Confirmation Endpoint")
     @GetMapping(path = UrlConstants.AUTH_URL + "/confirm")
     public GenericResponse confirmation(@RequestParam(value = "token", defaultValue = "") String token) {

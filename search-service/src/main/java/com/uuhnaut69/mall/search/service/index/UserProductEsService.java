@@ -10,11 +10,5 @@ import java.util.Map;
  */
 public interface UserProductEsService {
 
-    /**
-     * Updates/Inserts/Delete user product data.
-     *
-     * @param userProductData User Product capture data change
-     * @param operation       {@link Operation}
-     */
-    void maintainReadModel(Map<String, Object> userProductData, Operation operation);
+    void handleCdcEvent(Map<String, Object> userProductData, Operation operation);
 }

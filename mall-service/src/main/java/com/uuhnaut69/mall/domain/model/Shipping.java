@@ -2,7 +2,6 @@ package com.uuhnaut69.mall.domain.model;
 
 import com.uuhnaut69.mall.core.model.AbstractEntity;
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -33,18 +32,13 @@ public class Shipping extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @ApiModelProperty(value = "Shipping's id")
     private UUID id;
 
-    @ApiModelProperty(value = "Country's name")
     private String shippingCountry;
 
-    @ApiModelProperty(value = "City's name")
     private String shippingCity;
 
-    @ApiModelProperty(value = "Billing's address")
     private String shippingAddress;
 
-    @ApiModelProperty(value = "Post code")
     private Integer shippingPostcode;
 }

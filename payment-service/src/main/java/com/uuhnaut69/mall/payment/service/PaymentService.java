@@ -9,14 +9,7 @@ import java.util.UUID;
  * @project mall
  */
 public interface PaymentService {
-    /**
-     * Check out
-     *
-     * @param cartId     {@link UUID}
-     * @param userId     {@link UUID}
-     * @param creditCard {@link CreditCard}
-     * @throws Exception
-     */
+
     void checkout(UUID cartId, UUID userId, CreditCard creditCard) throws Exception;
 
 }

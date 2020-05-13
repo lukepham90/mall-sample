@@ -12,34 +12,11 @@ import java.util.Map;
  */
 public interface UserEsService {
 
-    /**
-     * Updates/Inserts/Delete user data.
-     *
-     * @param userData  User capture data change
-     * @param operation {@link Operation}
-     */
-    void maintainReadModel(Map<String, Object> userData, Operation operation);
+    void handleCdcEvent(Map<String, Object> userData, Operation operation);
 
-    /**
-     * Find by user id
-     *
-     * @param id User Id
-     * @return UserEs
-     */
     UserEs findById(String id);
 
-    /**
-     * Save user
-     *
-     * @param userEs {@link UserEs}
-     */
     void save(UserEs userEs);
 
-    /**
-     * Update tag in list user
-     *
-     * @param tagNameBefore Tag name before
-     * @param tagEs         {@link TagEs}
-     */
     void findByTagAndUpdate(String tagNameBefore, TagEs tagEs);
 }

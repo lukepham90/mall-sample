@@ -35,15 +35,6 @@ public class TagController {
 
     private final TagService tagService;
 
-    /**
-     * Get tag page
-     *
-     * @param sortBy   Sorted field
-     * @param order    Ordered field
-     * @param page     Page number
-     * @param pageSize Page size
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Get Tags Endpoint", notes = "Public endpoint")
     @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.TAG_URL)
     public GenericResponse getTagPage(@RequestParam(value = "sort", defaultValue = "id") String sortBy,
@@ -57,12 +48,6 @@ public class TagController {
         return GenericResponse.builder().data(list).build();
     }
 
-    /**
-     * Create a new tag
-     *
-     * @param tagRequest {@link TagRequest}
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Create Tag Endpoint", notes = "Admin endpoint")
     @PostMapping(path = UrlConstants.ADMIN_URL + UrlConstants.TAG_URL)
     public GenericResponse create(@RequestBody @Valid TagRequest tagRequest) {
@@ -71,13 +56,6 @@ public class TagController {
         return GenericResponse.builder().data(tag).build();
     }
 
-    /**
-     * Update a tag
-     *
-     * @param id         Tag Id
-     * @param tagRequest {@link TagRequest}
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Update Tag Endpoint", notes = "Admin endpoint")
     @PutMapping(path = UrlConstants.ADMIN_URL + UrlConstants.TAG_URL + "/{id}")
     public GenericResponse update(@PathVariable UUID id, @RequestBody @Valid TagRequest tagRequest) {
@@ -86,12 +64,6 @@ public class TagController {
         return GenericResponse.builder().data(tagMapper.toTagResponse(tag)).build();
     }
 
-    /**
-     * Delete a tag
-     *
-     * @param id Tag Id
-     * @return GenericResponse
-     */
     @ApiOperation(value = "Delete Tag Endpoint", notes = "Admin endpoint")
     @DeleteMapping(path = UrlConstants.ADMIN_URL + UrlConstants.TAG_URL + "/{id}")
     public GenericResponse delete(@PathVariable UUID id) {

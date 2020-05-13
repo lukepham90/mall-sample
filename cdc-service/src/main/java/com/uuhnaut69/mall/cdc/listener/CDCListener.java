@@ -116,38 +116,37 @@ public class CDCListener {
 
                 Map<String, Object> messageBefore;
 
-                // Call the service to handle the data change.
                 switch (tableChange) {
 
                     case CDCTableConstant.PRODUCT_TABLE:
-                        this.productEsService.maintainReadModel(message, operation);
+                        this.productEsService.handleCdcEvent(message, operation);
                         log.info("Product Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
                     case CDCTableConstant.PRODUCT_TAG_TABLE:
                         messageBefore = getMessage(sourceRecordValue, BEFORE);
-                        this.productTagEsService.maintainReadModel(message, messageBefore, operation);
+                        this.productTagEsService.handleCdcEvent(message, messageBefore, operation);
                         log.info("Product Tag Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
                     case CDCTableConstant.USER_TABLE:
-                        this.userEsService.maintainReadModel(message, operation);
+                        this.userEsService.handleCdcEvent(message, operation);
                         log.info("User Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
                     case CDCTableConstant.USER_PRODUCT_TABLE:
-                        this.userProductEsService.maintainReadModel(message, operation);
+                        this.userProductEsService.handleCdcEvent(message, operation);
                         log.info("User Product Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
                     case CDCTableConstant.USER_TAG_TABLE:
                         messageBefore = getMessage(sourceRecordValue, BEFORE);
-                        this.userTagEsService.maintainReadModel(message, messageBefore, operation);
+                        this.userTagEsService.handleCdcEvent(message, messageBefore, operation);
                         log.info("User Tag Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
                     case CDCTableConstant.TAG_TABLE:
-                        this.tagEsService.maintainReadModel(message, operation);
+                        this.tagEsService.handleCdcEvent(message, operation);
                         log.info("Tag Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
                         break;
                     default:

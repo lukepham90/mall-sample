@@ -25,15 +25,6 @@ public class PaymentController {
 
     private final PaymentService paymentService;
 
-    /**
-     * Payment
-     *
-     * @param cartId        Cart Id
-     * @param creditCard    {@link CreditCard}
-     * @param userPrinciple Current User
-     * @return GenericResponse
-     * @throws Exception Exception error
-     */
     @ApiOperation(value = "Payment Endpoint", notes = "User endpoint")
     @PostMapping(path = UrlConstants.CART_URL + "/{cartId}" + UrlConstants.CHECKOUT)
     public GenericResponse charge(@PathVariable UUID cartId, @RequestBody CreditCard creditCard,

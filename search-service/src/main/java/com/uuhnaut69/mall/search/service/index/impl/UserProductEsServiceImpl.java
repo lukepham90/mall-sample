@@ -26,7 +26,7 @@ public class UserProductEsServiceImpl implements UserProductEsService {
     }
 
     @Override
-    public void maintainReadModel(Map<String, Object> userProductData, Operation operation) {
+    public void handleCdcEvent(Map<String, Object> userProductData, Operation operation) {
         String userId = userProductData.get("user_id").toString();
         String productId = userProductData.get("product_id").toString();
 

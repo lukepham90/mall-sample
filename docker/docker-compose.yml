@@ -2,8 +2,8 @@ version: "3.7"
 
 services:
   postgres:
-    container_name: postgres
-    image: debezium/postgres
+    container_name: mall-postgres
+    image: debezium/postgres:12
     ports:
       - 5432:5432
     environment:
@@ -12,7 +12,7 @@ services:
       - POSTGRES_PASSWORD=postgres
 
   elasticsearch:
-    container_name: elasticsearch
+    container_name: mall-elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:6.8.7
     environment:
       - discovery.type=single-node
@@ -21,13 +21,13 @@ services:
       - 9300:9300
 
   kibana:
-    container_name: kibana
+    container_name: mall-kibana
     image: docker.elastic.co/kibana/kibana:6.8.7
     ports:
       - 5601:5601
 
   rabbitmq:
-    container_name: rabbitmq
+    container_name: mall-rabbitmq
     image: rabbitmq:management
     ports:
       - 5672:5672

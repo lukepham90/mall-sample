@@ -53,23 +53,11 @@ public class FileServiceImpl implements FileService {
         amazonS3Client.deleteObject(new DeleteObjectRequest(amazonS3BucketName, fileName));
     }
 
-    /**
-     * Upload to s3
-     *
-     * @param fileName
-     * @param file
-     */
     private void uploadFileTos3bucket(String fileName, File file) {
         amazonS3Client.putObject(new PutObjectRequest(amazonS3BucketName, fileName, file)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
     }
 
-    /**
-     * Convert multipart into file
-     *
-     * @param file
-     * @return File
-     */
     private File convertMultiPartToFile(MultipartFile file) {
         File convertFile = new File(Objects.requireNonNull(file.getOriginalFilename()));
         try (FileOutputStream fos = new FileOutputStream(convertFile)) {
@@ -81,12 +69,6 @@ public class FileServiceImpl implements FileService {
         return convertFile;
     }
 
-    /**
-     * Generate file name
-     *
-     * @param multiPart
-     * @return file name
-     */
     private String generateFileName(MultipartFile multiPart) {
         return TimeUtils.getCurrentTimestamp() + "-" + Objects.requireNonNull(multiPart.getOriginalFilename()).replace(" ", "_");
     }

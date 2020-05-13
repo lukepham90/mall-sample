@@ -14,51 +14,16 @@ import java.util.UUID;
  */
 public interface ProductService {
 
-    /**
-     * Find page products
-     *
-     * @param pageable {@link Pageable}
-     * @return page product
-     */
     Page<Product> findAll(Pageable pageable);
 
-    /**
-     * Get detail of product
-     *
-     * @param id {@link UUID}
-     * @return Product
-     */
     Product findById(UUID id);
 
-    /**
-     * Create a product
-     *
-     * @param productRequest {@link ProductRequest}
-     * @return Product
-     */
     Product create(ProductRequest productRequest);
 
-    /**
-     * Update product
-     *
-     * @param id             {@link UUID}
-     * @param productRequest {@link ProductRequest}
-     * @return Product
-     */
     Product update(UUID id, ProductRequest productRequest);
 
-    /**
-     * Delete product
-     *
-     * @param id {@link UUID}
-     */
     void delete(UUID id);
 
-    /**
-     * Delete products by given list ids
-     *
-     * @param ids List {@link UUID}
-     */
     void deleteAll(List<UUID> ids);
 
 }

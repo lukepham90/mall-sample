@@ -32,7 +32,7 @@ public class UserEsServceImpl implements UserEsService {
     }
 
     @Override
-    public void maintainReadModel(Map<String, Object> userData, Operation operation) {
+    public void handleCdcEvent(Map<String, Object> userData, Operation operation) {
         final ObjectMapper mapper = new ObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);

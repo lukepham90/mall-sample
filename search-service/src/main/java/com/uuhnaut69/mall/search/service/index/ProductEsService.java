@@ -12,34 +12,11 @@ import java.util.Map;
  */
 public interface ProductEsService {
 
-    /**
-     * Updates/Inserts/Delete product data.
-     *
-     * @param productData Product capture data change
-     * @param operation   {@link Operation}
-     */
-    void maintainReadModel(Map<String, Object> productData, Operation operation);
+    void handleCdcEvent(Map<String, Object> productData, Operation operation);
 
-    /**
-     * Update tag in list product
-     *
-     * @param tagNameBefore Tag name of product before
-     * @param tagEs         {@link TagEs}
-     */
     void findByTagAndUpdate(String tagNameBefore, TagEs tagEs);
 
-    /**
-     * Find by product id
-     *
-     * @param id Product Id
-     * @return ProductEs
-     */
     ProductEs findById(String id);
 
-    /**
-     * Save product
-     *
-     * @param productEs {@link ProductEs}
-     */
     void save(ProductEs productEs);
 }
