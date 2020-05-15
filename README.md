@@ -38,8 +38,6 @@ Sample mall project with Spring boot 2.x
 
    - Elasticsearch
 
-   - Spring cache caffeine
-   
    - AWS S3
    
    - Swagger 2
