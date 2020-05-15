@@ -19,7 +19,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Document(indexName = EsConstants.USER_INDEX, type = EsConstants.USER_INDEX_TYPE, shards = 1, replicas = 0, refreshInterval = "-1")
+@Document(indexName = EsConstants.USER_INDEX, type = EsConstants.USER_INDEX_TYPE)
 public class UserEs extends AbstractDocument {
 
     /**

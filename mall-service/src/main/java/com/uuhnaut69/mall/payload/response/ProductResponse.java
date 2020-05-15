@@ -21,13 +21,7 @@ public class ProductResponse {
 
     private String description;
 
-    private Double ratingAverage;
-
-    private Long ratingAmount;
-
     private Integer stocks;
-
-    private Long reviewCount;
 
     private String imageUrls;
 

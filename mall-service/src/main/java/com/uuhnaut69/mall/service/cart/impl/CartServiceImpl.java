@@ -100,7 +100,6 @@ public class CartServiceImpl implements CartService {
                 log.error(e.getMessage());
             }
         });
-
         cart.setOrderItems(cartItems);
         cart.setUser(userService.findById(userId));
         cart.setCoupon(couponService.findByCode(cartRequest.getCouponCode()));
