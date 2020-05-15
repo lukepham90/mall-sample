@@ -16,7 +16,7 @@ public class StripeConfig {
     private String secretKey;
 
     @Bean
-    void init() {
+    public void init() {
         Stripe.apiKey = secretKey;
     }
 }

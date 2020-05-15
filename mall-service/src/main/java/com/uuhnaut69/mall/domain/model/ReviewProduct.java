@@ -1,6 +1,5 @@
 package com.uuhnaut69.mall.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.uuhnaut69.mall.core.model.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,12 +24,10 @@ public class ReviewProduct extends AbstractEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -38,7 +35,6 @@ public class ReviewProduct extends AbstractEntity {
     @Column(columnDefinition = "text", nullable = false)
     private String reviewContent;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_review_id")
     private ReviewProduct parentReviewProduct;

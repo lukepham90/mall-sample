@@ -8,6 +8,7 @@ import com.uuhnaut69.mall.core.utils.TimeUtils;
 import com.uuhnaut69.mall.file.service.FileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,9 +27,11 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class FileServiceImpl implements FileService {
 
-    private final String amazonS3EndPoint;
+    @Value("${amazon.s3.bucket-name}")
+    private String amazonS3BucketName;
 
-    private final String amazonS3BucketName;
+    @Value("${amazon.s3.endpoint}")
+    private String amazonS3EndPoint;
 
     private final AmazonS3 amazonS3Client;
 
@@ -70,6 +73,6 @@ public class FileServiceImpl implements FileService {
     }
 
     private String generateFileName(MultipartFile multiPart) {
-        return TimeUtils.getCurrentTimestamp() + "-" + Objects.requireNonNull(multiPart.getOriginalFilename()).replace(" ", "_");
+        return TimeUtils.getCurrentTimestamp() + "_" + Objects.requireNonNull(multiPart.getOriginalFilename()).replace(" ", "_");
     }
 }

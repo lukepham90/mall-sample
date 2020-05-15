@@ -1,11 +1,9 @@
 package com.uuhnaut69.mall.domain.model;
 
 import com.uuhnaut69.mall.core.model.AbstractEntity;
-import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.envers.Audited;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,10 +17,8 @@ import java.util.UUID;
  */
 @Data
 @Entity
-@Audited
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "Shipping Model", description = "Shipping payment's info")
 public class Shipping extends AbstractEntity {
 
     /**

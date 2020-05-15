@@ -5,7 +5,6 @@ import com.uuhnaut69.mall.domain.enums.CouponStatus;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -17,7 +16,6 @@ import java.util.UUID;
  */
 @Data
 @Entity
-@Audited
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Coupon extends AbstractEntity {

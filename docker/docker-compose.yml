@@ -31,10 +31,3 @@ services:
     image: docker.elastic.co/logstash/logstash:6.8.7
     ports:
       - 9600:9600
-
-  rabbitmq:
-    container_name: mall-rabbitmq
-    image: rabbitmq:management
-    ports:
-      - 5672:5672
-      - 15672:15672

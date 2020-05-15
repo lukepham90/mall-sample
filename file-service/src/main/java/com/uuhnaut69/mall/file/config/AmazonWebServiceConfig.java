@@ -26,12 +26,6 @@ public class AmazonWebServiceConfig {
     @Value("${amazon.region}")
     private String amazonRegion;
 
-    @Value("${amazon.s3.bucket-name}")
-    private String amazonS3BucketName;
-
-    @Value("${amazon.s3.endpoint}")
-    private String amazonS3EndPoint;
-
     public AWSCredentialsProvider amazonAWSCredentialsProvider() {
         return new AWSStaticCredentialsProvider(amazonAWSCredentials());
     }
@@ -45,15 +39,5 @@ public class AmazonWebServiceConfig {
     public AmazonS3 amazonS3Client(AWSCredentials awsCredentials) {
         return AmazonS3ClientBuilder.standard().withCredentials(amazonAWSCredentialsProvider()).withRegion(amazonRegion)
                 .build();
-    }
-
-    @Bean(name = "amazonS3BucketName")
-    public String getAWSS3BucketName() {
-        return amazonS3BucketName;
-    }
-
-    @Bean(name = "amazonS3EndPoint")
-    public String getAWSS3EndPoint() {
-        return amazonS3EndPoint;
     }
 }

@@ -4,7 +4,6 @@ import com.uuhnaut69.mall.core.model.AbstractEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -15,7 +14,6 @@ import java.util.UUID;
  */
 @Data
 @Entity
-@Audited
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class CartItem extends AbstractEntity {

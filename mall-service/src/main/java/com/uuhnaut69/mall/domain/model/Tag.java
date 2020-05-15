@@ -1,11 +1,9 @@
 package com.uuhnaut69.mall.domain.model;
 
 import com.uuhnaut69.mall.core.model.AbstractEntity;
-import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -16,10 +14,8 @@ import java.util.UUID;
  */
 @Data
 @Entity
-@Audited
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "Tag Model", description = "Tag's info")
 public class Tag extends AbstractEntity {
 
     /**

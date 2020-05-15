@@ -20,6 +20,7 @@ import java.util.UUID;
 @Configuration
 @EnableJpaAuditing
 public class JpaAuditingConfig {
+
     @Bean
     public AuditorAware<UUID> auditorProvider() {
         return new SpringSecurityAuditAwareImpl();

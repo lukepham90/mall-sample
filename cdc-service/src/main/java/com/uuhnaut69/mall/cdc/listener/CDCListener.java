@@ -13,9 +13,9 @@ import org.apache.kafka.connect.data.Struct;
 import org.apache.kafka.connect.source.SourceRecord;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -60,8 +60,9 @@ public class CDCListener {
         this.tagEsService = tagEsService;
     }
 
-    public void start(Timestamp fromCheckpointTime) {
-        this.engine = DebeziumEngine.create(Connect.class).using(CreateConnectorUtil.createConnector(null)).notifying(this::handleEvent).build();
+    @PostConstruct
+    public void start() {
+        this.engine = DebeziumEngine.create(Connect.class).using(CreateConnectorUtil.createConnector()).notifying(this::handleEvent).build();
         this.executor.execute(engine);
     }
 

@@ -20,15 +20,15 @@ Sample mall project with Spring boot 2.x
  <summary> List technology stacks used in this project </summary> 
  <p>
   
-   - Spring Boot Framework 2.x (JPA, Security, ...)
+   - Spring Boot Framework 2.x
    
    - Postgres 10
 
-   - Mapstruct (Bean mapping)
+   - Mapstruct
 
    - Lombok
 
-   - Java stripe (Payment method)
+   - Java stripe
 
    - Jwt
 
@@ -36,7 +36,7 @@ Sample mall project with Spring boot 2.x
 
    - CDC Embedded Debezium Postgres
 
-   - Elasticsearch (Jest client + ES v6.8.1)
+   - Elasticsearch
 
    - Spring cache caffeine
    

@@ -32,7 +32,7 @@ public class AuthController {
     private final TokenService tokenService;
 
     @ApiOperation(value = "SignIn Endpoint")
-    @PostMapping(path = UrlConstants.AUTH_URL + "/signin")
+    @PostMapping(path = UrlConstants.AUTH_URL + "/sign-in")
     public GenericResponse signIn(@RequestBody @Valid SignInRequest signInRequest) {
         JwtResponse jwtResponse = authService.signIn(signInRequest);
         log.info("Generate token {}", jwtResponse);
@@ -40,8 +40,8 @@ public class AuthController {
     }
 
     @ApiOperation(value = "SignUp Endpoint")
-    @PostMapping(path = UrlConstants.AUTH_URL + "/signup")
-    public GenericResponse signUp(@RequestBody @Valid SignUpRequest signUpRequest) {
+    @PostMapping(path = UrlConstants.AUTH_URL + "/sign-up")
+    public GenericResponse signUp(@RequestBody @Valid SignUpRequest signUpRequest) throws Exception {
         log.info("Sign up user with {}", signUpRequest);
         MessageResponse messageResponse = authService.signUp(signUpRequest);
         return GenericResponse.builder().data(messageResponse).build();

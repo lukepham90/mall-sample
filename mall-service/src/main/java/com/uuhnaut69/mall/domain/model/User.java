@@ -3,13 +3,11 @@ package com.uuhnaut69.mall.domain.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.uuhnaut69.mall.core.model.AbstractEntity;
 import com.uuhnaut69.mall.domain.enums.RoleName;
-import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NaturalId;
-import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -24,12 +22,10 @@ import java.util.UUID;
  */
 @Data
 @Entity
-@Audited
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "User Model", description = "User's info")
 public class User extends AbstractEntity {
     /**
      *

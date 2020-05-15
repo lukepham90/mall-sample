@@ -33,5 +33,5 @@ public class RatingProduct extends AbstractEntity {
 
     @Min(1)
     @Max(5)
-    private int rating;
+    private Integer rating;
 }

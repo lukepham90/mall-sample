@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -22,7 +21,6 @@ import java.util.UUID;
  */
 @Data
 @Entity
-@Audited
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)

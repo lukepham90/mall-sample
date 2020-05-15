@@ -10,20 +10,8 @@ import com.uuhnaut69.mall.payload.response.MessageResponse;
  * @project mall
  */
 public interface AuthService {
-    /**
-     * Sign In
-     *
-     * @param signInRequest {@link SignInRequest}
-     * @return JwtResponse
-     */
+
     JwtResponse signIn(SignInRequest signInRequest);
 
-    /**
-     * Sign Up
-     *
-     * @param signUpRequest {@link SignInRequest}
-     * @return MessageResponse
-     * @throws Exception {@link Exception}
-     */
-    MessageResponse signUp(SignUpRequest signUpRequest);
+    MessageResponse signUp(SignUpRequest signUpRequest) throws Exception;
 }

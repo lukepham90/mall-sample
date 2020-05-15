@@ -1,6 +1,5 @@
 package com.uuhnaut69.security.auth.impl;
 
-import com.uuhnaut69.mall.constant.RabbitMqConstant;
 import com.uuhnaut69.mall.core.constant.MessageConstant;
 import com.uuhnaut69.mall.core.exception.BadRequestException;
 import com.uuhnaut69.mall.domain.enums.RoleName;
@@ -10,11 +9,11 @@ import com.uuhnaut69.mall.payload.request.SignUpRequest;
 import com.uuhnaut69.mall.payload.response.JwtResponse;
 import com.uuhnaut69.mall.payload.response.MessageResponse;
 import com.uuhnaut69.mall.repository.user.UserRepository;
+import com.uuhnaut69.mall.service.mail.MailService;
 import com.uuhnaut69.security.auth.AuthService;
 import com.uuhnaut69.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -37,7 +36,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
 
-    private final RabbitTemplate rabbitTemplate;
+    private final MailService mailService;
 
     private final PasswordEncoder encoder;
 
@@ -55,7 +54,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public MessageResponse signUp(SignUpRequest signUpRequest) {
+    public MessageResponse signUp(SignUpRequest signUpRequest) throws Exception {
         checkUserNameValid(signUpRequest.getUsername());
         checkEmailValid(signUpRequest.getEmail());
 
@@ -64,26 +63,16 @@ public class AuthServiceImpl implements AuthService {
         user.setRole(RoleName.ROLE_USER);
 
         userRepository.save(user);
-        rabbitTemplate.convertAndSend(RabbitMqConstant.SEND_ACTIVATE_MAIL_TOPIC, user);
+        mailService.sendMail(user);
         return new MessageResponse(MessageConstant.ACTIVATE_YOUR_ACCOUNT);
     }
 
-    /**
-     * Check user name valid or not
-     *
-     * @param userName User's name
-     */
     private void checkUserNameValid(String userName) {
         if (userRepository.existsByUsername(userName)) {
             throw new BadRequestException(MessageConstant.USER_NAME_ALREADY_EXIST);
         }
     }
 
-    /**
-     * Check email valid or not
-     *
-     * @param email User's email
-     */
     private void checkEmailValid(String email) {
         if (userRepository.existsByEmail(email)) {
             throw new BadRequestException(MessageConstant.USER_EMAIL_ALREADY_EXIST);

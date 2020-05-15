@@ -37,8 +37,6 @@ public class ProductResponse {
 
     private BigDecimal discountPrice;
 
-    private boolean isActive;
-
     private Set<TagResponse> tags;
 
     private boolean trending;

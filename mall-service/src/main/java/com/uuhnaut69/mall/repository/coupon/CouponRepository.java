@@ -20,8 +20,6 @@ public interface CouponRepository extends JpaRepository<Coupon, UUID> {
 
     Page<Coupon> findAll(Pageable pageable);
 
-    Optional<Coupon> findByCodeAndCouponStatus(String code, CouponStatus couponStatus);
-
     Optional<Coupon> findByCode(String code);
 
     boolean existsByCode(String code);

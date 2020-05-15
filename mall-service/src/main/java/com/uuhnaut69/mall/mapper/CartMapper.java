@@ -1,5 +1,6 @@
 package com.uuhnaut69.mall.mapper;
 
+import com.uuhnaut69.mall.config.SpringMapstructConfig;
 import com.uuhnaut69.mall.domain.model.*;
 import com.uuhnaut69.mall.payload.request.CartRequest;
 import com.uuhnaut69.mall.payload.response.*;
@@ -13,7 +14,7 @@ import java.util.List;
  * @author uuhnaut
  * @project mall
  */
-@Mapper(componentModel = "spring")
+@Mapper(config = SpringMapstructConfig.class)
 public interface CartMapper {
 
     /**

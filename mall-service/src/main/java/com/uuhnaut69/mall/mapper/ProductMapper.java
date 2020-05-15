@@ -1,5 +1,6 @@
 package com.uuhnaut69.mall.mapper;
 
+import com.uuhnaut69.mall.config.SpringMapstructConfig;
 import com.uuhnaut69.mall.domain.model.Product;
 import com.uuhnaut69.mall.domain.model.Tag;
 import com.uuhnaut69.mall.payload.request.ProductRequest;
@@ -15,7 +16,7 @@ import java.util.Set;
  * @author uuhnaut
  * @project mall
  */
-@Mapper(componentModel = "spring")
+@Mapper(config = SpringMapstructConfig.class)
 public interface ProductMapper {
 
     /**

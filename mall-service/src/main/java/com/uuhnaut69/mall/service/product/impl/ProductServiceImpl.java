@@ -10,10 +10,6 @@ import com.uuhnaut69.mall.repository.product.ProductRepository;
 import com.uuhnaut69.mall.service.product.ProductService;
 import com.uuhnaut69.mall.service.tag.TagService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -31,7 +27,6 @@ import java.util.UUID;
 @Service
 @Transactional
 @RequiredArgsConstructor
-@CacheConfig(cacheNames = "product")
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
@@ -47,7 +42,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Cacheable(key = "#id")
     @Transactional(readOnly = true)
     public Product findById(UUID id) {
         Optional<Product> product = productRepository.findById(id);
@@ -60,21 +54,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @CachePut(key = "#id")
     public Product update(UUID id, ProductRequest productRequest) {
         Product product = findById(id);
         return save(productRequest, product);
     }
 
     @Override
-    @CacheEvict(key = "#id")
     public void delete(UUID id) {
         Product product = findById(id);
         productRepository.delete(product);
     }
 
     @Override
-    @CacheEvict(allEntries = true)
     public void deleteAll(List<UUID> ids) {
         List<Product> list = productRepository.findByIdIn(ids);
         productRepository.deleteAll(list);

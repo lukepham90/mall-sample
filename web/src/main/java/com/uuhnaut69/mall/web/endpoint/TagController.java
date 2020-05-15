@@ -53,7 +53,8 @@ public class TagController {
     public GenericResponse create(@RequestBody @Valid TagRequest tagRequest) {
         log.debug("Insert new tag {} into database", tagRequest);
         Tag tag = tagService.create(tagRequest);
-        return GenericResponse.builder().data(tag).build();
+        TagResponse tagResponse = tagMapper.toTagResponse(tag);
+        return GenericResponse.builder().data(tagResponse).build();
     }
 
     @ApiOperation(value = "Update Tag Endpoint", notes = "Admin endpoint")
@@ -61,7 +62,8 @@ public class TagController {
     public GenericResponse update(@PathVariable UUID id, @RequestBody @Valid TagRequest tagRequest) {
         log.info("Update tag {} with {} into database", id, tagRequest);
         Tag tag = tagService.update(id, tagRequest);
-        return GenericResponse.builder().data(tagMapper.toTagResponse(tag)).build();
+        TagResponse tagResponse = tagMapper.toTagResponse(tag);
+        return GenericResponse.builder().data(tagResponse).build();
     }
 
     @ApiOperation(value = "Delete Tag Endpoint", notes = "Admin endpoint")

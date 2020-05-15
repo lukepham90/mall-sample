@@ -10,6 +10,9 @@ import com.uuhnaut69.mall.service.token.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +23,8 @@ import javax.mail.internet.MimeMessage;
  * @project mall
  */
 @Service
+@EnableAsync
+@EnableScheduling
 @Transactional
 @RequiredArgsConstructor
 public class MailServiceImpl implements MailService {
@@ -28,20 +33,9 @@ public class MailServiceImpl implements MailService {
 
     private final TokenService tokenService;
 
+    @Async
     @Override
     public void sendMail(User user) throws Exception {
-        MimeMessage message = constructHtmlActiveAccountMail(user);
-        mailSender.send(message);
-    }
-
-    /**
-     * Construct simple mail to activate account after register account
-     *
-     * @param user
-     * @return MimeMessage
-     * @throws Exception
-     */
-    private MimeMessage constructHtmlActiveAccountMail(User user) throws Exception {
         String subject = "Registration Confirmation";
         String receiveMailAddress = user.getEmail();
         String verifyToken = tokenService.generateToken(user);
@@ -55,6 +49,7 @@ public class MailServiceImpl implements MailService {
         String text = MailTemplateUtils.makeHtmlActiveAccountMail(MessageConstant.ACTIVATE_YOUR_ACCOUNT_MAIL_CONTENT,
                 confirmUrl, user.getUsername());
         helper.setText(text, true);
-        return message;
+        mailSender.send(message);
     }
+
 }

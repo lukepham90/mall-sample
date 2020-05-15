@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -18,7 +17,6 @@ import java.util.UUID;
  */
 @Data
 @Entity
-@Audited
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
@@ -36,7 +34,7 @@ public class VerifyToken extends AbstractEntity {
     @ApiModelProperty(value = "Token")
     private String token;
 
-    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = User.class)
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
 
