@@ -71,21 +71,11 @@ public class TagServiceImpl implements TagService {
         return tagRepository.findByIdIn(uuids);
     }
 
-    /**
-     * @param tagRequest
-     * @param tag
-     * @return Tag
-     */
     private Tag save(TagRequest tagRequest, Tag tag) {
         tagMapper.toTagEntity(tagRequest, tag);
         return tagRepository.save(tag);
     }
 
-    /**
-     * Check tag name valid or not
-     *
-     * @param tagName
-     */
     private void checkTagNameValid(String tagName) {
         if (tagRepository.existsByTagName(tagName)) {
             throw new BadRequestException(MessageConstant.TAG_ALREADY_EXIST);

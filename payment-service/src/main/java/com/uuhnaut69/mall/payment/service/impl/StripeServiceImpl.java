@@ -36,8 +36,8 @@ public class StripeServiceImpl implements StripeService {
     public void charge(CreditCard creditCard, Cart cart, UUID userId) throws Exception {
         String stripeToken = createTokenToCharge(creditCard);
         User user = userService.findById(userId);
-        log.info("User has id {} is being process payemnt !!!", user.getId());
-        if (user.getCustomerStripeId() == null) {
+        log.info("User has id {} is being process payment !!!", user.getId());
+        if (user.getCustomerStripeId() == null || user.getCustomerStripeId().isEmpty()) {
             Customer customer = createCustomer(stripeToken, user.getEmail());
             user.setCustomerStripeId(customer.getId());
             userService.save(user);
@@ -45,14 +45,6 @@ public class StripeServiceImpl implements StripeService {
         chargeCustomerCard(user.getCustomerStripeId(), cart);
     }
 
-    /**
-     * Attach card info to customer
-     *
-     * @param token
-     * @param email
-     * @return Customer
-     * @throws Exception
-     */
     private Customer createCustomer(String token, String email) throws Exception {
         Map<String, Object> customerParams = new HashMap<>();
         customerParams.put("email", email);
@@ -60,13 +52,6 @@ public class StripeServiceImpl implements StripeService {
         return Customer.create(customerParams);
     }
 
-    /**
-     * Process charge
-     *
-     * @param customerId
-     * @param cart
-     * @throws Exception
-     */
     private void chargeCustomerCard(String customerId, Cart cart) throws Exception {
         String sourceCard = getCustomer(customerId).getDefaultSource();
         Map<String, Object> chargeParams = new HashMap<>();
@@ -89,13 +74,6 @@ public class StripeServiceImpl implements StripeService {
         }
     }
 
-    /**
-     * Create token to charge
-     *
-     * @param creditCard
-     * @return Stripe token
-     * @throws Exception
-     */
     private String createTokenToCharge(CreditCard creditCard) throws Exception {
         Map<String, Object> card = new HashMap<>();
         card.put("number", creditCard.getCardNumber());
@@ -108,13 +86,6 @@ public class StripeServiceImpl implements StripeService {
         return token.getId();
     }
 
-    /**
-     * Get customer stripe id
-     *
-     * @param id
-     * @return Customer
-     * @throws Exception
-     */
     private Customer getCustomer(String id) throws Exception {
         return Customer.retrieve(id);
     }

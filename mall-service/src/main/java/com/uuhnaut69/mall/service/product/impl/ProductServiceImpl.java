@@ -71,13 +71,6 @@ public class ProductServiceImpl implements ProductService {
         productRepository.deleteAll(list);
     }
 
-    /**
-     * Save product entity
-     *
-     * @param productRequest {@link ProductRequest}
-     * @param product        {@link Product}
-     * @return Product
-     */
     private Product save(ProductRequest productRequest, Product product) {
         productMapper.toProductEntity(productRequest, product);
         Set<Tag> tags = tagService.findListTagInListIds(productRequest.getUuidTags());

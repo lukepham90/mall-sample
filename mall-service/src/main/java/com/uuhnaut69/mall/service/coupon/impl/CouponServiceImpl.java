@@ -71,34 +71,16 @@ public class CouponServiceImpl implements CouponService {
         couponRepository.deleteAll(coupons);
     }
 
-    /**
-     * Find coupon by id
-     *
-     * @param id
-     * @return Coupon
-     */
     private Coupon findById(UUID id) {
         Optional<Coupon> coupon = couponRepository.findById(id);
         return coupon.orElseThrow(() -> new NotFoundException(MessageConstant.COUPON_NOT_FOUND));
     }
 
-    /**
-     * Save coupon entity
-     *
-     * @param couponRequest
-     * @param coupon
-     * @return Coupon
-     */
     private Coupon save(CouponRequest couponRequest, Coupon coupon) {
         couponMapper.toCouponEntity(couponRequest, coupon);
         return couponRepository.save(coupon);
     }
 
-    /**
-     * Check coupon code valid or not
-     *
-     * @param code
-     */
     private void checkCouponCodeValid(String code) {
         if (couponRepository.existsByCode(code)) {
             throw new BadRequestException(MessageConstant.COUPON_ALREADY_EXIST);

@@ -81,14 +81,6 @@ public class CartServiceImpl implements CartService {
         return cart.orElseThrow(() -> new NotFoundException(MessageConstant.CART_NOT_FOUND));
     }
 
-    /**
-     * Save cart entity
-     *
-     * @param cartRequest
-     * @param cart
-     * @param userId
-     * @return Cart
-     */
     private Cart save(CartRequest cartRequest, Cart cart, UUID userId) {
         Set<CartItem> cartItems = new HashSet<>();
         cartMapper.toCartEntity(cartRequest, cart);
@@ -111,12 +103,6 @@ public class CartServiceImpl implements CartService {
         return cartRepository.save(cart);
     }
 
-    /**
-     * Calculate price (Not include tax)
-     *
-     * @param cartRequest
-     * @param cart
-     */
     private void calculatePrice(CartRequest cartRequest, Cart cart) {
         List<Integer> listPrice = new ArrayList<>();
 
@@ -144,12 +130,6 @@ public class CartServiceImpl implements CartService {
 
     }
 
-    /**
-     * Calculate tax price
-     *
-     * @param cart
-     * @param priceToPay
-     */
     private void calculateTaxPrice(Cart cart, int priceToPay) {
         int tax = priceToPay * 8 / 100;
         cart.setTaxPrice(new BigDecimal(tax));
@@ -157,11 +137,6 @@ public class CartServiceImpl implements CartService {
         cart.setPriceToPay(new BigDecimal(finalPrice));
     }
 
-    /**
-     * Check cart is succeed
-     *
-     * @param cart
-     */
     private void checkIsSucceed(Cart cart) {
         if (cart.getPaymentStatus().name().equals(PaymentStatus.SUCCEED.name())) {
             throw new BadRequestException(MessageConstant.PAYMENT_SUCCEED_CANT_BE_DELETE);

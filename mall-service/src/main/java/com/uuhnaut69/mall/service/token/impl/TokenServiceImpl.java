@@ -48,12 +48,6 @@ public class TokenServiceImpl implements TokenService {
         verifyTokenRepository.delete(verifyToken);
     }
 
-    /**
-     * Find verify token by token id
-     *
-     * @param token
-     * @return VerifyToken
-     */
     private VerifyToken findByToken(String token) {
         Optional<VerifyToken> verifyToken = verifyTokenRepository.findByToken(token);
         return verifyToken.orElseThrow(() -> new BadRequestException(MessageConstant.TOKEN_NOT_FOUND));
