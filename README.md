@@ -8,7 +8,7 @@ Sample mall project with Spring boot 2.x
 
 - [x] File Service - Upload file to Aws S3
 
-- [x] Mall Service - Core business
+- [x] Mall Service - Mall core
 
 - [x] Payment Service - Integrate payment with Stripe
 
@@ -28,11 +28,9 @@ Sample mall project with Spring boot 2.x
 
    - Lombok
 
-   - Java stripe
+   - Stripe
 
    - Jwt
-
-   - Spring boot mail
 
    - CDC Embedded Debezium Postgres
 
@@ -42,8 +40,7 @@ Sample mall project with Spring boot 2.x
    
    - Swagger 2
    
-   - Rabbitmq
- </p>
+</p>
 </details> 
 
 <h3>Run Environment</h3>
