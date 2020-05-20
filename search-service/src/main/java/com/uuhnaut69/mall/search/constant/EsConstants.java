@@ -25,6 +25,9 @@ public final class EsConstants {
     public static final String USER_INDEX = "user-index";
     public static final String USER_INDEX_TYPE = "user";
 
+    public static final String CATEGORY_INDEX = "category-index";
+    public static final String CATEGORY_INDEX_TYPE = "category";
+
     /**
      * Analyzer
      */

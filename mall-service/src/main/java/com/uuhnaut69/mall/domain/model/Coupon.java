@@ -20,13 +20,8 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 public class Coupon extends AbstractEntity {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private UUID id;
 
     @Column(nullable = false, unique = true)

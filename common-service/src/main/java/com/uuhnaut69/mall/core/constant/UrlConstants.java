@@ -25,9 +25,8 @@ public class UrlConstants {
     public static final String TAG_URL = "/tags";
     public static final String AUTOCOMPLETE_URL = "/autocomplete";
     public static final String SEARCH_URL = "/search";
-    public static final String REVIEW_URL = "/reviews";
+    public static final String CATEGORY_URL = "/categories";
     public static final String FILE_URL = "/files";
-    public static final String CDC_URL = "/cdc";
     /**
      * Features url
      */

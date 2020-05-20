@@ -4,8 +4,9 @@ import com.uuhnaut69.mall.core.utils.Operation;
 import com.uuhnaut69.mall.search.document.ProductEs;
 import com.uuhnaut69.mall.search.document.TagEs;
 import com.uuhnaut69.mall.search.service.index.ProductEsService;
-import com.uuhnaut69.mall.search.service.index.ProductTagEsService;
+import com.uuhnaut69.mall.search.service.index.ProductRelationshipService;
 import com.uuhnaut69.mall.search.service.index.TagEsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -15,19 +16,16 @@ import java.util.Map;
  * @project mall
  */
 @Service
-public class ProductTagEsServiceImpl implements ProductTagEsService {
+@RequiredArgsConstructor
+public class ProductTagService implements ProductRelationshipService {
 
     private final ProductEsService productEsService;
-    private final TagEsService tagEsService;
 
-    public ProductTagEsServiceImpl(ProductEsService productEsService, TagEsService tagEsService) {
-        this.productEsService = productEsService;
-        this.tagEsService = tagEsService;
-    }
+    private final TagEsService tagEsService;
 
     @Override
     public void handleCdcEvent(Map<String, Object> productTagData, Map<String, Object> productTagDataBefore,
-                                  Operation operation) {
+                               Operation operation) {
         String productId = productTagData.get("product_id").toString();
         String tagId = productTagData.get("tag_id").toString();
         ProductEs productEs = productEsService.findById(productId);
@@ -46,12 +44,6 @@ public class ProductTagEsServiceImpl implements ProductTagEsService {
         productEsService.save(productEs);
     }
 
-    /**
-     * Update tag in product
-     *
-     * @param productEs
-     * @param tagName
-     */
     private void updateTagInProduct(ProductEs productEs, String tagName) {
         productEs.getTags().removeIf(tag -> tag.equals(tagName));
     }

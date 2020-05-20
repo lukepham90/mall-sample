@@ -70,9 +70,7 @@ public class ProductController {
     public GenericResponse getProductDetail(@CurrentUser UserPrinciple userPrinciple, @PathVariable UUID id) {
         Product product = productService.findById(id);
         ProductResponse productResponse = productMapper.toProductResponse(product);
-        if (userPrinciple != null) {
-            userService.markAsReadProduct(userPrinciple.getId(), product.getId());
-        }
+        userService.markAsReadProduct(userPrinciple.getId(), product.getId());
         return GenericResponse.builder().data(productResponse).build();
     }
 

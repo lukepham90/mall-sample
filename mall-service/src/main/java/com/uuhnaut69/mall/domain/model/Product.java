@@ -24,13 +24,8 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 public class Product extends AbstractEntity {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private UUID id;
 
     @Column(nullable = false)
@@ -44,7 +39,8 @@ public class Product extends AbstractEntity {
     private Integer stocks = 0;
 
     @Min(0)
-    private int soldCount;
+    @Column(nullable = false)
+    private Integer soldCount = 0;
 
     private String imageUrls;
 
@@ -56,9 +52,13 @@ public class Product extends AbstractEntity {
 
     private BigDecimal discountPrice;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "product_tag", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories = new HashSet<>();
 
     private boolean trending;
 }

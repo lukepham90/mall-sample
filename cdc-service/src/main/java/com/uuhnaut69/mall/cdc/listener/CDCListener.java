@@ -3,6 +3,8 @@ package com.uuhnaut69.mall.cdc.listener;
 import com.uuhnaut69.mall.cdc.constant.CDCTableConstant;
 import com.uuhnaut69.mall.core.utils.Operation;
 import com.uuhnaut69.mall.search.service.index.*;
+import com.uuhnaut69.mall.search.service.index.impl.ProductCategoryService;
+import com.uuhnaut69.mall.search.service.index.impl.ProductTagService;
 import io.debezium.connector.postgresql.PostgresConnectorConfig;
 import io.debezium.embedded.Connect;
 import io.debezium.embedded.EmbeddedEngine;
@@ -58,7 +60,7 @@ public class CDCListener {
 
     private final ProductEsService productEsService;
 
-    private final ProductTagEsService productTagEsService;
+    private final ProductTagService productTagService;
 
     private final UserEsService userEsService;
 
@@ -68,14 +70,22 @@ public class CDCListener {
 
     private final TagEsService tagEsService;
 
-    public CDCListener(ProductEsService productEsService, ProductTagEsService productTagEsService, UserEsService userEsService,
-                       UserProductEsService userProductEsService, UserTagEsService userTagEsService, TagEsService tagEsService) {
+    private final ProductCategoryService productCategoryService;
+
+    private final CategoryEsService categoryEsService;
+
+
+    public CDCListener(ProductEsService productEsService, ProductTagService productTagService, UserEsService userEsService,
+                       UserProductEsService userProductEsService, UserTagEsService userTagEsService, TagEsService tagEsService,
+                       ProductCategoryService productCategoryService, CategoryEsService categoryEsService) {
         this.productEsService = productEsService;
-        this.productTagEsService = productTagEsService;
+        this.productTagService = productTagService;
         this.userEsService = userEsService;
         this.userProductEsService = userProductEsService;
         this.userTagEsService = userTagEsService;
         this.tagEsService = tagEsService;
+        this.productCategoryService = productCategoryService;
+        this.categoryEsService = categoryEsService;
     }
 
     @PostConstruct
@@ -123,7 +133,7 @@ public class CDCListener {
                         break;
                     case CDCTableConstant.PRODUCT_TAG_TABLE:
                         messageBefore = getMessage(sourceRecordValue, BEFORE);
-                        this.productTagEsService.handleCdcEvent(message, messageBefore, operation);
+                        this.productTagService.handleCdcEvent(message, messageBefore, operation);
                         log.info("Product Tag Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
@@ -146,6 +156,15 @@ public class CDCListener {
                     case CDCTableConstant.TAG_TABLE:
                         this.tagEsService.handleCdcEvent(message, operation);
                         log.info("Tag Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
+                        break;
+                    case CDCTableConstant.CATEGORY_TABLE:
+                        this.categoryEsService.handleCdcEvent(message, operation);
+                        log.info("Category Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
+                        break;
+                    case CDCTableConstant.PRODUCT_CATEGORY_TABLE:
+                        messageBefore = getMessage(sourceRecordValue, BEFORE);
+                        this.productCategoryService.handleCdcEvent(message, messageBefore, operation);
+                        log.info("Product Category Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
                         break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + tableChange);
@@ -181,7 +200,7 @@ public class CDCListener {
         properties.setProperty(PostgresConnectorConfig.PASSWORD.toString(), dbPassword);
         properties.setProperty(PostgresConnectorConfig.DATABASE_NAME.toString(), dbName);
         properties.setProperty(PostgresConnectorConfig.TABLE_WHITELIST.toString(),
-                "public.product,public.user_product,public.user_tag,public.users,public.product_tag,public.tag");
+                "public.product,public.user_product,public.user_tag,public.users,public.product_tag,public.tag,public.product_category,public.category");
         return properties;
     }
 }

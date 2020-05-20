@@ -23,15 +23,13 @@ public final class MessageConstant {
     public static final String COUPON_NOT_FOUND = "Coupon doesn't exists !!!";
     public static final String CART_NOT_FOUND = "Cart doesn't exists !!!";
     public static final String TAG_NOT_FOUND = "Tag doesn't exists !!!";
-    public static final String REVIEW_NOT_FOUND = "Review doesn't exists !!!";
+    public static final String CATEGORY_NOT_FOUND = "Category doesn't exists !!!";
 
     /**
      * System messages
      */
     public static final String ACTIVATE_YOUR_ACCOUNT = "An email has been sent to your email. Please check it out to activate your account !!!";
     public static final String ACTIVATE_YOUR_ACCOUNT_MAIL_CONTENT = "One step last to register successfully, click button below to activate your account !!!";
-    public static final String START_SUCCESSFULLY = "START SUCCESSFULLY !!!";
-    public static final String STOP_SUCCESSFULLY = "STOP SUCCESSFULLY !!!";
 
     /**
      * Payment messages

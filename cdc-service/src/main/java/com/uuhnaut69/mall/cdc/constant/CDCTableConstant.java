@@ -18,6 +18,10 @@ public class CDCTableConstant {
 
     public static final String TAG_TABLE = "tag";
 
+    public static final String CATEGORY_TABLE = "category";
+
+    public static final String PRODUCT_CATEGORY_TABLE = "product_category";
+
     private CDCTableConstant() {
 
     }

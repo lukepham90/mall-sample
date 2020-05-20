@@ -18,13 +18,8 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 public class CartItem extends AbstractEntity {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private UUID id;
 
     private Integer quantity;

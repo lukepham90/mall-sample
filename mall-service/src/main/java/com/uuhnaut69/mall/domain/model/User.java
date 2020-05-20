@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -27,13 +26,9 @@ import java.util.UUID;
 @Table(name = "users")
 @EqualsAndHashCode(callSuper = true)
 public class User extends AbstractEntity {
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private UUID id;
 
     @Column(nullable = false)
@@ -44,8 +39,6 @@ public class User extends AbstractEntity {
     @Size(min = 3, max = 50)
     private String username;
 
-    @NaturalId
-    @Size(max = 50)
     @Email
     @Column(nullable = false, unique = true, updatable = false)
     private String email;

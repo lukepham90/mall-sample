@@ -2,11 +2,13 @@ package com.uuhnaut69.mall.service.product.impl;
 
 import com.uuhnaut69.mall.core.constant.MessageConstant;
 import com.uuhnaut69.mall.core.exception.NotFoundException;
+import com.uuhnaut69.mall.domain.model.Category;
 import com.uuhnaut69.mall.domain.model.Product;
 import com.uuhnaut69.mall.domain.model.Tag;
 import com.uuhnaut69.mall.mapper.ProductMapper;
 import com.uuhnaut69.mall.payload.request.ProductRequest;
 import com.uuhnaut69.mall.repository.product.ProductRepository;
+import com.uuhnaut69.mall.service.category.CategoryService;
 import com.uuhnaut69.mall.service.product.ProductService;
 import com.uuhnaut69.mall.service.tag.TagService;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +36,8 @@ public class ProductServiceImpl implements ProductService {
     private final ProductMapper productMapper;
 
     private final TagService tagService;
+
+    private final CategoryService categoryService;
 
     @Override
     @Transactional(readOnly = true)
@@ -75,6 +79,8 @@ public class ProductServiceImpl implements ProductService {
         productMapper.toProductEntity(productRequest, product);
         Set<Tag> tags = tagService.findListTagInListIds(productRequest.getUuidTags());
         product.setTags(tags);
+        Set<Category> categories = categoryService.findByIdIn(productRequest.getUuidCategories());
+        product.setCategories(categories);
         return productRepository.save(product);
     }
 }

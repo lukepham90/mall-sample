@@ -26,13 +26,8 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 public class Cart extends AbstractEntity {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private UUID id;
 
     @Enumerated(EnumType.STRING)

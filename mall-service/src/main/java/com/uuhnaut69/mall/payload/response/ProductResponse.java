@@ -33,5 +33,7 @@ public class ProductResponse {
 
     private Set<TagResponse> tags;
 
+    private Set<CategoryResponse> categories;
+
     private boolean trending;
 }

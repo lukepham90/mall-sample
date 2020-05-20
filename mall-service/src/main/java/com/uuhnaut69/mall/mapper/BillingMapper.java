@@ -12,12 +12,6 @@ import org.mapstruct.Mapper;
 @Mapper(config = SpringMapstructConfig.class)
 public interface BillingMapper {
 
-    /**
-     * Mapper code generator from billing request to billing entity
-     *
-     * @param billingRequest {@link BillingRequest}
-     * @return Billing
-     */
     Billing toBillingEntity(BillingRequest billingRequest);
 
 }

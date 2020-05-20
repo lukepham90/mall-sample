@@ -29,6 +29,8 @@ public class ProductRequest {
 
     private Set<UUID> uuidTags;
 
+    private Set<UUID> uuidCategories;
+
     private Boolean trending;
 
 }

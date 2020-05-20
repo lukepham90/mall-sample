@@ -12,11 +12,5 @@ import org.mapstruct.Mapper;
 @Mapper(config = SpringMapstructConfig.class)
 public interface ShippingMapper {
 
-    /**
-     * Mapper code generator from shipping request to shipping entity
-     *
-     * @param shippingRequest {@link ShippingRequest}
-     * @return Shipping
-     */
     Shipping toShippingEntity(ShippingRequest shippingRequest);
 }

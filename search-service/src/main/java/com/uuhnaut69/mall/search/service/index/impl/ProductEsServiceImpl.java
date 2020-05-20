@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.uuhnaut69.mall.core.constant.MessageConstant;
 import com.uuhnaut69.mall.core.exception.NotFoundException;
 import com.uuhnaut69.mall.core.utils.Operation;
+import com.uuhnaut69.mall.search.document.CategoryEs;
 import com.uuhnaut69.mall.search.document.ProductEs;
 import com.uuhnaut69.mall.search.document.TagEs;
 import com.uuhnaut69.mall.search.repository.ProductEsRepository;
@@ -58,6 +59,20 @@ public class ProductEsServiceImpl implements ProductEsService {
             list.forEach(product -> {
                 product.getTags().removeIf(tag -> tag.equals(tagNameBefore));
                 product.getTags().add(tagEs.getTagName());
+            });
+            productEsRepository.saveAll(list);
+        }
+    }
+
+    @Override
+    public void findByCategoryAndUpdate(String categoryNameBefore, CategoryEs categoryEs) {
+        List<ProductEs> list = productEsRepository.search(
+                new NativeSearchQueryBuilder().withQuery(QueryBuilders.termQuery("categories", categoryNameBefore)).build())
+                .getContent();
+        if (!list.isEmpty()) {
+            list.forEach(product -> {
+                product.getCategories().removeIf(s -> s.equals(categoryNameBefore));
+                product.getTags().add(categoryEs.getCategoryName());
             });
             productEsRepository.saveAll(list);
         }

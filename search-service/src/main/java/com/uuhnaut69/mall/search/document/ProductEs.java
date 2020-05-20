@@ -55,6 +55,9 @@ public class ProductEs extends AbstractDocument {
     @Field(type = FieldType.Keyword)
     private Set<String> tags = new HashSet<>();
 
+    @Field(type = FieldType.Keyword)
+    private Set<String> categories = new HashSet<>();
+
     @Field(type = FieldType.Boolean)
     private Boolean trending;
 

@@ -8,7 +8,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.util.UUID;
 
 /**
@@ -22,13 +21,8 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 public class VerifyToken extends AbstractEntity {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private UUID id;
 
     @ApiModelProperty(value = "Token")
@@ -37,7 +31,5 @@ public class VerifyToken extends AbstractEntity {
     @OneToOne(targetEntity = User.class)
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
-
-    private Date expiryDate;
 
 }
