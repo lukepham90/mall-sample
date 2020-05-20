@@ -34,7 +34,7 @@ public class CouponController {
     private final CouponMapper couponMapper;
 
     @ApiOperation(value = "Get Catalogs Endpoint", notes = "Admin endpoint")
-    @GetMapping(path = UrlConstants.COUPON_URL)
+    @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.COUPON_URL)
     public GenericResponse getCouponPage(@RequestParam(value = "sort", defaultValue = "id") String sortBy,
                                          @RequestParam(value = "order", defaultValue = "desc") String order,
                                          @RequestParam(value = "page", defaultValue = "1") int page,

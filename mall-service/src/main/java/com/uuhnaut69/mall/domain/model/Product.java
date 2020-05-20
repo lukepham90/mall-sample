@@ -56,12 +56,16 @@ public class Product extends AbstractEntity {
 
     @ManyToMany
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JoinTable(name = "product_tag", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    @JoinTable(name = "product_tag",
+            joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"))
     private Set<Tag> tags = new HashSet<>();
 
     @ManyToMany
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+    @JoinTable(name = "product_category",
+            joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"))
     private Set<Category> categories = new HashSet<>();
 
     private boolean trending;

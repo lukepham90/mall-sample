@@ -68,7 +68,7 @@ public class CartController {
     }
 
     @ApiOperation(value = "Get Cart's Detail", notes = "User endpoint")
-    @GetMapping(path = UrlConstants.CART_URL + "/cartId")
+    @GetMapping(path = UrlConstants.CART_URL + "/{cartId}")
     public GenericResponse getCartByIdWithUserRole(@PathVariable UUID cartId, @CurrentUser UserPrinciple userPrinciple) {
         Cart cart = cartService.findByIdAndUserId(cartId, userPrinciple.getId());
         CartResponse cartResponse = cartMapper.toCartResponse(cart);

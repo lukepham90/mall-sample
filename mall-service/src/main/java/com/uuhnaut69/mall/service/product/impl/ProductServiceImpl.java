@@ -42,7 +42,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional(readOnly = true)
     public Page<Product> findAll(Pageable pageable) {
-        return productRepository.findAll(pageable);
+        return productRepository.findAllProducts(pageable);
     }
 
     @Override

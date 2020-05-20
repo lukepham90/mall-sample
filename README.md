@@ -4,17 +4,17 @@ Sample mall project with Spring boot 2.x
 
 <h3>Project Structure</h3>
 
-- [x] Core Service - Contain common classes
+- [x] Core Service
 
-- [x] File Service - Upload file to Aws S3
+- [x] File Service
 
-- [x] Mall Service - Mall core
+- [x] Mall Service
 
-- [x] Payment Service - Integrate payment with Stripe
+- [x] Payment Service
 
-- [x] Search Service - Elasticsearch service support autocomplete, search product, simple content-based recommendation
+- [x] Search Service
 
-- [x] Web Service - Endpoint for user interaction
+- [x] Web Service
 
 <details>
  <summary> List technology stacks used in this project </summary> 
@@ -39,6 +39,8 @@ Sample mall project with Spring boot 2.x
    - AWS S3
    
    - Swagger 2
+   
+   -------------- Updating --------------
    
 </p>
 </details> 
