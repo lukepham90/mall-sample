@@ -4,6 +4,7 @@ import com.uuhnaut69.mall.core.model.AbstractEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +20,7 @@ import java.util.UUID;
 @Entity
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Tag extends AbstractEntity {
 
     @Id
