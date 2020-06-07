@@ -2,7 +2,6 @@ package com.uuhnaut69.mall.service.token.impl;
 
 import com.uuhnaut69.mall.core.constant.MessageConstant;
 import com.uuhnaut69.mall.core.exception.BadRequestException;
-import com.uuhnaut69.mall.core.utils.RandomUtils;
 import com.uuhnaut69.mall.domain.model.User;
 import com.uuhnaut69.mall.domain.model.VerifyToken;
 import com.uuhnaut69.mall.repository.user.UserRepository;
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * @author uuhnaut
@@ -33,8 +33,8 @@ public class TokenServiceImpl implements TokenService {
     @Override
     public String generateToken(User user) {
         VerifyToken verifyToken = new VerifyToken();
-        verifyToken.setToken(RandomUtils.generateActivationKey());
         verifyToken.setUser(user);
+        verifyToken.setToken(UUID.randomUUID().toString());
         verifyTokenRepository.save(verifyToken);
         return verifyToken.getToken();
     }
