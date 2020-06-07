@@ -21,7 +21,7 @@ import java.util.UUID;
 public class Coupon extends AbstractEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private UUID id;
 
     @Column(nullable = false, unique = true)

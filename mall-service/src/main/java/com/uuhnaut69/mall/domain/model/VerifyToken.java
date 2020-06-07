@@ -22,7 +22,7 @@ import java.util.UUID;
 public class VerifyToken extends AbstractEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private UUID id;
 
     @ApiModelProperty(value = "Token")

@@ -38,8 +38,6 @@ public final class MessageConstant {
     public static final String PAID_CART = "Cart has been paid !!!";
     public static final String PAYMENT_METHOD_IS_NOT_STRIPE = "Payment method is not stripe !!!";
 
-    public static final String PERMISSION_DENIED = "You do not have permission to do this activity !!!";
-
     private MessageConstant() {
 
     }

@@ -27,7 +27,7 @@ import java.util.UUID;
 public class Product extends AbstractEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private UUID id;
 
     @Column(nullable = false)
