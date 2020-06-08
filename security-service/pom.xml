@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>security</artifactId>
+    <artifactId>security-service</artifactId>
     <packaging>jar</packaging>
 
     <properties>
@@ -33,7 +33,7 @@
         </dependency>
         <dependency>
             <groupId>com.uuhnaut69</groupId>
-            <artifactId>mall-service</artifactId>
+            <artifactId>core-service</artifactId>
         </dependency>
     </dependencies>
 

@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.uuhnaut69</groupId>
-            <artifactId>mall-service</artifactId>
+            <artifactId>core-service</artifactId>
         </dependency>
         <dependency>
             <groupId>com.stripe</groupId>

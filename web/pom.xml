@@ -25,7 +25,7 @@
         </dependency>
         <dependency>
             <groupId>com.uuhnaut69</groupId>
-            <artifactId>mall-service</artifactId>
+            <artifactId>core-service</artifactId>
         </dependency>
         <dependency>
             <groupId>com.uuhnaut69</groupId>
@@ -41,7 +41,7 @@
         </dependency>
         <dependency>
             <groupId>com.uuhnaut69</groupId>
-            <artifactId>security</artifactId>
+            <artifactId>security-service</artifactId>
         </dependency>
     </dependencies>
 
