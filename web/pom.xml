@@ -12,13 +12,7 @@
     <artifactId>web</artifactId>
     <packaging>jar</packaging>
 
-
     <dependencies>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
-        </dependency>
         <dependency>
             <groupId>com.uuhnaut69</groupId>
             <artifactId>common-service</artifactId>

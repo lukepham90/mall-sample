@@ -1,6 +1,5 @@
 package com.uuhnaut69.mall.repository.coupon;
 
-import com.uuhnaut69.mall.domain.enums.CouponStatus;
 import com.uuhnaut69.mall.domain.model.Coupon;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
