@@ -1,8 +1,8 @@
 package com.uuhnaut69.security.user;
 
-import com.uuhnaut69.mall.core.exception.NotFoundException;
-import com.uuhnaut69.mall.domain.model.User;
-import com.uuhnaut69.mall.repository.user.UserRepository;
+import com.uuhnaut69.common.exception.NotFoundException;
+import com.uuhnaut69.core.domain.model.User;
+import com.uuhnaut69.core.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

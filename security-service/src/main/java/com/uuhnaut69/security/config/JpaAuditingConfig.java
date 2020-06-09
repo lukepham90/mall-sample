@@ -1,6 +1,6 @@
 package com.uuhnaut69.security.config;
 
-import com.uuhnaut69.mall.core.constant.AppConstant;
+import com.uuhnaut69.common.constant.AppConstant;
 import com.uuhnaut69.security.user.UserPrinciple;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

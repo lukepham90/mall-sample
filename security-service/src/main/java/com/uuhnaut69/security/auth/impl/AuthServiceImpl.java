@@ -1,15 +1,15 @@
 package com.uuhnaut69.security.auth.impl;
 
-import com.uuhnaut69.mall.core.constant.MessageConstant;
-import com.uuhnaut69.mall.core.exception.BadRequestException;
-import com.uuhnaut69.mall.domain.enums.RoleName;
-import com.uuhnaut69.mall.domain.model.User;
-import com.uuhnaut69.mall.payload.request.SignInRequest;
-import com.uuhnaut69.mall.payload.request.SignUpRequest;
-import com.uuhnaut69.mall.payload.response.JwtResponse;
-import com.uuhnaut69.mall.payload.response.MessageResponse;
-import com.uuhnaut69.mall.repository.user.UserRepository;
-import com.uuhnaut69.mall.service.mail.MailService;
+import com.uuhnaut69.common.constant.MessageConstant;
+import com.uuhnaut69.common.exception.BadRequestException;
+import com.uuhnaut69.core.domain.enums.RoleName;
+import com.uuhnaut69.core.domain.model.User;
+import com.uuhnaut69.core.payload.request.SignInRequest;
+import com.uuhnaut69.core.payload.request.SignUpRequest;
+import com.uuhnaut69.core.payload.response.JwtResponse;
+import com.uuhnaut69.core.payload.response.MessageResponse;
+import com.uuhnaut69.core.repository.user.UserRepository;
+import com.uuhnaut69.core.service.mail.MailService;
 import com.uuhnaut69.security.auth.AuthService;
 import com.uuhnaut69.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;

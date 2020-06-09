@@ -1,7 +1,7 @@
 package com.uuhnaut69.security.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.uuhnaut69.mall.domain.model.User;
+import com.uuhnaut69.core.domain.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
