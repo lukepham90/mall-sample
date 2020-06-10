@@ -92,12 +92,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-            <version>${liquibase.version}</version>
-        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -105,7 +99,7 @@
             <dependency>
                 <groupId>com.uuhnaut69</groupId>
                 <artifactId>common-service</artifactId>
-                <version>${common.service.version}</version>
+                <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.uuhnaut69</groupId>
