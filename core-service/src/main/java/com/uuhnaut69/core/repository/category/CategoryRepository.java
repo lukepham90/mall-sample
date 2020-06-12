@@ -4,6 +4,7 @@ import com.uuhnaut69.core.domain.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -14,7 +15,6 @@ import java.util.UUID;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, UUID> {
 
-    boolean existsByCategoryName(String categoryName);
-
     Set<Category> findByIdIn(Set<UUID> uuidSet);
+
 }

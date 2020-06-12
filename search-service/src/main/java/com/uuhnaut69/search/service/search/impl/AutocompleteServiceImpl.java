@@ -4,6 +4,7 @@ import com.uuhnaut69.search.constant.EsConstants;
 import com.uuhnaut69.search.payload.response.AutocompleteResponse;
 import com.uuhnaut69.search.service.search.AutocompleteService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -25,6 +26,7 @@ import java.util.List;
  * @author uuhnaut
  * @project mall
  */
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AutocompleteServiceImpl implements AutocompleteService {
@@ -33,6 +35,7 @@ public class AutocompleteServiceImpl implements AutocompleteService {
 
     @Override
     public List<AutocompleteResponse> autocomplete(String text, int size) throws IOException {
+        log.debug("Request to get product suggestion with text {}", text);
         SearchRequest searchRequest = makeAutocompletionRequest(text, size);
         SearchResponse searchResponse = restClient.search(searchRequest, RequestOptions.DEFAULT);
         return extractResponse(searchResponse);

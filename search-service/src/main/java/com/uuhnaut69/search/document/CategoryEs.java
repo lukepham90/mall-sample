@@ -16,7 +16,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Document(indexName = EsConstants.CATEGORY_INDEX, type = EsConstants.CATEGORY_INDEX_TYPE)
+@Document(indexName = EsConstants.CATEGORY_INDEX)
 public class CategoryEs extends AbstractDocument {
 
     @Id

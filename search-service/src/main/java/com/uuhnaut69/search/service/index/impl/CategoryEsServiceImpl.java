@@ -11,6 +11,7 @@ import com.uuhnaut69.search.repository.CategoryEsRepository;
 import com.uuhnaut69.search.service.index.CategoryEsService;
 import com.uuhnaut69.search.service.index.ProductEsService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -20,6 +21,7 @@ import java.util.Optional;
  * @author uuhnaut
  * @project mall
  */
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CategoryEsServiceImpl implements CategoryEsService {
@@ -30,6 +32,7 @@ public class CategoryEsServiceImpl implements CategoryEsService {
 
     @Override
     public void handleCdcEvent(Map<String, Object> categoryData, Operation operation) {
+        log.debug("Handle category data change event {}", categoryData);
         final ObjectMapper mapper = new ObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);

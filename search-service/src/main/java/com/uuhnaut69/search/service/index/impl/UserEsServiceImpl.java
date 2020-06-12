@@ -10,6 +10,8 @@ import com.uuhnaut69.search.document.TagEs;
 import com.uuhnaut69.search.document.UserEs;
 import com.uuhnaut69.search.repository.UserEsRepository;
 import com.uuhnaut69.search.service.index.UserEsService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
@@ -22,17 +24,16 @@ import java.util.Optional;
  * @author uuhnaut
  * @project mall
  */
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class UserEsServiceImpl implements UserEsService {
 
     private final UserEsRepository userEsRepository;
 
-    public UserEsServiceImpl(UserEsRepository userEsRepository) {
-        this.userEsRepository = userEsRepository;
-    }
-
     @Override
     public void handleCdcEvent(Map<String, Object> userData, Operation operation) {
+        log.debug("Handle user data change event {}", userData);
         final ObjectMapper mapper = new ObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);

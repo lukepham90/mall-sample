@@ -20,7 +20,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Document(indexName = EsConstants.PRODUCT_INDEX, type = EsConstants.PRODUCT_INDEX_TYPE)
+@Document(indexName = EsConstants.PRODUCT_INDEX)
 public class ProductEs extends AbstractDocument {
 
     /**

@@ -10,6 +10,7 @@ import com.uuhnaut69.payment.service.PaymentService;
 import com.uuhnaut69.payment.service.StripeService;
 import com.uuhnaut69.core.service.cart.CartService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ import java.util.UUID;
  * @author uuhnaut
  * @project mall
  */
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -30,6 +32,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public void checkout(UUID cartId, UUID userId, CreditCard creditCard) throws Exception {
+        log.debug("Request to checkout cart's id {} of user's id {}", cartId, userId);
         Cart cart = cartService.findByIdAndUserId(cartId, userId);
         if (cart.getPaymentMethod().name().equals(PaymentMethod.STRIPE.name())) {
             if (!cart.getPaymentStatus().name().equals(PaymentStatus.SUCCEED.name())) {

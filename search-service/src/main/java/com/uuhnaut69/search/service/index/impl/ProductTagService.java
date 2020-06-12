@@ -7,6 +7,7 @@ import com.uuhnaut69.search.service.index.ProductEsService;
 import com.uuhnaut69.search.service.index.ProductRelationshipService;
 import com.uuhnaut69.search.service.index.TagEsService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -15,6 +16,7 @@ import java.util.Map;
  * @author uuhnaut
  * @project mall
  */
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProductTagService implements ProductRelationshipService {
@@ -26,6 +28,7 @@ public class ProductTagService implements ProductRelationshipService {
     @Override
     public void handleCdcEvent(Map<String, Object> productTagData, Map<String, Object> productTagDataBefore,
                                Operation operation) {
+        log.debug("Handle product <-> tag data change event {}", productTagData);
         String productId = productTagData.get("product_id").toString();
         String tagId = productTagData.get("tag_id").toString();
         ProductEs productEs = productEsService.findById(productId);

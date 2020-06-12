@@ -11,7 +11,6 @@ import com.uuhnaut69.security.auth.AuthService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,7 +19,6 @@ import javax.validation.Valid;
  * @author uuhnaut
  * @project mall
  */
-@Slf4j
 @RestController
 @RequiredArgsConstructor
 @Api(tags = "Authentication", value = "Authentication Endpoint")
@@ -35,14 +33,12 @@ public class AuthController {
     @PostMapping(path = UrlConstants.AUTH_URL + "/sign-in")
     public GenericResponse signIn(@RequestBody @Valid SignInRequest signInRequest) {
         JwtResponse jwtResponse = authService.signIn(signInRequest);
-        log.info("Generate token {}", jwtResponse);
         return GenericResponse.builder().data(jwtResponse).build();
     }
 
     @ApiOperation(value = "SignUp Endpoint")
     @PostMapping(path = UrlConstants.AUTH_URL + "/sign-up")
     public GenericResponse signUp(@RequestBody @Valid SignUpRequest signUpRequest) throws Exception {
-        log.info("Sign up user with {}", signUpRequest);
         MessageResponse messageResponse = authService.signUp(signUpRequest);
         return GenericResponse.builder().data(messageResponse).build();
     }
@@ -51,7 +47,6 @@ public class AuthController {
     @GetMapping(path = UrlConstants.AUTH_URL + "/confirm")
     public GenericResponse confirmation(@RequestParam(value = "token", defaultValue = "") String token) {
         tokenService.confirmVerifyToken(token);
-        log.info("Generate a verify token {}", token);
         return GenericResponse.builder().build();
     }
 

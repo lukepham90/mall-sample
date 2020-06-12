@@ -35,6 +35,7 @@ public class ProductEsServiceImpl implements ProductEsService {
 
     @Override
     public void handleCdcEvent(Map<String, Object> productData, Operation operation) {
+        log.debug("Handle product data change event {}", productData);
         final ObjectMapper mapper = new ObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);

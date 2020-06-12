@@ -8,16 +8,15 @@ import com.uuhnaut69.core.mapper.ProductMapper;
 import com.uuhnaut69.core.payload.request.IdsRequest;
 import com.uuhnaut69.core.payload.request.ProductRequest;
 import com.uuhnaut69.core.payload.response.ProductResponse;
-import com.uuhnaut69.search.document.ProductEs;
-import com.uuhnaut69.search.service.search.ProductRecommendationService;
 import com.uuhnaut69.core.service.product.ProductService;
 import com.uuhnaut69.core.service.user.UserService;
+import com.uuhnaut69.search.document.ProductEs;
+import com.uuhnaut69.search.service.search.ProductRecommendationService;
 import com.uuhnaut69.security.user.CurrentUser;
 import com.uuhnaut69.security.user.UserPrinciple;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,7 +30,6 @@ import java.util.UUID;
  * @author uuhnaut
  * @project mall
  */
-@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = UrlConstants.BASE_VERSION_API)
@@ -55,13 +53,11 @@ public class ProductController {
             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
             @CurrentUser UserPrinciple userPrinciple) {
         if (userPrinciple != null) {
-            log.info("Get list recommendation product for {}", userPrinciple.getName());
             Pageable pageable = PageRequest.of(page - 1, pageSize);
             Page<ProductEs> products = productRecommendationService.recommendation(userPrinciple.getId().toString(),
                     pageable);
             return GenericResponse.builder().data(products.getContent()).build();
         }
-        log.info("Get list public product");
         return getGenericResponse(sortBy, order, page, pageSize);
     }
 

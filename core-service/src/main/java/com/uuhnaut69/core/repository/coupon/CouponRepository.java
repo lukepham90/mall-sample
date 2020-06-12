@@ -23,5 +23,5 @@ public interface CouponRepository extends JpaRepository<Coupon, UUID> {
 
     boolean existsByCode(String code);
 
-    List<Coupon> findByIdIn(List<UUID> ids);
+    void deleteByIdIn(List<UUID> uuidList);
 }

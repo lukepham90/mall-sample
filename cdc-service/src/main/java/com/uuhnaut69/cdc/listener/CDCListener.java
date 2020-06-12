@@ -107,7 +107,7 @@ public class CDCListener {
         if (sourceRecordValue != null) {
 
             Operation operation = Operation.forCode((String) sourceRecordValue.get(OPERATION));
-            log.info("{}", sourceRecordValue);
+            log.debug("{}", sourceRecordValue);
 
             if (operation != Operation.READ) {
 
@@ -128,43 +128,43 @@ public class CDCListener {
 
                     case CDCTableConstant.PRODUCT_TABLE:
                         this.productEsService.handleCdcEvent(message, operation);
-                        log.info("Product Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
+                        log.debug("Product Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
                     case CDCTableConstant.PRODUCT_TAG_TABLE:
                         messageBefore = getMessage(sourceRecordValue, BEFORE);
                         this.productTagService.handleCdcEvent(message, messageBefore, operation);
-                        log.info("Product Tag Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
+                        log.debug("Product Tag Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
                     case CDCTableConstant.USER_TABLE:
                         this.userEsService.handleCdcEvent(message, operation);
-                        log.info("User Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
+                        log.debug("User Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
                     case CDCTableConstant.USER_PRODUCT_TABLE:
                         this.userProductEsService.handleCdcEvent(message, operation);
-                        log.info("User Product Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
+                        log.debug("User Product Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
                     case CDCTableConstant.USER_TAG_TABLE:
                         messageBefore = getMessage(sourceRecordValue, BEFORE);
                         this.userTagEsService.handleCdcEvent(message, messageBefore, operation);
-                        log.info("User Tag Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
+                        log.debug("User Tag Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
 
                         break;
                     case CDCTableConstant.TAG_TABLE:
                         this.tagEsService.handleCdcEvent(message, operation);
-                        log.info("Tag Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
+                        log.debug("Tag Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
                         break;
                     case CDCTableConstant.CATEGORY_TABLE:
                         this.categoryEsService.handleCdcEvent(message, operation);
-                        log.info("Category Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
+                        log.debug("Category Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
                         break;
                     case CDCTableConstant.PRODUCT_CATEGORY_TABLE:
                         messageBefore = getMessage(sourceRecordValue, BEFORE);
                         this.productCategoryService.handleCdcEvent(message, messageBefore, operation);
-                        log.info("Product Category Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
+                        log.debug("Product Category Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
                         break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + tableChange);

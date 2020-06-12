@@ -6,6 +6,8 @@ import com.uuhnaut69.search.document.UserEs;
 import com.uuhnaut69.search.service.index.ProductEsService;
 import com.uuhnaut69.search.service.index.UserEsService;
 import com.uuhnaut69.search.service.index.UserProductEsService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -14,19 +16,17 @@ import java.util.Map;
  * @author uuhnaut
  * @project mall
  */
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class UserProductEsServiceImpl implements UserProductEsService {
 
     private final UserEsService userEsService;
     private final ProductEsService productEsService;
 
-    public UserProductEsServiceImpl(UserEsService userEsService, ProductEsService productEsService) {
-        this.userEsService = userEsService;
-        this.productEsService = productEsService;
-    }
-
     @Override
     public void handleCdcEvent(Map<String, Object> userProductData, Operation operation) {
+        log.debug("Handle user <-> product data change event {}", userProductData);
         String userId = userProductData.get("user_id").toString();
         String productId = userProductData.get("product_id").toString();
 

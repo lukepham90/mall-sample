@@ -28,4 +28,6 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
             "left join fetch product.tags where product.id = :id")
     Optional<Product> findById(UUID id);
 
+    void deleteByIdIn(List<UUID> uuidList);
+
 }

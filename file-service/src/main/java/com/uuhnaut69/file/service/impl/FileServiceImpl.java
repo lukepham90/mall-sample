@@ -42,6 +42,7 @@ public class FileServiceImpl implements FileService {
             File file = convertMultiPartToFile(multipartFile);
             String fileName = generateFileName(multipartFile);
             fileUrl = amazonS3EndPoint + "/" + amazonS3BucketName + "/" + fileName;
+            log.debug("Request to upload file in AWS has path {}", fileName);
             uploadFileTos3bucket(fileName, file);
             Files.deleteIfExists(Paths.get(file.getAbsolutePath()));
         } catch (Exception e) {
@@ -53,6 +54,7 @@ public class FileServiceImpl implements FileService {
     @Override
     public void deleteFileInAwsS3(String s3Path) {
         String fileName = s3Path.substring(s3Path.lastIndexOf('/') + 1);
+        log.debug("Request to delete file in AWS has path {}", fileName);
         amazonS3Client.deleteObject(new DeleteObjectRequest(amazonS3BucketName, fileName));
     }
 

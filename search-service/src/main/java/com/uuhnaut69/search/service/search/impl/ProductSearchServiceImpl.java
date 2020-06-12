@@ -4,6 +4,7 @@ import com.uuhnaut69.search.document.ProductEs;
 import com.uuhnaut69.search.repository.ProductEsRepository;
 import com.uuhnaut69.search.service.search.ProductSearchService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.common.unit.Fuzziness;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
  * @author uuhnaut
  * @project mall
  */
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProductSearchServiceImpl implements ProductSearchService {
@@ -23,6 +25,7 @@ public class ProductSearchServiceImpl implements ProductSearchService {
 
     @Override
     public Page<ProductEs> search(String text, Pageable pageable) {
+        log.debug("Request to get product with text {}", text);
         return productEsRepository.search(new NativeSearchQueryBuilder()
                 .withQuery(
                         QueryBuilders.boolQuery().filter(QueryBuilders.boolQuery()

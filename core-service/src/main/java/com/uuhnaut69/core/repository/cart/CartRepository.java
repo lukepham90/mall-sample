@@ -25,4 +25,6 @@ public interface CartRepository extends JpaRepository<Cart, UUID> {
 
     @EntityGraph(attributePaths = {"orderItems", "shipping", "billing", "coupon", "user"})
     Page<Cart> findAllByUserId(Pageable pageable, UUID userId);
+
+    void deleteByIdAndUserId(UUID cartId, UUID userId);
 }

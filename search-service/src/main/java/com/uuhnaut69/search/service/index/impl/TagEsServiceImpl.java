@@ -11,6 +11,8 @@ import com.uuhnaut69.search.repository.TagEsRepository;
 import com.uuhnaut69.search.service.index.ProductEsService;
 import com.uuhnaut69.search.service.index.TagEsService;
 import com.uuhnaut69.search.service.index.UserEsService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -20,22 +22,18 @@ import java.util.Optional;
  * @author uuhnaut
  * @project mall
  */
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class TagEsServiceImpl implements TagEsService {
 
     private final TagEsRepository tagEsRepository;
     private final UserEsService userEsService;
     private final ProductEsService productEsService;
 
-    public TagEsServiceImpl(TagEsRepository tagEsRepository, UserEsService userEsService,
-                            ProductEsService productEsService) {
-        this.tagEsRepository = tagEsRepository;
-        this.userEsService = userEsService;
-        this.productEsService = productEsService;
-    }
-
     @Override
     public void handleCdcEvent(Map<String, Object> tagData, Operation operation) {
+        log.debug("Handle tag data change event {}", tagData);
         final ObjectMapper mapper = new ObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);

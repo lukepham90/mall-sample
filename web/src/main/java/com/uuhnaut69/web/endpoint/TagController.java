@@ -11,7 +11,6 @@ import com.uuhnaut69.core.service.tag.TagService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +23,6 @@ import java.util.UUID;
  * @author uuhnaut
  * @project mall
  */
-@Slf4j
 @RestController
 @RequiredArgsConstructor
 @Api(tags = "Tag", value = "Tag Endpoint")
@@ -41,7 +39,6 @@ public class TagController {
                                       @RequestParam(value = "order", defaultValue = "desc") String order,
                                       @RequestParam(value = "page", defaultValue = "1") int page,
                                       @RequestParam(value = "pageSize", defaultValue = "30") int pageSize) {
-        log.info("Get tag page");
         Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
         Page<Tag> tags = tagService.findAll(pageable);
         List<TagResponse> list = tagMapper.toListTagResponse(tags.getContent());
@@ -51,7 +48,6 @@ public class TagController {
     @ApiOperation(value = "Create Tag Endpoint", notes = "Admin endpoint")
     @PostMapping(path = UrlConstants.ADMIN_URL + UrlConstants.TAG_URL)
     public GenericResponse create(@RequestBody @Valid TagRequest tagRequest) {
-        log.debug("Insert new tag {} into database", tagRequest);
         Tag tag = tagService.create(tagRequest);
         TagResponse tagResponse = tagMapper.toTagResponse(tag);
         return GenericResponse.builder().data(tagResponse).build();
@@ -60,7 +56,6 @@ public class TagController {
     @ApiOperation(value = "Update Tag Endpoint", notes = "Admin endpoint")
     @PutMapping(path = UrlConstants.ADMIN_URL + UrlConstants.TAG_URL + "/{id}")
     public GenericResponse update(@PathVariable UUID id, @RequestBody @Valid TagRequest tagRequest) {
-        log.info("Update tag {} with {} into database", id, tagRequest);
         Tag tag = tagService.update(id, tagRequest);
         TagResponse tagResponse = tagMapper.toTagResponse(tag);
         return GenericResponse.builder().data(tagResponse).build();
@@ -69,7 +64,6 @@ public class TagController {
     @ApiOperation(value = "Delete Tag Endpoint", notes = "Admin endpoint")
     @DeleteMapping(path = UrlConstants.ADMIN_URL + UrlConstants.TAG_URL + "/{id}")
     public GenericResponse delete(@PathVariable UUID id) {
-        log.debug("Delete a tag {} from database", id);
         tagService.delete(id);
         return new GenericResponse();
     }

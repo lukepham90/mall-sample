@@ -9,6 +9,7 @@ import com.uuhnaut69.core.payload.request.CouponRequest;
 import com.uuhnaut69.core.repository.coupon.CouponRepository;
 import com.uuhnaut69.core.service.coupon.CouponService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ import java.util.UUID;
  * @author uuhnaut
  * @project mall
  */
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -34,24 +36,28 @@ public class CouponServiceImpl implements CouponService {
     @Override
     @Transactional(readOnly = true)
     public Page<Coupon> findAll(Pageable pageable) {
+        log.debug("Request to get coupons");
         return couponRepository.findAll(pageable);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Coupon findByCode(String code) {
+        log.debug("Request to get coupon by code {}", code);
         Optional<Coupon> coupon = couponRepository.findByCode(code);
         return coupon.orElseThrow(() -> new NotFoundException(MessageConstant.COUPON_NOT_FOUND));
     }
 
     @Override
     public Coupon create(CouponRequest couponRequest) {
+        log.debug("Request to create coupon {}", couponRequest);
         checkCouponCodeValid(couponRequest.getCode());
         return save(couponRequest, new Coupon());
     }
 
     @Override
     public Coupon update(UUID id, CouponRequest couponRequest) {
+        log.debug("Request to update coupon's id {} with data {}", id, couponRequest);
         Coupon coupon = findById(id);
         if (!coupon.getCode().equals(couponRequest.getCode())) {
             checkCouponCodeValid(couponRequest.getCode());
@@ -61,14 +67,14 @@ public class CouponServiceImpl implements CouponService {
 
     @Override
     public void delete(UUID id) {
-        Coupon coupon = findById(id);
-        couponRepository.delete(coupon);
+        log.debug("Request to delete coupon by id {}", id);
+        couponRepository.deleteById(id);
     }
 
     @Override
     public void deleteAll(List<UUID> ids) {
-        List<Coupon> coupons = couponRepository.findByIdIn(ids);
-        couponRepository.deleteAll(coupons);
+        log.debug("Request to delete coupon has id in list {}", ids);
+        couponRepository.deleteByIdIn(ids);
     }
 
     private Coupon findById(UUID id) {

@@ -10,7 +10,6 @@ import com.uuhnaut69.search.service.search.ProductSearchService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +24,6 @@ import java.util.List;
  * @author uuhnaut
  * @project mall
  */
-@Slf4j
 @RestController
 @RequiredArgsConstructor
 @Api(tags = "Search", value = "Search Endpoint")
@@ -39,7 +37,6 @@ public class ProductSearchController {
     @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.AUTOCOMPLETE_URL)
     public GenericResponse autocomplete(@RequestParam(value = "text", defaultValue = "") String text,
                                         @RequestParam(value = "size", defaultValue = "25") int size) throws IOException {
-        log.info("Autocomplete product with text => {}", text);
         List<AutocompleteResponse> list = autocompleteService.autocomplete(text, size);
         return GenericResponse.builder().data(list).build();
     }
@@ -51,7 +48,6 @@ public class ProductSearchController {
                                   @RequestParam(value = "order", defaultValue = "desc") String order,
                                   @RequestParam(value = "page", defaultValue = "1") int page,
                                   @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
-        log.info("Search product with text => {}", text);
         Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
         Page<ProductEs> products = productSearchService.search(text, pageable);
         return GenericResponse.builder().data(products.getContent()).build();

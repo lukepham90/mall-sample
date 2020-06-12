@@ -52,37 +52,41 @@ public class CartServiceImpl implements CartService {
     @Override
     @Transactional(readOnly = true)
     public Page<Cart> findAll(Pageable pageable) {
+        log.debug("Request to get carts");
         return cartRepository.findAll(pageable);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Page<Cart> findAllByUserId(Pageable pageable, UUID userId) {
+        log.debug("Request to get carts by user's id {}", userId);
         return cartRepository.findAllByUserId(pageable, userId);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Cart findById(UUID id) {
+        log.debug("Request to get cart by id {}", id);
         Optional<Cart> cart = cartRepository.findById(id);
         return cart.orElseThrow(() -> new NotFoundException(MessageConstant.CART_NOT_FOUND));
     }
 
     @Override
     public Cart create(CartRequest cartRequest, UUID userId) {
+        log.debug("Request to create cart's id {} of user's id {}", cartRequest, userId);
         return save(cartRequest, new Cart(), userId);
     }
 
     @Override
     public void delete(UUID id, UUID userId) {
-        Cart cart = findByIdAndUserId(id, userId);
-        checkIsSucceed(cart);
-        cartRepository.delete(cart);
+        log.debug("Request to delete cart's id {} of user's id {}", id, userId);
+        cartRepository.deleteByIdAndUserId(id, userId);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Cart findByIdAndUserId(UUID id, UUID userId) {
+        log.debug("Request to get cart's id {} of user's id {}", id, userId);
         Optional<Cart> cart = cartRepository.findByIdAndUserId(id, userId);
         return cart.orElseThrow(() -> new NotFoundException(MessageConstant.CART_NOT_FOUND));
     }
@@ -143,9 +147,4 @@ public class CartServiceImpl implements CartService {
         cart.setPriceToPay(new BigDecimal(finalPrice));
     }
 
-    private void checkIsSucceed(Cart cart) {
-        if (cart.getPaymentStatus().name().equals(PaymentStatus.SUCCEED.name())) {
-            throw new BadRequestException(MessageConstant.PAYMENT_SUCCEED_CANT_BE_DELETE);
-        }
-    }
 }
