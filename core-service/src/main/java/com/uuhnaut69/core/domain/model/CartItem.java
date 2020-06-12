@@ -19,7 +19,7 @@ import java.util.UUID;
 public class CartItem extends AbstractEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
     private UUID id;
 
     private Integer quantity;

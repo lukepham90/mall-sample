@@ -46,15 +46,15 @@ public class AuthServiceImpl implements AuthService {
     public JwtResponse signIn(SignInRequest signInRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(signInRequest.getUsername(), signInRequest.getPassword()));
-
+        log.debug("Request to user {} login", signInRequest.getUsername());
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         String jwt = jwtProvider.generateJwtToken(authentication);
         return new JwtResponse(jwt);
     }
 
     @Override
     public MessageResponse signUp(SignUpRequest signUpRequest) throws Exception {
+        log.debug("Request to user {} sign up", signUpRequest);
         checkUserNameValid(signUpRequest.getUsername());
         checkEmailValid(signUpRequest.getEmail());
 

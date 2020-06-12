@@ -14,11 +14,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author uuhnaut
  * @project mall
  */
+@SpringBootApplication
 @ComponentScan(basePackages = {"com.uuhnaut69.*"})
 @EntityScan(basePackages = {"com.uuhnaut69.*"})
 @EnableJpaRepositories(basePackages = {"com.uuhnaut69.*"})
 @EnableElasticsearchRepositories(basePackages = {"com.uuhnaut69.*"})
-@SpringBootApplication(exclude = {ElasticsearchAutoConfiguration.class, ElasticsearchDataAutoConfiguration.class})
 public class MallApplication {
 
     public static void main(String[] args) {

@@ -32,7 +32,18 @@ services:
   logtash:
     container_name: mall-logtash
     image: docker.elastic.co/logstash/logstash:6.8.7
+    volumes:
+      - ./logtash-conf/mall-logtash.conf:/usr/share/logstash/pipeline/logstash.conf
+#    command: "bash -c 'cd /bin/ &&\
+#                       logstash-plugin install logstash-codec-json_lines'"
     depends_on:
       - elasticsearch
     ports:
       - 9600:9600
+
+#  sonarqube:
+#    container_name: mall-sonar
+#    image: sonarqube:8.2-community
+#    ports:
+#      - 9001:9000
+#      - 9092:9092

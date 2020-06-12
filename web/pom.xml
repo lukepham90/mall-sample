@@ -12,6 +12,10 @@
     <artifactId>web</artifactId>
     <packaging>jar</packaging>
 
+    <properties>
+        <logtash.encoder.version>6.4</logtash.encoder.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.uuhnaut69</groupId>
@@ -36,6 +40,15 @@
         <dependency>
             <groupId>com.uuhnaut69</groupId>
             <artifactId>security-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>${logtash.encoder.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 

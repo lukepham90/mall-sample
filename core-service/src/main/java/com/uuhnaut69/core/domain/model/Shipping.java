@@ -22,7 +22,7 @@ import java.util.UUID;
 public class Shipping extends AbstractEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
     private UUID id;
 
     private String shippingCountry;

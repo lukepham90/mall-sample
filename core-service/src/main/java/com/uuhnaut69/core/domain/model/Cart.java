@@ -27,7 +27,7 @@ import java.util.UUID;
 public class Cart extends AbstractEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
     private UUID id;
 
     @Enumerated(EnumType.STRING)

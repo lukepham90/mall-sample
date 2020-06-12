@@ -30,7 +30,7 @@ import java.util.UUID;
 public class User extends AbstractEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
     private UUID id;
 
     @Column(nullable = false)

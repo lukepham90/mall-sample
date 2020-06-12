@@ -28,23 +28,18 @@
     <properties>
         <java.version>1.8</java.version>
         <org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
-        <common.service.version>0.0.1-SNAPSHOT</common.service.version>
-        <core.service.version>0.0.1-SNAPSHOT</core.service.version>
-        <search.service.version>0.0.1-SNAPSHOT</search.service.version>
-        <payment.service.version>0.0.1-SNAPSHOT</payment.service.version>
-        <file.service.version>0.0.1-SNAPSHOT</file.service.version>
+        <common-service.version>0.0.1-SNAPSHOT</common-service.version>
+        <core-service.version>0.0.1-SNAPSHOT</core-service.version>
+        <search-service.version>0.0.1-SNAPSHOT</search-service.version>
+        <payment-service.version>0.0.1-SNAPSHOT</payment-service.version>
+        <file-service.version>0.0.1-SNAPSHOT</file-service.version>
         <web.version>0.0.1-SNAPSHOT</web.version>
-        <security.service.version>0.0.1-SNAPSHOT</security.service.version>
+        <security-service.version>0.0.1-SNAPSHOT</security-service.version>
         <cdc.version>0.0.1-SNAPSHOT</cdc.version>
         <swagger.version>2.6.1</swagger.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -99,17 +94,17 @@
             <dependency>
                 <groupId>com.uuhnaut69</groupId>
                 <artifactId>common-service</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${common-service.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.uuhnaut69</groupId>
                 <artifactId>core-service</artifactId>
-                <version>${core.service.version}</version>
+                <version>${core-service.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.uuhnaut69</groupId>
                 <artifactId>search-service</artifactId>
-                <version>${search.service.version}</version>
+                <version>${search-service.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.uuhnaut69</groupId>
@@ -119,17 +114,17 @@
             <dependency>
                 <groupId>com.uuhnaut69</groupId>
                 <artifactId>payment-service</artifactId>
-                <version>${payment.service.version}</version>
+                <version>${payment-service.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.uuhnaut69</groupId>
                 <artifactId>file-service</artifactId>
-                <version>${file.service.version}</version>
+                <version>${file-service.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.uuhnaut69</groupId>
                 <artifactId>security-service</artifactId>
-                <version>${security.service.version}</version>
+                <version>${security-service.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.uuhnaut69</groupId>

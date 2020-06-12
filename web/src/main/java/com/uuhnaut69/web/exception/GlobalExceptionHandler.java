@@ -47,7 +47,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     private ErrorResponse getErrorMessages(Exception ex, HttpServletRequest request, HttpStatus unauthorized) {
-        log.info(ex.getClass().getName());
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setStatus(unauthorized.value());
         errorResponse.setTimestamp(LocalDateTime.now());
