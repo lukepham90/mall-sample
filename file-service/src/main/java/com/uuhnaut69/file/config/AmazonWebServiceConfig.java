@@ -36,7 +36,7 @@ public class AmazonWebServiceConfig {
     }
 
     @Bean
-    public AmazonS3 amazonS3Client(AWSCredentials awsCredentials) {
+    public AmazonS3 amazonS3Client() {
         return AmazonS3ClientBuilder.standard().withCredentials(amazonAWSCredentialsProvider()).withRegion(amazonRegion)
                 .build();
     }
