@@ -34,8 +34,6 @@ services:
     image: docker.elastic.co/logstash/logstash:6.8.7
     volumes:
       - ./logtash-conf/mall-logtash.conf:/usr/share/logstash/pipeline/logstash.conf
-#    command: "bash -c 'cd /bin/ &&\
-#                       logstash-plugin install logstash-codec-json_lines'"
     depends_on:
       - elasticsearch
     ports:

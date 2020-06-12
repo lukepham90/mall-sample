@@ -2,62 +2,47 @@
 
 Sample mall project with Spring boot 2.x
 
-<h3>Project Structure</h3>
+## Project Structure
+
+- [x] Common Service
+
+- [x] Capture Data Change Service
 
 - [x] Core Service
 
 - [x] File Service
 
-- [x] Mall Service
-
 - [x] Payment Service
 
 - [x] Search Service
 
+- [x] Security Service
+
 - [x] Web Service
 
-<details>
- <summary> List technology stacks used in this project </summary> 
- <p>
-  
-   - Spring Boot Framework 2.x
-   
-   - Postgres 10
+## Prerequisites
 
-   - Mapstruct
+- Java 8+
 
-   - Lombok
+- Docker
 
-   - Stripe
+- Docker-Compose
 
-   - Jwt
+## Start Environment
 
-   - CDC Embedded Debezium Postgres
+1. Go to infrastructure folder
+    ```shell script
+    cd infrastructure/
+    ```
 
-   - Elasticsearch
+2. Run command:
 
-   - AWS S3
-   
-   - Swagger 2
-   
-   -------------- Updating --------------
-   
-</p>
-</details> 
+    ```shell script
+    docker-compose up -d
+    ```
 
-<h3>Run Environment</h3>
+3. Check environment health:
 
-1. Run command:
-
-  ``` bash
-  
-  docker-compose up -d
-  ```
-
-2. Check environment health:
-
-  ```bash
-    
-  docker-compose ps
-```
-
+    ```shell script
+    docker-compose ps
+    ```

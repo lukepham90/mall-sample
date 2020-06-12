@@ -14,5 +14,4 @@
         <appender-ref ref="LOG_STASH"/>
         <appender-ref ref="CONSOLE"/>
     </root>
-
 </configuration>
