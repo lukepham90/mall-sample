@@ -16,5 +16,5 @@ public interface TagRepository extends JpaRepository<Tag, UUID> {
 
     boolean existsByTagName(String tagName);
 
-    Set<Tag> findByIdIn(Set<UUID> uuids);
+    Set<Tag> findByIdIn(Set<UUID> uuidSet);
 }

@@ -1,10 +1,8 @@
 package com.uuhnaut69.core.service.cart.impl;
 
 import com.uuhnaut69.common.constant.MessageConstant;
-import com.uuhnaut69.common.exception.BadRequestException;
 import com.uuhnaut69.common.exception.NotFoundException;
 import com.uuhnaut69.core.domain.enums.CouponStatus;
-import com.uuhnaut69.core.domain.enums.PaymentStatus;
 import com.uuhnaut69.core.domain.model.*;
 import com.uuhnaut69.core.mapper.BillingMapper;
 import com.uuhnaut69.core.mapper.CartMapper;

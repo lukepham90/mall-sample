@@ -1,6 +1,6 @@
 package com.uuhnaut69.core.mapper;
 
-import com.uuhnaut69.core.config.SpringMapstructConfig;
+import com.uuhnaut69.core.config.SpringMapStructConfig;
 import com.uuhnaut69.core.domain.model.*;
 import com.uuhnaut69.core.payload.request.CartRequest;
 import com.uuhnaut69.core.payload.response.*;
@@ -14,7 +14,7 @@ import java.util.List;
  * @author uuhnaut
  * @project mall
  */
-@Mapper(config = SpringMapstructConfig.class)
+@Mapper(config = SpringMapStructConfig.class)
 public interface CartMapper {
 
     void toCartEntity(CartRequest cartRequest, @MappingTarget Cart cart);

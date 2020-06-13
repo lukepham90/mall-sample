@@ -55,7 +55,6 @@ public class CacheConfig {
         };
     }
 
-
     private void createCache(CacheManager cm, String cacheName) {
         javax.cache.Cache<Object, Object> cache = cm.getCache(cacheName);
         if (cache == null) {

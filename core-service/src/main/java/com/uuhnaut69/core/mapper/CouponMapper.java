@@ -1,6 +1,6 @@
 package com.uuhnaut69.core.mapper;
 
-import com.uuhnaut69.core.config.SpringMapstructConfig;
+import com.uuhnaut69.core.config.SpringMapStructConfig;
 import com.uuhnaut69.core.domain.model.Coupon;
 import com.uuhnaut69.core.payload.request.CouponRequest;
 import com.uuhnaut69.core.payload.response.CouponResponse;
@@ -13,7 +13,7 @@ import java.util.List;
  * @author uuhnaut
  * @project mall
  */
-@Mapper(config = SpringMapstructConfig.class)
+@Mapper(config = SpringMapStructConfig.class)
 public interface CouponMapper {
 
     void toCouponEntity(CouponRequest couponRequest, @MappingTarget Coupon coupon);

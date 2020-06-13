@@ -1,6 +1,6 @@
 package com.uuhnaut69.core.mapper;
 
-import com.uuhnaut69.core.config.SpringMapstructConfig;
+import com.uuhnaut69.core.config.SpringMapStructConfig;
 import com.uuhnaut69.core.domain.model.Tag;
 import com.uuhnaut69.core.payload.request.TagRequest;
 import com.uuhnaut69.core.payload.response.TagResponse;
@@ -13,7 +13,7 @@ import java.util.List;
  * @author uuhnaut
  * @project mall
  */
-@Mapper(config = SpringMapstructConfig.class)
+@Mapper(config = SpringMapStructConfig.class)
 public interface TagMapper {
 
     void toTagEntity(TagRequest tagRequest, @MappingTarget Tag tag);

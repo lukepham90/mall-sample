@@ -22,8 +22,6 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
             "left join fetch product.tags", countQuery = "select count(distinct product) from Product product")
     Page<Product> findAllProducts(Pageable pageable);
 
-    List<Product> findByIdIn(List<UUID> ids);
-
     @Query(value = "select product from Product product left join fetch product.categories " +
             "left join fetch product.tags where product.id = :id")
     Optional<Product> findById(UUID id);
