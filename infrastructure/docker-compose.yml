@@ -38,10 +38,3 @@ services:
       - elasticsearch
     ports:
       - 9600:9600
-
-#  sonarqube:
-#    container_name: mall-sonar
-#    image: sonarqube:8.2-community
-#    ports:
-#      - 9001:9000
-#      - 9092:9092
