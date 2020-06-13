@@ -52,9 +52,6 @@ Sample mall project with Spring boot 2.x
     # Open terminal in logstash container
     docker exec -it mall-logtash /bin/bash
     
-    # Go to bin directory
-    cd /bin/
-    
     # Install plugin
     logstash-plugin install logstash-codec-json_lines
     
