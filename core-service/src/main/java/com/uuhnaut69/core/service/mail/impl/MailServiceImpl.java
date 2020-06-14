@@ -42,13 +42,13 @@ public class MailServiceImpl implements MailService {
         String confirmUrl = AppConstant.URL_BASE + UrlConstants.PUBLIC_URL + UrlConstants.AUTH_URL + "/confirm?token="
                 + verifyToken;
         MimeMessage message = mailSender.createMimeMessage();
-
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
         helper.setTo(receiveMailAddress);
         helper.setSubject(subject);
         String text = MailTemplateUtils.makeHtmlActiveAccountMail(MessageConstant.ACTIVATE_YOUR_ACCOUNT_MAIL_CONTENT,
                 confirmUrl, user.getUsername());
         helper.setText(text, true);
+
         mailSender.send(message);
     }
 

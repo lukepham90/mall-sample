@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
  */
 @Data
 public class BillingRequest {
+
     @NotBlank
     private String billingCountry;
 
@@ -21,4 +22,5 @@ public class BillingRequest {
 
     @NotBlank
     private Integer billingPostcode;
+
 }

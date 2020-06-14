@@ -19,10 +19,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.uuhnaut69</groupId>
-            <artifactId>common-service</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
@@ -44,6 +40,10 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jcache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.uuhnaut69</groupId>
+            <artifactId>common-service</artifactId>
         </dependency>
     </dependencies>
 </project>

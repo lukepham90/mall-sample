@@ -34,7 +34,6 @@ public final class MessageConstant {
     /**
      * Payment messages
      */
-    public static final String PAYMENT_SUCCEED_CANT_BE_DELETE = "Succeed cart can't be deleted !!!";
     public static final String PAID_CART = "Cart has been paid !!!";
     public static final String PAYMENT_METHOD_IS_NOT_STRIPE = "Payment method is not stripe !!!";
 
