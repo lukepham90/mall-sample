@@ -8,5 +8,4 @@ import org.mapstruct.NullValueCheckStrategy;
  * @project mall
  */
 @MapperConfig(componentModel = "spring", nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
-public interface SpringMapStructConfig {
-}
+public interface SpringMapStructConfig {}

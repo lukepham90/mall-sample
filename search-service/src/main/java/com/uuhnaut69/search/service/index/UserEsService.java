@@ -12,11 +12,11 @@ import java.util.Map;
  */
 public interface UserEsService {
 
-    void handleCdcEvent(Map<String, Object> userData, Operation operation);
+  void handleCdcEvent(Map<String, Object> userData, Operation operation);
 
-    UserEs findById(String id);
+  UserEs findById(String id);
 
-    void save(UserEs userEs);
+  void save(UserEs userEs);
 
-    void findByTagAndUpdate(String tagNameBefore, TagEs tagEs);
+  void findByTagAndUpdate(String tagNameBefore, TagEs tagEs);
 }

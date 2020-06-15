@@ -14,18 +14,17 @@ import java.util.Set;
 @Data
 public class CartRequest {
 
-    private PaymentMethod paymentMethod;
+  private PaymentMethod paymentMethod;
 
-    private PaymentStatus paymentStatus;
+  private PaymentStatus paymentStatus;
 
-    private Currency currency;
+  private Currency currency;
 
-    private Set<CartItemRequest> orderItems;
+  private Set<CartItemRequest> orderItems;
 
-    private ShippingRequest shippingRequest;
+  private ShippingRequest shippingRequest;
 
-    private BillingRequest billingRequest;
+  private BillingRequest billingRequest;
 
-    private String couponCode;
-
+  private String couponCode;
 }

@@ -27,43 +27,63 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsServiceImpl userDetailsService;
+  private final UserDetailsServiceImpl userDetailsService;
 
-    private final JwtAuthEntryPoint unauthorizedHandler;
+  private final JwtAuthEntryPoint unauthorizedHandler;
 
-    @Bean
-    public JwtAuthTokenFilter authenticationJwtTokenFilter() {
-        return new JwtAuthTokenFilter();
-    }
+  @Bean
+  public JwtAuthTokenFilter authenticationJwtTokenFilter() {
+    return new JwtAuthTokenFilter();
+  }
 
-    @Override
-    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
+  @Override
+  public void configure(AuthenticationManagerBuilder authenticationManagerBuilder)
+      throws Exception {
+    authenticationManagerBuilder
+        .userDetailsService(userDetailsService)
+        .passwordEncoder(passwordEncoder());
+  }
 
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+  @Bean
+  @Override
+  public AuthenticationManager authenticationManagerBean() throws Exception {
+    return super.authenticationManagerBean();
+  }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers("/v1/public/**").permitAll()
-                .antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/security",
-                        "/swagger-ui.html", "/webjars/**").permitAll()
-                .antMatchers("/v1/admin/**", "/actuator/").hasAnyRole("ADMIN")
-                .anyRequest().authenticated()
-                .and().exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
-                .and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.cors()
+        .and()
+        .csrf()
+        .disable()
+        .authorizeRequests()
+        .antMatchers("/v1/public/**")
+        .permitAll()
+        .antMatchers(
+            "/v2/api-docs",
+            "/configuration/ui",
+            "/swagger-resources/**",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**")
+        .permitAll()
+        .antMatchers("/v1/admin/**", "/actuator/")
+        .hasAnyRole("ADMIN")
+        .anyRequest()
+        .authenticated()
+        .and()
+        .exceptionHandling()
+        .authenticationEntryPoint(unauthorizedHandler)
+        .and()
+        .sessionManagement()
+        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-    }
+    http.addFilterBefore(
+        authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+  }
 }

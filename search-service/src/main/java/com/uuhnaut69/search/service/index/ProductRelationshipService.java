@@ -10,6 +10,8 @@ import java.util.Map;
  */
 public interface ProductRelationshipService {
 
-    void handleCdcEvent(Map<String, Object> productDataAfter, Map<String, Object> productDataBefore,
-                        Operation operation);
+  void handleCdcEvent(
+      Map<String, Object> productDataAfter,
+      Map<String, Object> productDataBefore,
+      Operation operation);
 }

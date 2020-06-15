@@ -30,7 +30,6 @@ import java.util.concurrent.Executors;
 import static io.debezium.data.Envelope.FieldName.*;
 import static java.util.stream.Collectors.toMap;
 
-
 /**
  * @author uuhnaut
  * @project mall
@@ -39,168 +38,206 @@ import static java.util.stream.Collectors.toMap;
 @Component
 public class CDCListener {
 
-    @Value("${offset.directory.path}")
-    private String offsetDir;
+  @Value("${offset.directory.path}")
+  private String offsetDir;
 
-    @Value("${database.host}")
-    private String dbHost;
+  @Value("${database.host}")
+  private String dbHost;
 
-    @Value("${database.user}")
-    private String dbUser;
+  @Value("${database.user}")
+  private String dbUser;
 
-    @Value("${database.password}")
-    private String dbPassword;
+  @Value("${database.password}")
+  private String dbPassword;
 
-    @Value("${database.name}")
-    private String dbName;
+  @Value("${database.name}")
+  private String dbName;
 
-    private final Executor executor = Executors.newSingleThreadExecutor();
+  private final Executor executor = Executors.newSingleThreadExecutor();
 
-    private DebeziumEngine<SourceRecord> engine;
+  private DebeziumEngine<SourceRecord> engine;
 
-    private final ProductEsService productEsService;
+  private final ProductEsService productEsService;
 
-    private final ProductTagService productTagService;
+  private final ProductTagService productTagService;
 
-    private final UserEsService userEsService;
+  private final UserEsService userEsService;
 
-    private final UserProductEsService userProductEsService;
+  private final UserProductEsService userProductEsService;
 
-    private final UserTagEsService userTagEsService;
+  private final UserTagEsService userTagEsService;
 
-    private final TagEsService tagEsService;
+  private final TagEsService tagEsService;
 
-    private final ProductCategoryService productCategoryService;
+  private final ProductCategoryService productCategoryService;
 
-    private final CategoryEsService categoryEsService;
+  private final CategoryEsService categoryEsService;
 
+  public CDCListener(
+      ProductEsService productEsService,
+      ProductTagService productTagService,
+      UserEsService userEsService,
+      UserProductEsService userProductEsService,
+      UserTagEsService userTagEsService,
+      TagEsService tagEsService,
+      ProductCategoryService productCategoryService,
+      CategoryEsService categoryEsService) {
+    this.productEsService = productEsService;
+    this.productTagService = productTagService;
+    this.userEsService = userEsService;
+    this.userProductEsService = userProductEsService;
+    this.userTagEsService = userTagEsService;
+    this.tagEsService = tagEsService;
+    this.productCategoryService = productCategoryService;
+    this.categoryEsService = categoryEsService;
+  }
 
-    public CDCListener(ProductEsService productEsService, ProductTagService productTagService, UserEsService userEsService,
-                       UserProductEsService userProductEsService, UserTagEsService userTagEsService, TagEsService tagEsService,
-                       ProductCategoryService productCategoryService, CategoryEsService categoryEsService) {
-        this.productEsService = productEsService;
-        this.productTagService = productTagService;
-        this.userEsService = userEsService;
-        this.userProductEsService = userProductEsService;
-        this.userTagEsService = userTagEsService;
-        this.tagEsService = tagEsService;
-        this.productCategoryService = productCategoryService;
-        this.categoryEsService = categoryEsService;
+  @PostConstruct
+  public void start() {
+    this.engine =
+        DebeziumEngine.create(Connect.class)
+            .using(createConnector())
+            .notifying(this::handleEvent)
+            .build();
+    this.executor.execute(engine);
+  }
+
+  @PreDestroy
+  public void stop() throws IOException {
+    if (this.engine != null) {
+      this.engine.close();
     }
+  }
 
-    @PostConstruct
-    public void start() {
-        this.engine = DebeziumEngine.create(Connect.class).using(createConnector()).notifying(this::handleEvent).build();
-        this.executor.execute(engine);
-    }
+  private void handleEvent(SourceRecord sourceRecord) {
+    Struct sourceRecordValue = (Struct) sourceRecord.value();
 
-    @PreDestroy
-    public void stop() throws IOException {
-        if (this.engine != null) {
-            this.engine.close();
+    if (sourceRecordValue != null) {
+
+      Operation operation = Operation.forCode((String) sourceRecordValue.get(OPERATION));
+      log.debug("{}", sourceRecordValue);
+
+      if (operation != Operation.READ) {
+
+        String record = AFTER; // For Update & Insert operations.
+        if (operation == Operation.DELETE) {
+          record = BEFORE; // For Delete operations.
         }
-    }
 
-    private void handleEvent(SourceRecord sourceRecord) {
-        Struct sourceRecordValue = (Struct) sourceRecord.value();
+        // Build a map with all row data received.
+        Map<String, Object> message = getMessage(sourceRecordValue, record);
 
-        if (sourceRecordValue != null) {
+        Struct extract = (Struct) sourceRecordValue.get(SOURCE);
+        String tableChange = extract.get("table").toString();
 
-            Operation operation = Operation.forCode((String) sourceRecordValue.get(OPERATION));
-            log.debug("{}", sourceRecordValue);
+        Map<String, Object> messageBefore;
 
-            if (operation != Operation.READ) {
+        switch (tableChange) {
+          case CDCTableConstant.PRODUCT_TABLE:
+            this.productEsService.handleCdcEvent(message, operation);
+            log.debug(
+                "Product Data Changed: {} with Operation: {}",
+                message,
+                Objects.requireNonNull(operation).name());
 
-                String record = AFTER; // For Update & Insert operations.
-                if (operation == Operation.DELETE) {
-                    record = BEFORE; // For Delete operations.
-                }
+            break;
+          case CDCTableConstant.PRODUCT_TAG_TABLE:
+            messageBefore = getMessage(sourceRecordValue, BEFORE);
+            this.productTagService.handleCdcEvent(message, messageBefore, operation);
+            log.debug(
+                "Product Tag Data Changed: {} with Operation: {}",
+                message,
+                Objects.requireNonNull(operation).name());
 
-                // Build a map with all row data received.
-                Map<String, Object> message = getMessage(sourceRecordValue, record);
+            break;
+          case CDCTableConstant.USER_TABLE:
+            this.userEsService.handleCdcEvent(message, operation);
+            log.debug(
+                "User Data Changed: {} with Operation: {}",
+                message,
+                Objects.requireNonNull(operation).name());
 
-                Struct extract = (Struct) sourceRecordValue.get(SOURCE);
-                String tableChange = extract.get("table").toString();
+            break;
+          case CDCTableConstant.USER_PRODUCT_TABLE:
+            this.userProductEsService.handleCdcEvent(message, operation);
+            log.debug(
+                "User Product Data Changed: {} with Operation: {}",
+                message,
+                Objects.requireNonNull(operation).name());
 
-                Map<String, Object> messageBefore;
+            break;
+          case CDCTableConstant.USER_TAG_TABLE:
+            messageBefore = getMessage(sourceRecordValue, BEFORE);
+            this.userTagEsService.handleCdcEvent(message, messageBefore, operation);
+            log.debug(
+                "User Tag Data Changed: {} with Operation: {}",
+                message,
+                Objects.requireNonNull(operation).name());
 
-                switch (tableChange) {
-
-                    case CDCTableConstant.PRODUCT_TABLE:
-                        this.productEsService.handleCdcEvent(message, operation);
-                        log.debug("Product Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
-
-                        break;
-                    case CDCTableConstant.PRODUCT_TAG_TABLE:
-                        messageBefore = getMessage(sourceRecordValue, BEFORE);
-                        this.productTagService.handleCdcEvent(message, messageBefore, operation);
-                        log.debug("Product Tag Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
-
-                        break;
-                    case CDCTableConstant.USER_TABLE:
-                        this.userEsService.handleCdcEvent(message, operation);
-                        log.debug("User Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
-
-                        break;
-                    case CDCTableConstant.USER_PRODUCT_TABLE:
-                        this.userProductEsService.handleCdcEvent(message, operation);
-                        log.debug("User Product Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
-
-                        break;
-                    case CDCTableConstant.USER_TAG_TABLE:
-                        messageBefore = getMessage(sourceRecordValue, BEFORE);
-                        this.userTagEsService.handleCdcEvent(message, messageBefore, operation);
-                        log.debug("User Tag Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
-
-                        break;
-                    case CDCTableConstant.TAG_TABLE:
-                        this.tagEsService.handleCdcEvent(message, operation);
-                        log.debug("Tag Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
-                        break;
-                    case CDCTableConstant.CATEGORY_TABLE:
-                        this.categoryEsService.handleCdcEvent(message, operation);
-                        log.debug("Category Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
-                        break;
-                    case CDCTableConstant.PRODUCT_CATEGORY_TABLE:
-                        messageBefore = getMessage(sourceRecordValue, BEFORE);
-                        this.productCategoryService.handleCdcEvent(message, messageBefore, operation);
-                        log.debug("Product Category Data Changed: {} with Operation: {}", message, Objects.requireNonNull(operation).name());
-                        break;
-                    default:
-                        throw new IllegalStateException("Unexpected value: " + tableChange);
-                }
-
-            }
+            break;
+          case CDCTableConstant.TAG_TABLE:
+            this.tagEsService.handleCdcEvent(message, operation);
+            log.debug(
+                "Tag Data Changed: {} with Operation: {}",
+                message,
+                Objects.requireNonNull(operation).name());
+            break;
+          case CDCTableConstant.CATEGORY_TABLE:
+            this.categoryEsService.handleCdcEvent(message, operation);
+            log.debug(
+                "Category Data Changed: {} with Operation: {}",
+                message,
+                Objects.requireNonNull(operation).name());
+            break;
+          case CDCTableConstant.PRODUCT_CATEGORY_TABLE:
+            messageBefore = getMessage(sourceRecordValue, BEFORE);
+            this.productCategoryService.handleCdcEvent(message, messageBefore, operation);
+            log.debug(
+                "Product Category Data Changed: {} with Operation: {}",
+                message,
+                Objects.requireNonNull(operation).name());
+            break;
+          default:
+            throw new IllegalStateException("Unexpected value: " + tableChange);
         }
+      }
     }
+  }
 
-    private Map<String, Object> getMessage(Struct sourceRecordValue, String status) {
-        Struct struct = (Struct) sourceRecordValue.get(status);
-        Map<String, Object> message = new HashMap<>();
-        if (struct != null) {
-            message = struct.schema().fields().stream().map(Field::name)
-                    .filter(fieldName -> struct.get(fieldName) != null)
-                    .map(fieldName -> Pair.of(fieldName, struct.get(fieldName)))
-                    .collect(toMap(Pair::getKey, Pair::getValue));
-        }
-        return message;
+  private Map<String, Object> getMessage(Struct sourceRecordValue, String status) {
+    Struct struct = (Struct) sourceRecordValue.get(status);
+    Map<String, Object> message = new HashMap<>();
+    if (struct != null) {
+      message =
+          struct.schema().fields().stream()
+              .map(Field::name)
+              .filter(fieldName -> struct.get(fieldName) != null)
+              .map(fieldName -> Pair.of(fieldName, struct.get(fieldName)))
+              .collect(toMap(Pair::getKey, Pair::getValue));
     }
+    return message;
+  }
 
-    private Properties createConnector() {
-        Properties properties = new Properties();
-        properties.setProperty(EmbeddedEngine.CONNECTOR_CLASS.toString(), "io.debezium.connector.postgresql.PostgresConnector");
-        properties.setProperty(EmbeddedEngine.OFFSET_STORAGE.toString(), "org.apache.kafka.connect.storage.FileOffsetBackingStore");
-        properties.setProperty(EmbeddedEngine.OFFSET_STORAGE_FILE_FILENAME.toString(), offsetDir);
-        properties.setProperty(EmbeddedEngine.OFFSET_FLUSH_INTERVAL_MS.toString(), "60000");
-        properties.setProperty(EmbeddedEngine.ENGINE_NAME.toString(), "mall-connector");
-        properties.setProperty(PostgresConnectorConfig.SERVER_NAME.toString(), "cdc-server");
-        properties.setProperty(PostgresConnectorConfig.HOSTNAME.toString(), dbHost);
-        properties.setProperty(PostgresConnectorConfig.PORT.toString(), "5432");
-        properties.setProperty(PostgresConnectorConfig.USER.toString(), dbUser);
-        properties.setProperty(PostgresConnectorConfig.PASSWORD.toString(), dbPassword);
-        properties.setProperty(PostgresConnectorConfig.DATABASE_NAME.toString(), dbName);
-        properties.setProperty(PostgresConnectorConfig.TABLE_WHITELIST.toString(),
-                "public.product,public.user_product,public.user_tag,public.users,public.product_tag,public.tag,public.product_category,public.category");
-        return properties;
-    }
+  private Properties createConnector() {
+    Properties properties = new Properties();
+    properties.setProperty(
+        EmbeddedEngine.CONNECTOR_CLASS.toString(),
+        "io.debezium.connector.postgresql.PostgresConnector");
+    properties.setProperty(
+        EmbeddedEngine.OFFSET_STORAGE.toString(),
+        "org.apache.kafka.connect.storage.FileOffsetBackingStore");
+    properties.setProperty(EmbeddedEngine.OFFSET_STORAGE_FILE_FILENAME.toString(), offsetDir);
+    properties.setProperty(EmbeddedEngine.OFFSET_FLUSH_INTERVAL_MS.toString(), "60000");
+    properties.setProperty(EmbeddedEngine.ENGINE_NAME.toString(), "mall-connector");
+    properties.setProperty(PostgresConnectorConfig.SERVER_NAME.toString(), "cdc-server");
+    properties.setProperty(PostgresConnectorConfig.HOSTNAME.toString(), dbHost);
+    properties.setProperty(PostgresConnectorConfig.PORT.toString(), "5432");
+    properties.setProperty(PostgresConnectorConfig.USER.toString(), dbUser);
+    properties.setProperty(PostgresConnectorConfig.PASSWORD.toString(), dbPassword);
+    properties.setProperty(PostgresConnectorConfig.DATABASE_NAME.toString(), dbName);
+    properties.setProperty(
+        PostgresConnectorConfig.TABLE_WHITELIST.toString(),
+        "public.product,public.user_product,public.user_tag,public.users,public.product_tag,public.tag,public.product_category,public.category");
+    return properties;
+  }
 }

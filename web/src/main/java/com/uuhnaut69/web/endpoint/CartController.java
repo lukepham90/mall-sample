@@ -30,64 +30,74 @@ import java.util.UUID;
 @Api(tags = "Cart", value = "Endpoint Brand")
 public class CartController {
 
-    private final CartService cartService;
+  private final CartService cartService;
 
-    private final CartMapper cartMapper;
+  private final CartMapper cartMapper;
 
-    @ApiOperation(value = "Get Carts Endpoint", notes = "Admin endpoint")
-    @GetMapping(path = UrlConstants.ADMIN_URL + UrlConstants.CART_URL)
-    public GenericResponse getCartPageWithAdminRole(@RequestParam(value = "sort", defaultValue = "id") String sortBy,
-                                                    @RequestParam(value = "order", defaultValue = "desc") String order,
-                                                    @RequestParam(value = "page", defaultValue = "1") int page,
-                                                    @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
-        Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
-        Page<Cart> carts = cartService.findAll(pageable);
-        List<CartResponse> list = cartMapper.toListCartResponse(carts.getContent());
-        return GenericResponse.builder().data(list).build();
-    }
+  @ApiOperation(value = "Get Carts Endpoint", notes = "Admin endpoint")
+  @GetMapping(path = UrlConstants.ADMIN_URL + UrlConstants.CART_URL)
+  public GenericResponse getCartPageWithAdminRole(
+      @RequestParam(value = "sort", defaultValue = "id") String sortBy,
+      @RequestParam(value = "order", defaultValue = "desc") String order,
+      @RequestParam(value = "page", defaultValue = "1") int page,
+      @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
 
-    @GetMapping(path = UrlConstants.CART_URL)
-    @ApiOperation(value = "Get Carts Endpoint", notes = "User endpoint")
-    public GenericResponse getCartPageWithUserRole(@RequestParam(value = "sort", defaultValue = "id") String sortBy,
-                                                   @RequestParam(value = "order", defaultValue = "desc") String order,
-                                                   @RequestParam(value = "page", defaultValue = "1") int page,
-                                                   @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                                   @CurrentUser UserPrinciple userPrinciple) {
-        Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
-        Page<Cart> carts = cartService.findAllByUserId(pageable, userPrinciple.getId());
-        List<CartResponse> list = cartMapper.toListCartResponse(carts.getContent());
-        return GenericResponse.builder().data(list).build();
-    }
+    Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
+    Page<Cart> carts = cartService.findAll(pageable);
+    List<CartResponse> list = cartMapper.toListCartResponse(carts.getContent());
+    return GenericResponse.builder().data(list).build();
+  }
 
-    @ApiOperation(value = "Get Cart's Detail", notes = "Admin endpoint")
-    @GetMapping(path = UrlConstants.ADMIN_URL + UrlConstants.CART_URL + "/{cartId}")
-    public GenericResponse getCartById(@PathVariable UUID cartId) {
-        Cart cart = cartService.findById(cartId);
-        CartResponse cartResponse = cartMapper.toCartResponse(cart);
-        return GenericResponse.builder().data(cartResponse).build();
-    }
+  @GetMapping(path = UrlConstants.CART_URL)
+  @ApiOperation(value = "Get Carts Endpoint", notes = "User endpoint")
+  public GenericResponse getCartPageWithUserRole(
+      @RequestParam(value = "sort", defaultValue = "id") String sortBy,
+      @RequestParam(value = "order", defaultValue = "desc") String order,
+      @RequestParam(value = "page", defaultValue = "1") int page,
+      @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
+      @CurrentUser UserPrinciple userPrinciple) {
 
-    @ApiOperation(value = "Get Cart's Detail", notes = "User endpoint")
-    @GetMapping(path = UrlConstants.CART_URL + "/{cartId}")
-    public GenericResponse getCartByIdWithUserRole(@PathVariable UUID cartId, @CurrentUser UserPrinciple userPrinciple) {
-        Cart cart = cartService.findByIdAndUserId(cartId, userPrinciple.getId());
-        CartResponse cartResponse = cartMapper.toCartResponse(cart);
-        return GenericResponse.builder().data(cartResponse).build();
-    }
+    Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
+    Page<Cart> carts = cartService.findAllByUserId(pageable, userPrinciple.getId());
+    List<CartResponse> list = cartMapper.toListCartResponse(carts.getContent());
+    return GenericResponse.builder().data(list).build();
+  }
 
-    @ApiOperation(value = "Create New Card Endpoint", notes = "Admin endpoint")
-    @PostMapping(path = UrlConstants.CART_URL)
-    public GenericResponse create(@RequestBody CartRequest cartRequest, @CurrentUser UserPrinciple userPrinciple) {
-        Cart cart = cartService.create(cartRequest, userPrinciple.getId());
-        CartResponse cartResponse = cartMapper.toCartResponse(cart);
-        return GenericResponse.builder().data(cartResponse).build();
-    }
+  @ApiOperation(value = "Get Cart's Detail", notes = "Admin endpoint")
+  @GetMapping(path = UrlConstants.ADMIN_URL + UrlConstants.CART_URL + "/{cartId}")
+  public GenericResponse getCartById(@PathVariable UUID cartId) {
 
-    @ApiOperation(value = "Delete Card Endpoint", notes = "Admin endpoint")
-    @DeleteMapping(path = UrlConstants.CART_URL + "/{cartId}")
-    public GenericResponse delete(@PathVariable UUID cartId, @CurrentUser UserPrinciple userPrinciple) {
-        cartService.delete(cartId, userPrinciple.getId());
-        return new GenericResponse();
-    }
+    Cart cart = cartService.findById(cartId);
+    CartResponse cartResponse = cartMapper.toCartResponse(cart);
+    return GenericResponse.builder().data(cartResponse).build();
+  }
 
+  @ApiOperation(value = "Get Cart's Detail", notes = "User endpoint")
+  @GetMapping(path = UrlConstants.CART_URL + "/{cartId}")
+  public GenericResponse getCartByIdWithUserRole(
+      @PathVariable UUID cartId, @CurrentUser UserPrinciple userPrinciple) {
+
+    Cart cart = cartService.findByIdAndUserId(cartId, userPrinciple.getId());
+    CartResponse cartResponse = cartMapper.toCartResponse(cart);
+    return GenericResponse.builder().data(cartResponse).build();
+  }
+
+  @ApiOperation(value = "Create New Card Endpoint", notes = "Admin endpoint")
+  @PostMapping(path = UrlConstants.CART_URL)
+  public GenericResponse create(
+      @RequestBody CartRequest cartRequest, @CurrentUser UserPrinciple userPrinciple) {
+
+    Cart cart = cartService.create(cartRequest, userPrinciple.getId());
+    CartResponse cartResponse = cartMapper.toCartResponse(cart);
+    return GenericResponse.builder().data(cartResponse).build();
+  }
+
+  @ApiOperation(value = "Delete Card Endpoint", notes = "Admin endpoint")
+  @DeleteMapping(path = UrlConstants.CART_URL + "/{cartId}")
+  public GenericResponse delete(
+      @PathVariable UUID cartId, @CurrentUser UserPrinciple userPrinciple) {
+
+    cartService.delete(cartId, userPrinciple.getId());
+    return new GenericResponse();
+  }
 }

@@ -14,16 +14,15 @@ import java.util.UUID;
  */
 public interface ProductService {
 
-    Page<Product> findAll(Pageable pageable);
+  Page<Product> findAll(Pageable pageable);
 
-    Product findById(UUID id);
+  Product findById(UUID id);
 
-    Product create(ProductRequest productRequest);
+  Product create(ProductRequest productRequest);
 
-    Product update(UUID id, ProductRequest productRequest);
+  Product update(UUID id, ProductRequest productRequest);
 
-    void delete(UUID id);
+  void delete(UUID id);
 
-    void deleteAll(List<UUID> ids);
-
+  void deleteAll(List<UUID> ids);
 }

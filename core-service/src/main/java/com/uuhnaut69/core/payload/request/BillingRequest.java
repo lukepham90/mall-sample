@@ -11,16 +11,11 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class BillingRequest {
 
-    @NotBlank
-    private String billingCountry;
+  @NotBlank private String billingCountry;
 
-    @NotBlank
-    private String billingCity;
+  @NotBlank private String billingCity;
 
-    @NotBlank
-    private String billingAddress;
+  @NotBlank private String billingAddress;
 
-    @NotBlank
-    private Integer billingPostcode;
-
+  @NotBlank private Integer billingPostcode;
 }

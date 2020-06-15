@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface FileService {
 
-    String uploadToAwsS3(MultipartFile multipartFile);
+  String uploadToAwsS3(MultipartFile multipartFile);
 
-    void deleteFileInAwsS3(String s3Path);
+  void deleteFileInAwsS3(String s3Path);
 }

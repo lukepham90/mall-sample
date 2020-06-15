@@ -30,27 +30,31 @@ import java.util.List;
 @RequestMapping(path = UrlConstants.BASE_VERSION_API)
 public class ProductSearchController {
 
-    private final AutocompleteService autocompleteService;
-    private final ProductSearchService productSearchService;
+  private final AutocompleteService autocompleteService;
+  private final ProductSearchService productSearchService;
 
-    @ApiOperation(value = "Autocomplete Endpoint", notes = "Public endpoint")
-    @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.AUTOCOMPLETE_URL)
-    public GenericResponse autocomplete(@RequestParam(value = "text", defaultValue = "") String text,
-                                        @RequestParam(value = "size", defaultValue = "25") int size) throws IOException {
-        List<AutocompleteResponse> list = autocompleteService.autocomplete(text, size);
-        return GenericResponse.builder().data(list).build();
-    }
+  @ApiOperation(value = "Autocomplete Endpoint", notes = "Public endpoint")
+  @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.AUTOCOMPLETE_URL)
+  public GenericResponse autocomplete(
+      @RequestParam(value = "text", defaultValue = "") String text,
+      @RequestParam(value = "size", defaultValue = "25") int size)
+      throws IOException {
 
-    @ApiOperation(value = "Search Endpoint", notes = "Public endpoint")
-    @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.SEARCH_URL)
-    public GenericResponse search(@RequestParam(value = "text", defaultValue = "") String text,
-                                  @RequestParam(value = "sort", defaultValue = "createdDate") String sortBy,
-                                  @RequestParam(value = "order", defaultValue = "desc") String order,
-                                  @RequestParam(value = "page", defaultValue = "1") int page,
-                                  @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
-        Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
-        Page<ProductEs> products = productSearchService.search(text, pageable);
-        return GenericResponse.builder().data(products.getContent()).build();
-    }
+    List<AutocompleteResponse> list = autocompleteService.autocomplete(text, size);
+    return GenericResponse.builder().data(list).build();
+  }
 
+  @ApiOperation(value = "Search Endpoint", notes = "Public endpoint")
+  @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.SEARCH_URL)
+  public GenericResponse search(
+      @RequestParam(value = "text", defaultValue = "") String text,
+      @RequestParam(value = "sort", defaultValue = "createdDate") String sortBy,
+      @RequestParam(value = "order", defaultValue = "desc") String order,
+      @RequestParam(value = "page", defaultValue = "1") int page,
+      @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
+
+    Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
+    Page<ProductEs> products = productSearchService.search(text, pageable);
+    return GenericResponse.builder().data(products.getContent()).build();
+  }
 }

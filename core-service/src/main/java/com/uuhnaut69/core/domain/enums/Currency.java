@@ -5,5 +5,6 @@ package com.uuhnaut69.core.domain.enums;
  * @project mall
  */
 public enum Currency {
-    EUR, USD
+  EUR,
+  USD
 }

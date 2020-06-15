@@ -33,116 +33,120 @@ import java.util.*;
 @RequiredArgsConstructor
 public class CartServiceImpl implements CartService {
 
-    private final CartRepository cartRepository;
+  private final CartRepository cartRepository;
 
-    private final ProductService productService;
+  private final ProductService productService;
 
-    private final UserService userService;
+  private final UserService userService;
 
-    private final CouponService couponService;
+  private final CouponService couponService;
 
-    private final CartMapper cartMapper;
+  private final CartMapper cartMapper;
 
-    private final BillingMapper billingMapper;
+  private final BillingMapper billingMapper;
 
-    private final ShippingMapper shippingMapper;
+  private final ShippingMapper shippingMapper;
 
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Cart> findAll(Pageable pageable) {
-        log.debug("Request to get carts");
-        return cartRepository.findAll(pageable);
-    }
+  @Override
+  @Transactional(readOnly = true)
+  public Page<Cart> findAll(Pageable pageable) {
+    log.debug("Request to get carts");
+    return cartRepository.findAll(pageable);
+  }
 
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Cart> findAllByUserId(Pageable pageable, UUID userId) {
-        log.debug("Request to get carts by user's id {}", userId);
-        return cartRepository.findAllByUserId(pageable, userId);
-    }
+  @Override
+  @Transactional(readOnly = true)
+  public Page<Cart> findAllByUserId(Pageable pageable, UUID userId) {
+    log.debug("Request to get carts by user's id {}", userId);
+    return cartRepository.findAllByUserId(pageable, userId);
+  }
 
-    @Override
-    @Transactional(readOnly = true)
-    public Cart findById(UUID id) {
-        log.debug("Request to get cart by id {}", id);
-        Optional<Cart> cart = cartRepository.findById(id);
-        return cart.orElseThrow(() -> new NotFoundException(MessageConstant.CART_NOT_FOUND));
-    }
+  @Override
+  @Transactional(readOnly = true)
+  public Cart findById(UUID id) {
+    log.debug("Request to get cart by id {}", id);
+    Optional<Cart> cart = cartRepository.findById(id);
+    return cart.orElseThrow(() -> new NotFoundException(MessageConstant.CART_NOT_FOUND));
+  }
 
-    @Override
-    public Cart create(CartRequest cartRequest, UUID userId) {
-        log.debug("Request to create cart's id {} of user's id {}", cartRequest, userId);
-        return save(cartRequest, new Cart(), userId);
-    }
+  @Override
+  public Cart create(CartRequest cartRequest, UUID userId) {
+    log.debug("Request to create cart's id {} of user's id {}", cartRequest, userId);
+    return save(cartRequest, new Cart(), userId);
+  }
 
-    @Override
-    public void delete(UUID id, UUID userId) {
-        log.debug("Request to delete cart's id {} of user's id {}", id, userId);
-        cartRepository.deleteByIdAndUserId(id, userId);
-    }
+  @Override
+  public void delete(UUID id, UUID userId) {
+    log.debug("Request to delete cart's id {} of user's id {}", id, userId);
+    cartRepository.deleteByIdAndUserId(id, userId);
+  }
 
-    @Override
-    @Transactional(readOnly = true)
-    public Cart findByIdAndUserId(UUID id, UUID userId) {
-        log.debug("Request to get cart's id {} of user's id {}", id, userId);
-        Optional<Cart> cart = cartRepository.findByIdAndUserId(id, userId);
-        return cart.orElseThrow(() -> new NotFoundException(MessageConstant.CART_NOT_FOUND));
-    }
+  @Override
+  @Transactional(readOnly = true)
+  public Cart findByIdAndUserId(UUID id, UUID userId) {
+    log.debug("Request to get cart's id {} of user's id {}", id, userId);
+    Optional<Cart> cart = cartRepository.findByIdAndUserId(id, userId);
+    return cart.orElseThrow(() -> new NotFoundException(MessageConstant.CART_NOT_FOUND));
+  }
 
-    private Cart save(CartRequest cartRequest, Cart cart, UUID userId) {
-        Set<CartItem> cartItems = new HashSet<>();
-        cartMapper.toCartEntity(cartRequest, cart);
-        cartRequest.getOrderItems().forEach(item -> {
-            try {
+  private Cart save(CartRequest cartRequest, Cart cart, UUID userId) {
+    Set<CartItem> cartItems = new HashSet<>();
+    cartMapper.toCartEntity(cartRequest, cart);
+    cartRequest
+        .getOrderItems()
+        .forEach(
+            item -> {
+              try {
                 Product product = productService.findById(item.getProductId());
                 cartItems.add(new CartItem(item.getQuantity(), product));
-            } catch (Exception e) {
+              } catch (Exception e) {
                 log.error(e.getMessage());
-            }
-        });
-        cart.setOrderItems(cartItems);
-        cart.setUser(userService.findById(userId));
-        cart.setCoupon(couponService.findByCode(cartRequest.getCouponCode()));
-        calculatePrice(cartRequest, cart);
-        Billing billing = billingMapper.toBillingEntity(cartRequest.getBillingRequest());
-        cart.setBilling(billing);
-        Shipping shipping = shippingMapper.toShippingEntity(cartRequest.getShippingRequest());
-        cart.setShipping(shipping);
-        return cartRepository.save(cart);
-    }
+              }
+            });
+    cart.setOrderItems(cartItems);
+    cart.setUser(userService.findById(userId));
+    cart.setCoupon(couponService.findByCode(cartRequest.getCouponCode()));
+    calculatePrice(cartRequest, cart);
+    Billing billing = billingMapper.toBillingEntity(cartRequest.getBillingRequest());
+    cart.setBilling(billing);
+    Shipping shipping = shippingMapper.toShippingEntity(cartRequest.getShippingRequest());
+    cart.setShipping(shipping);
+    return cartRepository.save(cart);
+  }
 
-    private void calculatePrice(CartRequest cartRequest, Cart cart) {
-        List<Integer> listPrice = new ArrayList<>();
+  private void calculatePrice(CartRequest cartRequest, Cart cart) {
+    List<Integer> listPrice = new ArrayList<>();
 
-        cartRequest.getOrderItems().stream().filter(e -> !e.getQuantity().equals(0)).forEach(e -> {
-            try {
+    cartRequest.getOrderItems().stream()
+        .filter(e -> !e.getQuantity().equals(0))
+        .forEach(
+            e -> {
+              try {
                 Product product = productService.findById(e.getProductId());
                 listPrice.add(e.getQuantity() * product.getOriginalPrice().intValue());
-            } catch (Exception e1) {
+              } catch (Exception e1) {
                 log.error(e1.getMessage());
-            }
-        });
-        int originalTotalPrice = listPrice.stream().reduce(0, Integer::sum);
-        cart.setOriginalTotalPrice(new BigDecimal(originalTotalPrice));
+              }
+            });
+    int originalTotalPrice = listPrice.stream().reduce(0, Integer::sum);
+    cart.setOriginalTotalPrice(new BigDecimal(originalTotalPrice));
 
-        if (cartRequest.getCouponCode() != null) {
-            Coupon coupon = couponService.findByCode(cartRequest.getCouponCode());
-            if (coupon.getCouponStatus().name().equals(CouponStatus.VALID.name())) {
-                int discountPrice = originalTotalPrice * coupon.getDiscountPercent() / 100;
-                int priceToPay = originalTotalPrice - discountPrice;
-                calculateTaxPrice(cart, priceToPay);
-            }
-        } else {
-            calculateTaxPrice(cart, originalTotalPrice);
-        }
-
+    if (cartRequest.getCouponCode() != null) {
+      Coupon coupon = couponService.findByCode(cartRequest.getCouponCode());
+      if (coupon.getCouponStatus().name().equals(CouponStatus.VALID.name())) {
+        int discountPrice = originalTotalPrice * coupon.getDiscountPercent() / 100;
+        int priceToPay = originalTotalPrice - discountPrice;
+        calculateTaxPrice(cart, priceToPay);
+      }
+    } else {
+      calculateTaxPrice(cart, originalTotalPrice);
     }
+  }
 
-    private void calculateTaxPrice(Cart cart, int priceToPay) {
-        int tax = priceToPay * 8 / 100;
-        cart.setTaxPrice(new BigDecimal(tax));
-        int finalPrice = priceToPay + tax;
-        cart.setPriceToPay(new BigDecimal(finalPrice));
-    }
-
+  private void calculateTaxPrice(Cart cart, int priceToPay) {
+    int tax = priceToPay * 8 / 100;
+    cart.setTaxPrice(new BigDecimal(tax));
+    int finalPrice = priceToPay + tax;
+    cart.setPriceToPay(new BigDecimal(finalPrice));
+  }
 }

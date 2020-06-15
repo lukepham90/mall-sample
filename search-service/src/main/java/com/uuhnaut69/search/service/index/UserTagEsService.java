@@ -10,5 +10,6 @@ import java.util.Map;
  */
 public interface UserTagEsService {
 
-    void handleCdcEvent(Map<String, Object> userTagData, Map<String, Object> userTagDataBefore, Operation operation);
+  void handleCdcEvent(
+      Map<String, Object> userTagData, Map<String, Object> userTagDataBefore, Operation operation);
 }

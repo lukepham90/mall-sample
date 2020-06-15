@@ -10,11 +10,11 @@ import org.springframework.data.domain.Sort;
  */
 public final class PagingUtils {
 
-    private PagingUtils() {
-    }
+  private PagingUtils() {}
 
-    public static Pageable makePageRequest(String sortBy, String order, int page, int pageSize) {
-        Sort sort = "asc".equalsIgnoreCase(order) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
-        return PageRequest.of(page - 1, pageSize, sort);
-    }
+  public static Pageable makePageRequest(String sortBy, String order, int page, int pageSize) {
+    Sort sort =
+        "asc".equalsIgnoreCase(order) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+    return PageRequest.of(page - 1, pageSize, sort);
+  }
 }

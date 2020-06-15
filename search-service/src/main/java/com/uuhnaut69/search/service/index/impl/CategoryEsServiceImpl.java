@@ -26,29 +26,33 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CategoryEsServiceImpl implements CategoryEsService {
 
-    private final CategoryEsRepository categoryEsRepository;
+  private final CategoryEsRepository categoryEsRepository;
 
-    private final ProductEsService productEsService;
+  private final ProductEsService productEsService;
 
-    @Override
-    public void handleCdcEvent(Map<String, Object> categoryData, Operation operation) {
-        log.debug("Handle category data change event {}", categoryData);
-        final ObjectMapper mapper = new ObjectMapper()
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-                .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
-        final CategoryEs categoryEs = mapper.convertValue(categoryData, CategoryEs.class);
+  @Override
+  public void handleCdcEvent(Map<String, Object> categoryData, Operation operation) {
+    log.debug("Handle category data change event {}", categoryData);
+    final ObjectMapper mapper =
+        new ObjectMapper()
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+    final CategoryEs categoryEs = mapper.convertValue(categoryData, CategoryEs.class);
 
-        Optional<CategoryEs> optional = categoryEsRepository.findById(categoryEs.getId());
-        if (Operation.DELETE.name().equals(operation.name())) {
-            categoryEsRepository.delete(categoryEs);
-        } else {
-            optional.ifPresent(es -> productEsService.findByCategoryAndUpdate(es.getCategoryName(), categoryEs));
-            categoryEsRepository.save(categoryEs);
-        }
+    Optional<CategoryEs> optional = categoryEsRepository.findById(categoryEs.getId());
+    if (Operation.DELETE.name().equals(operation.name())) {
+      categoryEsRepository.delete(categoryEs);
+    } else {
+      optional.ifPresent(
+          es -> productEsService.findByCategoryAndUpdate(es.getCategoryName(), categoryEs));
+      categoryEsRepository.save(categoryEs);
     }
+  }
 
-    @Override
-    public CategoryEs findById(String id) {
-        return categoryEsRepository.findById(id).orElseThrow(() -> new NotFoundException(MessageConstant.CATEGORY_NOT_FOUND));
-    }
+  @Override
+  public CategoryEs findById(String id) {
+    return categoryEsRepository
+        .findById(id)
+        .orElseThrow(() -> new NotFoundException(MessageConstant.CATEGORY_NOT_FOUND));
+  }
 }

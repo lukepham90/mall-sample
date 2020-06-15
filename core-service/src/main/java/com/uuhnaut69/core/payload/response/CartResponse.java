@@ -17,27 +17,28 @@ import java.util.UUID;
 @Data
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class CartResponse {
-    private UUID id;
 
-    private PaymentMethod paymentMethod;
+  private UUID id;
 
-    private PaymentStatus paymentStatus;
+  private PaymentMethod paymentMethod;
 
-    private Currency currency;
+  private PaymentStatus paymentStatus;
 
-    private BigDecimal originalTotalPrice;
+  private Currency currency;
 
-    private BigDecimal priceToPay;
+  private BigDecimal originalTotalPrice;
 
-    private BigDecimal taxPrice;
+  private BigDecimal priceToPay;
 
-    private Set<CartItemResponse> orderItems;
+  private BigDecimal taxPrice;
 
-    private ShippingResponse shipping;
+  private Set<CartItemResponse> orderItems;
 
-    private BillingResponse billing;
+  private ShippingResponse shipping;
 
-    private CouponResponse coupon;
+  private BillingResponse billing;
 
-    private String email;
+  private CouponResponse coupon;
+
+  private String email;
 }

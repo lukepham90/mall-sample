@@ -20,6 +20,6 @@ import lombok.NoArgsConstructor;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class GenericResponse {
 
-    @ApiModelProperty(value = "Payload")
-    private Object data;
+  @ApiModelProperty(value = "Payload")
+  private Object data;
 }

@@ -27,52 +27,54 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
 
-    private final CategoryRepository categoryRepository;
+  private final CategoryRepository categoryRepository;
 
-    private final CategoryMapper categoryMapper;
+  private final CategoryMapper categoryMapper;
 
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Category> findAll(Pageable pageable) {
-        log.debug("Request to get categories");
-        return categoryRepository.findAll(pageable);
-    }
+  @Override
+  @Transactional(readOnly = true)
+  public Page<Category> findAll(Pageable pageable) {
+    log.debug("Request to get categories");
+    return categoryRepository.findAll(pageable);
+  }
 
-    @Override
-    @Transactional(readOnly = true)
-    public Category findById(UUID id) {
-        log.debug("Request to get category by id {}", id);
-        return categoryRepository.findById(id).orElseThrow(() -> new NotFoundException(MessageConstant.CATEGORY_NOT_FOUND));
-    }
+  @Override
+  @Transactional(readOnly = true)
+  public Category findById(UUID id) {
+    log.debug("Request to get category by id {}", id);
+    return categoryRepository
+        .findById(id)
+        .orElseThrow(() -> new NotFoundException(MessageConstant.CATEGORY_NOT_FOUND));
+  }
 
-    @Override
-    public Category create(CategoryRequest categoryRequest) {
-        log.debug("Request to create category {}", categoryRequest);
-        return save(categoryRequest, new Category());
-    }
+  @Override
+  public Category create(CategoryRequest categoryRequest) {
+    log.debug("Request to create category {}", categoryRequest);
+    return save(categoryRequest, new Category());
+  }
 
-    @Override
-    public Category update(UUID id, CategoryRequest categoryRequest) {
-        log.debug("Request to update category's id {} with data {}", id, categoryRequest);
-        Category category = findById(id);
-        return save(categoryRequest, category);
-    }
+  @Override
+  public Category update(UUID id, CategoryRequest categoryRequest) {
+    log.debug("Request to update category's id {} with data {}", id, categoryRequest);
+    Category category = findById(id);
+    return save(categoryRequest, category);
+  }
 
-    @Override
-    public void delete(UUID id) {
-        log.debug("Request to delete category's id {}", id);
-        categoryRepository.deleteById(id);
-    }
+  @Override
+  public void delete(UUID id) {
+    log.debug("Request to delete category's id {}", id);
+    categoryRepository.deleteById(id);
+  }
 
-    @Override
-    @Transactional(readOnly = true)
-    public Set<Category> findByIdIn(Set<UUID> uuidSet) {
-        log.debug("Request to get category has id in {}", uuidSet);
-        return categoryRepository.findByIdIn(uuidSet);
-    }
+  @Override
+  @Transactional(readOnly = true)
+  public Set<Category> findByIdIn(Set<UUID> uuidSet) {
+    log.debug("Request to get category has id in {}", uuidSet);
+    return categoryRepository.findByIdIn(uuidSet);
+  }
 
-    private Category save(CategoryRequest categoryRequest, Category category) {
-        categoryMapper.toCategoryEntity(categoryRequest, category);
-        return categoryRepository.save(category);
-    }
+  private Category save(CategoryRequest categoryRequest, Category category) {
+    categoryMapper.toCategoryEntity(categoryRequest, category);
+    return categoryRepository.save(category);
+  }
 }

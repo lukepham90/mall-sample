@@ -10,6 +10,5 @@ import java.util.UUID;
  */
 public interface PaymentService {
 
-    void checkout(UUID cartId, UUID userId, CreditCard creditCard) throws Exception;
-
+  void checkout(UUID cartId, UUID userId, CreditCard creditCard) throws Exception;
 }

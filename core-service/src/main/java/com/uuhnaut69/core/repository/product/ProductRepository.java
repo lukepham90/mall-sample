@@ -18,14 +18,18 @@ import java.util.UUID;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, UUID> {
 
-    @Query(value = "select distinct product from Product product left join fetch product.categories " +
-            "left join fetch product.tags", countQuery = "select count(distinct product) from Product product")
-    Page<Product> findAllProducts(Pageable pageable);
+  @Query(
+      value =
+          "select distinct product from Product product left join fetch product.categories "
+              + "left join fetch product.tags",
+      countQuery = "select count(distinct product) from Product product")
+  Page<Product> findAllProducts(Pageable pageable);
 
-    @Query(value = "select product from Product product left join fetch product.categories " +
-            "left join fetch product.tags where product.id = :id")
-    Optional<Product> findById(UUID id);
+  @Query(
+      value =
+          "select product from Product product left join fetch product.categories "
+              + "left join fetch product.tags where product.id = :id")
+  Optional<Product> findById(UUID id);
 
-    void deleteByIdIn(List<UUID> uuidList);
-
+  void deleteByIdIn(List<UUID> uuidList);
 }

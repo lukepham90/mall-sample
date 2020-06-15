@@ -13,13 +13,13 @@ import java.util.UUID;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class ShippingResponse {
 
-    private UUID id;
+  private UUID id;
 
-    private String shippingCountry;
+  private String shippingCountry;
 
-    private String shippingCity;
+  private String shippingCity;
 
-    private String shippingAddress;
+  private String shippingAddress;
 
-    private Integer shippingPostcode;
+  private Integer shippingPostcode;
 }

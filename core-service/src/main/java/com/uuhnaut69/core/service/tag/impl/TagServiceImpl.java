@@ -27,58 +27,58 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class TagServiceImpl implements TagService {
 
-    private final TagRepository tagRepository;
+  private final TagRepository tagRepository;
 
-    private final TagMapper tagMapper;
+  private final TagMapper tagMapper;
 
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Tag> findAll(Pageable pageable) {
-        return tagRepository.findAll(pageable);
+  @Override
+  @Transactional(readOnly = true)
+  public Page<Tag> findAll(Pageable pageable) {
+    return tagRepository.findAll(pageable);
+  }
+
+  @Override
+  @Transactional(readOnly = true)
+  public Tag findById(UUID id) {
+    Optional<Tag> tag = tagRepository.findById(id);
+    return tag.orElseThrow(() -> new NotFoundException(MessageConstant.TAG_NOT_FOUND));
+  }
+
+  @Override
+  public Tag create(TagRequest tagRequest) {
+    checkTagNameValid(tagRequest.getTagName());
+    return save(tagRequest, new Tag());
+  }
+
+  @Override
+  public Tag update(UUID id, TagRequest tagRequest) {
+    Tag tag = findById(id);
+    if (!tag.getTagName().equals(tagRequest.getTagName())) {
+      checkTagNameValid(tagRequest.getTagName());
     }
+    return save(tagRequest, tag);
+  }
 
-    @Override
-    @Transactional(readOnly = true)
-    public Tag findById(UUID id) {
-        Optional<Tag> tag = tagRepository.findById(id);
-        return tag.orElseThrow(() -> new NotFoundException(MessageConstant.TAG_NOT_FOUND));
-    }
+  @Override
+  public void delete(UUID id) {
+    Tag tag = findById(id);
+    tagRepository.delete(tag);
+  }
 
-    @Override
-    public Tag create(TagRequest tagRequest) {
-        checkTagNameValid(tagRequest.getTagName());
-        return save(tagRequest, new Tag());
-    }
+  @Override
+  @Transactional(readOnly = true)
+  public Set<Tag> findListTagInListIds(Set<UUID> uuids) {
+    return tagRepository.findByIdIn(uuids);
+  }
 
-    @Override
-    public Tag update(UUID id, TagRequest tagRequest) {
-        Tag tag = findById(id);
-        if (!tag.getTagName().equals(tagRequest.getTagName())) {
-            checkTagNameValid(tagRequest.getTagName());
-        }
-        return save(tagRequest, tag);
-    }
+  private Tag save(TagRequest tagRequest, Tag tag) {
+    tagMapper.toTagEntity(tagRequest, tag);
+    return tagRepository.save(tag);
+  }
 
-    @Override
-    public void delete(UUID id) {
-        Tag tag = findById(id);
-        tagRepository.delete(tag);
+  private void checkTagNameValid(String tagName) {
+    if (tagRepository.existsByTagName(tagName)) {
+      throw new BadRequestException(MessageConstant.TAG_ALREADY_EXIST);
     }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Set<Tag> findListTagInListIds(Set<UUID> uuids) {
-        return tagRepository.findByIdIn(uuids);
-    }
-
-    private Tag save(TagRequest tagRequest, Tag tag) {
-        tagMapper.toTagEntity(tagRequest, tag);
-        return tagRepository.save(tag);
-    }
-
-    private void checkTagNameValid(String tagName) {
-        if (tagRepository.existsByTagName(tagName)) {
-            throw new BadRequestException(MessageConstant.TAG_ALREADY_EXIST);
-        }
-    }
+  }
 }

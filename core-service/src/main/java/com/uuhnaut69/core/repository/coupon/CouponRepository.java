@@ -17,11 +17,11 @@ import java.util.UUID;
 @Repository
 public interface CouponRepository extends JpaRepository<Coupon, UUID> {
 
-    Page<Coupon> findAll(Pageable pageable);
+  Page<Coupon> findAll(Pageable pageable);
 
-    Optional<Coupon> findByCode(String code);
+  Optional<Coupon> findByCode(String code);
 
-    boolean existsByCode(String code);
+  boolean existsByCode(String code);
 
-    void deleteByIdIn(List<UUID> uuidList);
+  void deleteByIdIn(List<UUID> uuidList);
 }

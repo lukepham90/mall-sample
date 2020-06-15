@@ -9,6 +9,4 @@ import org.springframework.stereotype.Repository;
  * @project mall
  */
 @Repository
-public interface ProductEsRepository extends ElasticsearchRepository<ProductEs, String> {
-
-}
+public interface ProductEsRepository extends ElasticsearchRepository<ProductEs, String> {}

@@ -21,34 +21,37 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ProductCategoryService implements ProductRelationshipService {
 
-    private final ProductEsService productEsService;
+  private final ProductEsService productEsService;
 
-    private final CategoryEsService categoryEsService;
+  private final CategoryEsService categoryEsService;
 
-    @Override
-    public void handleCdcEvent(Map<String, Object> productCategoryAfter, Map<String, Object> productCategoryDataBefore, Operation operation) {
-        log.debug("Handle product <-> category data change event {}", productCategoryAfter);
-        String productId = productCategoryAfter.get("product_id").toString();
-        String categoryId = productCategoryAfter.get("category_id").toString();
-        ProductEs productEs = productEsService.findById(productId);
-        CategoryEs categoryEs = categoryEsService.findById(categoryId);
-        String categoryIdBefore;
+  @Override
+  public void handleCdcEvent(
+      Map<String, Object> productCategoryAfter,
+      Map<String, Object> productCategoryDataBefore,
+      Operation operation) {
+    log.debug("Handle product <-> category data change event {}", productCategoryAfter);
+    String productId = productCategoryAfter.get("product_id").toString();
+    String categoryId = productCategoryAfter.get("category_id").toString();
+    ProductEs productEs = productEsService.findById(productId);
+    CategoryEs categoryEs = categoryEsService.findById(categoryId);
+    String categoryIdBefore;
 
-        CategoryEs categoryEsBefore = new CategoryEs();
+    CategoryEs categoryEsBefore = new CategoryEs();
 
-        if (!productCategoryDataBefore.isEmpty()) {
-            categoryIdBefore = productCategoryDataBefore.get("category_id").toString();
-            categoryEsBefore = categoryEsService.findById(categoryIdBefore);
-        }
-
-        updateCategoryInProduct(productEs, categoryEsBefore.getCategoryName());
-        if (!Operation.DELETE.name().equals(operation.name())) {
-            productEs.getCategories().add(categoryEs.getCategoryName());
-        }
-        productEsService.save(productEs);
+    if (!productCategoryDataBefore.isEmpty()) {
+      categoryIdBefore = productCategoryDataBefore.get("category_id").toString();
+      categoryEsBefore = categoryEsService.findById(categoryIdBefore);
     }
 
-    private void updateCategoryInProduct(ProductEs productEs, String categoryName) {
-        productEs.getCategories().removeIf(s -> s.equals(categoryName));
+    updateCategoryInProduct(productEs, categoryEsBefore.getCategoryName());
+    if (!Operation.DELETE.name().equals(operation.name())) {
+      productEs.getCategories().add(categoryEs.getCategoryName());
     }
+    productEsService.save(productEs);
+  }
+
+  private void updateCategoryInProduct(ProductEs productEs, String categoryName) {
+    productEs.getCategories().removeIf(s -> s.equals(categoryName));
+  }
 }

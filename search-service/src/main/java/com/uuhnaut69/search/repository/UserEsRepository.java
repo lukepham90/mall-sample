@@ -9,6 +9,4 @@ import org.springframework.stereotype.Repository;
  * @project mall
  */
 @Repository
-public interface UserEsRepository extends ElasticsearchRepository<UserEs, String> {
-
-}
+public interface UserEsRepository extends ElasticsearchRepository<UserEs, String> {}

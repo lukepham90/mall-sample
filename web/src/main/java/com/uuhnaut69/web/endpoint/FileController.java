@@ -19,20 +19,21 @@ import org.springframework.web.multipart.MultipartFile;
 @Api(tags = "File", value = "File Endpoint")
 public class FileController {
 
-    private final FileService fileService;
+  private final FileService fileService;
 
-    @ApiOperation(value = "File Endpoint", notes = "Admin endpoint")
-    @PostMapping(path = UrlConstants.ADMIN_URL + UrlConstants.FILE_URL)
-    public GenericResponse upload(@RequestPart(value = "file") MultipartFile multipartFile) {
-        fileService.uploadToAwsS3(multipartFile);
-        return GenericResponse.builder().data(fileService.uploadToAwsS3(multipartFile)).build();
-    }
+  @ApiOperation(value = "File Endpoint", notes = "Admin endpoint")
+  @PostMapping(path = UrlConstants.ADMIN_URL + UrlConstants.FILE_URL)
+  public GenericResponse upload(@RequestPart(value = "file") MultipartFile multipartFile) {
 
-    @ApiOperation(value = "File Endpoint", notes = "Admin endpoint")
-    @DeleteMapping(path = UrlConstants.ADMIN_URL + UrlConstants.FILE_URL)
-    public GenericResponse delete(@RequestPart(value = "s3Path") String s3Path) {
-        fileService.deleteFileInAwsS3(s3Path);
-        return new GenericResponse();
-    }
+    fileService.uploadToAwsS3(multipartFile);
+    return GenericResponse.builder().data(fileService.uploadToAwsS3(multipartFile)).build();
+  }
 
+  @ApiOperation(value = "File Endpoint", notes = "Admin endpoint")
+  @DeleteMapping(path = UrlConstants.ADMIN_URL + UrlConstants.FILE_URL)
+  public GenericResponse delete(@RequestPart(value = "s3Path") String s3Path) {
+
+    fileService.deleteFileInAwsS3(s3Path);
+    return new GenericResponse();
+  }
 }

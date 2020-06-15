@@ -19,29 +19,30 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RestClientElasticConfig {
 
-    @Value("${elasticsearch.host}")
-    private String elasticHost;
+  @Value("${elasticsearch.host}")
+  private String elasticHost;
 
-    @Value("${elasticsearch.port}")
-    private int elasticPort;
+  @Value("${elasticsearch.port}")
+  private int elasticPort;
 
-    @Value("${username}")
-    private String username;
+  @Value("${username}")
+  private String username;
 
-    @Value("${password}")
-    private String password;
+  @Value("${password}")
+  private String password;
 
-    /**
-     * Config RestHighLevelClient with https connection and auth
-     */
-    @Bean
-    public RestHighLevelClient client() {
-        final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-        credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(username, password));
-        RestClientBuilder builder = RestClient.builder(new HttpHost(elasticHost, elasticPort, "http"))
-                .setHttpClientConfigCallback(
-                        httpClientBuilder -> httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider));
+  /** Config RestHighLevelClient with https connection and auth */
+  @Bean
+  public RestHighLevelClient client() {
+    final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+    credentialsProvider.setCredentials(
+        AuthScope.ANY, new UsernamePasswordCredentials(username, password));
+    RestClientBuilder builder =
+        RestClient.builder(new HttpHost(elasticHost, elasticPort, "http"))
+            .setHttpClientConfigCallback(
+                httpClientBuilder ->
+                    httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider));
 
-        return new RestHighLevelClient(builder);
-    }
+    return new RestHighLevelClient(builder);
+  }
 }

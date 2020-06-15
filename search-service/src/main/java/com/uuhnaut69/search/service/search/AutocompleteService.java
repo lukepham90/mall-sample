@@ -11,6 +11,5 @@ import java.util.List;
  */
 public interface AutocompleteService {
 
-    List<AutocompleteResponse> autocomplete(String text, int size) throws IOException;
-
+  List<AutocompleteResponse> autocomplete(String text, int size) throws IOException;
 }

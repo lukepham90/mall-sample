@@ -17,20 +17,20 @@ import java.util.List;
 @Mapper(config = SpringMapStructConfig.class)
 public interface CartMapper {
 
-    void toCartEntity(CartRequest cartRequest, @MappingTarget Cart cart);
+  void toCartEntity(CartRequest cartRequest, @MappingTarget Cart cart);
 
-    @Mapping(source = "cart.user.email", target = "email")
-    CartResponse toCartResponse(Cart cart);
+  @Mapping(source = "cart.user.email", target = "email")
+  CartResponse toCartResponse(Cart cart);
 
-    List<CartResponse> toListCartResponse(List<Cart> carts);
+  List<CartResponse> toListCartResponse(List<Cart> carts);
 
-    CouponResponse toCouponResponse(Coupon coupon);
+  CouponResponse toCouponResponse(Coupon coupon);
 
-    BillingResponse toBillingResponse(Billing billing);
+  BillingResponse toBillingResponse(Billing billing);
 
-    ShippingResponse toShippingResponse(Shipping shipping);
+  ShippingResponse toShippingResponse(Shipping shipping);
 
-    @Mapping(source = "cartItem.product.productName", target = "productName")
-    @Mapping(source = "cartItem.product.thumbNail", target = "thumbNail")
-    CartItemResponse toCartItemResponse(CartItem cartItem);
+  @Mapping(source = "cartItem.product.productName", target = "productName")
+  @Mapping(source = "cartItem.product.thumbNail", target = "thumbNail")
+  CartItemResponse toCartItemResponse(CartItem cartItem);
 }

@@ -11,6 +11,5 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class TagRequest {
 
-    @NotBlank
-    private String tagName;
+  @NotBlank private String tagName;
 }

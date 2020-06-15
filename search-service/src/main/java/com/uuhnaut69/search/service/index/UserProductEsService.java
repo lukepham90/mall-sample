@@ -10,5 +10,5 @@ import java.util.Map;
  */
 public interface UserProductEsService {
 
-    void handleCdcEvent(Map<String, Object> userProductData, Operation operation);
+  void handleCdcEvent(Map<String, Object> userProductData, Operation operation);
 }

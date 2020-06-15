@@ -5,7 +5,7 @@ package com.uuhnaut69.common.exception;
  * @project mall
  */
 public class BadRequestException extends RuntimeException {
-    public BadRequestException(String message) {
-        super(message);
-    }
+  public BadRequestException(String message) {
+    super(message);
+  }
 }

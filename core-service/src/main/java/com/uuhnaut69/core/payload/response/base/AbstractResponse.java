@@ -11,5 +11,5 @@ import java.sql.Timestamp;
 @Data
 public class AbstractResponse {
 
-    private Timestamp createdDate;
+  private Timestamp createdDate;
 }

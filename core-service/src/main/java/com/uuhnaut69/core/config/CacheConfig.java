@@ -25,40 +25,41 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class CacheConfig {
 
-    private final javax.cache.configuration.Configuration<Object, Object> jcacheConfiguration;
+  private final javax.cache.configuration.Configuration<Object, Object> jcacheConfiguration;
 
-    public CacheConfig() {
-        CaffeineConfiguration caffeineConfiguration = new CaffeineConfiguration();
-        caffeineConfiguration.setMaximumSize(OptionalLong.of(500));
-        caffeineConfiguration.setExpireAfterWrite(OptionalLong.of(TimeUnit.SECONDS.toNanos(3600)));
-        caffeineConfiguration.setStatisticsEnabled(true);
-        this.jcacheConfiguration = caffeineConfiguration;
-    }
+  public CacheConfig() {
+    CaffeineConfiguration caffeineConfiguration = new CaffeineConfiguration();
+    caffeineConfiguration.setMaximumSize(OptionalLong.of(500));
+    caffeineConfiguration.setExpireAfterWrite(OptionalLong.of(TimeUnit.SECONDS.toNanos(3600)));
+    caffeineConfiguration.setStatisticsEnabled(true);
+    this.jcacheConfiguration = caffeineConfiguration;
+  }
 
-    @Bean
-    public HibernatePropertiesCustomizer hibernatePropertiesCustomizer(CacheManager cacheManager) {
-        return hibernateProperties -> hibernateProperties.put(ConfigSettings.CACHE_MANAGER, cacheManager);
-    }
+  @Bean
+  public HibernatePropertiesCustomizer hibernatePropertiesCustomizer(CacheManager cacheManager) {
+    return hibernateProperties ->
+        hibernateProperties.put(ConfigSettings.CACHE_MANAGER, cacheManager);
+  }
 
-    @Bean
-    public JCacheManagerCustomizer cacheManagerCustomizer() {
-        return cacheManager -> {
-            createCache(cacheManager, UserRepository.USERS_LOGIN_CACHE);
-            createCache(cacheManager, Product.class.getName());
-            createCache(cacheManager, Product.class.getName() + ".tags");
-            createCache(cacheManager, Product.class.getName() + ".categories");
-            createCache(cacheManager, Category.class.getName());
-            createCache(cacheManager, Tag.class.getName());
-            createCache(cacheManager, User.class.getName());
-            createCache(cacheManager, User.class.getName() + ".products");
-            createCache(cacheManager, User.class.getName() + ".tags");
-        };
-    }
+  @Bean
+  public JCacheManagerCustomizer cacheManagerCustomizer() {
+    return cacheManager -> {
+      createCache(cacheManager, UserRepository.USERS_LOGIN_CACHE);
+      createCache(cacheManager, Product.class.getName());
+      createCache(cacheManager, Product.class.getName() + ".tags");
+      createCache(cacheManager, Product.class.getName() + ".categories");
+      createCache(cacheManager, Category.class.getName());
+      createCache(cacheManager, Tag.class.getName());
+      createCache(cacheManager, User.class.getName());
+      createCache(cacheManager, User.class.getName() + ".products");
+      createCache(cacheManager, User.class.getName() + ".tags");
+    };
+  }
 
-    private void createCache(CacheManager cm, String cacheName) {
-        javax.cache.Cache<Object, Object> cache = cm.getCache(cacheName);
-        if (cache == null) {
-            cm.createCache(cacheName, jcacheConfiguration);
-        }
+  private void createCache(CacheManager cm, String cacheName) {
+    javax.cache.Cache<Object, Object> cache = cm.getCache(cacheName);
+    if (cache == null) {
+      cm.createCache(cacheName, jcacheConfiguration);
     }
+  }
 }

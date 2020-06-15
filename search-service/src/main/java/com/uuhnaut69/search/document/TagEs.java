@@ -19,14 +19,11 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @Document(indexName = EsConstants.TAG_INDEX)
 public class TagEs extends AbstractDocument {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
+  /** */
+  private static final long serialVersionUID = 1L;
 
-    @Id
-    private String id;
+  @Id private String id;
 
-    @Field(type = FieldType.Keyword)
-    private String tagName;
+  @Field(type = FieldType.Keyword)
+  private String tagName;
 }

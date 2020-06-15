@@ -22,17 +22,14 @@ import java.util.Set;
 @Document(indexName = EsConstants.USER_INDEX)
 public class UserEs extends AbstractDocument {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
+  /** */
+  private static final long serialVersionUID = 1L;
 
-    @Id
-    private String id;
+  @Id private String id;
 
-    @Field(type = FieldType.Keyword)
-    private Set<String> productIds = new HashSet<>();
+  @Field(type = FieldType.Keyword)
+  private Set<String> productIds = new HashSet<>();
 
-    @Field(type = FieldType.Keyword)
-    private Set<String> tags = new HashSet<>();
+  @Field(type = FieldType.Keyword)
+  private Set<String> tags = new HashSet<>();
 }

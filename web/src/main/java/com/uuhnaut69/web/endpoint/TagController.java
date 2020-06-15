@@ -29,42 +29,47 @@ import java.util.UUID;
 @RequestMapping(path = UrlConstants.BASE_VERSION_API)
 public class TagController {
 
-    private final TagMapper tagMapper;
+  private final TagMapper tagMapper;
 
-    private final TagService tagService;
+  private final TagService tagService;
 
-    @ApiOperation(value = "Get Tags Endpoint", notes = "Public endpoint")
-    @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.TAG_URL)
-    public GenericResponse getTagPage(@RequestParam(value = "sort", defaultValue = "id") String sortBy,
-                                      @RequestParam(value = "order", defaultValue = "desc") String order,
-                                      @RequestParam(value = "page", defaultValue = "1") int page,
-                                      @RequestParam(value = "pageSize", defaultValue = "30") int pageSize) {
-        Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
-        Page<Tag> tags = tagService.findAll(pageable);
-        List<TagResponse> list = tagMapper.toListTagResponse(tags.getContent());
-        return GenericResponse.builder().data(list).build();
-    }
+  @ApiOperation(value = "Get Tags Endpoint", notes = "Public endpoint")
+  @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.TAG_URL)
+  public GenericResponse getTagPage(
+      @RequestParam(value = "sort", defaultValue = "id") String sortBy,
+      @RequestParam(value = "order", defaultValue = "desc") String order,
+      @RequestParam(value = "page", defaultValue = "1") int page,
+      @RequestParam(value = "pageSize", defaultValue = "30") int pageSize) {
 
-    @ApiOperation(value = "Create Tag Endpoint", notes = "Admin endpoint")
-    @PostMapping(path = UrlConstants.ADMIN_URL + UrlConstants.TAG_URL)
-    public GenericResponse create(@RequestBody @Valid TagRequest tagRequest) {
-        Tag tag = tagService.create(tagRequest);
-        TagResponse tagResponse = tagMapper.toTagResponse(tag);
-        return GenericResponse.builder().data(tagResponse).build();
-    }
+    Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
+    Page<Tag> tags = tagService.findAll(pageable);
+    List<TagResponse> list = tagMapper.toListTagResponse(tags.getContent());
+    return GenericResponse.builder().data(list).build();
+  }
 
-    @ApiOperation(value = "Update Tag Endpoint", notes = "Admin endpoint")
-    @PutMapping(path = UrlConstants.ADMIN_URL + UrlConstants.TAG_URL + "/{id}")
-    public GenericResponse update(@PathVariable UUID id, @RequestBody @Valid TagRequest tagRequest) {
-        Tag tag = tagService.update(id, tagRequest);
-        TagResponse tagResponse = tagMapper.toTagResponse(tag);
-        return GenericResponse.builder().data(tagResponse).build();
-    }
+  @ApiOperation(value = "Create Tag Endpoint", notes = "Admin endpoint")
+  @PostMapping(path = UrlConstants.ADMIN_URL + UrlConstants.TAG_URL)
+  public GenericResponse create(@RequestBody @Valid TagRequest tagRequest) {
 
-    @ApiOperation(value = "Delete Tag Endpoint", notes = "Admin endpoint")
-    @DeleteMapping(path = UrlConstants.ADMIN_URL + UrlConstants.TAG_URL + "/{id}")
-    public GenericResponse delete(@PathVariable UUID id) {
-        tagService.delete(id);
-        return new GenericResponse();
-    }
+    Tag tag = tagService.create(tagRequest);
+    TagResponse tagResponse = tagMapper.toTagResponse(tag);
+    return GenericResponse.builder().data(tagResponse).build();
+  }
+
+  @ApiOperation(value = "Update Tag Endpoint", notes = "Admin endpoint")
+  @PutMapping(path = UrlConstants.ADMIN_URL + UrlConstants.TAG_URL + "/{id}")
+  public GenericResponse update(@PathVariable UUID id, @RequestBody @Valid TagRequest tagRequest) {
+
+    Tag tag = tagService.update(id, tagRequest);
+    TagResponse tagResponse = tagMapper.toTagResponse(tag);
+    return GenericResponse.builder().data(tagResponse).build();
+  }
+
+  @ApiOperation(value = "Delete Tag Endpoint", notes = "Admin endpoint")
+  @DeleteMapping(path = UrlConstants.ADMIN_URL + UrlConstants.TAG_URL + "/{id}")
+  public GenericResponse delete(@PathVariable UUID id) {
+
+    tagService.delete(id);
+    return new GenericResponse();
+  }
 }

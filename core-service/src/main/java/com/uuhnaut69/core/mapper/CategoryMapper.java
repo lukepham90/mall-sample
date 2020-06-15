@@ -14,8 +14,7 @@ import org.mapstruct.MappingTarget;
 @Mapper(config = SpringMapStructConfig.class)
 public interface CategoryMapper {
 
-    void toCategoryEntity(CategoryRequest categoryRequest, @MappingTarget Category category);
+  void toCategoryEntity(CategoryRequest categoryRequest, @MappingTarget Category category);
 
-    CategoryResponse toCategoryResponse(Category category);
-
+  CategoryResponse toCategoryResponse(Category category);
 }

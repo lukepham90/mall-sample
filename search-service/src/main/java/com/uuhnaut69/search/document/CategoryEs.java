@@ -19,9 +19,8 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @Document(indexName = EsConstants.CATEGORY_INDEX)
 public class CategoryEs extends AbstractDocument {
 
-    @Id
-    private String id;
+  @Id private String id;
 
-    @Field(type = FieldType.Keyword)
-    private String categoryName;
+  @Field(type = FieldType.Keyword)
+  private String categoryName;
 }

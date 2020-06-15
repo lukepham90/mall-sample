@@ -12,11 +12,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class StripeConfig {
 
-    @Value("${STRIPE_SECRET_KEY}")
-    private String secretKey;
+  @Value("${STRIPE_SECRET_KEY}")
+  private String secretKey;
 
-    @Bean
-    public void init() {
-        Stripe.apiKey = secretKey;
-    }
+  @Bean
+  public void init() {
+    Stripe.apiKey = secretKey;
+  }
 }

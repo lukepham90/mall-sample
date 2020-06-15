@@ -17,87 +17,97 @@ import java.util.UUID;
  */
 public class UserPrinciple implements UserDetails {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    private final UUID id;
+  private final UUID id;
 
-    private final String name;
+  private final String name;
 
-    private final String username;
+  private final String username;
 
-    private final String email;
+  private final String email;
 
-    @JsonIgnore
-    private final String password;
+  @JsonIgnore private final String password;
 
-    private final boolean isEnabled;
+  private final boolean isEnabled;
 
-    private final Collection<? extends GrantedAuthority> authorities;
+  private final Collection<? extends GrantedAuthority> authorities;
 
-    public UserPrinciple(UUID id, String name, String username, String email, String password,
-                         Collection<? extends GrantedAuthority> authorities, boolean isEnabled) {
-        this.id = id;
-        this.name = name;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.authorities = authorities;
-        this.isEnabled = isEnabled;
-    }
+  public UserPrinciple(
+      UUID id,
+      String name,
+      String username,
+      String email,
+      String password,
+      Collection<? extends GrantedAuthority> authorities,
+      boolean isEnabled) {
+    this.id = id;
+    this.name = name;
+    this.username = username;
+    this.email = email;
+    this.password = password;
+    this.authorities = authorities;
+    this.isEnabled = isEnabled;
+  }
 
-    public static UserPrinciple build(User user) {
-        List<GrantedAuthority> authorities = Collections
-                .singletonList(new SimpleGrantedAuthority(user.getRole().toString()));
+  public static UserPrinciple build(User user) {
+    List<GrantedAuthority> authorities =
+        Collections.singletonList(new SimpleGrantedAuthority(user.getRole().toString()));
 
-        return new UserPrinciple(user.getId(), user.getName(), user.getUsername(), user.getEmail(), user.getPassword(),
-                authorities, user.isEnabled());
-    }
+    return new UserPrinciple(
+        user.getId(),
+        user.getName(),
+        user.getUsername(),
+        user.getEmail(),
+        user.getPassword(),
+        authorities,
+        user.isEnabled());
+  }
 
-    public UUID getId() {
-        return id;
-    }
+  public UUID getId() {
+    return id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    @Override
-    public String getUsername() {
-        return username;
-    }
+  @Override
+  public String getUsername() {
+    return username;
+  }
 
-    @Override
-    public String getPassword() {
-        return password;
-    }
+  @Override
+  public String getPassword() {
+    return password;
+  }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return authorities;
+  }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
 
-    @Override
-    public boolean isEnabled() {
-        return this.isEnabled;
-    }
-
+  @Override
+  public boolean isEnabled() {
+    return this.isEnabled;
+  }
 }

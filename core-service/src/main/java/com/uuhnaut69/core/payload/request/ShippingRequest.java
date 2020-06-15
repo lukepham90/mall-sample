@@ -10,15 +10,12 @@ import javax.validation.constraints.NotBlank;
  */
 @Data
 public class ShippingRequest {
-    @NotBlank
-    private String shippingCountry;
 
-    @NotBlank
-    private String shippingCity;
+  @NotBlank private String shippingCountry;
 
-    @NotBlank
-    private String shippingAddress;
+  @NotBlank private String shippingCity;
 
-    @NotBlank
-    private Integer shippingPostcode;
+  @NotBlank private String shippingAddress;
+
+  @NotBlank private Integer shippingPostcode;
 }

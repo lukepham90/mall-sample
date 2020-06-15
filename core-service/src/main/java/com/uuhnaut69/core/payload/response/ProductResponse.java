@@ -15,25 +15,25 @@ import java.util.UUID;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class ProductResponse {
 
-    private UUID id;
+  private UUID id;
 
-    private String productName;
+  private String productName;
 
-    private String description;
+  private String description;
 
-    private Integer stocks;
+  private Integer stocks;
 
-    private String imageUrls;
+  private String imageUrls;
 
-    private String thumbNail;
+  private String thumbNail;
 
-    private BigDecimal originalPrice;
+  private BigDecimal originalPrice;
 
-    private BigDecimal discountPrice;
+  private BigDecimal discountPrice;
 
-    private Set<TagResponse> tags;
+  private Set<TagResponse> tags;
 
-    private Set<CategoryResponse> categories;
+  private Set<CategoryResponse> categories;
 
-    private boolean trending;
+  private boolean trending;
 }

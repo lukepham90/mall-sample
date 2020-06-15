@@ -12,5 +12,5 @@ import org.mapstruct.Mapper;
 @Mapper(config = SpringMapStructConfig.class)
 public interface ShippingMapper {
 
-    Shipping toShippingEntity(ShippingRequest shippingRequest);
+  Shipping toShippingEntity(ShippingRequest shippingRequest);
 }

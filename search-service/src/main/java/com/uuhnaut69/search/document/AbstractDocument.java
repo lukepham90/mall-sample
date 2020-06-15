@@ -15,22 +15,20 @@ import java.sql.Timestamp;
 @Data
 public class AbstractDocument implements Serializable {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
+  /** */
+  private static final long serialVersionUID = 1L;
 
-    @JsonIgnore
-    @Field(type = FieldType.Text)
-    private String createdBy;
+  @JsonIgnore
+  @Field(type = FieldType.Text)
+  private String createdBy;
 
-    @JsonIgnore
-    @Field(type = FieldType.Text)
-    private String updatedBy;
+  @JsonIgnore
+  @Field(type = FieldType.Text)
+  private String updatedBy;
 
-    @Field(type = FieldType.Date)
-    private Timestamp createdDate;
+  @Field(type = FieldType.Date)
+  private Timestamp createdDate;
 
-    @Field(type = FieldType.Date)
-    private Timestamp updatedDate;
+  @Field(type = FieldType.Date)
+  private Timestamp updatedDate;
 }

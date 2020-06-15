@@ -29,67 +29,67 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CouponServiceImpl implements CouponService {
 
-    private final CouponRepository couponRepository;
+  private final CouponRepository couponRepository;
 
-    private final CouponMapper couponMapper;
+  private final CouponMapper couponMapper;
 
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Coupon> findAll(Pageable pageable) {
-        log.debug("Request to get coupons");
-        return couponRepository.findAll(pageable);
+  @Override
+  @Transactional(readOnly = true)
+  public Page<Coupon> findAll(Pageable pageable) {
+    log.debug("Request to get coupons");
+    return couponRepository.findAll(pageable);
+  }
+
+  @Override
+  @Transactional(readOnly = true)
+  public Coupon findByCode(String code) {
+    log.debug("Request to get coupon by code {}", code);
+    Optional<Coupon> coupon = couponRepository.findByCode(code);
+    return coupon.orElseThrow(() -> new NotFoundException(MessageConstant.COUPON_NOT_FOUND));
+  }
+
+  @Override
+  public Coupon create(CouponRequest couponRequest) {
+    log.debug("Request to create coupon {}", couponRequest);
+    checkCouponCodeValid(couponRequest.getCode());
+    return save(couponRequest, new Coupon());
+  }
+
+  @Override
+  public Coupon update(UUID id, CouponRequest couponRequest) {
+    log.debug("Request to update coupon's id {} with data {}", id, couponRequest);
+    Coupon coupon = findById(id);
+    if (!coupon.getCode().equals(couponRequest.getCode())) {
+      checkCouponCodeValid(couponRequest.getCode());
     }
+    return save(couponRequest, coupon);
+  }
 
-    @Override
-    @Transactional(readOnly = true)
-    public Coupon findByCode(String code) {
-        log.debug("Request to get coupon by code {}", code);
-        Optional<Coupon> coupon = couponRepository.findByCode(code);
-        return coupon.orElseThrow(() -> new NotFoundException(MessageConstant.COUPON_NOT_FOUND));
-    }
+  @Override
+  public void delete(UUID id) {
+    log.debug("Request to delete coupon by id {}", id);
+    couponRepository.deleteById(id);
+  }
 
-    @Override
-    public Coupon create(CouponRequest couponRequest) {
-        log.debug("Request to create coupon {}", couponRequest);
-        checkCouponCodeValid(couponRequest.getCode());
-        return save(couponRequest, new Coupon());
-    }
+  @Override
+  public void deleteAll(List<UUID> ids) {
+    log.debug("Request to delete coupon has id in list {}", ids);
+    couponRepository.deleteByIdIn(ids);
+  }
 
-    @Override
-    public Coupon update(UUID id, CouponRequest couponRequest) {
-        log.debug("Request to update coupon's id {} with data {}", id, couponRequest);
-        Coupon coupon = findById(id);
-        if (!coupon.getCode().equals(couponRequest.getCode())) {
-            checkCouponCodeValid(couponRequest.getCode());
-        }
-        return save(couponRequest, coupon);
-    }
+  private Coupon findById(UUID id) {
+    Optional<Coupon> coupon = couponRepository.findById(id);
+    return coupon.orElseThrow(() -> new NotFoundException(MessageConstant.COUPON_NOT_FOUND));
+  }
 
-    @Override
-    public void delete(UUID id) {
-        log.debug("Request to delete coupon by id {}", id);
-        couponRepository.deleteById(id);
-    }
+  private Coupon save(CouponRequest couponRequest, Coupon coupon) {
+    couponMapper.toCouponEntity(couponRequest, coupon);
+    return couponRepository.save(coupon);
+  }
 
-    @Override
-    public void deleteAll(List<UUID> ids) {
-        log.debug("Request to delete coupon has id in list {}", ids);
-        couponRepository.deleteByIdIn(ids);
+  private void checkCouponCodeValid(String code) {
+    if (couponRepository.existsByCode(code)) {
+      throw new BadRequestException(MessageConstant.COUPON_ALREADY_EXIST);
     }
-
-    private Coupon findById(UUID id) {
-        Optional<Coupon> coupon = couponRepository.findById(id);
-        return coupon.orElseThrow(() -> new NotFoundException(MessageConstant.COUPON_NOT_FOUND));
-    }
-
-    private Coupon save(CouponRequest couponRequest, Coupon coupon) {
-        couponMapper.toCouponEntity(couponRequest, coupon);
-        return couponRepository.save(coupon);
-    }
-
-    private void checkCouponCodeValid(String code) {
-        if (couponRepository.existsByCode(code)) {
-            throw new BadRequestException(MessageConstant.COUPON_ALREADY_EXIST);
-        }
-    }
+  }
 }
