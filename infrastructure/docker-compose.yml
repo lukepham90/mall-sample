@@ -10,6 +10,7 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    restart: on-failure
 
   elasticsearch:
     container_name: mall-elasticsearch
@@ -20,6 +21,7 @@ services:
     ports:
       - 9200:9200
       - 9300:9300
+    restart: on-failure
 
   kibana:
     container_name: mall-kibana
@@ -28,6 +30,7 @@ services:
       - elasticsearch
     ports:
       - 5601:5601
+    restart: on-failure
 
   logtash:
     container_name: mall-logtash
@@ -38,3 +41,4 @@ services:
       - elasticsearch
     ports:
       - 9600:9600
+    restart: on-failure
