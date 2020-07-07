@@ -32,6 +32,7 @@ public class AuthController {
   @ApiOperation(value = "SignIn Endpoint")
   @PostMapping(path = UrlConstants.AUTH_URL + "/sign-in")
   public GenericResponse signIn(@RequestBody @Valid SignInRequest signInRequest) {
+
     JwtResponse jwtResponse = authService.signIn(signInRequest);
     return GenericResponse.builder().data(jwtResponse).build();
   }
@@ -39,6 +40,7 @@ public class AuthController {
   @ApiOperation(value = "SignUp Endpoint")
   @PostMapping(path = UrlConstants.AUTH_URL + "/sign-up")
   public GenericResponse signUp(@RequestBody @Valid SignUpRequest signUpRequest) throws Exception {
+
     MessageResponse messageResponse = authService.signUp(signUpRequest);
     return GenericResponse.builder().data(messageResponse).build();
   }
@@ -47,6 +49,7 @@ public class AuthController {
   @GetMapping(path = UrlConstants.AUTH_URL + "/confirm")
   public GenericResponse confirmation(
       @RequestParam(value = "token", defaultValue = "") String token) {
+
     tokenService.confirmVerifyToken(token);
     return GenericResponse.builder().build();
   }
