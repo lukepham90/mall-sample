@@ -21,43 +21,43 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-  @ExceptionHandler(AuthorizeException.class)
-  public ResponseEntity<ErrorResponse> unAuth(Exception ex, HttpServletRequest request) {
-    ErrorResponse errorResponse = getErrorMessages(ex, request, HttpStatus.UNAUTHORIZED);
-    return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
-  }
+    @ExceptionHandler(AuthorizeException.class)
+    public ResponseEntity<ErrorResponse> unAuth(Exception ex, HttpServletRequest request) {
+        ErrorResponse errorResponse = getErrorMessages(ex, request, HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
+    }
 
-  @ExceptionHandler(BadRequestException.class)
-  public ResponseEntity<ErrorResponse> badRequest(Exception ex, HttpServletRequest request) {
-    ErrorResponse errorResponse = getErrorMessages(ex, request, HttpStatus.BAD_REQUEST);
-    return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-  }
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ErrorResponse> badRequest(Exception ex, HttpServletRequest request) {
+        ErrorResponse errorResponse = getErrorMessages(ex, request, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
 
-  @ExceptionHandler(NotFoundException.class)
-  public ResponseEntity<ErrorResponse> customNotFound(Exception ex, HttpServletRequest request) {
-    ErrorResponse errorResponse = getErrorMessages(ex, request, HttpStatus.NOT_FOUND);
-    return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
-  }
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ErrorResponse> customNotFound(Exception ex, HttpServletRequest request) {
+        ErrorResponse errorResponse = getErrorMessages(ex, request, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
 
-  @ExceptionHandler(Exception.class)
-  public ResponseEntity<ErrorResponse> customGeneralException(
-      Exception ex, HttpServletRequest request) {
-    ErrorResponse errorResponse = getErrorMessages(ex, request, HttpStatus.INTERNAL_SERVER_ERROR);
-    return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-  }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> customGeneralException(
+            Exception ex, HttpServletRequest request) {
+        ErrorResponse errorResponse = getErrorMessages(ex, request, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
-  private ErrorResponse getErrorMessages(
-      Exception ex, HttpServletRequest request, HttpStatus unauthorized) {
-    ErrorResponse errorResponse = new ErrorResponse();
-    errorResponse.setStatus(unauthorized.value());
-    errorResponse.setTimestamp(LocalDateTime.now());
-    errorResponse.setError(ex.getMessage());
-    errorResponse.setRequestUrl(request.getRequestURL().toString());
-    StringBuilder errorLog = new StringBuilder();
-    errorLog.append("[").append(request.getMethod()).append("]");
-    errorLog.append(request.getRequestURL().toString());
-    errorLog.append(". Caused by ").append(ex.getMessage());
-    log.error(errorLog.toString());
-    return errorResponse;
-  }
+    private ErrorResponse getErrorMessages(
+            Exception ex, HttpServletRequest request, HttpStatus unauthorized) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setStatus(unauthorized.value());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setError(ex.getMessage());
+        errorResponse.setRequestUrl(request.getRequestURL().toString());
+        StringBuilder errorLog = new StringBuilder();
+        errorLog.append("[").append(request.getMethod()).append("]");
+        errorLog.append(request.getRequestURL().toString());
+        errorLog.append(". Caused by ").append(ex.getMessage());
+        log.error(errorLog.toString());
+        return errorResponse;
+    }
 }

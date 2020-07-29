@@ -13,5 +13,6 @@ import java.util.UUID;
 @Data
 public class IdsRequest {
 
-  @NotNull private List<UUID> ids;
+    @NotNull
+    private List<UUID> ids;
 }

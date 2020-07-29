@@ -13,7 +13,7 @@ import java.util.UUID;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class TagResponse {
 
-  private UUID id;
+    private UUID id;
 
-  private String tagName;
+    private String tagName;
 }

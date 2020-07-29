@@ -27,57 +27,55 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class FileServiceImpl implements FileService {
 
-  @Value("${amazon.s3.bucket-name}")
-  private String amazonS3BucketName;
+    private final AmazonS3 amazonS3Client;
+    @Value("${amazon.s3.bucket-name}")
+    private String amazonS3BucketName;
+    @Value("${amazon.s3.endpoint}")
+    private String amazonS3EndPoint;
 
-  @Value("${amazon.s3.endpoint}")
-  private String amazonS3EndPoint;
-
-  private final AmazonS3 amazonS3Client;
-
-  @Override
-  public String uploadToAwsS3(MultipartFile multipartFile) {
-    String fileUrl = "";
-    try {
-      File file = convertMultiPartToFile(multipartFile);
-      String fileName = generateFileName(multipartFile);
-      fileUrl = amazonS3EndPoint + "/" + amazonS3BucketName + "/" + fileName;
-      log.debug("Request to upload file in AWS has path {}", fileName);
-      uploadFileTos3bucket(fileName, file);
-      Files.deleteIfExists(Paths.get(file.getAbsolutePath()));
-    } catch (Exception e) {
-      log.error(e.getMessage());
-    }
-    return fileUrl;
-  }
-
-  @Override
-  public void deleteFileInAwsS3(String s3Path) {
-    String fileName = s3Path.substring(s3Path.lastIndexOf('/') + 1);
-    log.debug("Request to delete file in AWS has path {}", fileName);
-    amazonS3Client.deleteObject(new DeleteObjectRequest(amazonS3BucketName, fileName));
-  }
-
-  private void uploadFileTos3bucket(String fileName, File file) {
-    amazonS3Client.putObject(
-        new PutObjectRequest(amazonS3BucketName, fileName, file)
-            .withCannedAcl(CannedAccessControlList.PublicRead));
-  }
-
-  private File convertMultiPartToFile(MultipartFile file) {
-    File convertFile = new File(Objects.requireNonNull(file.getOriginalFilename()));
-    try (FileOutputStream fos = new FileOutputStream(convertFile)) {
-      fos.write(file.getBytes());
-    } catch (Exception e) {
-      log.error(e.getMessage());
+    @Override
+    public String uploadToAwsS3(MultipartFile multipartFile) {
+        String fileUrl = "";
+        try {
+            File file = convertMultiPartToFile(multipartFile);
+            String fileName = generateFileName(multipartFile);
+            fileUrl = amazonS3EndPoint + "/" + amazonS3BucketName + "/" + fileName;
+            log.debug("Request to upload file in AWS has path {}", fileName);
+            uploadFileTos3bucket(fileName, file);
+            Files.deleteIfExists(Paths.get(file.getAbsolutePath()));
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return fileUrl;
     }
 
-    return convertFile;
-  }
+    @Override
+    public void deleteFileInAwsS3(String s3Path) {
+        String fileName = s3Path.substring(s3Path.lastIndexOf('/') + 1);
+        log.debug("Request to delete file in AWS has path {}", fileName);
+        amazonS3Client.deleteObject(new DeleteObjectRequest(amazonS3BucketName, fileName));
+    }
 
-  private String generateFileName(MultipartFile multiPart) {
-    return TimeUtils.getCurrentTimestamp()
-        + "_"
-        + Objects.requireNonNull(multiPart.getOriginalFilename()).replace(" ", "_");
-  }
+    private void uploadFileTos3bucket(String fileName, File file) {
+        amazonS3Client.putObject(
+                new PutObjectRequest(amazonS3BucketName, fileName, file)
+                        .withCannedAcl(CannedAccessControlList.PublicRead));
+    }
+
+    private File convertMultiPartToFile(MultipartFile file) {
+        File convertFile = new File(Objects.requireNonNull(file.getOriginalFilename()));
+        try (FileOutputStream fos = new FileOutputStream(convertFile)) {
+            fos.write(file.getBytes());
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+
+        return convertFile;
+    }
+
+    private String generateFileName(MultipartFile multiPart) {
+        return TimeUtils.getCurrentTimestamp()
+                + "_"
+                + Objects.requireNonNull(multiPart.getOriginalFilename()).replace(" ", "_");
+    }
 }

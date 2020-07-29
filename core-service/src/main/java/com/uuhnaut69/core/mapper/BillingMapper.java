@@ -12,5 +12,5 @@ import org.mapstruct.Mapper;
 @Mapper(config = SpringMapStructConfig.class)
 public interface BillingMapper {
 
-  Billing toBillingEntity(BillingRequest billingRequest);
+    Billing toBillingEntity(BillingRequest billingRequest);
 }

@@ -25,29 +25,29 @@ import javax.validation.Valid;
 @RequestMapping(path = UrlConstants.BASE_VERSION_API + UrlConstants.PUBLIC_URL)
 public class AuthController {
 
-  private final AuthService authService;
+    private final AuthService authService;
 
-  private final TokenService tokenService;
+    private final TokenService tokenService;
 
-  @ApiOperation(value = "SignIn Endpoint")
-  @PostMapping(path = UrlConstants.AUTH_URL + "/sign-in")
-  public GenericResponse signIn(@RequestBody @Valid SignInRequest signInRequest) {
-    JwtResponse jwtResponse = authService.signIn(signInRequest);
-    return GenericResponse.builder().data(jwtResponse).build();
-  }
+    @ApiOperation(value = "SignIn Endpoint")
+    @PostMapping(path = UrlConstants.AUTH_URL + "/sign-in")
+    public GenericResponse signIn(@RequestBody @Valid SignInRequest signInRequest) {
+        JwtResponse jwtResponse = authService.signIn(signInRequest);
+        return GenericResponse.builder().data(jwtResponse).build();
+    }
 
-  @ApiOperation(value = "SignUp Endpoint")
-  @PostMapping(path = UrlConstants.AUTH_URL + "/sign-up")
-  public GenericResponse signUp(@RequestBody @Valid SignUpRequest signUpRequest) throws Exception {
-    MessageResponse messageResponse = authService.signUp(signUpRequest);
-    return GenericResponse.builder().data(messageResponse).build();
-  }
+    @ApiOperation(value = "SignUp Endpoint")
+    @PostMapping(path = UrlConstants.AUTH_URL + "/sign-up")
+    public GenericResponse signUp(@RequestBody @Valid SignUpRequest signUpRequest) throws Exception {
+        MessageResponse messageResponse = authService.signUp(signUpRequest);
+        return GenericResponse.builder().data(messageResponse).build();
+    }
 
-  @ApiOperation(value = "Confirmation Endpoint")
-  @GetMapping(path = UrlConstants.AUTH_URL + "/confirm")
-  public GenericResponse confirmation(
-      @RequestParam(value = "token", defaultValue = "") String token) {
-    tokenService.confirmVerifyToken(token);
-    return GenericResponse.builder().build();
-  }
+    @ApiOperation(value = "Confirmation Endpoint")
+    @GetMapping(path = UrlConstants.AUTH_URL + "/confirm")
+    public GenericResponse confirmation(
+            @RequestParam(value = "token", defaultValue = "") String token) {
+        tokenService.confirmVerifyToken(token);
+        return GenericResponse.builder().build();
+    }
 }

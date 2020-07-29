@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public interface TagEsService {
 
-  void handleCdcEvent(Map<String, Object> tagData, Operation operation);
+    void handleCdcEvent(Map<String, Object> tagData, Operation operation);
 
-  TagEs findById(String id);
+    TagEs findById(String id);
 }

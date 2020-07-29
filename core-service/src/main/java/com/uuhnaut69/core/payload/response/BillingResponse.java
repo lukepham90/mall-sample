@@ -13,13 +13,13 @@ import java.util.UUID;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class BillingResponse {
 
-  private UUID id;
+    private UUID id;
 
-  private String billingCountry;
+    private String billingCountry;
 
-  private String billingCity;
+    private String billingCity;
 
-  private String billingAddress;
+    private String billingAddress;
 
-  private Integer billingPostcode;
+    private Integer billingPostcode;
 }

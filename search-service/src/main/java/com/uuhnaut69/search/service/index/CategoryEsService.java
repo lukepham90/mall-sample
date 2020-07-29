@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public interface CategoryEsService {
 
-  void handleCdcEvent(Map<String, Object> categoryData, Operation operation);
+    void handleCdcEvent(Map<String, Object> categoryData, Operation operation);
 
-  CategoryEs findById(String id);
+    CategoryEs findById(String id);
 }

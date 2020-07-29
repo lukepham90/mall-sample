@@ -17,29 +17,29 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AmazonWebServiceConfig {
 
-  @Value("${amazon.accesskey}")
-  private String amazonAWSAccessKey;
+    @Value("${amazon.accesskey}")
+    private String amazonAWSAccessKey;
 
-  @Value("${amazon.secretkey}")
-  private String amazonAWSSecretKey;
+    @Value("${amazon.secretkey}")
+    private String amazonAWSSecretKey;
 
-  @Value("${amazon.region}")
-  private String amazonRegion;
+    @Value("${amazon.region}")
+    private String amazonRegion;
 
-  public AWSCredentialsProvider amazonAWSCredentialsProvider() {
-    return new AWSStaticCredentialsProvider(amazonAWSCredentials());
-  }
+    public AWSCredentialsProvider amazonAWSCredentialsProvider() {
+        return new AWSStaticCredentialsProvider(amazonAWSCredentials());
+    }
 
-  @Bean
-  public AWSCredentials amazonAWSCredentials() {
-    return new BasicAWSCredentials(amazonAWSAccessKey, amazonAWSSecretKey);
-  }
+    @Bean
+    public AWSCredentials amazonAWSCredentials() {
+        return new BasicAWSCredentials(amazonAWSAccessKey, amazonAWSSecretKey);
+    }
 
-  @Bean
-  public AmazonS3 amazonS3Client() {
-    return AmazonS3ClientBuilder.standard()
-        .withCredentials(amazonAWSCredentialsProvider())
-        .withRegion(amazonRegion)
-        .build();
-  }
+    @Bean
+    public AmazonS3 amazonS3Client() {
+        return AmazonS3ClientBuilder.standard()
+                .withCredentials(amazonAWSCredentialsProvider())
+                .withRegion(amazonRegion)
+                .build();
+    }
 }

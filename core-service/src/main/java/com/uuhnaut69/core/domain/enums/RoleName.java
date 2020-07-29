@@ -5,6 +5,6 @@ package com.uuhnaut69.core.domain.enums;
  * @project mall
  */
 public enum RoleName {
-  ROLE_USER,
-  ROLE_ADMIN
+    ROLE_USER,
+    ROLE_ADMIN
 }

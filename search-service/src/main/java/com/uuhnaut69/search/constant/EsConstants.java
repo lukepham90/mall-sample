@@ -6,21 +6,30 @@ package com.uuhnaut69.search.constant;
  */
 public final class EsConstants {
 
-  /** Product */
-  public static final String PRODUCT_INDEX = "product-index";
+    /**
+     * Product
+     */
+    public static final String PRODUCT_INDEX = "product-index";
 
-  public static final String PRODUCT_SUGGEST = "productSuggest";
+    public static final String PRODUCT_SUGGEST = "productSuggest";
 
-  /** Tag */
-  public static final String TAG_INDEX = "tag-index";
+    /**
+     * Tag
+     */
+    public static final String TAG_INDEX = "tag-index";
 
-  /** User */
-  public static final String USER_INDEX = "user-index";
+    /**
+     * User
+     */
+    public static final String USER_INDEX = "user-index";
 
-  public static final String CATEGORY_INDEX = "category-index";
+    public static final String CATEGORY_INDEX = "category-index";
 
-  /** Analyzer */
-  public static final String STANDARD_ANALYZER = "standard";
+    /**
+     * Analyzer
+     */
+    public static final String STANDARD_ANALYZER = "standard";
 
-  private EsConstants() {}
+    private EsConstants() {
+    }
 }

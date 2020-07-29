@@ -23,18 +23,22 @@ import java.util.UUID;
 @EntityListeners(AuditingEntityListener.class)
 public class AbstractEntity implements Serializable {
 
-  /** */
-  private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-  @CreatedBy
-  @Column(nullable = false, updatable = false)
-  private UUID createdBy;
+    @CreatedBy
+    @Column(nullable = false, updatable = false)
+    private UUID createdBy;
 
-  @LastModifiedBy private UUID updatedBy;
+    @LastModifiedBy
+    private UUID updatedBy;
 
-  @CreatedDate
-  @Column(nullable = false, updatable = false)
-  private Timestamp createdDate;
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    private Timestamp createdDate;
 
-  @LastModifiedDate private Timestamp updatedDate;
+    @LastModifiedDate
+    private Timestamp updatedDate;
 }

@@ -26,42 +26,42 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 public class Cart extends AbstractEntity {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-  @Enumerated(EnumType.STRING)
-  private PaymentMethod paymentMethod;
+    @Enumerated(EnumType.STRING)
+    private PaymentMethod paymentMethod;
 
-  @Enumerated(EnumType.STRING)
-  private PaymentStatus paymentStatus;
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus paymentStatus;
 
-  @Enumerated(EnumType.STRING)
-  private Currency currency;
+    @Enumerated(EnumType.STRING)
+    private Currency currency;
 
-  private BigDecimal originalTotalPrice;
+    private BigDecimal originalTotalPrice;
 
-  private BigDecimal taxPrice;
+    private BigDecimal taxPrice;
 
-  private BigDecimal priceToPay;
+    private BigDecimal priceToPay;
 
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  @JoinColumn(name = "cart_id", nullable = false)
-  private Set<CartItem> orderItems = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "cart_id", nullable = false)
+    private Set<CartItem> orderItems = new HashSet<>();
 
-  @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-  @JoinColumn(name = "ship_id", nullable = false)
-  private Shipping shipping;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "ship_id", nullable = false)
+    private Shipping shipping;
 
-  @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-  @JoinColumn(name = "billing_id", nullable = false)
-  private Billing billing;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "billing_id", nullable = false)
+    private Billing billing;
 
-  @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "coupon_id")
-  private Coupon coupon;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "coupon_id")
+    private Coupon coupon;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "user_id", nullable = false)
-  private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }

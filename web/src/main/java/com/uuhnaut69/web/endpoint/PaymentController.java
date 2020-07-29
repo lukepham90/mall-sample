@@ -23,17 +23,17 @@ import java.util.UUID;
 @Api(tags = "Payment", value = "Payment Endpoint")
 public class PaymentController {
 
-  private final PaymentService paymentService;
+    private final PaymentService paymentService;
 
-  @ApiOperation(value = "Payment Endpoint", notes = "User endpoint")
-  @PostMapping(path = UrlConstants.CART_URL + "/{cartId}" + UrlConstants.CHECKOUT)
-  public GenericResponse charge(
-      @PathVariable UUID cartId,
-      @RequestBody CreditCard creditCard,
-      @CurrentUser UserPrinciple userPrinciple)
-      throws Exception {
+    @ApiOperation(value = "Payment Endpoint", notes = "User endpoint")
+    @PostMapping(path = UrlConstants.CART_URL + "/{cartId}" + UrlConstants.CHECKOUT)
+    public GenericResponse charge(
+            @PathVariable UUID cartId,
+            @RequestBody CreditCard creditCard,
+            @CurrentUser UserPrinciple userPrinciple)
+            throws Exception {
 
-    paymentService.checkout(cartId, userPrinciple.getId(), creditCard);
-    return new GenericResponse();
-  }
+        paymentService.checkout(cartId, userPrinciple.getId(), creditCard);
+        return new GenericResponse();
+    }
 }

@@ -11,5 +11,5 @@ import java.util.UUID;
  */
 public interface StripeService {
 
-  void charge(CreditCard creditCard, Cart cart, UUID userId) throws Exception;
+    void charge(CreditCard creditCard, Cart cart, UUID userId) throws Exception;
 }

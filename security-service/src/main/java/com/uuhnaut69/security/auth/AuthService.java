@@ -11,7 +11,7 @@ import com.uuhnaut69.core.payload.response.MessageResponse;
  */
 public interface AuthService {
 
-  JwtResponse signIn(SignInRequest signInRequest);
+    JwtResponse signIn(SignInRequest signInRequest);
 
-  MessageResponse signUp(SignUpRequest signUpRequest) throws Exception;
+    MessageResponse signUp(SignUpRequest signUpRequest) throws Exception;
 }

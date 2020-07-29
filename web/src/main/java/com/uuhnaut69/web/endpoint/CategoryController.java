@@ -27,16 +27,16 @@ import javax.validation.Valid;
 @RequestMapping(path = UrlConstants.BASE_VERSION_API)
 public class CategoryController {
 
-  private final CategoryService categoryService;
+    private final CategoryService categoryService;
 
-  private final CategoryMapper categoryMapper;
+    private final CategoryMapper categoryMapper;
 
-  @ApiOperation(value = "Create Category Endpoint", notes = "Admin endpoint")
-  @PostMapping(path = UrlConstants.ADMIN_URL + UrlConstants.CATEGORY_URL)
-  public GenericResponse create(@RequestBody @Valid CategoryRequest categoryRequest) {
+    @ApiOperation(value = "Create Category Endpoint", notes = "Admin endpoint")
+    @PostMapping(path = UrlConstants.ADMIN_URL + UrlConstants.CATEGORY_URL)
+    public GenericResponse create(@RequestBody @Valid CategoryRequest categoryRequest) {
 
-    Category category = categoryService.create(categoryRequest);
-    CategoryResponse categoryResponse = categoryMapper.toCategoryResponse(category);
-    return GenericResponse.builder().data(categoryResponse).build();
-  }
+        Category category = categoryService.create(categoryRequest);
+        CategoryResponse categoryResponse = categoryMapper.toCategoryResponse(category);
+        return GenericResponse.builder().data(categoryResponse).build();
+    }
 }

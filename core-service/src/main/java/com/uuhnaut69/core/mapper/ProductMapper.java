@@ -21,13 +21,13 @@ import java.util.Set;
 @Mapper(config = SpringMapStructConfig.class)
 public interface ProductMapper {
 
-  void toProductEntity(ProductRequest productRequest, @MappingTarget Product product);
+    void toProductEntity(ProductRequest productRequest, @MappingTarget Product product);
 
-  ProductResponse toProductResponse(Product product);
+    ProductResponse toProductResponse(Product product);
 
-  List<ProductResponse> toListProductResponse(List<Product> products);
+    List<ProductResponse> toListProductResponse(List<Product> products);
 
-  Set<TagResponse> toSetTagResponse(Set<Tag> tags);
+    Set<TagResponse> toSetTagResponse(Set<Tag> tags);
 
-  Set<CategoryResponse> toSetCategoryResponse(Set<Category> categories);
+    Set<CategoryResponse> toSetCategoryResponse(Set<Category> categories);
 }

@@ -16,9 +16,9 @@ import java.util.List;
 @Mapper(config = SpringMapStructConfig.class)
 public interface TagMapper {
 
-  void toTagEntity(TagRequest tagRequest, @MappingTarget Tag tag);
+    void toTagEntity(TagRequest tagRequest, @MappingTarget Tag tag);
 
-  TagResponse toTagResponse(Tag tag);
+    TagResponse toTagResponse(Tag tag);
 
-  List<TagResponse> toListTagResponse(List<Tag> tags);
+    List<TagResponse> toListTagResponse(List<Tag> tags);
 }

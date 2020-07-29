@@ -13,15 +13,15 @@ import java.util.UUID;
  */
 public interface CartService {
 
-  Page<Cart> findAll(Pageable pageable);
+    Page<Cart> findAll(Pageable pageable);
 
-  Page<Cart> findAllByUserId(Pageable pageable, UUID userId);
+    Page<Cart> findAllByUserId(Pageable pageable, UUID userId);
 
-  Cart findById(UUID id);
+    Cart findById(UUID id);
 
-  Cart findByIdAndUserId(UUID id, UUID userId);
+    Cart findByIdAndUserId(UUID id, UUID userId);
 
-  Cart create(CartRequest cartRequest, UUID userId);
+    Cart create(CartRequest cartRequest, UUID userId);
 
-  void delete(UUID id, UUID userId);
+    void delete(UUID id, UUID userId);
 }

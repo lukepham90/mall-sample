@@ -17,16 +17,16 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-  private final UserRepository userRepository;
+    private final UserRepository userRepository;
 
-  @Override
-  @Transactional(readOnly = true)
-  public UserDetails loadUserByUsername(String username) {
+    @Override
+    @Transactional(readOnly = true)
+    public UserDetails loadUserByUsername(String username) {
 
-    User user =
-        userRepository
-            .findByUsernameAndIsEnabled(username, true)
-            .orElseThrow(() -> new NotFoundException("Not found user " + username));
-    return UserPrinciple.build(user);
-  }
+        User user =
+                userRepository
+                        .findByUsernameAndIsEnabled(username, true)
+                        .orElseThrow(() -> new NotFoundException("Not found user " + username));
+        return UserPrinciple.build(user);
+    }
 }

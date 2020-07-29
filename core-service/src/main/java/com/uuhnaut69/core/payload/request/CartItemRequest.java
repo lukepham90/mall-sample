@@ -17,9 +17,10 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CartItemRequest {
 
-  @Min(0)
-  @NotBlank
-  private Integer quantity;
+    @Min(0)
+    @NotBlank
+    private Integer quantity;
 
-  @NotBlank private UUID productId;
+    @NotBlank
+    private UUID productId;
 }

@@ -24,14 +24,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = UrlConstants.BASE_VERSION_API)
 public class UserController {
 
-  private final UserService userService;
+    private final UserService userService;
 
-  @ApiOperation(value = "Init User Content Endpoint", notes = "User endpoint")
-  @PostMapping(path = UrlConstants.USER_URL)
-  public GenericResponse initBaseContent(
-      @CurrentUser UserPrinciple userPrinciple, @RequestBody UserBaseContent userBaseContent) {
+    @ApiOperation(value = "Init User Content Endpoint", notes = "User endpoint")
+    @PostMapping(path = UrlConstants.USER_URL)
+    public GenericResponse initBaseContent(
+            @CurrentUser UserPrinciple userPrinciple, @RequestBody UserBaseContent userBaseContent) {
 
-    userService.initBaseContent(userPrinciple.getId(), userBaseContent);
-    return new GenericResponse();
-  }
+        userService.initBaseContent(userPrinciple.getId(), userBaseContent);
+        return new GenericResponse();
+    }
 }

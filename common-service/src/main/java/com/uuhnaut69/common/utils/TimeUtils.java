@@ -9,14 +9,15 @@ import java.time.LocalDateTime;
  */
 public final class TimeUtils {
 
-  private TimeUtils() {}
+    private TimeUtils() {
+    }
 
-  /**
-   * Get current date time
-   *
-   * @return Timestamp
-   */
-  public static Timestamp getCurrentTimestamp() {
-    return Timestamp.valueOf(LocalDateTime.now());
-  }
+    /**
+     * Get current date time
+     *
+     * @return Timestamp
+     */
+    public static Timestamp getCurrentTimestamp() {
+        return Timestamp.valueOf(LocalDateTime.now());
+    }
 }

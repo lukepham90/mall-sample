@@ -15,12 +15,12 @@ import java.util.UUID;
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID> {
 
-  String USERS_LOGIN_CACHE = "userLoginCache";
+    String USERS_LOGIN_CACHE = "userLoginCache";
 
-  @Cacheable(cacheNames = USERS_LOGIN_CACHE)
-  Optional<User> findByUsernameAndIsEnabled(String username, Boolean isEnabled);
+    @Cacheable(cacheNames = USERS_LOGIN_CACHE)
+    Optional<User> findByUsernameAndIsEnabled(String username, Boolean isEnabled);
 
-  boolean existsByUsername(String username);
+    boolean existsByUsername(String username);
 
-  boolean existsByEmail(String email);
+    boolean existsByEmail(String email);
 }

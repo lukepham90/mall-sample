@@ -12,5 +12,5 @@ import java.util.UUID;
 @Data
 public class UserBaseContent {
 
-  private Set<UUID> uuidTags;
+    private Set<UUID> uuidTags;
 }

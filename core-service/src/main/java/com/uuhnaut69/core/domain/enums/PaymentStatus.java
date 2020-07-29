@@ -5,7 +5,7 @@ package com.uuhnaut69.core.domain.enums;
  * @project mall
  */
 public enum PaymentStatus {
-  SUCCEED,
-  FAILED,
-  PENDING
+    SUCCEED,
+    FAILED,
+    PENDING
 }

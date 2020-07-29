@@ -8,5 +8,5 @@ import com.uuhnaut69.core.domain.model.User;
  */
 public interface MailService {
 
-  void sendMail(User user) throws Exception;
+    void sendMail(User user) throws Exception;
 }

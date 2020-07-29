@@ -14,15 +14,15 @@ import java.util.UUID;
  */
 public interface CategoryService {
 
-  Page<Category> findAll(Pageable pageable);
+    Page<Category> findAll(Pageable pageable);
 
-  Category findById(UUID id);
+    Category findById(UUID id);
 
-  Category create(CategoryRequest categoryRequest);
+    Category create(CategoryRequest categoryRequest);
 
-  Category update(UUID id, CategoryRequest categoryRequest);
+    Category update(UUID id, CategoryRequest categoryRequest);
 
-  void delete(UUID id);
+    void delete(UUID id);
 
-  Set<Category> findByIdIn(Set<UUID> uuidSet);
+    Set<Category> findByIdIn(Set<UUID> uuidSet);
 }

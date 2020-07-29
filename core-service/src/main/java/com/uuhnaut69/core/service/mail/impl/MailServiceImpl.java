@@ -29,31 +29,31 @@ import javax.mail.internet.MimeMessage;
 @RequiredArgsConstructor
 public class MailServiceImpl implements MailService {
 
-  private final JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
 
-  private final TokenService tokenService;
+    private final TokenService tokenService;
 
-  @Async
-  @Override
-  public void sendMail(User user) throws Exception {
-    String subject = "Registration Confirmation";
-    String receiveMailAddress = user.getEmail();
-    String verifyToken = tokenService.generateToken(user);
-    String confirmUrl =
-        AppConstant.URL_BASE
-            + UrlConstants.PUBLIC_URL
-            + UrlConstants.AUTH_URL
-            + "/confirm?token="
-            + verifyToken;
-    MimeMessage message = mailSender.createMimeMessage();
-    MimeMessageHelper helper = new MimeMessageHelper(message, true);
-    helper.setTo(receiveMailAddress);
-    helper.setSubject(subject);
-    String text =
-        MailTemplateUtils.makeHtmlActiveAccountMail(
-            MessageConstant.ACTIVATE_YOUR_ACCOUNT_MAIL_CONTENT, confirmUrl, user.getUsername());
-    helper.setText(text, true);
+    @Async
+    @Override
+    public void sendMail(User user) throws Exception {
+        String subject = "Registration Confirmation";
+        String receiveMailAddress = user.getEmail();
+        String verifyToken = tokenService.generateToken(user);
+        String confirmUrl =
+                AppConstant.URL_BASE
+                        + UrlConstants.PUBLIC_URL
+                        + UrlConstants.AUTH_URL
+                        + "/confirm?token="
+                        + verifyToken;
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        helper.setTo(receiveMailAddress);
+        helper.setSubject(subject);
+        String text =
+                MailTemplateUtils.makeHtmlActiveAccountMail(
+                        MessageConstant.ACTIVATE_YOUR_ACCOUNT_MAIL_CONTENT, confirmUrl, user.getUsername());
+        helper.setText(text, true);
 
-    mailSender.send(message);
-  }
+        mailSender.send(message);
+    }
 }

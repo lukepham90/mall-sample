@@ -14,15 +14,15 @@ import java.util.UUID;
  */
 public interface CouponService {
 
-  Page<Coupon> findAll(Pageable pageable);
+    Page<Coupon> findAll(Pageable pageable);
 
-  Coupon findByCode(String code);
+    Coupon findByCode(String code);
 
-  Coupon create(CouponRequest couponRequest);
+    Coupon create(CouponRequest couponRequest);
 
-  Coupon update(UUID id, CouponRequest couponRequest);
+    Coupon update(UUID id, CouponRequest couponRequest);
 
-  void delete(UUID id);
+    void delete(UUID id);
 
-  void deleteAll(List<UUID> ids);
+    void deleteAll(List<UUID> ids);
 }

@@ -18,18 +18,18 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 public class CartItem extends AbstractEntity {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-  private Integer quantity;
+    private Integer quantity;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "product_id", nullable = false)
-  private Product product;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
-  public CartItem(Integer quantity, Product product) {
-    this.quantity = quantity;
-    this.product = product;
-  }
+    public CartItem(Integer quantity, Product product) {
+        this.quantity = quantity;
+        this.product = product;
+    }
 }

@@ -11,11 +11,11 @@ import java.util.UUID;
  */
 public interface UserService {
 
-  User findById(UUID id);
+    User findById(UUID id);
 
-  void save(User user);
+    void save(User user);
 
-  void initBaseContent(UUID id, UserBaseContent userBaseContent);
+    void initBaseContent(UUID id, UserBaseContent userBaseContent);
 
-  void markAsReadProduct(UUID userId, UUID productId);
+    void markAsReadProduct(UUID userId, UUID productId);
 }

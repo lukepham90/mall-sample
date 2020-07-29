@@ -27,35 +27,35 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TagEsServiceImpl implements TagEsService {
 
-  private final TagEsRepository tagEsRepository;
-  private final UserEsService userEsService;
-  private final ProductEsService productEsService;
+    private final TagEsRepository tagEsRepository;
+    private final UserEsService userEsService;
+    private final ProductEsService productEsService;
 
-  @Override
-  public void handleCdcEvent(Map<String, Object> tagData, Operation operation) {
-    log.debug("Handle tag data change event {}", tagData);
-    final ObjectMapper mapper =
-        new ObjectMapper()
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-            .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
-    final TagEs tagEs = mapper.convertValue(tagData, TagEs.class);
+    @Override
+    public void handleCdcEvent(Map<String, Object> tagData, Operation operation) {
+        log.debug("Handle tag data change event {}", tagData);
+        final ObjectMapper mapper =
+                new ObjectMapper()
+                        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                        .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+        final TagEs tagEs = mapper.convertValue(tagData, TagEs.class);
 
-    Optional<TagEs> optional = tagEsRepository.findById(tagEs.getId());
-    if (Operation.DELETE.name().equals(operation.name())) {
-      // TODO update later
-      tagEsRepository.deleteById(tagEs.getId());
-    } else {
-      if (optional.isPresent()) {
-        userEsService.findByTagAndUpdate(optional.get().getTagName(), tagEs);
-        productEsService.findByTagAndUpdate(optional.get().getTagName(), tagEs);
-      }
-      tagEsRepository.save(tagEs);
+        Optional<TagEs> optional = tagEsRepository.findById(tagEs.getId());
+        if (Operation.DELETE.name().equals(operation.name())) {
+            // TODO update later
+            tagEsRepository.deleteById(tagEs.getId());
+        } else {
+            if (optional.isPresent()) {
+                userEsService.findByTagAndUpdate(optional.get().getTagName(), tagEs);
+                productEsService.findByTagAndUpdate(optional.get().getTagName(), tagEs);
+            }
+            tagEsRepository.save(tagEs);
+        }
     }
-  }
 
-  @Override
-  public TagEs findById(String id) {
-    Optional<TagEs> tagEs = tagEsRepository.findById(id);
-    return tagEs.orElseThrow(() -> new NotFoundException(MessageConstant.TAG_NOT_FOUND));
-  }
+    @Override
+    public TagEs findById(String id) {
+        Optional<TagEs> tagEs = tagEsRepository.findById(id);
+        return tagEs.orElseThrow(() -> new NotFoundException(MessageConstant.TAG_NOT_FOUND));
+    }
 }

@@ -20,20 +20,20 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 public class Coupon extends AbstractEntity {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-  @Column(nullable = false, unique = true)
-  private String code;
+    @Column(nullable = false, unique = true)
+    private String code;
 
-  @Enumerated(EnumType.STRING)
-  private CouponStatus couponStatus;
+    @Enumerated(EnumType.STRING)
+    private CouponStatus couponStatus;
 
-  @Column(nullable = false)
-  private Integer discountPercent;
+    @Column(nullable = false)
+    private Integer discountPercent;
 
-  private Timestamp startingDate;
+    private Timestamp startingDate;
 
-  private Timestamp endingDate;
+    private Timestamp endingDate;
 }

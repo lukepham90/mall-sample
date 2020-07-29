@@ -21,27 +21,27 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ProductSearchServiceImpl implements ProductSearchService {
 
-  private final ProductEsRepository productEsRepository;
+    private final ProductEsRepository productEsRepository;
 
-  @Override
-  public Page<ProductEs> search(String text, Pageable pageable) {
-    log.debug("Request to get product with text {}", text);
-    return productEsRepository.search(
-        new NativeSearchQueryBuilder()
-            .withQuery(
-                QueryBuilders.boolQuery()
-                    .filter(
-                        QueryBuilders.boolQuery()
-                            .should(
-                                QueryBuilders.multiMatchQuery(
-                                        text,
-                                        "productName",
-                                        "description",
-                                        "originalPrice",
-                                        "productName")
-                                    .fuzziness(Fuzziness.AUTO))
-                            .should(QueryBuilders.termQuery("tags", text))))
-            .withPageable(pageable)
-            .build());
-  }
+    @Override
+    public Page<ProductEs> search(String text, Pageable pageable) {
+        log.debug("Request to get product with text {}", text);
+        return productEsRepository.search(
+                new NativeSearchQueryBuilder()
+                        .withQuery(
+                                QueryBuilders.boolQuery()
+                                        .filter(
+                                                QueryBuilders.boolQuery()
+                                                        .should(
+                                                                QueryBuilders.multiMatchQuery(
+                                                                        text,
+                                                                        "productName",
+                                                                        "description",
+                                                                        "originalPrice",
+                                                                        "productName")
+                                                                        .fuzziness(Fuzziness.AUTO))
+                                                        .should(QueryBuilders.termQuery("tags", text))))
+                        .withPageable(pageable)
+                        .build());
+    }
 }

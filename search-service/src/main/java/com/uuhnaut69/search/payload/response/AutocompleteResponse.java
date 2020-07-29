@@ -11,5 +11,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class AutocompleteResponse {
 
-  private String text;
+    private String text;
 }

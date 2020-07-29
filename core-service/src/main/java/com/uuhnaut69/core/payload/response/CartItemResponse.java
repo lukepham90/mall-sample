@@ -13,11 +13,11 @@ import java.util.UUID;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class CartItemResponse {
 
-  private UUID id;
+    private UUID id;
 
-  private Integer quantity;
+    private Integer quantity;
 
-  private String productName;
+    private String productName;
 
-  private String thumbNail;
+    private String thumbNail;
 }

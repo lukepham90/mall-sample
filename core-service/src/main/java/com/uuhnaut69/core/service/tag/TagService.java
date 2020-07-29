@@ -14,15 +14,15 @@ import java.util.UUID;
  */
 public interface TagService {
 
-  Page<Tag> findAll(Pageable pageable);
+    Page<Tag> findAll(Pageable pageable);
 
-  Tag findById(UUID id);
+    Tag findById(UUID id);
 
-  Tag create(TagRequest tagRequest);
+    Tag create(TagRequest tagRequest);
 
-  Tag update(UUID id, TagRequest tagRequest);
+    Tag update(UUID id, TagRequest tagRequest);
 
-  void delete(UUID id);
+    void delete(UUID id);
 
-  Set<Tag> findListTagInListIds(Set<UUID> uuids);
+    Set<Tag> findListTagInListIds(Set<UUID> uuids);
 }

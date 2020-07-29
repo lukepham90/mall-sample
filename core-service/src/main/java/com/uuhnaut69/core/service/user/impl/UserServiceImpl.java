@@ -27,43 +27,43 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-  private final UserRepository userRepository;
+    private final UserRepository userRepository;
 
-  private final TagService tagService;
+    private final TagService tagService;
 
-  private final ProductService productService;
+    private final ProductService productService;
 
-  @Override
-  @Transactional(readOnly = true)
-  public User findById(UUID id) {
-    Optional<User> user = userRepository.findById(id);
-    return user.orElseThrow(() -> new BadRequestException(MessageConstant.USER_NOT_FOUND));
-  }
-
-  @Override
-  public void save(User user) {
-    userRepository.save(user);
-  }
-
-  @Override
-  public void initBaseContent(UUID id, UserBaseContent userBaseContent) {
-    User user = findById(id);
-    Set<Tag> tags = tagService.findListTagInListIds(userBaseContent.getUuidTags());
-    user.setTags(tags);
-  }
-
-  @Override
-  public void markAsReadProduct(UUID userId, UUID productId) {
-    User user = findById(userId);
-    Product product = productService.findById(productId);
-
-    if (!user.getProducts().isEmpty()) {
-      boolean checkExist = user.getProducts().stream().anyMatch(e -> e.getId().equals(productId));
-      if (checkExist) {
-        user.getProducts().removeIf(e -> e.getId().equals(productId));
-      }
+    @Override
+    @Transactional(readOnly = true)
+    public User findById(UUID id) {
+        Optional<User> user = userRepository.findById(id);
+        return user.orElseThrow(() -> new BadRequestException(MessageConstant.USER_NOT_FOUND));
     }
-    user.getProducts().add(product);
-    userRepository.save(user);
-  }
+
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public void initBaseContent(UUID id, UserBaseContent userBaseContent) {
+        User user = findById(id);
+        Set<Tag> tags = tagService.findListTagInListIds(userBaseContent.getUuidTags());
+        user.setTags(tags);
+    }
+
+    @Override
+    public void markAsReadProduct(UUID userId, UUID productId) {
+        User user = findById(userId);
+        Product product = productService.findById(productId);
+
+        if (!user.getProducts().isEmpty()) {
+            boolean checkExist = user.getProducts().stream().anyMatch(e -> e.getId().equals(productId));
+            if (checkExist) {
+                user.getProducts().removeIf(e -> e.getId().equals(productId));
+            }
+        }
+        user.getProducts().add(product);
+        userRepository.save(user);
+    }
 }

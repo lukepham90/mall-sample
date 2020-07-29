@@ -11,5 +11,6 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class CategoryRequest {
 
-  @NotBlank private String categoryName;
+    @NotBlank
+    private String categoryName;
 }

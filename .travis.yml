@@ -3,12 +3,12 @@ language: java
 dist: trusty
 
 branches:
-  only:
-  - master
-  
+    only:
+    - master
+
 script:
 - mvn clean package
 
 cache:
-  directories:
-  - '$HOME/.m2/repository'
+    directories:
+    - '$HOME/.m2/repository'

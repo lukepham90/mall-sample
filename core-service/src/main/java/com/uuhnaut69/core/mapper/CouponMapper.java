@@ -16,9 +16,9 @@ import java.util.List;
 @Mapper(config = SpringMapStructConfig.class)
 public interface CouponMapper {
 
-  void toCouponEntity(CouponRequest couponRequest, @MappingTarget Coupon coupon);
+    void toCouponEntity(CouponRequest couponRequest, @MappingTarget Coupon coupon);
 
-  CouponResponse toCouponResponse(Coupon coupon);
+    CouponResponse toCouponResponse(Coupon coupon);
 
-  List<CouponResponse> toListCouponResponse(List<Coupon> coupons);
+    List<CouponResponse> toListCouponResponse(List<Coupon> coupons);
 }

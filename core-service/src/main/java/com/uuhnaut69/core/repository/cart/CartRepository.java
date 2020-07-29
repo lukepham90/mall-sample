@@ -17,14 +17,14 @@ import java.util.UUID;
 @Repository
 public interface CartRepository extends JpaRepository<Cart, UUID> {
 
-  @EntityGraph(attributePaths = {"orderItems", "shipping", "billing", "coupon", "user"})
-  Optional<Cart> findByIdAndUserId(UUID id, UUID userId);
+    @EntityGraph(attributePaths = {"orderItems", "shipping", "billing", "coupon", "user"})
+    Optional<Cart> findByIdAndUserId(UUID id, UUID userId);
 
-  @EntityGraph(attributePaths = {"orderItems", "shipping", "billing", "coupon", "user"})
-  Page<Cart> findAll(Pageable pageable);
+    @EntityGraph(attributePaths = {"orderItems", "shipping", "billing", "coupon", "user"})
+    Page<Cart> findAll(Pageable pageable);
 
-  @EntityGraph(attributePaths = {"orderItems", "shipping", "billing", "coupon", "user"})
-  Page<Cart> findAllByUserId(Pageable pageable, UUID userId);
+    @EntityGraph(attributePaths = {"orderItems", "shipping", "billing", "coupon", "user"})
+    Page<Cart> findAllByUserId(Pageable pageable, UUID userId);
 
-  void deleteByIdAndUserId(UUID cartId, UUID userId);
+    void deleteByIdAndUserId(UUID cartId, UUID userId);
 }

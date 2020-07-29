@@ -21,14 +21,14 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 public class VerifyToken extends AbstractEntity {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-  @ApiModelProperty(value = "Token")
-  private String token;
+    @ApiModelProperty(value = "Token")
+    private String token;
 
-  @OneToOne(targetEntity = User.class)
-  @JoinColumn(nullable = false, name = "user_id")
-  private User user;
+    @OneToOne(targetEntity = User.class)
+    @JoinColumn(nullable = false, name = "user_id")
+    private User user;
 }

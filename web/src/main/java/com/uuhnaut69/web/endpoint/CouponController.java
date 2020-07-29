@@ -30,61 +30,61 @@ import java.util.UUID;
 @Api(tags = "Coupon", value = "Coupon Endpoint")
 public class CouponController {
 
-  private final CouponService couponService;
-  private final CouponMapper couponMapper;
+    private final CouponService couponService;
+    private final CouponMapper couponMapper;
 
-  @ApiOperation(value = "Get Catalogs Endpoint", notes = "Admin endpoint")
-  @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.COUPON_URL)
-  public GenericResponse getCouponPage(
-      @RequestParam(value = "sort", defaultValue = "id") String sortBy,
-      @RequestParam(value = "order", defaultValue = "desc") String order,
-      @RequestParam(value = "page", defaultValue = "1") int page,
-      @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
+    @ApiOperation(value = "Get Catalogs Endpoint", notes = "Admin endpoint")
+    @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.COUPON_URL)
+    public GenericResponse getCouponPage(
+            @RequestParam(value = "sort", defaultValue = "id") String sortBy,
+            @RequestParam(value = "order", defaultValue = "desc") String order,
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
 
-    Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
-    Page<Coupon> coupons = couponService.findAll(pageable);
-    List<CouponResponse> list = couponMapper.toListCouponResponse(coupons.getContent());
-    return GenericResponse.builder().data(list).build();
-  }
+        Pageable pageable = PagingUtils.makePageRequest(sortBy, order, page, pageSize);
+        Page<Coupon> coupons = couponService.findAll(pageable);
+        List<CouponResponse> list = couponMapper.toListCouponResponse(coupons.getContent());
+        return GenericResponse.builder().data(list).build();
+    }
 
-  @ApiOperation(value = "Get Coupon Endpoint", notes = "Public endpoint")
-  @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.COUPON_URL + "/{code}")
-  public GenericResponse getCouponByCode(@PathVariable String code) {
+    @ApiOperation(value = "Get Coupon Endpoint", notes = "Public endpoint")
+    @GetMapping(path = UrlConstants.PUBLIC_URL + UrlConstants.COUPON_URL + "/{code}")
+    public GenericResponse getCouponByCode(@PathVariable String code) {
 
-    Coupon coupon = couponService.findByCode(code);
-    return GenericResponse.builder().data(couponMapper.toCouponResponse(coupon)).build();
-  }
+        Coupon coupon = couponService.findByCode(code);
+        return GenericResponse.builder().data(couponMapper.toCouponResponse(coupon)).build();
+    }
 
-  @ApiOperation(value = "Create A Coupon Endpoint", notes = "Admin endpoint")
-  @PostMapping(path = UrlConstants.COUPON_URL)
-  public GenericResponse create(@RequestBody @Valid CouponRequest couponRequest) {
+    @ApiOperation(value = "Create A Coupon Endpoint", notes = "Admin endpoint")
+    @PostMapping(path = UrlConstants.COUPON_URL)
+    public GenericResponse create(@RequestBody @Valid CouponRequest couponRequest) {
 
-    Coupon coupon = couponService.create(couponRequest);
-    return GenericResponse.builder().data(couponMapper.toCouponResponse(coupon)).build();
-  }
+        Coupon coupon = couponService.create(couponRequest);
+        return GenericResponse.builder().data(couponMapper.toCouponResponse(coupon)).build();
+    }
 
-  @ApiOperation(value = "Update A Coupon Endpoint", notes = "Admin endpoint")
-  @PutMapping(path = UrlConstants.COUPON_URL + "/{id}")
-  public GenericResponse update(
-      @PathVariable UUID id, @RequestBody @Valid CouponRequest couponRequest) {
+    @ApiOperation(value = "Update A Coupon Endpoint", notes = "Admin endpoint")
+    @PutMapping(path = UrlConstants.COUPON_URL + "/{id}")
+    public GenericResponse update(
+            @PathVariable UUID id, @RequestBody @Valid CouponRequest couponRequest) {
 
-    Coupon coupon = couponService.update(id, couponRequest);
-    return GenericResponse.builder().data(couponMapper.toCouponResponse(coupon)).build();
-  }
+        Coupon coupon = couponService.update(id, couponRequest);
+        return GenericResponse.builder().data(couponMapper.toCouponResponse(coupon)).build();
+    }
 
-  @ApiOperation(value = "Delete A Coupon Endpoint", notes = "Admin endpoint")
-  @DeleteMapping(path = UrlConstants.COUPON_URL + "/{id}")
-  public GenericResponse delete(@PathVariable UUID id) {
+    @ApiOperation(value = "Delete A Coupon Endpoint", notes = "Admin endpoint")
+    @DeleteMapping(path = UrlConstants.COUPON_URL + "/{id}")
+    public GenericResponse delete(@PathVariable UUID id) {
 
-    couponService.delete(id);
-    return new GenericResponse();
-  }
+        couponService.delete(id);
+        return new GenericResponse();
+    }
 
-  @ApiOperation(value = "Delete Coupons Endpoint", notes = "Admin endpoint")
-  @DeleteMapping(path = UrlConstants.COUPON_URL)
-  public GenericResponse deleteAll(@RequestBody IdsRequest idsRequest) {
+    @ApiOperation(value = "Delete Coupons Endpoint", notes = "Admin endpoint")
+    @DeleteMapping(path = UrlConstants.COUPON_URL)
+    public GenericResponse deleteAll(@RequestBody IdsRequest idsRequest) {
 
-    couponService.deleteAll(idsRequest.getIds());
-    return new GenericResponse();
-  }
+        couponService.deleteAll(idsRequest.getIds());
+        return new GenericResponse();
+    }
 }

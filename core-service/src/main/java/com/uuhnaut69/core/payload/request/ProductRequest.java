@@ -13,23 +13,23 @@ import java.util.UUID;
 @Data
 public class ProductRequest {
 
-  private String productName;
+    private String productName;
 
-  private String description;
+    private String description;
 
-  private Integer stocks;
+    private Integer stocks;
 
-  private String imageUrls;
+    private String imageUrls;
 
-  private String thumbNail;
+    private String thumbNail;
 
-  private BigDecimal originalPrice;
+    private BigDecimal originalPrice;
 
-  private BigDecimal discountPrice;
+    private BigDecimal discountPrice;
 
-  private Set<UUID> uuidTags;
+    private Set<UUID> uuidTags;
 
-  private Set<UUID> uuidCategories;
+    private Set<UUID> uuidCategories;
 
-  private Boolean trending;
+    private Boolean trending;
 }

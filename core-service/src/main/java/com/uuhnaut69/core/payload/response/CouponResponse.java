@@ -15,15 +15,15 @@ import java.util.UUID;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class CouponResponse {
 
-  private UUID id;
+    private UUID id;
 
-  private String code;
+    private String code;
 
-  private CouponStatus couponStatus;
+    private CouponStatus couponStatus;
 
-  private Double discountPercent;
+    private Double discountPercent;
 
-  private Timestamp startingDate;
+    private Timestamp startingDate;
 
-  private Timestamp endingDate;
+    private Timestamp endingDate;
 }

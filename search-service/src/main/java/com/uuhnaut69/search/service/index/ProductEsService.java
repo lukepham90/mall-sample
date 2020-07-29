@@ -13,13 +13,13 @@ import java.util.Map;
  */
 public interface ProductEsService {
 
-  void handleCdcEvent(Map<String, Object> productData, Operation operation);
+    void handleCdcEvent(Map<String, Object> productData, Operation operation);
 
-  void findByTagAndUpdate(String tagNameBefore, TagEs tagEs);
+    void findByTagAndUpdate(String tagNameBefore, TagEs tagEs);
 
-  void findByCategoryAndUpdate(String categoryNameBefore, CategoryEs categoryEs);
+    void findByCategoryAndUpdate(String categoryNameBefore, CategoryEs categoryEs);
 
-  ProductEs findById(String id);
+    ProductEs findById(String id);
 
-  void save(ProductEs productEs);
+    void save(ProductEs productEs);
 }

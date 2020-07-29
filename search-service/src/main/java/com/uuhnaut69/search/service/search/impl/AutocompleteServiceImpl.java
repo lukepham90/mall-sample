@@ -31,56 +31,56 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AutocompleteServiceImpl implements AutocompleteService {
 
-  private final RestHighLevelClient restClient;
+    private final RestHighLevelClient restClient;
 
-  @Override
-  public List<AutocompleteResponse> autocomplete(String text, int size) throws IOException {
-    log.debug("Request to get product suggestion with text {}", text);
-    SearchRequest searchRequest = makeAutocompletionRequest(text, size);
-    SearchResponse searchResponse = restClient.search(searchRequest, RequestOptions.DEFAULT);
-    return extractResponse(searchResponse);
-  }
+    @Override
+    public List<AutocompleteResponse> autocomplete(String text, int size) throws IOException {
+        log.debug("Request to get product suggestion with text {}", text);
+        SearchRequest searchRequest = makeAutocompletionRequest(text, size);
+        SearchResponse searchResponse = restClient.search(searchRequest, RequestOptions.DEFAULT);
+        return extractResponse(searchResponse);
+    }
 
-  /**
-   * Make autocompletion request
-   *
-   * @param text Search content
-   * @param size Result size
-   * @return SearchRequest
-   */
-  private SearchRequest makeAutocompletionRequest(String text, int size) {
-    SearchRequest searchRequest = new SearchRequest(EsConstants.PRODUCT_INDEX);
-    SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
-    CompletionSuggestionBuilder completeSuggestionBuilder =
-        new CompletionSuggestionBuilder(EsConstants.PRODUCT_SUGGEST)
-            .size(size)
-            .prefix(text, Fuzziness.AUTO)
-            .skipDuplicates(true)
-            .analyzer(EsConstants.STANDARD_ANALYZER);
-    sourceBuilder.suggest(
-        new SuggestBuilder().addSuggestion(EsConstants.PRODUCT_SUGGEST, completeSuggestionBuilder));
-    searchRequest.source(sourceBuilder);
-    return searchRequest;
-  }
+    /**
+     * Make autocompletion request
+     *
+     * @param text Search content
+     * @param size Result size
+     * @return SearchRequest
+     */
+    private SearchRequest makeAutocompletionRequest(String text, int size) {
+        SearchRequest searchRequest = new SearchRequest(EsConstants.PRODUCT_INDEX);
+        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+        CompletionSuggestionBuilder completeSuggestionBuilder =
+                new CompletionSuggestionBuilder(EsConstants.PRODUCT_SUGGEST)
+                        .size(size)
+                        .prefix(text, Fuzziness.AUTO)
+                        .skipDuplicates(true)
+                        .analyzer(EsConstants.STANDARD_ANALYZER);
+        sourceBuilder.suggest(
+                new SuggestBuilder().addSuggestion(EsConstants.PRODUCT_SUGGEST, completeSuggestionBuilder));
+        searchRequest.source(sourceBuilder);
+        return searchRequest;
+    }
 
-  /**
-   * Extract data from responses
-   *
-   * @param searchResponse Search response
-   * @return Lis {@link AutocompleteResponse}
-   */
-  private List<AutocompleteResponse> extractResponse(SearchResponse searchResponse) {
-    List<AutocompleteResponse> list = new ArrayList<>();
-    Suggestion<Entry<Option>> suggestion =
-        searchResponse.getSuggest().getSuggestion(EsConstants.PRODUCT_SUGGEST);
-    suggestion
-        .getEntries()
-        .forEach(
-            entry ->
-                entry
-                    .getOptions()
-                    .forEach(
-                        option -> list.add(new AutocompleteResponse(option.getText().toString()))));
-    return list;
-  }
+    /**
+     * Extract data from responses
+     *
+     * @param searchResponse Search response
+     * @return Lis {@link AutocompleteResponse}
+     */
+    private List<AutocompleteResponse> extractResponse(SearchResponse searchResponse) {
+        List<AutocompleteResponse> list = new ArrayList<>();
+        Suggestion<Entry<Option>> suggestion =
+                searchResponse.getSuggest().getSuggestion(EsConstants.PRODUCT_SUGGEST);
+        suggestion
+                .getEntries()
+                .forEach(
+                        entry ->
+                                entry
+                                        .getOptions()
+                                        .forEach(
+                                                option -> list.add(new AutocompleteResponse(option.getText().toString()))));
+        return list;
+    }
 }

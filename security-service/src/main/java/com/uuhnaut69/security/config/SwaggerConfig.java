@@ -18,21 +18,21 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-  @Bean
-  public Docket buildDocket() {
-    return new Docket(DocumentationType.SWAGGER_2)
-        .apiInfo(buildApiInf())
-        .select()
-        .apis(RequestHandlerSelectors.basePackage("com.uuhnaut69.mall.web.endpoint"))
-        .paths(PathSelectors.any())
-        .build();
-  }
+    @Bean
+    public Docket buildDocket() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(buildApiInf())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.uuhnaut69.mall.web.endpoint"))
+                .paths(PathSelectors.any())
+                .build();
+    }
 
-  private ApiInfo buildApiInf() {
-    return new ApiInfoBuilder()
-        .title("Swagger UI")
-        .description("Restful API Mall Web App")
-        .version("0.0.1-SNAPSHOT")
-        .build();
-  }
+    private ApiInfo buildApiInf() {
+        return new ApiInfoBuilder()
+                .title("Swagger UI")
+                .description("Restful API Mall Web App")
+                .version("0.0.1-SNAPSHOT")
+                .build();
+    }
 }

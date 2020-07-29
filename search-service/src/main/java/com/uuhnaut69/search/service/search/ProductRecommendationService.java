@@ -10,5 +10,5 @@ import org.springframework.data.domain.Pageable;
  */
 public interface ProductRecommendationService {
 
-  Page<ProductEs> recommendation(String userId, Pageable pageable);
+    Page<ProductEs> recommendation(String userId, Pageable pageable);
 }

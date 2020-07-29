@@ -20,10 +20,10 @@ import java.util.UUID;
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Category extends AbstractEntity {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-  @Column(nullable = false, unique = true)
-  private String categoryName;
+    @Column(nullable = false, unique = true)
+    private String categoryName;
 }
