@@ -1,8 +1,7 @@
 package com.uuhnaut69.security.config;
 
-import com.uuhnaut69.security.jwt.JwtAuthEntryPoint;
-import com.uuhnaut69.security.jwt.JwtAuthTokenFilter;
-import com.uuhnaut69.security.user.UserDetailsServiceImpl;
+import com.uuhnaut69.security.jwt.JWTConfigurer;
+import com.uuhnaut69.security.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,28 +26,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-  private final UserDetailsServiceImpl userDetailsService;
-
-  private final JwtAuthEntryPoint unauthorizedHandler;
-
-  @Bean
-  public JwtAuthTokenFilter authenticationJwtTokenFilter() {
-    return new JwtAuthTokenFilter();
-  }
-
-  @Override
-  public void configure(AuthenticationManagerBuilder authenticationManagerBuilder)
-      throws Exception {
-    authenticationManagerBuilder
-        .userDetailsService(userDetailsService)
-        .passwordEncoder(passwordEncoder());
-  }
-
-  @Bean
-  @Override
-  public AuthenticationManager authenticationManagerBean() throws Exception {
-    return super.authenticationManagerBean();
-  }
+  private final TokenProvider tokenProvider;
 
   @Bean
   public PasswordEncoder passwordEncoder() {
@@ -78,12 +56,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .authenticated()
         .and()
         .exceptionHandling()
-        .authenticationEntryPoint(unauthorizedHandler)
         .and()
         .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .and()
+        .apply(securityConfigurerAdapter());
+  }
 
-    http.addFilterBefore(
-        authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+  private JWTConfigurer securityConfigurerAdapter() {
+    return new JWTConfigurer(tokenProvider);
   }
 }

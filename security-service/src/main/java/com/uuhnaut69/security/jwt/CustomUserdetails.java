@@ -1,4 +1,4 @@
-package com.uuhnaut69.security.user;
+package com.uuhnaut69.security.jwt;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.uuhnaut69.core.domain.model.User;
@@ -15,7 +15,7 @@ import java.util.UUID;
  * @author uuhnaut
  * @project mall
  */
-public class UserPrinciple implements UserDetails {
+public class CustomUserdetails implements UserDetails {
 
   private static final long serialVersionUID = 1L;
 
@@ -33,7 +33,7 @@ public class UserPrinciple implements UserDetails {
 
   private final Collection<? extends GrantedAuthority> authorities;
 
-  public UserPrinciple(
+  public CustomUserdetails(
       UUID id,
       String name,
       String username,
@@ -50,11 +50,11 @@ public class UserPrinciple implements UserDetails {
     this.isEnabled = isEnabled;
   }
 
-  public static UserPrinciple build(User user) {
+  public static CustomUserdetails createUser(User user) {
     List<GrantedAuthority> authorities =
-        Collections.singletonList(new SimpleGrantedAuthority(user.getRole().toString()));
+        Collections.singletonList(new SimpleGrantedAuthority(user.getRole().name()));
 
-    return new UserPrinciple(
+    return new CustomUserdetails(
         user.getId(),
         user.getName(),
         user.getUsername(),

@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, UUID> {
   String USERS_LOGIN_CACHE = "userLoginCache";
 
   @Cacheable(cacheNames = USERS_LOGIN_CACHE)
-  Optional<User> findByUsernameAndIsEnabled(String username, Boolean isEnabled);
+  Optional<User> findByUsernameIgnoreCaseAndIsEnabled(String username, Boolean isEnabled);
 
   boolean existsByUsername(String username);
 
