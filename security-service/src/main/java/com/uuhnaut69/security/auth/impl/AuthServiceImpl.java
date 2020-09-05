@@ -32,57 +32,52 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
-  private final AuthenticationManagerBuilder authenticationManagerBuilder;
+    private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
-  private final UserRepository userRepository;
+    private final UserRepository userRepository;
 
-  private final MailService mailService;
+    private final MailService mailService;
 
-  private final TokenProvider tokenProvider;
+    private final TokenProvider tokenProvider;
 
-  private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-  @Override
-  public JwtResponse signIn(SignInRequest signInRequest) {
-    UsernamePasswordAuthenticationToken authenticationToken =
-        new UsernamePasswordAuthenticationToken(
-            signInRequest.getUsername(), signInRequest.getPassword());
-    Authentication authentication =
-        authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-
-    SecurityContextHolder.getContext().setAuthentication(authentication);
-    String jwt = tokenProvider.createToken(authentication);
-    return new JwtResponse(jwt);
-  }
-
-  @Override
-  public MessageResponse signUp(SignUpRequest signUpRequest) throws Exception {
-    log.debug("Request to user {} sign up", signUpRequest);
-    checkUserNameValid(signUpRequest.getUsername());
-    checkEmailValid(signUpRequest.getEmail());
-
-    User user =
-        new User(
-            signUpRequest.getName(),
-            signUpRequest.getUsername(),
-            signUpRequest.getEmail(),
-            passwordEncoder.encode(signUpRequest.getPassword()));
-    user.setRole(RoleName.ROLE_USER);
-
-    userRepository.save(user);
-    mailService.sendMail(user);
-    return new MessageResponse(MessageConstant.ACTIVATE_YOUR_ACCOUNT);
-  }
-
-  private void checkUserNameValid(String userName) {
-    if (userRepository.existsByUsername(userName)) {
-      throw new BadRequestException(MessageConstant.USER_NAME_ALREADY_EXIST);
+    @Override
+    public JwtResponse signIn(SignInRequest signInRequest) {
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(signInRequest.getUsername(), signInRequest.getPassword());
+        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = tokenProvider.createToken(authentication);
+        return new JwtResponse(jwt);
     }
-  }
 
-  private void checkEmailValid(String email) {
-    if (userRepository.existsByEmail(email)) {
-      throw new BadRequestException(MessageConstant.USER_EMAIL_ALREADY_EXIST);
+    @Override
+    public MessageResponse signUp(SignUpRequest signUpRequest) throws Exception {
+        log.debug("Request to user {} sign up", signUpRequest);
+        checkUserNameValid(signUpRequest.getUsername());
+        checkEmailValid(signUpRequest.getEmail());
+
+        User user =new User(
+                        signUpRequest.getName(),
+                        signUpRequest.getUsername(),
+                        signUpRequest.getEmail(),
+                        passwordEncoder.encode(signUpRequest.getPassword()));
+        user.setRole(RoleName.ROLE_USER);
+
+        userRepository.save(user);
+        mailService.sendMail(user);
+        return new MessageResponse(MessageConstant.ACTIVATE_YOUR_ACCOUNT);
     }
-  }
+
+    private void checkUserNameValid(String userName) {
+        if (userRepository.existsByUsername(userName)) {
+            throw new BadRequestException(MessageConstant.USER_NAME_ALREADY_EXIST);
+        }
+    }
+
+    private void checkEmailValid(String email) {
+        if (userRepository.existsByEmail(email)) {
+            throw new BadRequestException(MessageConstant.USER_EMAIL_ALREADY_EXIST);
+        }
+    }
 }

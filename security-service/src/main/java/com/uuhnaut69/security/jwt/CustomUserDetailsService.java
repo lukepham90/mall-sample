@@ -19,15 +19,13 @@ import static com.uuhnaut69.security.jwt.CustomUserdetails.createUser;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
-  private final UserRepository userRepository;
+    private final UserRepository userRepository;
 
-  @Override
-  @Transactional(readOnly = true)
-  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    User user =
-        userRepository
-            .findByUsernameIgnoreCaseAndIsEnabled(username, true)
-            .orElseThrow(() -> new UsernameNotFoundException("User name not found !!!"));
-    return createUser(user);
-  }
+    @Override
+    @Transactional(readOnly = true)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsernameIgnoreCaseAndIsEnabled(username, true)
+                        .orElseThrow(() -> new UsernameNotFoundException("User name not found !!!"));
+        return createUser(user);
+    }
 }
